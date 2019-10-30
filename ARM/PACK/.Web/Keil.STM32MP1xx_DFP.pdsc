@@ -1,0 +1,1105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<package schemaVersion="1.4" xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="PACK.xsd">
+  <vendor>Keil</vendor>
+  <url>http://www.keil.com/pack/</url>
+  <name>STM32MP1xx_DFP</name>
+  <description>STMicroelectronics STM32MP1 Series Device Support</description>
+
+  <requirements>
+    <packages>
+      <package vendor="ARM" name="CMSIS" version="5.4.0"/>
+      <package vendor="ARM" name="AMP"   version="1.1.0"/>
+    </packages>
+  </requirements>
+
+  <releases>
+    <release version="1.0.0">
+      Initial release of STM32MP1 Device Family Pack.
+    </release>
+  </releases>
+
+  <keywords>
+    <keyword>ST</keyword>
+    <keyword>Device Support</keyword>
+    <keyword>Device Family Package STMicroelectronics</keyword>
+    <keyword>STM32MP1</keyword>
+    <keyword>STM32MP157</keyword>
+  </keywords>
+
+  <devices>
+    <family Dfamily="STM32MP1 Series" Dvendor="STMicroelectronics:13">
+
+      <subFamily DsubFamily="STM32MP157">
+
+        <!-- ******************************  STM32MP157xxx  ******************************* -->
+
+        <!-- Device processor attributes -->
+        <processor Dcore="Cortex-A7" DcoreVersion="r0p5" Dfpu="DP_FPU" Dmpu="MPU" Pname="Cortex-A7" Punits="2" Dclock="650000000"/>
+        <processor Dcore="Cortex-M4" DcoreVersion="r0p1" Dfpu="SP_FPU" Dmpu="MPU" Pname="Cortex-M4" Dclock="209000000"/>
+
+        <!-- Debug configuration settings -->
+        <debugconfig default="swd" swj="true" clock="10000000" sdf="Debug/STM32MP1.sdf"/>
+
+        <debugvars configfile="Debug/STM32MP1.dbgconf">
+          __var Production_Options = 0x00000000;   // Automation scripts disabled
+          __var Force_M4_Start     = 0x00000000;   // Force M4 start disabled
+          __var DbgMCU_CR          = 0x00000007;   // DBGMCU_CR: DBG_SLEEP, DBG_STOP, DBG_STANDBY
+          
+          __var TraceClk_Pin       = 0x0008000E;   // PI14
+          __var TraceD0_Pin        = 0x0008000C;   // P112
+          __var TraceD1_Pin        = 0x0008000D;   // PI13
+          __var TraceD2_Pin        = 0x00090005;   // PJ5
+          __var TraceD3_Pin        = 0x00090006;   // PJ6
+        </debugvars>
+
+        <description>
+          STM32MP157 microprocessors are based on the flexible architecture of a Dual Arm Cortex-A7 core running at 650 MHz
+          and Cortex-M4 at 209 MHz combined with a dedicated 3D graphics processing unit (GPU) and MIPI-DSI display interface
+          and a CAN FD interface.
+
+          Specifically designed to accelerate 3D graphics in applications such as graphical user interfaces (GUI),
+          menu displays or animations, the STM32MP157 3D OpenGL ES 2.0 graphics engine works together with an optimized
+          software stack design for industry-standard APIs with support for Android and Linux embedded development platforms.
+
+          As well as an LCD-TFT display controller, the STM32MP157 line embeds up to 37 communication peripherals including
+          10/100M or Gigabit Ethernet, 3x USB 2.0 Host/OTG, 29x Timers and Advanced Analog.
+
+          In addition to true random number generators (TRNG), hardware cryptographic and hash processors, the security option
+          includes Secure Boot, TrustZone peripherals, and an active tamper-detect feature.
+        </description>
+
+        <book name="https://www.st.com/resource/en/reference_manual/dm00327659.pdf" title="Reference Manual STM32MP157"/>
+        <book name="https://www.st.com/resource/en/programming_manual/dm00046982.pdf" title="Programming Manual STM32"/>
+        <book name="https://www.st.com/resource/en/datasheet/stm32mp157a.pdf" title="Datasheet STM32MP157A"/>
+        <book name="https://www.st.com/resource/en/datasheet/stm32mp157c.pdf" title="Datasheet STM32MP157C"/>
+        <book name="https://www.st.com/resource/en/errata_sheet/dm00516256.pdf" title="Errata STM32MP151x/3x/7x"/>
+
+        <sequences>
+          <!-- Override for Pre-Defined Sequences -->
+          <sequence name="DebugDeviceUnlock">
+            <block>
+              __var value = 0;
+              // Read RCC_DBGCFGR
+              value = Read32(0x5000080C);
+              // Enable Debug Clock
+              value |= 0x00000100;
+            </block>
+
+            <control if="__traceout">
+              <block>
+                // Enable Trace Clock
+                value |= 0x00000200;
+              </block>
+            </control>
+            
+            <block>
+              Write32(0x50081004, DbgMCU_CR);                                                // Update DBGMCU_CR
+              Write32(0x5000080C, value);                                                    // Update RCC_DBGCFGR
+            </block>
+          </sequence>
+
+          <sequence name="TraceStart">
+            <block>
+              __var traceSWO    = (__traceout &amp; 0x1) != 0;                               // SWO (asynchronous) Trace Selected?
+              __var traceTPIU   = (__traceout &amp; 0x2) != 0;                               // TPIU (synchronous) Trace Selected?
+            </block>
+
+            <control if="traceTPIU">
+              <block>
+                Sequence("ConfigureTraceTPIUPins");
+              </block>
+            </control>
+          </sequence>
+
+          <sequence name="DebugPortStart" Pname="Cortex-M4">
+            <block>
+              __var SW_DP_ABORT  = 0x0;
+              __var DP_CTRL_STAT = 0x4;
+              __var DP_SELECT    = 0x8;
+              __var powered_down = 0;
+              // Switch to DP Register Bank 0
+              WriteDP(DP_SELECT, 0x00000000);
+
+              // Read DP CTRL/STAT Register and check if CSYSPWRUPACK and CDBGPWRUPACK bits are set
+              powered_down = ((ReadDP(DP_CTRL_STAT) &amp; 0xA0000000) != 0xA0000000);
+            </block>
+
+            <control if="powered_down">
+              <block>
+                // Request Debug/System Power-Up
+                WriteDP(DP_CTRL_STAT, 0x50000000);
+              </block>
+              <!-- Wait for Power-Up Request to be acknowledged -->
+              <control while="(ReadDP(DP_CTRL_STAT) &amp; 0xA0000000) != 0xA0000000" timeout="1000000"/>
+              <!-- JTAG Specific Part of sequence -->
+              <control if="(__protocol &amp; 0xFFFF) == 1">
+                <block>
+                  // Init AP Transfer Mode, Transaction Counter, and Lane Mask (Normal Transfer Mode, Include all Byte Lanes)
+                  // Additionally clear STICKYORUN, STICKYCMP, and STICKYERR bits by writing '1'
+                  WriteDP(DP_CTRL_STAT, 0x50000F32);
+                </block>
+              </control>
+
+              <!-- SWD Specific Part of sequence -->
+              <control if="(__protocol &amp; 0xFFFF) == 2">
+                <block>
+                  // Init AP Transfer Mode, Transaction Counter, and Lane Mask (Normal Transfer Mode, Include all Byte Lanes)
+                  WriteDP(DP_CTRL_STAT, 0x50000F00);
+                  // Clear WDATAERR, STICKYORUN, STICKYCMP, and STICKYERR bits of CTRL/STAT Register by write to ABORT register
+                  WriteDP(SW_DP_ABORT, 0x0000001E);
+                </block>
+              </control>
+            </control>
+
+            <control if="Force_M4_Start &amp; 0x00000001">
+              <block>
+                // Set BOOT_MCU bit in RCC_MP_GCR register via AXI-AP
+                __ap =  0x0;
+                Write32(0x5000010C, Read32(0x5000010C)|0x1);
+
+                // Start M4 and leave it running on an endless loop
+                __ap =  0x2;
+                Write32(0x00000000, 0x00001000); // Initial SP
+                Write32(0x00000004, 0x00000009); // Initial PC
+                Write32(0x00000008, 0x0000E7FE); // Endless loop
+                Write32(0xE000ED0C, 0x05FA0004); // Reset
+              </block>
+            </control>
+
+            <block>
+              // Read boot mode from SYSCFG->BOOTR register
+              __ap =  0x0;
+              __var boot_mode = Read32(0x50020000) &amp; 0x00000007;
+            </block>
+
+            <control if="(Production_Options &amp; 0x00000001) &amp;&amp; (boot_mode != 0x00000004)">
+              <block>
+                __var exitCode = 0;
+                exitCode = RunApplication ("$STools/start.bat", "$STools $D %L", "$P", 15000000);  // Timeout is 15 seconds
+              </block>
+
+              <control if="exitCode == 0">
+                <block>
+                  // Set BOOT_MCU bit in RCC_MP_GCR register via AXI-AP
+                  __ap =  0x0;
+                  Write32(0x5000010C, Read32(0x5000010C)|0x1);
+                </block>
+              </control>
+              <control if="(exitCode != 0)">
+                <block>
+                  Message(2, "Error while calling start script. Aborting sequence.");
+                </block>
+              </control>
+            </control>
+          </sequence>
+
+          <sequence name="DebugPortStop" Pname="Cortex-M4">
+            <block>
+              // Read boot mode from SYSCFG->BOOTR register
+              __ap =  0x0;
+              __var boot_mode = Read32(0x50020000) &amp; 0x00000007;
+            </block>
+
+            <block>
+              __var DP_CTRL_STAT = 0x4;
+              __var DP_SELECT    = 0x8;
+
+              // Switch to DP Register Bank 0
+              WriteDP(DP_SELECT, 0x00000000);
+
+              // Power Down Debug port
+              WriteDP(DP_CTRL_STAT, 0x00000000);
+            </block>
+
+            <control if="(Production_Options &amp; 0x00000002) &amp;&amp; (boot_mode != 0x00000004)">
+              <block>
+                __var exitCode = 0;
+                exitCode = RunApplication ("$STools/stop.bat", "$STools $D %L", "$P", 15000000);  // Timeout is 15 seconds
+              </block>
+              <control if="(exitCode != 0)">
+                <block>
+                  Message(2, "Error while calling stop script. Aborting sequence.");
+                </block>
+              </control>
+            </control>
+          </sequence>
+
+          <sequence name="ResetSystem" Pname="Cortex-M4">
+            <block>
+              // System Control Space (SCS) offset as defined in Armv6-M/Armv7-M.
+              __var SCS_Addr   = 0xE000E000;
+              __var AIRCR_Addr = SCS_Addr + 0xD0C;
+              __var DHCSR_Addr = SCS_Addr + 0xDF0;
+            
+              // Execute SYSRESETREQ via AIRCR
+              Write32(AIRCR_Addr, 0x05FA0004);
+            </block>
+            <!-- Reset Recovery: Wait for DHCSR.S_RESET_ST bit to clear on read -->
+            <control while="(Read32(DHCSR_Addr) &amp; 0x02000000)" timeout="500000"/>
+
+            <block>
+              // Read boot mode from SYSCFG->BOOTR register
+              __ap =  0x0;
+              __var boot_mode = Read32(0x50020000) &amp; 0x00000007;
+            </block>
+
+            <control if="(Production_Options &amp; 0x00000004) &amp;&amp; (boot_mode != 0x00000004)">
+              <block>
+                __var exitCode = 0;
+                exitCode = RunApplication ("$STools/restart.bat", "$STools $D", "$P", 15000000);  // Timeout is 15 seconds
+              </block>
+              <control if="(exitCode != 0)">
+                <block>
+                  Message(2, "Error while calling reset script. Aborting sequence.");
+                </block>
+              </control>
+            </control>
+          </sequence>
+          
+          <sequence name="ConfigureTraceTPIUPins">
+            <block>
+              __var pin     = 8;
+              __var port    = 0;
+              __var portAdr = 0;
+              __var pos     = 0;
+              __var MCU_AHB4_PERIPH_BASE = 0x50000000;
+              __var RCC_MC_AHB4ENSETR = MCU_AHB4_PERIPH_BASE + 0x00000AA8;
+
+              __var width   = (__traceout &amp; 0x003F0000) &gt;&gt; 16;
+            </block>
+
+            <!-- configure TRACECLK -->
+            <block info="configure TRACECLK">
+              pin     =                          (TraceClk_Pin            ) &amp; 0x0000FFFF;
+              port    =                          (TraceClk_Pin &gt;&gt; 16) &amp; 0x0000FFFF;
+              portAdr = MCU_AHB4_PERIPH_BASE + (((TraceClk_Pin &gt;&gt; 4 ) &amp; 0x0000F000) + 0x00002000);
+
+              pos = pin * 2;
+              Write32(RCC_MC_AHB4ENSETR, ((Read32(RCC_MC_AHB4ENSETR)                      ) | (1 &lt;&lt; port)) );  // RCC_MC_AHB4ENSETR: IO port clock enable
+              Write32(portAdr + 0x00,    ((Read32(portAdr + 0x00) &amp; ~( 3 &lt;&lt; pos)) | (2 &lt;&lt; pos )) );  // GPIOx_MODER:       Set Mode (Alternate Function)
+              Write32(portAdr + 0x08,    ((Read32(portAdr + 0x08)                         ) | (3 &lt;&lt; pos )) );  // GPIOx_OSPEEDR:     Set Speed (Very High Speed)
+              Write32(portAdr + 0x0C,    ((Read32(portAdr + 0x0C) &amp; ~( 3 &lt;&lt; pos))                    ) );  // GPIOx_PUPDR:       Set I/O to no pull-up/pull-down
+            </block>
+            <control if="pin &lt;  8">
+              <block>
+                pos = ((pin    ) &amp; 7) * 4;
+                Write32(portAdr + 0x20,    ((Read32(portAdr + 0x20) &amp; ~(15 &lt;&lt; pos))                    ) );  // GPIOx_AFRL:    Alternate Function to AF0
+              </block>
+            </control>
+            <control if="pin &gt;= 8">
+              <block>
+                pos = ((pin - 8) &amp; 7) * 4;
+                Write32(portAdr + 0x24,    ((Read32(portAdr + 0x24) &amp; ~(15 &lt;&lt; pos))                    ) );  // GPIOx_AFRH:    Alternate Function to AF0
+              </block>
+            </control>
+
+          <control if="width &gt;= 1" info="TPIU port width 1">
+            <!-- configure TRACED0 -->
+            <block info="configure TRACED0">
+              pin     =                          (TraceD0_Pin            ) &amp; 0x0000FFFF;
+              port    =                          (TraceD0_Pin &gt;&gt; 16) &amp; 0x0000FFFF;
+              portAdr = MCU_AHB4_PERIPH_BASE + (((TraceD0_Pin &gt;&gt; 4 ) &amp; 0x0000F000) + 0x00002000);
+
+              pos = pin * 2;
+              Write32(RCC_MC_AHB4ENSETR, ((Read32(RCC_MC_AHB4ENSETR)                      ) | (1 &lt;&lt; port)) );  // RCC_MC_AHB4ENSETR: IO port clock enable
+              Write32(portAdr + 0x00,    ((Read32(portAdr + 0x00) &amp; ~( 3 &lt;&lt; pos)) | (2 &lt;&lt; pos )) );  // GPIOx_MODER:       Set Mode (Alternate Function)
+              Write32(portAdr + 0x08,    ((Read32(portAdr + 0x08)                         ) | (3 &lt;&lt; pos )) );  // GPIOx_OSPEEDR:     Set Speed (Very High Speed)
+              Write32(portAdr + 0x0C,    ((Read32(portAdr + 0x0C) &amp; ~( 3 &lt;&lt; pos))                    ) );  // GPIOx_PUPDR:       Set I/O to no pull-up/pull-down
+            </block>
+            <control if="pin &lt;  8">
+              <block>
+                pos = ((pin    ) &amp; 7) * 4;
+                Write32(portAdr + 0x20,    ((Read32(portAdr + 0x20) &amp; ~(15 &lt;&lt; pos))                    ) );  // GPIOx_AFRL:    Alternate Function to AF0
+              </block>
+            </control>
+            <control if="pin &gt;= 8">
+              <block>
+                pos = ((pin - 8) &amp; 7) * 4;
+                Write32(portAdr + 0x24,    ((Read32(portAdr + 0x24) &amp; ~(15 &lt;&lt; pos))                    ) );  // GPIOx_AFRH:    Alternate Function to AF0
+              </block>
+            </control>
+          </control>
+
+          <control if="width &gt;= 2" info="TPIU port width 2">
+            <!-- configure TRACED1 -->
+            <block info="configure TRACED1">
+              pin     =                          (TraceD1_Pin            ) &amp; 0x0000FFFF;
+              port    =                          (TraceD1_Pin &gt;&gt; 16) &amp; 0x0000FFFF;
+              portAdr = MCU_AHB4_PERIPH_BASE + (((TraceD1_Pin &gt;&gt; 4 ) &amp; 0x0000F000) + 0x00002000);
+
+              pos = pin * 2;
+              Write32(RCC_MC_AHB4ENSETR, ((Read32(RCC_MC_AHB4ENSETR)                      ) | (1 &lt;&lt; port)) );  // RCC_MC_AHB4ENSETR: IO port clock enable
+              Write32(portAdr + 0x00,    ((Read32(portAdr + 0x00) &amp; ~( 3 &lt;&lt; pos)) | (2 &lt;&lt; pos )) );  // GPIOx_MODER:       Set Mode (Alternate Function)
+              Write32(portAdr + 0x08,    ((Read32(portAdr + 0x08)                         ) | (3 &lt;&lt; pos )) );  // GPIOx_OSPEEDR:     Set Speed (Very High Speed)
+              Write32(portAdr + 0x0C,    ((Read32(portAdr + 0x0C) &amp; ~( 3 &lt;&lt; pos))                    ) );  // GPIOx_PUPDR:       Set I/O to no pull-up/pull-down
+            </block>
+            <control if="pin &lt;  8">
+              <block>
+                pos = ((pin    ) &amp; 7) * 4;
+                Write32(portAdr + 0x20,    ((Read32(portAdr + 0x20) &amp; ~(15 &lt;&lt; pos))                    ) );  // GPIOx_AFRL:      Alternate Function to AF0
+              </block>
+            </control>
+            <control if="pin &gt;= 8">
+              <block>
+                pos = ((pin - 8) &amp; 7) * 4;
+                Write32(portAdr + 0x24,    ((Read32(portAdr + 0x24) &amp; ~(15 &lt;&lt; pos))                    ) );  // GPIOx_AFRH:      Alternate Function to AF0
+              </block>
+            </control>
+          </control>
+
+          <control if="width &gt;= 4" info="TPIU port width 4">
+            <!-- configure TRACED2 -->
+            <block info="configure TRACED2">
+              pin     =                          (TraceD2_Pin            ) &amp; 0x0000FFFF;
+              port    =                          (TraceD2_Pin &gt;&gt; 16) &amp; 0x0000FFFF;
+              portAdr = MCU_AHB4_PERIPH_BASE + (((TraceD2_Pin &gt;&gt; 4 ) &amp; 0x0000F000) + 0x00002000);
+
+              pos = pin * 2;
+              Write32(RCC_MC_AHB4ENSETR, ((Read32(RCC_MC_AHB4ENSETR)                      ) | (1 &lt;&lt; port)) );  // RCC_MC_AHB4ENSETR: IO port clock enable
+              Write32(portAdr + 0x00,    ((Read32(portAdr + 0x00) &amp; ~( 3 &lt;&lt; pos)) | (2 &lt;&lt; pos )) );  // GPIOx_MODER:       Set Mode (Alternate Function)
+              Write32(portAdr + 0x08,    ((Read32(portAdr + 0x08)                         ) | (3 &lt;&lt; pos )) );  // GPIOx_OSPEEDR:     Set Speed (Very High Speed)
+              Write32(portAdr + 0x0C,    ((Read32(portAdr + 0x0C) &amp; ~( 3 &lt;&lt; pos))                    ) );  // GPIOx_PUPDR:       Set I/O to no pull-up/pull-down
+            </block>
+            <control if="pin &lt;  8">
+              <block>
+                pos = ((pin    ) &amp; 7) * 4;
+                Write32(portAdr + 0x20,    ((Read32(portAdr + 0x20) &amp; ~(15 &lt;&lt; pos))                    ) );  // GPIOx_AFRL:      Alternate Function to AF0
+              </block>
+            </control>
+            <control if="pin &gt;= 8">
+              <block>
+                pos = ((pin - 8) &amp; 7) * 4;
+                Write32(portAdr + 0x24,    ((Read32(portAdr + 0x24) &amp; ~(15 &lt;&lt; pos))                    ) );  // GPIOx_AFRH:      Alternate Function to AF0
+              </block>
+            </control>
+
+            <!-- configure TRACED3 -->
+            <block info="configure TRACED3">
+              pin     =                          (TraceD3_Pin            ) &amp; 0x0000FFFF;
+              port    =                          (TraceD3_Pin &gt;&gt; 16) &amp; 0x0000FFFF;
+              portAdr = MCU_AHB4_PERIPH_BASE + (((TraceD3_Pin &gt;&gt; 4 ) &amp; 0x0000F000) + 0x00002000);
+
+              pos = pin * 2;
+              Write32(RCC_MC_AHB4ENSETR, ((Read32(RCC_MC_AHB4ENSETR)                      ) | (1 &lt;&lt; port)) );  // RCC_MC_AHB4ENSETR: IO port clock enable
+              Write32(portAdr + 0x00,    ((Read32(portAdr + 0x00) &amp; ~( 3 &lt;&lt; pos)) | (2 &lt;&lt; pos )) );  // GPIOx_MODER:       Set Mode (Alternate Function)
+              Write32(portAdr + 0x08,    ((Read32(portAdr + 0x08)                         ) | (3 &lt;&lt; pos )) );  // GPIOx_OSPEEDR:     Set Speed (Very High Speed)
+              Write32(portAdr + 0x0C,    ((Read32(portAdr + 0x0C) &amp; ~( 3 &lt;&lt; pos))                    ) );  // GPIOx_PUPDR:       Set I/O to no pull-up/pull-down
+            </block>
+            <control if="pin &lt;  8">
+              <block>
+                pos = ((pin    ) &amp; 7) * 4;
+                Write32(portAdr + 0x20,    ((Read32(portAdr + 0x20) &amp; ~(15 &lt;&lt; pos))                    ) );  // GPIOx_AFRL:      Alternate Function to AF0
+              </block>
+            </control>
+            <control if="pin &gt;= 8">
+              <block>
+                pos = ((pin - 8) &amp; 7) * 4;
+                Write32(portAdr + 0x24,    ((Read32(portAdr + 0x24) &amp; ~(15 &lt;&lt; pos))                    ) );  // GPIOx_AFRH:      Alternate Function to AF0
+              </block>
+            </control>
+          </control>
+        </sequence>
+
+        </sequences>
+
+        <!-- Debug access ports -->
+        <debug Pname="Cortex-A7" Punit="0" __dp="0" __ap="1" address="0xE00D0000"/>
+        <debug Pname="Cortex-A7" Punit="1" __dp="0" __ap="1" address="0xE00D2000"/>
+        <debug Pname="Cortex-M4"           __dp="0" __ap="2" address="0xE000ED00"/>
+
+        <!-- Memory adresses -->
+        <memory  Pname="Cortex-M4" id="IROM1" start="0x10000000" size="0x00020000" startup="1" default="1"/> <!-- SRAM1 -->
+        <memory  Pname="Cortex-M4" id="IRAM1" start="0x10020000" size="0x00020000" init   ="0" default="1"/> <!-- SRAM2 -->
+        <memory  Pname="Cortex-M4" id="IRAM2" start="0x10040000" size="0x00020000" init   ="0" default="0"/> <!-- SRAM3 -->
+
+        <!-- SVD -->
+        <debug svd="SVD/STM32MP1.svd"/>
+        <compile Pname="Cortex-M4" Pdefine="CORE_CM4"/>
+        <compile Pname="Cortex-A7" Pdefine="CORE_CA7"/>
+
+        <!-- Device properties, header files and preprocessor defines -->
+        <device Dname="STM32MP157AADx">
+          <compile Pname="Cortex-M4" header="Drivers/CMSIS/Device/ST/STM32MP1xx/Include/stm32mp157axx_cm4.h" define="STM32MP157Axx"/>
+          <compile Pname="Cortex-A7" header="MDK/Device/Include/stm32mp157axx_ca7.h" define="STM32MP157Axx"/>
+        </device>
+        <device Dname="STM32MP157AABx">
+          <compile Pname="Cortex-M4" header="Drivers/CMSIS/Device/ST/STM32MP1xx/Include/stm32mp157axx_cm4.h" define="STM32MP157Axx"/>
+          <compile Pname="Cortex-A7" header="MDK/Device/Include/stm32mp157axx_ca7.h" define="STM32MP157Axx"/>
+        </device>
+        <device Dname="STM32MP157AACx">
+          <compile Pname="Cortex-M4" header="Drivers/CMSIS/Device/ST/STM32MP1xx/Include/stm32mp157axx_cm4.h" define="STM32MP157Axx"/>
+          <compile Pname="Cortex-A7" header="MDK/Device/Include/stm32mp157axx_ca7.h" define="STM32MP157Axx"/>
+        </device>
+        <device Dname="STM32MP157AAAx">
+          <compile Pname="Cortex-M4" header="Drivers/CMSIS/Device/ST/STM32MP1xx/Include/stm32mp157axx_cm4.h" define="STM32MP157Axx"/>
+          <compile Pname="Cortex-A7" header="MDK/Device/Include/stm32mp157axx_ca7.h" define="STM32MP157Axx"/>
+        </device>
+        <device Dname="STM32MP157CADx">
+          <compile Pname="Cortex-M4" header="Drivers/CMSIS/Device/ST/STM32MP1xx/Include/stm32mp157cxx_cm4.h" define="STM32MP157Cxx"/>
+          <compile Pname="Cortex-A7" header="MDK/Device/Include/stm32mp157cxx_ca7.h" define="STM32MP157Cxx"/>
+        </device>
+        <device Dname="STM32MP157CABx">
+          <compile Pname="Cortex-M4" header="Drivers/CMSIS/Device/ST/STM32MP1xx/Include/stm32mp157cxx_cm4.h" define="STM32MP157Cxx"/>
+          <compile Pname="Cortex-A7" header="MDK/Device/Include/stm32mp157cxx_ca7.h" define="STM32MP157Cxx"/>
+        </device>
+        <device Dname="STM32MP157CACx">
+          <compile Pname="Cortex-M4" header="Drivers/CMSIS/Device/ST/STM32MP1xx/Include/stm32mp157cxx_cm4.h" define="STM32MP157Cxx"/>
+          <compile Pname="Cortex-A7" header="MDK/Device/Include/stm32mp157cxx_ca7.h" define="STM32MP157Cxx"/>
+        </device>
+        <device Dname="STM32MP157CAAx">
+          <compile Pname="Cortex-M4" header="Drivers/CMSIS/Device/ST/STM32MP1xx/Include/stm32mp157cxx_cm4.h" define="STM32MP157Cxx"/>
+          <compile Pname="Cortex-A7" header="MDK/Device/Include/stm32mp157cxx_ca7.h" define="STM32MP157Cxx"/>
+        </device>
+
+      </subFamily>
+    </family>
+  </devices>
+
+  <conditions>
+    <!-- Compiler Conditions -->
+    <condition id="ARMCC">
+      <require Tcompiler="ARMCC"/>
+    </condition>
+    <condition id="GCC">
+      <require Tcompiler="GCC"/>
+    </condition>
+    <condition id="IAR">
+      <require Tcompiler="IAR"/>
+    </condition>
+
+    <!-- Device Conditions -->
+    <condition id="STM32MP157">
+      <description>STMicroelectronics STM32MP157 Device </description>
+      <require Dvendor="STMicroelectronics:13"/>
+      <accept  Dname="STM32MP157*"/>
+    </condition>
+
+    <condition id="STM32MP157 M4">
+      <description>STMicroelectronics STM32MP157 Device </description>
+      <require Dvendor="STMicroelectronics:13"/>
+      <accept  Dname="STM32MP157*"/>
+      <require Dcore="Cortex-M4"/>
+    </condition>
+
+    <condition id="STM32MP157 A7">
+      <description>STMicroelectronics STM32MP157 A7 Device </description>
+      <require Dvendor="STMicroelectronics:13"/>
+      <accept  Dname="STM32MP157*"/>
+      <require Dcore="Cortex-A7"/>
+    </condition>
+
+    <condition id="STM32MP157 M4 CMSIS">
+      <description>STMicroelectronics STM32MP157 Device and CMSIS-CORE</description>
+      <require condition="STM32MP157 M4"/>
+      <require Cclass="CMSIS" Cgroup="CORE"/>
+    </condition>
+
+    <condition id="STM32MP157 A7 CMSIS">
+      <description>STMicroelectronics STM32MP157 A7 Device and CMSIS-CORE</description>
+      <require condition="STM32MP157 A7"/>
+      <require Cclass="CMSIS" Cgroup="CORE"/>
+    </condition>
+    
+    <condition id="STM32MP157 HAL Common">
+      <description>STMicroelectronics STM32MP157 Device and HAL Common</description>
+      <require condition="STM32MP157"/>
+      <require Cclass="CMSIS"  Cgroup="CORE"/>
+      <!--require Cclass="Device" Cgroup="STM32Cube Framework"/-->
+      <require Cclass="Device" Cgroup="STM32Cube HAL" Csub="Common"/>
+      <require Cclass="Device" Cgroup="STM32Cube HAL" Csub="RCC"/>
+    </condition>
+
+    <condition id="STM32MP157 HAL GPIO">
+      <description>STMicroelectronics STM32MP157 Device and HAL with GPIO</description>
+      <require condition="STM32MP157"/>
+      <require Cclass="Device" Cgroup="STM32Cube HAL" Csub="Common"/>
+      <require Cclass="Device" Cgroup="STM32Cube HAL" Csub="RCC"/>
+      <require Cclass="Device" Cgroup="STM32Cube HAL" Csub="GPIO"/>
+    </condition>
+
+    <condition id="STM32MP157 HAL GPIO BSP">
+      <description>STMicroelectronics STM32MP157 Device and HAL with GPIO</description>
+      <require condition="STM32MP157"/>
+      <require Cclass="Device" Cgroup="STM32Cube HAL" Csub="Common"/>
+      <require Cclass="Device" Cgroup="STM32Cube HAL" Csub="RCC"/>
+      <require Cclass="Device" Cgroup="STM32Cube HAL" Csub="GPIO"/>
+      <require Cclass="Board Support" Cgroup="BSP"/>
+    </condition>
+
+  </conditions>
+
+  <components>
+    <!-- Startup -->
+    <component Cclass="Device" Cgroup="Startup" Cversion="1.0.0" condition="STM32MP157 M4 CMSIS">
+      <description>System Startup for STMicroelectronics STM32MP157 Series</description>
+      <RTE_Components_h>
+        <!-- the following content goes into file 'RTE_Components.h' -->
+        #define RTE_DEVICE_STARTUP_STM32MP157    /* Device Startup for STM32MP157 */
+      </RTE_Components_h>
+
+      <files>
+        <file category="include"      name="Drivers/CMSIS/Device/ST/STM32MP1xx/Include/"/>
+        <file category="source"       name="Drivers/CMSIS/Device/ST/STM32MP1xx/Source/Templates/system_stm32mp1xx.c"                version="1.0.0" attr="config"/>
+        <file category="header"       name="MDK/Templates/stm32mp1xx_hal_conf.h"                                                    version="1.0.0" attr="config"/>
+        <file category="header"       name="Drivers/STM32MP1xx_HAL_Driver/Inc/stm32mp1xx_hal.h"/>
+        <file category="source"       name="MDK/Device/Source/ARM/startup_stm32mp15xx.s"                                            version="1.0.0" attr="config" condition="ARMCC"/>
+        <file category="linkerScript" name="MDK/Device/Source/ARM/linker/stm32mp15xx_m4_sram.sct"                                   version="1.0.0" attr="config" condition="ARMCC"/>
+        <file category="source"       name="Drivers/CMSIS/Device/ST/STM32MP1xx/Source/Templates/gcc/startup_stm32mp15xx.s"          version="1.0.0" attr="config" condition="GCC"/>
+        <file category="linkerScript" name="Drivers/CMSIS/Device/ST/STM32MP1xx/Source/Templates/gcc/linker/stm32mp15xx_m4.ld"       version="1.0.0" attr="config" condition="GCC"/>
+        <file category="source"       name="Drivers/CMSIS/Device/ST/STM32MP1xx/Source/Templates/iar/startup_stm32mp15xx.s"          version="1.0.0" attr="config" condition="IAR"/>
+        <file category="linkerScript" name="Drivers/CMSIS/Device/ST/STM32MP1xx/Source/Templates/iar/linker/stm32mp15xx_sram.icf"    version="1.0.0" attr="config" condition="IAR"/>
+
+        <!-- Templates -->
+        <file category="source"       name="Projects/STM32MP157C-EV1/Templates/Src/main.c"                                          attr="template" select="Main file"/>
+        <file category="header"       name="Projects/STM32MP157C-EV1/Templates/Inc/main.h"                                          attr="template" select="Main file"/>
+        <file category="source"       name="Projects/STM32MP157C-EV1/Templates/Src/stm32mp1xx_it.c"                                 attr="template" select="Exception Handlers and Peripheral IRQ"/>
+        <file category="header"       name="Projects/STM32MP157C-EV1/Templates/Inc/stm32mp1xx_it.h"                                 attr="template" select="Exception Handlers and Peripheral IRQ"/>
+        <file category="source"       name="Projects/STM32MP157C-EV1/Templates/Src/lock_resource.c"                                 attr="template" select="Lock Resource"/>
+        <file category="header"       name="Projects/STM32MP157C-EV1/Templates/Inc/lock_resource.h"                                 attr="template" select="Lock Resource"/>
+        <file category="source"       name="Projects/STM32MP157C-EV1/Templates/Src/stm32mp1xx_hal_msp.c"                            attr="template" select="MCU Support Package"/>
+
+        <!-- Configuration of shell scripts for production mode -->
+        <file category="utility"      name="Tools/production.config"                                                                version="1.0.0" attr="config"/>
+      </files>
+    </component>
+
+    <component Cclass="Device" Cgroup="Startup" Cversion="1.0.0" condition="STM32MP157 A7 CMSIS">
+      <description>System Startup for STMicroelectronics STM32MP157 Series</description>
+      <RTE_Components_h>
+        <!-- the following content goes into file 'RTE_Components.h' -->
+        #define RTE_DEVICE_STARTUP_STM32MP157_A7    /* Device Startup for STM32MP157 */
+      </RTE_Components_h>
+
+      <files>
+        <file category="include"      name="Drivers/CMSIS/Device/ST/STM32MP1xx/Include/"/>
+        <file category="include"      name="MDK/Device/Include/"/>
+        <file category="header"       name="Drivers/STM32MP1xx_HAL_Driver/Inc/stm32mp1xx_hal.h"/>
+        <file category="header"       name="MDK/Templates/stm32mp1xx_hal_conf.h"                                                    version="1.0.0" attr="config"/>
+        <file category="source"       name="MDK/Device/Source/system_stm32mp15xx_A7.c"                                              version="1.0.0" attr="config"/>
+        <file category="source"       name="MDK/Device/Source/mmu_stm32mp15xx.s"                                                    version="1.0.0" attr="config" condition="ARMCC"/>
+        <file category="source"       name="MDK/Device/Source/ARM/startup_stm32mp15xx_A7.c"                                         version="1.0.0" attr="config" condition="ARMCC"/>
+        <file category="linkerScript" name="MDK/Device/Source/ARM/linker/stm32mp15xx_A7.sct"                                        version="1.0.0" attr="config" condition="ARMCC"/>
+        <file category="header"       name="MDK/Device/Include/mem_stm32mp15xx.h"                                                   version="1.0.0" attr="config"/>
+
+        <!-- Templates -->
+        <file category="source"       name="Projects/STM32MP157C-EV1/Templates/Src/main.c"                                          attr="template" select="Main file"/>
+        <file category="header"       name="Projects/STM32MP157C-EV1/Templates/Inc/main.h"                                          attr="template" select="Main file"/>
+        <file category="source"       name="Projects/STM32MP157C-EV1/Templates/Src/lock_resource.c"                                 attr="template" select="Lock Resource"/>
+        <file category="header"       name="Projects/STM32MP157C-EV1/Templates/Inc/lock_resource.h"                                 attr="template" select="Lock Resource"/>
+      </files>
+    </component>
+
+    <!-- STMicroelectronics STM32MP157 HAL -->
+    <component Cclass="Device" Cgroup="STM32Cube HAL" Csub="ADC" Cversion="1.0.0" condition="STM32MP157 HAL Common">
+      <description>Analog-to-digital converter (ADC) HAL driver</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_HAL_ADC
+      </RTE_Components_h>
+      <files>
+        <file category="source"  name="Drivers/STM32MP1xx_HAL_Driver/Src/stm32mp1xx_hal_adc.c"/>
+        <file category="source"  name="Drivers/STM32MP1xx_HAL_Driver/Src/stm32mp1xx_hal_adc_ex.c"/>
+     </files>
+    </component>
+
+    <component Cclass="Device" Cgroup="STM32Cube HAL" Csub="CEC" Cversion="1.0.0" condition="STM32MP157 HAL Common">
+      <description>Consumer Electronics Control (CEC) HAL driver</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_HAL_CEC
+      </RTE_Components_h>
+      <files>
+        <file category="source"  name="Drivers/STM32MP1xx_HAL_Driver/Src/stm32mp1xx_hal_cec.c"/>
+     </files>
+    </component>
+
+    <component Cclass="Device" Cgroup="STM32Cube HAL" Csub="Common" Cversion="1.0.0" condition="STM32MP157 HAL Common">
+      <description>Common HAL driver</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_HAL_COMMON
+      </RTE_Components_h>
+      <files>
+        <file category="include" name="Drivers/STM32MP1xx_HAL_Driver/Inc/"/>
+        <file category="source"  name="Drivers/STM32MP1xx_HAL_Driver/Src/stm32mp1xx_hal.c"/>
+      </files>
+    </component>
+
+    <component Cclass="Device" Cgroup="STM32Cube HAL" Csub="Cortex" Cversion="1.0.0" condition="STM32MP157 HAL Common">
+      <description>Cortex HAL driver</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_HAL_CORTEX
+      </RTE_Components_h>
+      <files>
+        <file category="source" name="Drivers/STM32MP1xx_HAL_Driver/Src/stm32mp1xx_hal_cortex.c"/>
+      </files>
+    </component>
+
+    <component Cclass="Device" Cgroup="STM32Cube HAL" Csub="CRC" Cversion="1.0.0" condition="STM32MP157 HAL Common">
+      <description>CRC calculation unit (CRC) HAL driver</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_HAL_CRC
+      </RTE_Components_h>
+      <files>
+        <file category="source"  name="Drivers/STM32MP1xx_HAL_Driver/Src/stm32mp1xx_hal_crc.c"/>
+        <file category="source"  name="Drivers/STM32MP1xx_HAL_Driver/Src/stm32mp1xx_hal_crc_ex.c"/>
+     </files>
+    </component>
+
+    <component Cclass="Device" Cgroup="STM32Cube HAL" Csub="CRYP" Cversion="1.0.0" condition="STM32MP157 HAL Common">
+      <description>Cryptographic processor (CRYP) HAL driver</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_HAL_CRYP
+      </RTE_Components_h>
+      <files>
+        <file category="source"  name="Drivers/STM32MP1xx_HAL_Driver/Src/stm32mp1xx_hal_cryp.c"/>
+        <file category="source"  name="Drivers/STM32MP1xx_HAL_Driver/Src/stm32mp1xx_hal_cryp_ex.c"/>
+     </files>
+    </component>
+
+    <component Cclass="Device" Cgroup="STM32Cube HAL" Csub="DAC" Cversion="1.0.0" condition="STM32MP157 HAL Common">
+      <description>Digital-to-analog converter (DAC) HAL driver</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_HAL_DAC
+      </RTE_Components_h>
+      <files>
+        <file category="source"  name="Drivers/STM32MP1xx_HAL_Driver/Src/stm32mp1xx_hal_dac.c"/>
+        <file category="source"  name="Drivers/STM32MP1xx_HAL_Driver/Src/stm32mp1xx_hal_dac_ex.c"/>
+     </files>
+    </component>
+
+    <component Cclass="Device" Cgroup="STM32Cube HAL" Csub="DCMI" Cversion="1.0.0" condition="STM32MP157 HAL Common">
+      <description>Digital camera interface (DCMI) HAL driver</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_HAL_DCMI
+      </RTE_Components_h>
+      <files>
+        <file category="source" name="Drivers/STM32MP1xx_HAL_Driver/Src/stm32mp1xx_hal_dcmi.c"/>
+      </files>
+    </component>
+
+    <component Cclass="Device" Cgroup="STM32Cube HAL" Csub="DFSDM" Cversion="1.0.0" condition="STM32MP157 HAL Common">
+      <description>Digital Filter for Sigma-Delta Modulators (DFSDM) HAL driver</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_HAL_DFSDM
+      </RTE_Components_h>
+      <files>
+        <file category="source" name="Drivers/STM32MP1xx_HAL_Driver/Src/stm32mp1xx_hal_dfsdm.c"/>
+        <file category="source" name="Drivers/STM32MP1xx_HAL_Driver/Src/stm32mp1xx_hal_dfsdm_ex.c"/>
+      </files>
+    </component>
+
+    <component Cclass="Device" Cgroup="STM32Cube HAL" Csub="DMA" Cversion="1.0.0" condition="STM32MP157 HAL Common">
+      <description>DMA controller (DMA) HAL driver</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_HAL_DMA
+      </RTE_Components_h>
+      <files>
+        <file category="source"  name="Drivers/STM32MP1xx_HAL_Driver/Src/stm32mp1xx_hal_dma.c"/>
+        <file category="source"  name="Drivers/STM32MP1xx_HAL_Driver/Src/stm32mp1xx_hal_dma_ex.c"/>
+     </files>
+    </component>
+
+    <component Cclass="Device" Cgroup="STM32Cube HAL" Csub="EXTI" Cversion="1.0.0" condition="STM32MP157 HAL Common">
+      <description>External Interrupts (EXTI) HAL driver</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_HAL_EXTI
+      </RTE_Components_h>
+      <files>
+        <file category="source"  name="Drivers/STM32MP1xx_HAL_Driver/Src/stm32mp1xx_hal_exti.c"/>
+     </files>
+    </component>
+
+    <component Cclass="Device" Cgroup="STM32Cube HAL" Csub="FDCAN" Cversion="1.0.0" condition="STM32MP157 HAL Common">
+      <description>Flexible DataRate Controller Area Network (FDCAN) HAL driver</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_HAL_FDCAN
+      </RTE_Components_h>
+      <files>
+        <file category="source"  name="Drivers/STM32MP1xx_HAL_Driver/Src/stm32mp1xx_hal_fdcan.c"/>
+     </files>
+    </component>
+
+    <component Cclass="Device" Cgroup="STM32Cube HAL" Csub="GPIO" Cversion="1.0.0" condition="STM32MP157 HAL Common">
+      <description>General-purpose I/O (GPIO) HAL driver</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_HAL_GPIO
+      </RTE_Components_h>
+      <files>
+        <file category="source" name="Drivers/STM32MP1xx_HAL_Driver/Src/stm32mp1xx_hal_gpio.c"/>
+      </files>
+    </component>
+
+    <component Cclass="Device" Cgroup="STM32Cube HAL" Csub="HASH" Cversion="1.0.0" condition="STM32MP157 HAL Common">
+      <description>Hash processor (HASH) HAL driver</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_HAL_HASH
+      </RTE_Components_h>
+      <files>
+        <file category="source" name="Drivers/STM32MP1xx_HAL_Driver/Src/stm32mp1xx_hal_hash.c"/>
+        <file category="source" name="Drivers/STM32MP1xx_HAL_Driver/Src/stm32mp1xx_hal_hash_ex.c"/>
+      </files>
+    </component>
+
+    <component Cclass="Device" Cgroup="STM32Cube HAL" Csub="HSEM" Cversion="1.0.0" condition="STM32MP157 HAL Common">
+      <description>Hardware semaphore (HSEM) HAL driver</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_HAL_HSEM
+      </RTE_Components_h>
+      <files>
+        <file category="source" name="Drivers/STM32MP1xx_HAL_Driver/Src/stm32mp1xx_hal_hsem.c"/>
+      </files>
+    </component>
+
+    <component Cclass="Device" Cgroup="STM32Cube HAL" Csub="I2C" Cversion="1.0.0" condition="STM32MP157 HAL Common">
+      <description>Inter-integrated circuit (I2C) interface HAL driver</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_HAL_I2C
+      </RTE_Components_h>
+      <files>
+        <file category="source" name="Drivers/STM32MP1xx_HAL_Driver/Src/stm32mp1xx_hal_i2c.c"/>
+        <file category="source" name="Drivers/STM32MP1xx_HAL_Driver/Src/stm32mp1xx_hal_i2c_ex.c"/>
+      </files>
+    </component>
+
+    <component Cclass="Device" Cgroup="STM32Cube HAL" Csub="IPCC" Cversion="1.0.0" condition="STM32MP157 HAL Common">
+      <description>Interprocessor Communication I/O (IPCC) HAL driver</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_HAL_IPCC
+      </RTE_Components_h>
+      <files>
+        <file category="source" name="Drivers/STM32MP1xx_HAL_Driver/Src/stm32mp1xx_hal_ipcc.c"/>
+      </files>
+    </component>
+
+    <component Cclass="Device" Cgroup="STM32Cube HAL" Csub="LPTIM" Cversion="1.0.0" condition="STM32MP157 HAL Common">
+      <description>Low Power Timer (LPTIM) HAL driver</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_HAL_LPTIM
+      </RTE_Components_h>
+      <files>
+        <file category="source" name="Drivers/STM32MP1xx_HAL_Driver/Src/stm32mp1xx_hal_lptim.c"/>
+      </files>
+    </component>
+
+    <component Cclass="Device" Cgroup="STM32Cube HAL" Csub="MDIOS" Cversion="1.0.0" condition="STM32MP157 HAL Common">
+      <description>Management data input/output (MDIOS) slave HAL driver</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_HAL_MDIOS
+      </RTE_Components_h>
+      <files>
+        <file category="source" name="Drivers/STM32MP1xx_HAL_Driver/Src/stm32mp1xx_hal_mdios.c"/>
+      </files>
+    </component>
+
+    <component Cclass="Device" Cgroup="STM32Cube HAL" Csub="MDMA" Cversion="1.0.0" condition="STM32MP157 HAL Common">
+      <description>Master DMA controller (MDMA) HAL driver</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_HAL_MDMA
+      </RTE_Components_h>
+      <files>
+        <file category="source" name="Drivers/STM32MP1xx_HAL_Driver/Src/stm32mp1xx_hal_mdma.c"/>
+      </files>
+    </component>
+
+    <component Cclass="Device" Cgroup="STM32Cube HAL" Csub="PWR" Cversion="1.0.0" condition="STM32MP157 HAL Common">
+      <description>Power controller (PWR) HAL driver</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_HAL_PWR
+      </RTE_Components_h>
+      <files>
+        <file category="source" name="Drivers/STM32MP1xx_HAL_Driver/Src/stm32mp1xx_hal_pwr.c"/>
+        <file category="source" name="Drivers/STM32MP1xx_HAL_Driver/Src/stm32mp1xx_hal_pwr_ex.c"/>
+      </files>
+    </component>
+
+    <component Cclass="Device" Cgroup="STM32Cube HAL" Csub="QSPI" Cversion="1.0.0" condition="STM32MP157 HAL Common">
+      <description>Quad Serial peripheral interface (QSPI) HAL driver</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_HAL_QSPI
+      </RTE_Components_h>
+      <files>
+        <file category="source" name="Drivers/STM32MP1xx_HAL_Driver/Src/stm32mp1xx_hal_qspi.c"/>
+      </files>
+    </component>
+
+    <component Cclass="Device" Cgroup="STM32Cube HAL" Csub="RCC" Cversion="1.0.0" condition="STM32MP157 HAL Common">
+      <description>Reset and clock control (RCC) HAL driver</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_HAL_RCC
+      </RTE_Components_h>
+      <files>
+        <file category="source" name="Drivers/STM32MP1xx_HAL_Driver/Src/stm32mp1xx_hal_rcc.c"/>
+        <file category="source" name="Drivers/STM32MP1xx_HAL_Driver/Src/stm32mp1xx_hal_rcc_ex.c"/>
+      </files>
+    </component>
+
+    <component Cclass="Device" Cgroup="STM32Cube HAL" Csub="RNG" Cversion="1.0.0" condition="STM32MP157 HAL Common">
+      <description>Random number generator (RNG) HAL driver</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_HAL_RNG
+      </RTE_Components_h>
+      <files>
+        <file category="source" name="Drivers/STM32MP1xx_HAL_Driver/Src/stm32mp1xx_hal_rng.c"/>
+      </files>
+    </component>
+
+    <component Cclass="Device" Cgroup="STM32Cube HAL" Csub="SAI" Cversion="1.0.0" condition="STM32MP157 HAL Common">
+      <description>Serial audio interface (SAI) HAL driver</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_HAL_SAI
+      </RTE_Components_h>
+      <files>
+        <file category="source" name="Drivers/STM32MP1xx_HAL_Driver/Src/stm32mp1xx_hal_sai.c"/>
+        <file category="source" name="Drivers/STM32MP1xx_HAL_Driver/Src/stm32mp1xx_hal_sai_ex.c"/>
+      </files>
+    </component>
+
+    <component Cclass="Device" Cgroup="STM32Cube HAL" Csub="SD" Cversion="1.0.0" condition="STM32MP157 HAL Common">
+      <description>Secure Digital (SD) interface HAL driver</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_HAL_SD
+      </RTE_Components_h>
+      <files>
+        <file category="source" name="Drivers/STM32MP1xx_HAL_Driver/Src/stm32mp1xx_hal_sd.c"/>
+        <file category="source" name="Drivers/STM32MP1xx_HAL_Driver/Src/stm32mp1xx_hal_sd_ex.c"/>
+      </files>
+    </component>
+
+    <component Cclass="Device" Cgroup="STM32Cube HAL" Csub="SMBUS" Cversion="1.0.0" condition="STM32MP157 HAL Common">
+      <description>System management bus (SMBUS) HAL driver</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_HAL_SMBUS
+      </RTE_Components_h>
+      <files>
+        <file category="source" name="Drivers/STM32MP1xx_HAL_Driver/Src/stm32mp1xx_hal_smbus.c"/>
+      </files>
+    </component>
+
+    <component Cclass="Device" Cgroup="STM32Cube HAL" Csub="SPDIFRX" Cversion="1.0.0" condition="STM32MP157 HAL Common">
+      <description>SPDIF Receiver interface (SPDIFRX) HAL driver</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_HAL_SPDIFRX
+      </RTE_Components_h>
+      <files>
+        <file category="source" name="Drivers/STM32MP1xx_HAL_Driver/Src/stm32mp1xx_hal_spdifrx.c"/>
+      </files>
+    </component>
+
+    <component Cclass="Device" Cgroup="STM32Cube HAL" Csub="SPI" Cversion="1.0.0" condition="STM32MP157 HAL Common">
+      <description>Serial Peripheral interface (SPI) HAL driver</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_HAL_SPI
+      </RTE_Components_h>
+      <files>
+        <file category="source" name="Drivers/STM32MP1xx_HAL_Driver/Src/stm32mp1xx_hal_spi.c"/>
+        <file category="source" name="Drivers/STM32MP1xx_HAL_Driver/Src/stm32mp1xx_hal_spi_ex.c"/>
+      </files>
+    </component>
+
+    <component Cclass="Device" Cgroup="STM32Cube HAL" Csub="TIM" Cversion="1.0.0" condition="STM32MP157 HAL Common">
+      <description>Timer (TIM) HAL driver</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_HAL_TIM
+      </RTE_Components_h>
+      <files>
+        <file category="source" name="Drivers/STM32MP1xx_HAL_Driver/Src/stm32mp1xx_hal_tim.c"/>
+        <file category="source" name="Drivers/STM32MP1xx_HAL_Driver/Src/stm32mp1xx_hal_tim_ex.c"/>
+      </files>
+    </component>
+
+    <component Cclass="Device" Cgroup="STM32Cube HAL" Csub="UART" Cversion="1.0.0" condition="STM32MP157 HAL Common">
+      <description>Universal asynchronous receiver transmitter (UART) HAL driver</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_HAL_UART
+      </RTE_Components_h>
+      <files>
+        <file category="source" name="Drivers/STM32MP1xx_HAL_Driver/Src/stm32mp1xx_hal_uart.c"/>
+        <file category="source" name="Drivers/STM32MP1xx_HAL_Driver/Src/stm32mp1xx_hal_uart_ex.c"/>
+      </files>
+    </component>
+
+    <component Cclass="Device" Cgroup="STM32Cube HAL" Csub="USART" Cversion="1.0.0" condition="STM32MP157 HAL Common">
+      <description>Universal synchronous asynchronous receiver transmitter (USART) driver</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_HAL_USART
+      </RTE_Components_h>
+      <files>
+        <file category="source" name="Drivers/STM32MP1xx_HAL_Driver/Src/stm32mp1xx_hal_usart.c"/>
+        <file category="source" name="Drivers/STM32MP1xx_HAL_Driver/Src/stm32mp1xx_hal_usart_ex.c"/>
+      </files>
+    </component>
+
+    <component Cclass="Device" Cgroup="STM32Cube HAL" Csub="WWDG" Cversion="1.0.0" condition="STM32MP157 HAL Common">
+      <description>Window watchdog (WWDG) HAL driver</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_HAL_WWDG
+      </RTE_Components_h>
+      <files>
+        <file category="source" name="Drivers/STM32MP1xx_HAL_Driver/Src/stm32mp1xx_hal_wwdg.c"/>
+      </files>
+    </component>
+
+    <!-- Board Support -->
+    <bundle Cbundle="STM32MP157C-EV1" Cclass="Board Support" Cversion="1.0.0">
+      <description>STM32MP157C-EV1 Evaluation Board</description>
+      <doc></doc>
+        <component Cgroup="BSP" condition="STM32MP157 HAL GPIO">
+          <description>Board specific settings for hardware initialization</description>
+          <files>
+            <file category="include" name="Drivers/BSP/STM32MP15xx_EVAL/"/>
+            <file category="source"  name="Drivers/BSP/STM32MP15xx_EVAL/stm32mp15xx_eval.c"/>
+            <file category="header"  name="MDK/Templates/stm32mp15xx_eval_conf.h" version="1.0.0" attr="config"/>
+          </files>
+        </component>
+        <component Cgroup="LED" Capiversion="1.0.0" condition="STM32MP157 HAL GPIO BSP">
+          <description>LED Interface</description>
+          <files>
+            <file category="source" name="MDK/Boards/ST/STM32MP157C-EV1/Common/LED_STM32MP157C-EV1.c"/>
+          </files>
+        </component>
+        <component Cgroup="Buttons" Capiversion="1.0.0" condition="STM32MP157 HAL GPIO BSP">
+          <description>Buttons Interface</description>
+          <files>
+            <file category="source" name="MDK/Boards/ST/STM32MP157C-EV1/Common/Buttons_STM32MP157C-EV1.c"/>
+          </files>
+        </component>
+    </bundle>
+  </components>
+
+  <boards>
+    <!-- Board description -->
+    <board name="STM32MP157C-EV1" vendor="STMicroelectronics" revision="Rev C" orderForm="https://www.st.com/content/st_com/en/products/evaluation-tools/product-evaluation-tools/mcu-mpu-eval-tools/stm32-mcu-mpu-eval-tools/stm32-eval-boards/stm32mp157c-ev1.html#samplebuy-scroll">
+      <description>STM32MPU Evaluation Board</description>
+      <image small="MDK/Boards/ST/STM32MP157C-EV1/Documentation/stm32mp157c-ev1_small.jpg" large="MDK/Boards/ST/STM32MP157C-EV1/Documentation/stm32mp157c-ev1_large.jpg"/>
+      <mountedDevice deviceIndex="0" Dvendor="STMicroelectronics:13" Dname="STM32MP157CAA"/>
+      <compatibleDevice deviceIndex="0" Dvendor="STMicroelectronics:13" Dname="STM32MP157*"/>
+      <book category="overview"  name="https://www.st.com/content/st_com/en/products/evaluation-tools/product-evaluation-tools/mcu-mpu-eval-tools/stm32-mcu-mpu-eval-tools/stm32-eval-boards/stm32mp157c-ev1.html" title="STM32MP157C-EV1 Evaluation board with STM32MP157C MPU"/>
+      <book category="manual"    name="https://www.st.com/resource/en/user_manual/dm00591370.pdf" title="STM32MP157C-EV1 User Manual"/>
+      <book category="schematic" name="https://www.st.com/resource/en/schematic_pack/mb1230-c_schematic.pdf" title="MB1230-C Board Schematic"/>
+      <book category="schematic" name="https://www.st.com/resource/en/schematic_pack/mb1262-c01_schematic.pdf" title="MB1262-C01 Board Schematic"/>
+      <book category="schematic" name="https://www.st.com/resource/en/schematic_pack/mb1263-c01_schematic.pdf" title="MB1263-C01 Board schematic"/>
+      <book category="schematic" name="https://www.st.com/resource/en/schematic_pack/mb1379-a01_schematic.pdf" title="MB1379-A01 Board Schematic"/>
+      <feature type="ODbg"            n="1"              name="On-board ST-Link V2-1 Debugger"/>
+      <feature type="XTAL"            n="24000000"/>
+      <feature type="PWR"             n="5" m="5"        name="External Supply"/>
+      <feature type="RAM"             n="2"              name="4GBit DDR3L, 16bits, 533MHz"/>
+      <feature type="ROM"             n="2"              name="512Mbit QSPI Flash"/>
+      <feature type="ROM"             n="1"              name="32Gbit eMMC v5.0"/>
+      <feature type="ROM"             n="1"              name="8Gbit SLC NAND, 8 bits, 8bit ECC, 4KB PS"/>
+      <feature type="USB"             n="4"              name="USB Host Type A"/>
+      <feature type="USB"             n="1"              name="USB OTG HS Micro AB"/>
+      <feature type="ETH"             n="1"              name="10/100 Ethernet Port"/>
+      <feature type="CAN"             n="1"              name="CAN FD"/>
+      <feature type="GLCD"            n="1" m="720.1280" name="5.5 TFT with LED backlight, MIPI DSISM interface, and capacitive touch panel"/>
+      <feature type="LineIn"          n="1"              name="Stereo audio codec with Headset jack"/>
+      <feature type="LineOut"         n="1"              name="Stereo audio codec with Speaker jack"/>
+      <feature type="MemCard"         n="1"              name="MicroSD Card connector"/>
+      <feature type="Camera"          n="1"              name="5 Megapixel, 8-bit Camera"/>
+      <feature type="ConnOther"       n="1"              name="Camera interface connector"/>
+      <feature type="ConnOther"       n="1"              name="SPDIF RCA input and output"/>
+      <feature type="ConnOther"       n="1"              name="LTDC"/>
+      <feature type="ConnOther"       n="2"              name="Extension headers"/>
+      <feature type="Button"          n="2"              name="User Push-Buttons"/>
+      <feature type="LED"             n="2"              name="User LEDs"/>
+      <debugInterface adapter="JTAG/SW" connector="20 pin JTAG (0.1 inch connector)"/>
+      <debugInterface adapter="JTAG/SW" connector="ETM Trace Mictor-38 connector "/>
+      <debugInterface adapter="ST-Link" connector="Micro-USB"/>
+    </board>
+  </boards>
+
+  <examples>
+    <!-- STM32MP157C-EV1 Board -->
+    <example name="CMSIS-RTOS2 Blinky" doc="Abstract.txt" folder="MDK/Boards/ST/STM32MP157C-EV1/Blinky">
+      <description>CMSIS-RTOS2 Blinky example</description>
+      <board name="STM32MP157C-EV1" vendor="STMicroelectronics"/>
+      <project>
+        <environment name="uv" load="Blinky.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <component Cclass="CMSIS" Cgroup="RTOS"/>
+        <category>Getting Started</category>
+        <category>CMSIS-RTX</category>
+      </attributes>
+    </example>
+
+    <example name="OpenAMP_TTY_echo" doc="Abstract.txt" folder="MDK/Boards/ST/STM32MP157C-EV1/OpenAMP_TTY_echo">
+      <description>OpenAMP TTY echo example</description>
+      <board name="STM32MP157C-EV1" vendor="STMicroelectronics"/>
+      <project>
+        <environment name="uv" load="OpenAMP_TTY_echo.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <component Cclass="CMSIS" Cgroup="RTOS"/>
+        <component Cclass="AMP" Cgroup="RPMSG" Cvariant="OpenAMP"/>
+        <category>Getting Started</category>
+        <category>CMSIS-RTX</category>
+      </attributes>
+    </example>
+    
+    <example name="OpenAMP_TTY_echo_DS" doc="Abstract.txt" folder="MDK/Boards/ST/STM32MP157C-EV1/OpenAMP_TTY_echo_DS">
+      <description>OpenAMP_TTY_echo example for Arm DS</description>
+      <board name="STM32MP157C-EV1" vendor="STMicroelectronics"/>
+      <project>
+        <environment name="ds5" load=".project"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <component Cclass="CMSIS" Cgroup="RTOS"/>
+        <component Cclass="AMP" Cgroup="RPMSG" Cvariant="OpenAMP"/>
+        <category>Getting Started</category>
+        <category>CMSIS-RTX</category>
+      </attributes>
+    </example>
+  
+    <example name="AI_Character_Recognition" doc="Abstract.txt" folder="MDK/Boards/ST/STM32MP157C-EV1/AI_Character_Recognition">
+      <description>AI Character Recognition example</description>
+      <board name="STM32MP157C-EV1" vendor="STMicroelectronics"/>
+      <project>
+        <environment name="uv" load="AI_Character_Recognition.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <component Cclass="CMSIS" Cgroup="RTOS"/>
+        <component Cclass="AMP" Cgroup="RPMSG" Cvariant="OpenAMP"/>
+        <category>Getting Started</category>
+        <category>CMSIS-RTX</category>
+      </attributes>
+    </example>
+    
+    <example name="AI_Character_Recognition_DS" doc="Abstract.txt" folder="MDK/Boards/ST/STM32MP157C-EV1/AI_Character_Recognition_DS">
+      <description>AI Character Recognition example for Arm DS</description>
+      <board name="STM32MP157C-EV1" vendor="STMicroelectronics"/>
+      <project>
+        <environment name="ds5" load=".project"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <component Cclass="CMSIS" Cgroup="RTOS"/>
+        <component Cclass="AMP" Cgroup="RPMSG" Cvariant="OpenAMP"/>
+        <category>Getting Started</category>
+        <category>CMSIS-RTX</category>
+      </attributes>
+    </example>
+
+    <example name="CMSIS-RTOS2 Blinky A7 AC6" doc="Abstract.txt" folder="MDK/Boards/ST/STM32MP157C-EV1/Blinky_A7_RTX5_AC6">
+      <description>CMSIS-RTOS2 RTX5 Blinky example for Cortex-A7 and ArmCC6</description>
+      <board name="STM32MP157C-EV1" vendor="STMicroelectronics"/>
+      <project>
+        <environment name="ds5" load=".project"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="CMSIS" Cgroup="RTOS2"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+  </examples>
+  
+</package>

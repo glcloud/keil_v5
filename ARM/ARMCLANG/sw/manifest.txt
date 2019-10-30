@@ -1,0 +1,6 @@
+Component: ARM Compiler 6.12
+Tool: armar [5d624300]
+Tool: armasm [5d624500]
+Tool: armclang [5d624a00]
+Tool: armlink [5d624300]
+Tool: fromelf [5d624400]

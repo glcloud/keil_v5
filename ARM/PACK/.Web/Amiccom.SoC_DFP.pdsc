@@ -1,0 +1,714 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package schemaVersion="1.4" xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="PACK.xsd">
+  <vendor>Amiccom</vendor>
+  <url>http://www.amiccom.com.tw/download/Amiccom_DeviceFamilyPack/</url>
+  <name>SoC_DFP</name>
+  <description>Amiccom ARM Cortex-M0 Device Family Pack Support</description>
+
+  <releases>
+    <release version="0.2.2" date="2019-04-09">
+      Update A3107M0, A3117M0 FLM files
+    </release>
+		<release version="0.2.1" date="2019-01-17">
+      Remove SVD
+    </release>
+		<release version="0.2.0" date="2019-01-15">
+      Add A3107M0, A3117M0, A8125M0 devices
+    </release>
+		<release version="0.1.5" date="2018-02-26">
+      Correct the A8137M0 include file
+    </release>
+    <release version="0.1.4" date="2018-01-12">
+      Update A8137M0 files
+    </release>
+    <release version="0.1.3" date="2018-01-04">
+      Update A8107M0 files
+    </release>
+    <release version="0.1.2" date="2017-12-07">
+      First Release version of Amiccom Device Family Pack.
+    </release>
+  </releases>
+
+  <keywords>
+    <!-- keywords for indexing -->
+    <keyword>Amiccom</keyword>
+    <keyword>Device Support</keyword>
+    <keyword>Device Family Package Amiccom</keyword>
+    <keyword>2.4G</keyword>
+    <keyword>BLE</keyword>
+    <keyword>Sub1G</keyword>
+    <keyword>A8137M0</keyword>
+    <keyword>A8107M0</keyword>
+		<keyword>A3107M0</keyword>
+    <keyword>A3117M0</keyword>
+		<keyword>A8125M0</keyword>
+  </keywords>
+
+  <devices>
+    <!-- ************************  Family '2.4GHz Series'  **************************** -->
+    <family Dfamily="2.4GHz Series"  Dvendor="Amiccom:147">
+      <description>The 2.4GGHz SoC Series 32-bit microcontroller</description>
+      <device Dname="A8137M0">
+        <processor  Dcore="Cortex-M0" Dclock="16000000"/>
+        <compile    header="Device/A8137M/Device/include/register_A8137M0.h"/>
+        <!--debug      svd="SVD/A8137M.svd"/-->
+        <description>
+          A8137M0 is a high performance and low cost 2.4GHz ISM band FSK/GFSK wireless SoC. It integrates M0 micro controller, 64KBytes flash memory, 8KBytes SRAM, Li-Ion battery charger and excellent performance of 2.4GHz RF transceiver.
+        </description>
+        <memory     id="IROM1"                   start="0x00000000"  size="0x10000"     startup="1"   default="1"/>
+        <memory     id="IRAM1"                   start="0x20000000"  size="0x02000"     init   ="0"   default="1"/>
+        <algorithm  name="Flash/AMC1_F7-F5.FLM"  start="0x00000000"  size="0x10000"                   default="1"/>
+        <book       name="Documents\A8137M0 Datasheet v0.3 (Preliminary).pdf"           title="A8137M0 Datasheet"/>
+        <feature    type="IOs"      n="24"/>
+        <feature    type="Timer"  	n="2"		    m="32"/>
+        <feature    type="UART"  	  n="3"/>
+        <feature    type="SPI"  		n="1"/>
+        <feature    type="I2C"  		n="1"/>
+        <feature    type="PWM"  		n="8"		    m="8"/>
+        <feature    type="VCC"      n="2.0"    	m="3.6"/>
+        <feature    type="Temp"     n="-40"     m="85"/>
+        <feature    type="QFN"      n="48"/>
+      </device>
+			<device Dname="A8125M0">
+        <processor  Dcore="Cortex-M0" Dclock="16000000"/>
+        <compile    header="Device/A8125M/Device/include/A8125M.h"/>
+        <!--debug      svd="SVD/A8125M.svd"/-->
+        <description>
+          A8125M0 is a high performance and low cost 2.4GHz ISM band FSK/GFSK wireless SoC. It integrates M0 micro controller, 128KBytes flash memory and 32KBytes SRAM.
+        </description>
+        <memory     id="IROM1"                   start="0x00000000"  size="0x20000"     startup="1"   default="1"/>
+        <memory     id="IRAM1"                   start="0x20000000"  size="0x08000"     init   ="0"   default="1"/>
+        <algorithm  name="Flash/AMC1_HT_ECC.FLM" start="0x00000000"  size="0x10000"                   default="1"/>
+        <book       name="Documents\A8125M0_Datasheet_v0.1_(Preliminary).pdf"           title="A8125M0 Datasheet"/>
+        <feature    type="IOs"      n="24"/>
+        <feature    type="Timer"  	n="2"		    m="32"/>
+        <feature    type="UART"  	  n="3"/>
+        <feature    type="SPI"  		n="2"/>
+        <feature    type="I2C"  		n="1"/>
+        <feature    type="PWM"  		n="8"		    m="8"/>
+        <feature    type="VCC"      n="2.0"    	m="3.6"/>
+        <feature    type="Temp"     n="-40"     m="85"/>
+        <feature    type="QFN"      n="48"/>
+      </device>
+    </family>
+
+    <!-- ************************  Family 'BLE Series'  **************************** -->
+    <family Dfamily="BLE Series"     Dvendor="Amiccom:147">
+      <description>The BLE SoC Series 32-bit microcontroller</description>
+      <device Dname="A8107M0">
+        <processor  Dcore="Cortex-M0" Dclock="16000000"/>
+        <compile    header="Device/A8107M/Device/include/A8107M0.h"/>
+        <!--debug      svd="SVD/A8107M.svd"/-->
+        <description>
+          A8107M0 is a high performance and low cost 2.4GHz FSK/GFSK system-on-chip (SoC) wireless transceiver. With on chip fraction-N synthesizer, it is designed for Bluetooth Low Energy (Bluetooth 5.0 Single mode).
+        </description>
+        <memory     id="IROM1"                   start="0x00000000"  size="0x40000"     startup="1"   default="1"/>
+        <memory     id="IRAM1"                   start="0x20000000"  size="0x08000"     init   ="0"   default="1"/>
+        <algorithm  name="Flash/AMC1_F8.FLM"     start="0x00000000"  size="0x40000"                   default="1"/>
+        <book       name="Documents\A8107M0 Datasheet v0.7(Preliminary).pdf"            title="A8107M0 Datasheet"/>
+        <feature    type="IOs"      n="31"/>
+        <feature    type="Timer"  	n="2"		    m="32"/>
+        <feature    type="UART"  	  n="3"/>
+        <feature    type="SPI"  		n="1"/>
+        <feature    type="I2C"  		n="1"/>
+        <feature    type="PWM"  		n="4"		    m="8"/>
+        <feature    type="VCC"      n="2.0"    	m="3.6"/>
+        <feature    type="Temp"     n="-40"     m="85"/>
+        <feature    type="QFN"      n="48"/>
+      </device>
+			<device Dname="A3107M0">
+        <processor  Dcore="Cortex-M0" Dclock="16000000"/>
+        <compile    header="Device/A3107M/Device/include/A3107M0.h"/>
+        <!--debug      svd="SVD/A3107M.svd"/-->
+        <description>
+          A3107M0 is a high performance and low cost 2.4GHz FSK/GFSK system-on-chip (SoC) wireless transceiver. With on chip fraction-N synthesizer, it is designed for Bluetooth Low Energy (Bluetooth 5.0 Single mode, master or slave role).
+        </description>
+        <memory     id="IROM1"                   start="0x00000000"  size="0x40000"     startup="1"   default="1"/>
+        <memory     id="IRAM1"                   start="0x20000000"  size="0x08000"     init   ="0"   default="1"/>
+        <algorithm  name="Flash/AMC1_F8.FLM"     start="0x00000000"  size="0x40000"                   default="1"/>
+        <book       name="Documents\A3107M0 Datasheet v0.0(Objective).pdf"              title="A3107M0 Datasheet"/>
+        <feature    type="IOs"      n="31"/>
+        <feature    type="Timer"  	n="2"		    m="32"/>
+        <feature    type="UART"  	  n="3"/>
+        <feature    type="SPI"  		n="1"/>
+        <feature    type="I2C"  		n="1"/>
+        <feature    type="PWM"  		n="4"		    m="8"/>
+        <feature    type="VCC"      n="2.0"    	m="3.6"/>
+        <feature    type="Temp"     n="-40"     m="85"/>
+        <feature    type="QFN"      n="48"/>
+      </device>
+			<device Dname="A3117M0">
+        <processor  Dcore="Cortex-M0" Dclock="16000000"/>
+        <compile    header="Device/A3117M/Device/include/A3117M0.h"/>
+        <!--debug      svd="SVD/3117M.svd"/-->
+        <description>
+          A3117M0 is a high performance and low cost 2.4GHz FSK/GFSK system-on-chip (SoC) wireless transceiver. With on chip fraction-N synthesizer, it is designed for Bluetooth Low Energy (Bluetooth 5.0 Single mode).
+        </description>
+        <memory     id="IROM1"                   start="0x00000000"  size="0x40000"     startup="1"   default="1"/>
+        <memory     id="IRAM1"                   start="0x20000000"  size="0x12000"     init   ="0"   default="1"/>
+        <algorithm  name="Flash/AMC1_HT_ECC.FLM"     start="0x00000000"  size="0x40000"                   default="1"/>
+        <book       name="Documents\A3117M0 Datasheet v0.1(Preliminary).pdf"            title="A3117M0 Datasheet"/>
+        <feature    type="IOs"      n="31"/>
+        <feature    type="Timer"  	n="2"		    m="32"/>
+        <feature    type="UART"  	  n="3"/>
+        <feature    type="SPI"  		n="1"/>
+        <feature    type="I2C"  		n="1"/>
+        <feature    type="PWM"  		n="4"		    m="8"/>
+				<feature    type="USBD"  		n="1"/>
+        <feature    type="VCC"      n="2.0"    	m="3.6"/>
+        <feature    type="Temp"     n="-40"     m="85"/>
+        <feature    type="QFN"      n="48"/>
+      </device>
+    </family>
+  </devices>
+
+  <conditions>
+    <condition id="Compiler ARM">
+      <!-- conditions selecting ARM Compiler -->
+      <require Tcompiler="ARMCC"/>
+    </condition>
+    <condition id="Amiccom CMSIS Device">
+      <!-- conditions selecting Devices -->
+      <description>Amiccom ARM Cortex-M0 Devices and CMSIS-CORE</description>
+      <require Cclass="CMSIS" Cgroup="CORE"/>
+      <accept Dvendor="Amiccom:147"  Dname="A8107M0"/>
+      <accept Dvendor="Amiccom:147"  Dname="A8137M0"/>
+			<accept Dvendor="Amiccom:147"  Dname="A3107M0"/>
+			<accept Dvendor="Amiccom:147"  Dname="A3117M0"/>
+			<accept Dvendor="Amiccom:147"  Dname="A8125M0"/>
+    </condition>
+    <condition id="2.4GHz Series Device">
+      <description>2.4GHz Series Device</description>
+      <accept Dvendor="Amiccom:147"  Dname="A8137M0"/>
+      <accept Dvendor="Amiccom:147"  Dname="A8107M0"/>
+			<accept Dvendor="Amiccom:147"  Dname="A3107M0"/>
+			<accept Dvendor="Amiccom:147"  Dname="A3117M0"/>
+			<accept Dvendor="Amiccom:147"  Dname="A8125M0"/>
+      <require condition="Compiler ARM"/>
+    </condition>
+    <condition id="BLE Series Device">
+      <description>BLE Series Device</description>
+      <accept Dvendor="Amiccom:147"  Dname="A8107M0"/>
+			<accept Dvendor="Amiccom:147"  Dname="A3107M0"/>
+			<accept Dvendor="Amiccom:147"  Dname="A3117M0"/>
+      <require condition="Compiler ARM"/>
+    </condition>
+    <condition id="A8137M0">
+      <description>Cortex-M0 MCU</description>
+      <accept Dvendor="Amiccom:147"  Dname="A8137M0"/>
+      <require condition="Compiler ARM"/>
+    </condition>
+    <condition id="A8107M0">
+      <description>Cortex-M0 MCU</description>
+      <accept Dvendor="Amiccom:147"  Dname="A8107M0"/>
+      <require condition="Compiler ARM"/>
+    </condition>
+		<condition id="A3107M0">
+      <description>Cortex-M0 MCU</description>
+      <accept Dvendor="Amiccom:147"  Dname="A3107M0"/>
+      <require condition="Compiler ARM"/>
+    </condition>
+		<condition id="A3117M0">
+      <description>Cortex-M0 MCU</description>
+      <accept Dvendor="Amiccom:147"  Dname="A3117M0"/>
+      <require condition="Compiler ARM"/>
+    </condition>
+		<condition id="A8125M0">
+      <description>Cortex-M0 MCU</description>
+      <accept Dvendor="Amiccom:147"  Dname="A8125M0"/>
+      <require condition="Compiler ARM"/>
+    </condition>
+  </conditions>
+
+  <components>
+
+    <!-- A8137M0 Device:Startup component -->
+		<component Cclass="Device" Cgroup="Startup" Cversion="1.0.0" condition="A8137M0">
+      <!-- Cversion is necessary -->
+      <description>System Startup for A8137M0 Device</description>
+      <files>
+        <!-- A8137M0 header path -->
+        <file category="header" name="Device/A8137M/Device/include/register_A8137M0.h" condition="A8137M0" version="1.0.0"/>
+				<file category="header" name="Device/A8137M/Common/include/define.h" condition="A8137M0" version="1.0.0"/>
+				<file category="header" name="Device/A8137M/Device/include/system_A8137M0.h" condition="A8137M0" version="1.0.0"/>
+        <!-- A8137M0 system file -->
+        <file category="source" name="Device/A8137M/Device/source/system_A8137M0.c" attr="config" condition="A8137M0" version="1.0.0"/>
+        <!-- A8137M0 startup files -->
+        <file category="sourceAsm" name="Device/A8137M/Device/source/startup_A8137M0.s" attr="config" condition="A8137M0" version="1.0.0"/>
+      </files>
+    </component>
+    
+		<!-- A8107M0 Device:Startup component -->
+		<component Cclass="Device" Cgroup="Startup" Cversion="1.0.0" condition="A8107M0">
+      <!-- Cversion is necessary -->
+      <description>System Startup for A8107M0 Device</description>
+      <files>
+        <!-- A8107M0 header path -->
+        <file category="header" name="Device/A8107M/Device/include/A8107M0.h" condition="A8107M0" version="1.0.0"/>
+				<file category="header" name="Device/A8107M/Device/include/system_A8107M0.h" condition="A8107M0" version="1.0.0"/>
+        <!-- A8107M0 system file -->
+        <file category="source" name="Device/A8107M/Device/source/system_A8107M0.c" attr="config" condition="A8107M0" version="1.0.0"/>
+        <!-- A8107M0 startup files -->
+        <file category="sourceAsm" name="Device/A8107M/Device/source/startup_A8107M0.s" attr="config" condition="A8107M0" version="1.0.0"/>
+      </files>
+    </component>
+
+		<!-- A3107M0 Device:Startup component -->
+		<component Cclass="Device" Cgroup="Startup" Cversion="1.0.0" condition="A3107M0">
+      <!-- Cversion is necessary -->
+      <description>System Startup for A3107M0 Device</description>
+      <files>
+        <!-- A3107M0 header path -->
+        <file category="header" name="Device/A3107M/Device/include/A3107M0.h" condition="A3107M0" version="1.0.0"/>
+				<file category="header" name="Device/A3107M/Device/include/system_A3107M0.h" condition="A3107M0" version="1.0.0"/>
+        <!-- A3107M0 system file -->
+        <file category="source" name="Device/A3107M/Device/source/system_A3107M0.c" attr="config" condition="A3107M0" version="1.0.0"/>
+        <!-- A3107M0 startup files -->
+        <file category="sourceAsm" name="Device/A3107M/Device/source/startup_A3107M0.s" attr="config" condition="A3107M0" version="1.0.0"/>
+      </files>
+    </component>
+
+		<!-- A3117M0 Device:Startup component -->
+		<component Cclass="Device" Cgroup="Startup" Cversion="1.0.0" condition="A3117M0">
+      <!-- Cversion is necessary -->
+      <description>System Startup for A3117M0 Device</description>
+      <files>
+        <!-- A3117M0 header path -->
+        <file category="header" name="Device/A3117M/Device/include/A3117M0.h" condition="A3117M0" version="1.0.0"/>
+				<file category="header" name="Device/A3117M/Device/include/system_A3117M0.h" condition="A3117M0" version="1.0.0"/>
+        <!-- A3117M0 system file -->
+        <file category="source" name="Device/A3117M/Device/source/system_A3117M0.c" attr="config" condition="A3117M0" version="1.0.0"/>
+        <!-- A3117M0 startup files -->
+        <file category="sourceAsm" name="Device/A3117M/Device/source/startup_A3117M0.s" attr="config" condition="A3117M0" version="1.0.0"/>
+      </files>
+    </component>
+		
+		<!-- A8125M0 Device:Startup component -->
+		<component Cclass="Device" Cgroup="Startup" Cversion="1.0.0" condition="A8125M0">
+      <!-- Cversion is necessary -->
+      <description>System Startup for A8125M0 Device</description>
+      <files>
+        <!-- A8125M0 header path -->
+        <file category="header" name="Device/A8125M/Device/include/A8125M.h" condition="A8125M0" version="1.0.0"/>
+				<file category="header" name="Device/A8125M/Common/include/define.h" condition="A8125M0" version="1.0.0"/>
+        <!-- A8125M0 system file -->
+        <file category="source" name="Device/A8125M/Device/source/system_A8125M0.c" attr="config" condition="A8125M0" version="1.0.0"/>
+        <!-- A8125M0 startup files -->
+        <file category="sourceAsm" name="Device/A8125M/Device/source/startup_A8125M0.s" attr="config" condition="A8125M0" version="1.0.0"/>
+      </files>
+    </component>
+		
+
+		
+		
+		
+		
+		
+		
+		
+    <!-- A8137M0 Device:Driver component -->
+    <component Cclass="Device" Cgroup="Driver" Csub="DualTimer" Cversion="1.0.0" condition="A8137M0">
+      <description>DualTimer driver for A8137M0 Device</description>
+      <files>
+        <file category="header" name="Device/A8137M/Driver/include/dualtimer.h" condition="A8137M0"/>
+        <file category="source" name="Device/A8137M/Driver/source/dualtimer.c" attr="config" condition="A8137M0" version="1.0.0"/>
+      </files>
+    </component>
+		<component Cclass="Device" Cgroup="Driver" Csub="GPIO" Cversion="1.0.0" condition="A8137M0">
+      <description>GPIO driver for A8137M0 Device</description>
+      <files>
+        <file category="header" name="Device/A8137M/Driver/include/gpio.h" condition="A8137M0"/>
+        <file category="source" name="Device/A8137M/Driver/source/gpio.c" attr="config" condition="A8137M0" version="1.0.0"/>
+      </files>
+    </component>
+		<component Cclass="Device" Cgroup="Driver" Csub="PWM" Cversion="1.0.0" condition="A8137M0">
+      <description>PWM driver for A8137M0 Device</description>
+      <files>
+        <file category="header" name="Device/A8137M/Driver/include/pwm.h" condition="A8137M0"/>
+        <file category="source" name="Device/A8137M/Driver/source/pwm.c" attr="config" condition="A8137M0" version="1.0.0"/>
+      </files>
+    </component>
+		<component Cclass="Device" Cgroup="Driver" Csub="Timer" Cversion="1.0.0" condition="A8137M0">
+      <description>Timer driver for A8137M0 Device</description>
+      <files>
+        <file category="header" name="Device/A8137M/Driver/include/timer.h" condition="A8137M0"/>
+        <file category="source" name="Device/A8137M/Driver/source/timer.c" attr="config" condition="A8137M0" version="1.0.0"/>
+      </files>
+    </component>
+		<component Cclass="Device" Cgroup="Driver" Csub="UART" Cversion="1.0.0" condition="A8137M0">
+      <description>UART driver for A8137M0 Device</description>
+      <files>
+        <file category="header" name="Device/A8137M/Driver/include/uart.h" condition="A8137M0"/>
+        <file category="source" name="Device/A8137M/Driver/source/uart.c" attr="config" condition="A8137M0" version="1.0.0"/>
+      </files>
+    </component>
+		<component Cclass="Device" Cgroup="Driver" Csub="UTI" Cversion="1.0.0" condition="A8137M0">
+      <description>Delay driver for A8137M0 Device</description>
+      <files>
+        <file category="header" name="Device/A8137M/Driver/include/uti.h" condition="A8137M0"/>
+        <file category="source" name="Device/A8137M/Driver/source/uti.c" attr="config" condition="A8137M0" version="1.0.0"/>
+      </files>
+    </component>
+		<component Cclass="Device" Cgroup="Driver" Csub="WatchDog" Cversion="1.0.0" condition="A8137M0">
+      <description>WatchDog driver for A8137M0 Device</description>
+      <files>
+        <file category="header" name="Device/A8137M/Driver/include/watchdog.h" condition="A8137M0"/>
+        <file category="source" name="Device/A8137M/Driver/source/watchdog.c" attr="config" condition="A8137M0" version="1.0.0"/>
+      </files>
+    </component>
+
+
+    <!-- A8107M0 Device:Driver component -->
+    <component Cclass="Device" Cgroup="Driver" Csub="ADC12B" Cversion="1.0.0" condition="A8107M0">
+      <description>ADC12B driver for A8107M0 Device</description>
+      <files>
+        <file category="header" name="Device/A8107M/Driver/include/ADC12B.h" condition="A8107M0"/>
+        <file category="source" name="Device/A8107M/Driver/source/ADC12B.c" attr="config" condition="A8107M0" version="1.0.0"/>
+      </files>
+    </component>
+		<component Cclass="Device" Cgroup="Driver" Csub="DualTimer" Cversion="1.0.0" condition="A8107M0">
+      <description>DualTimer driver for A8107M0 Device</description>
+      <files>
+        <file category="header" name="Device/A8107M/Driver/include/DualTimer.h" condition="A8107M0"/>
+        <file category="source" name="Device/A8107M/Driver/source/DualTimer.c" attr="config" condition="A8107M0" version="1.0.0"/>
+      </files>
+    </component>
+		<component Cclass="Device" Cgroup="Driver" Csub="GPIO" Cversion="1.0.0" condition="A8107M0">
+      <description>GPIO driver for A8107M0 Device</description>
+      <files>
+        <file category="header" name="Device/A8107M/Driver/include/GPIO.h" condition="A8107M0"/>
+        <file category="source" name="Device/A8107M/Driver/source/GPIO.c" attr="config" condition="A8107M0" version="1.0.0"/>
+      </files>
+    </component>
+		<component Cclass="Device" Cgroup="Driver" Csub="I2CM" Cversion="1.0.0" condition="A8107M0">
+      <description>I2CM driver for A8107M0 Device</description>
+      <files>
+        <file category="header" name="Device/A8107M/Driver/include/I2CM.h" condition="A8107M0"/>
+        <file category="source" name="Device/A8107M/Driver/source/I2CM.c" attr="config" condition="A8107M0" version="1.0.0"/>
+      </files>
+    </component>
+		<component Cclass="Device" Cgroup="Driver" Csub="I2CS" Cversion="1.0.0" condition="A8107M0">
+      <description>I2CS driver for A8107M0 Device</description>
+      <files>
+        <file category="header" name="Device/A8107M/Driver/include/I2CS.h" condition="A8107M0"/>
+        <file category="source" name="Device/A8107M/Driver/source/I2CS.c" attr="config" condition="A8107M0" version="1.0.0"/>
+      </files>
+    </component>
+		<component Cclass="Device" Cgroup="Driver" Csub="MPULCD" Cversion="1.0.0" condition="A8107M0">
+      <description>MPULCD driver for A8107M0 Device</description>
+      <files>
+        <file category="header" name="Device/A8107M/Driver/include/MPULCD.h" condition="A8107M0"/>
+        <file category="source" name="Device/A8107M/Driver/source/MPULCD.c" attr="config" condition="A8107M0" version="1.0.0"/>
+      </files>
+    </component>
+		<component Cclass="Device" Cgroup="Driver" Csub="PWM" Cversion="1.0.0" condition="A8107M0">
+      <description>PWM driver for A8107M0 Device</description>
+      <files>
+        <file category="header" name="Device/A8107M/Driver/include/PWM.h" condition="A8107M0"/>
+        <file category="source" name="Device/A8107M/Driver/source/PWM.c" attr="config" condition="A8107M0" version="1.0.0"/>
+      </files>
+    </component>
+		<component Cclass="Device" Cgroup="Driver" Csub="RTC" Cversion="1.0.0" condition="A8107M0">
+      <description>RTC driver for A8107M0 Device</description>
+      <files>
+        <file category="header" name="Device/A8107M/Driver/include/RTC.h" condition="A8107M0"/>
+        <file category="source" name="Device/A8107M/Driver/source/RTC.c" attr="config" condition="A8107M0" version="1.0.0"/>
+				<file category="header" name="Device/A8107M/Tools/include/Systick_Delay.h" condition="A8107M0"/>
+        <file category="source" name="Device/A8107M/Tools/source/Systick_Delay.c" attr="config" condition="A8107M0" version="1.0.0"/>
+      </files>
+    </component>
+		<component Cclass="Device" Cgroup="Driver" Csub="SLPTimer" Cversion="1.0.0" condition="A8107M0">
+      <description>SLPTimer driver for A8107M0 Device</description>
+      <files>
+        <file category="header" name="Device/A8107M/Driver/include/SLPTimer.h" condition="A8107M0"/>
+        <file category="source" name="Device/A8107M/Driver/source/SLPTimer.c" attr="config" condition="A8107M0" version="1.0.0"/>
+      </files>
+    </component>
+		<component Cclass="Device" Cgroup="Driver" Csub="SPI" Cversion="1.0.0" condition="A8107M0">
+      <description>SPI driver for A8107M0 Device</description>
+      <files>
+        <file category="header" name="Device/A8107M/Driver/include/SPI.h" condition="A8107M0"/>
+        <file category="source" name="Device/A8107M/Driver/source/SPI.c" attr="config" condition="A8107M0" version="1.0.0"/>
+      </files>
+    </component>
+		<component Cclass="Device" Cgroup="Driver" Csub="Timer" Cversion="1.0.0" condition="A8107M0">
+      <description>Timer driver for A8107M0 Device</description>
+      <files>
+        <file category="header" name="Device/A8107M/Driver/include/Timer.h" condition="A8107M0"/>
+        <file category="source" name="Device/A8107M/Driver/source/Timer.c" attr="config" condition="A8107M0" version="1.0.0"/>
+      </files>
+    </component>
+		<component Cclass="Device" Cgroup="Driver" Csub="UART" Cversion="1.0.0" condition="A8107M0">
+      <description>UART driver for A8107M0 Device</description>
+      <files>
+        <file category="header" name="Device/A8107M/Driver/include/UART.h" condition="A8107M0"/>
+        <file category="source" name="Device/A8107M/Driver/source/UART.c" attr="config" condition="A8107M0" version="1.0.0"/>
+      </files>
+    </component>
+		<component Cclass="Device" Cgroup="Driver" Csub="WatchDog" Cversion="1.0.0" condition="A8107M0">
+      <description>WatchDog driver for A8107M0 Device</description>
+      <files>
+        <file category="header" name="Device/A8107M/Driver/include/WatchDog.h" condition="A8107M0"/>
+        <file category="source" name="Device/A8107M/Driver/source/WatchDog.c" attr="config" condition="A8107M0" version="1.0.0"/>
+      </files>
+    </component>
+   		
+		
+		<!-- A3107M0 Device:Driver component -->
+    <component Cclass="Device" Cgroup="Driver" Csub="ADC12B" Cversion="1.0.0" condition="A3107M0">
+      <description>ADC12B driver for A3107M0 Device</description>
+      <files>
+        <file category="header" name="Device/A3107M/Driver/include/ADC12B.h" condition="A3107M0"/>
+        <file category="source" name="Device/A3107M/Driver/source/ADC12B.c" attr="config" condition="A3107M0" version="1.0.0"/>
+      </files>
+    </component>
+		<component Cclass="Device" Cgroup="Driver" Csub="DualTimer" Cversion="1.0.0" condition="A3107M0">
+      <description>DualTimer driver for A3107M0 Device</description>
+      <files>
+        <file category="header" name="Device/A3107M/Driver/include/DualTimer.h" condition="A3107M0"/>
+        <file category="source" name="Device/A3107M/Driver/source/DualTimer.c" attr="config" condition="A3107M0" version="1.0.0"/>
+      </files>
+    </component>
+		<component Cclass="Device" Cgroup="Driver" Csub="GPIO" Cversion="1.0.0" condition="A3107M0">
+      <description>GPIO driver for A3107M0 Device</description>
+      <files>
+        <file category="header" name="Device/A3107M/Driver/include/GPIO.h" condition="A3107M0"/>
+        <file category="source" name="Device/A3107M/Driver/source/GPIO.c" attr="config" condition="A3107M0" version="1.0.0"/>
+      </files>
+    </component>
+		<component Cclass="Device" Cgroup="Driver" Csub="MPULCD" Cversion="1.0.0" condition="A3107M0">
+      <description>MPULCD driver for A3107M0 Device</description>
+      <files>
+        <file category="header" name="Device/A3107M/Driver/include/MPULCD.h" condition="A3107M0"/>
+        <file category="source" name="Device/A3107M/Driver/source/MPULCD.c" attr="config" condition="A3107M0" version="1.0.0"/>
+      </files>
+    </component>
+		<component Cclass="Device" Cgroup="Driver" Csub="PWM" Cversion="1.0.0" condition="A3107M0">
+      <description>PWM driver for A3107M0 Device</description>
+      <files>
+        <file category="header" name="Device/A3107M/Driver/include/PWM.h" condition="A3107M0"/>
+        <file category="source" name="Device/A3107M/Driver/source/PWM.c" attr="config" condition="A3107M0" version="1.0.0"/>
+      </files>
+    </component>
+		<component Cclass="Device" Cgroup="Driver" Csub="RTC" Cversion="1.0.0" condition="A3107M0">
+      <description>RTC driver for A3107M0 Device</description>
+      <files>
+        <file category="header" name="Device/A3107M/Driver/include/RTC.h" condition="A3107M0"/>
+        <file category="source" name="Device/A3107M/Driver/source/RTC.c" attr="config" condition="A3107M0" version="1.0.0"/>
+				<file category="header" name="Device/A3107M/Tools/include/Systick_Delay.h" condition="A3107M0"/>
+        <file category="source" name="Device/A3107M/Tools/source/Systick_Delay.c" attr="config" condition="A3107M0" version="1.0.0"/>
+      </files>
+    </component>
+		<component Cclass="Device" Cgroup="Driver" Csub="SLPTimer" Cversion="1.0.0" condition="A3107M0">
+      <description>SLPTimer driver for A3107M0 Device</description>
+      <files>
+        <file category="header" name="Device/A3107M/Driver/include/SLPTimer.h" condition="A3107M0"/>
+        <file category="source" name="Device/A3107M/Driver/source/SLPTimer.c" attr="config" condition="A3107M0" version="1.0.0"/>
+      </files>
+    </component>
+		<component Cclass="Device" Cgroup="Driver" Csub="SPI" Cversion="1.0.0" condition="A3107M0">
+      <description>SPI driver for A3107M0 Device</description>
+      <files>
+        <file category="header" name="Device/A3107M/Driver/include/SPI.h" condition="A3107M0"/>
+        <file category="source" name="Device/A3107M/Driver/source/SPI.c" attr="config" condition="A3107M0" version="1.0.0"/>
+      </files>
+    </component>
+		<component Cclass="Device" Cgroup="Driver" Csub="Timer" Cversion="1.0.0" condition="A3107M0">
+      <description>Timer driver for A3107M0 Device</description>
+      <files>
+        <file category="header" name="Device/A3107M/Driver/include/Timer.h" condition="A3107M0"/>
+        <file category="source" name="Device/A3107M/Driver/source/Timer.c" attr="config" condition="A3107M0" version="1.0.0"/>
+      </files>
+    </component>
+		<component Cclass="Device" Cgroup="Driver" Csub="UART" Cversion="1.0.0" condition="A3107M0">
+      <description>UART driver for A3107M0 Device</description>
+      <files>
+        <file category="header" name="Device/A3107M/Driver/include/UART.h" condition="A3107M0"/>
+        <file category="source" name="Device/A3107M/Driver/source/UART.c" attr="config" condition="A3107M0" version="1.0.0"/>
+      </files>
+    </component>
+		<component Cclass="Device" Cgroup="Driver" Csub="WatchDog" Cversion="1.0.0" condition="A3107M0">
+      <description>WatchDog driver for A3107M0 Device</description>
+      <files>
+        <file category="header" name="Device/A3107M/Driver/include/WatchDog.h" condition="A3107M0"/>
+        <file category="source" name="Device/A3107M/Driver/source/WatchDog.c" attr="config" condition="A3107M0" version="1.0.0"/>
+      </files>
+    </component>
+		
+		
+		
+		<!-- A3117M0 Device:Driver component -->
+    <component Cclass="Device" Cgroup="Driver" Csub="ADC12B" Cversion="1.0.0" condition="A3117M0">
+      <description>ADC12B driver for A3117M0 Device</description>
+      <files>
+        <file category="header" name="Device/A3117M/Driver/include/ADC12B.h" condition="A3117M0"/>
+        <file category="source" name="Device/A3117M/Driver/source/ADC12B.c" attr="config" condition="A3117M0" version="1.0.0"/>
+      </files>
+    </component>
+		<component Cclass="Device" Cgroup="Driver" Csub="DualTimer" Cversion="1.0.0" condition="A3117M0">
+      <description>DualTimer driver for A3117M0 Device</description>
+      <files>
+        <file category="header" name="Device/A3117M/Driver/include/DualTimer.h" condition="A3117M0"/>
+        <file category="source" name="Device/A3117M/Driver/source/DualTimer.c" attr="config" condition="A3117M0" version="1.0.0"/>
+      </files>
+    </component>
+		<component Cclass="Device" Cgroup="Driver" Csub="GPIO" Cversion="1.0.0" condition="A3117M0">
+      <description>GPIO driver for A3117M0 Device</description>
+      <files>
+        <file category="header" name="Device/A3117M/Driver/include/GPIO.h" condition="A3117M0"/>
+        <file category="source" name="Device/A3117M/Driver/source/GPIO.c" attr="config" condition="A3117M0" version="1.0.0"/>
+      </files>
+    </component>
+		<component Cclass="Device" Cgroup="Driver" Csub="MPULCD" Cversion="1.0.0" condition="A3117M0">
+      <description>MPULCD driver for A3117M0 Device</description>
+      <files>
+        <file category="header" name="Device/A3117M/Driver/include/MPULCD.h" condition="A3117M0"/>
+        <file category="source" name="Device/A3117M/Driver/source/MPULCD.c" attr="config" condition="A3117M0" version="1.0.0"/>
+      </files>
+    </component>
+		<component Cclass="Device" Cgroup="Driver" Csub="PWM" Cversion="1.0.0" condition="A3117M0">
+      <description>PWM driver for A3117M0 Device</description>
+      <files>
+        <file category="header" name="Device/A3117M/Driver/include/PWM.h" condition="A3117M0"/>
+        <file category="source" name="Device/A3117M/Driver/source/PWM.c" attr="config" condition="A3117M0" version="1.0.0"/>
+      </files>
+    </component>
+		<component Cclass="Device" Cgroup="Driver" Csub="RTC" Cversion="1.0.0" condition="A3117M0">
+      <description>RTC driver for A3117M0 Device</description>
+      <files>
+        <file category="header" name="Device/A3117M/Driver/include/RTC.h" condition="A3117M0"/>
+        <file category="source" name="Device/A3117M/Driver/source/RTC.c" attr="config" condition="A3117M0" version="1.0.0"/>
+				<file category="header" name="Device/A3117M/Tools/include/Systick_Delay.h" condition="A3117M0"/>
+        <file category="source" name="Device/A3117M/Tools/source/Systick_Delay.c" attr="config" condition="A3117M0" version="1.0.0"/>
+      </files>
+    </component>
+		<component Cclass="Device" Cgroup="Driver" Csub="SLPTimer" Cversion="1.0.0" condition="A3117M0">
+      <description>SLPTimer driver for A3117M0 Device</description>
+      <files>
+        <file category="header" name="Device/A3117M/Driver/include/SLPTimer.h" condition="A3117M0"/>
+        <file category="source" name="Device/A3117M/Driver/source/SLPTimer.c" attr="config" condition="A3117M0" version="1.0.0"/>
+      </files>
+    </component>
+		<component Cclass="Device" Cgroup="Driver" Csub="SPI" Cversion="1.0.0" condition="A3117M0">
+      <description>SPI driver for A3117M0 Device</description>
+      <files>
+        <file category="header" name="Device/A3117M/Driver/include/SPI.h" condition="A3117M0"/>
+        <file category="source" name="Device/A3117M/Driver/source/SPI.c" attr="config" condition="A3117M0" version="1.0.0"/>
+      </files>
+    </component>
+		<component Cclass="Device" Cgroup="Driver" Csub="Timer" Cversion="1.0.0" condition="A3117M0">
+      <description>Timer driver for A3117M0 Device</description>
+      <files>
+        <file category="header" name="Device/A3117M/Driver/include/Timer.h" condition="A3117M0"/>
+        <file category="source" name="Device/A3117M/Driver/source/Timer.c" attr="config" condition="A3117M0" version="1.0.0"/>
+      </files>
+    </component>
+		<component Cclass="Device" Cgroup="Driver" Csub="UART" Cversion="1.0.0" condition="A3117M0">
+      <description>UART driver for A3117M0 Device</description>
+      <files>
+        <file category="header" name="Device/A3117M/Driver/include/UART.h" condition="A3117M0"/>
+        <file category="source" name="Device/A3117M/Driver/source/UART.c" attr="config" condition="A3117M0" version="1.0.0"/>
+      </files>
+    </component>
+		<component Cclass="Device" Cgroup="Driver" Csub="WatchDog" Cversion="1.0.0" condition="A3117M0">
+      <description>WatchDog driver for A3117M0 Device</description>
+      <files>
+        <file category="header" name="Device/A3117M/Driver/include/WatchDog.h" condition="A3117M0"/>
+        <file category="source" name="Device/A3117M/Driver/source/WatchDog.c" attr="config" condition="A3117M0" version="1.0.0"/>
+      </files>
+    </component>
+		
+		
+		
+		<!-- A8125M0 Device:Driver component -->
+		<component Cclass="Device" Cgroup="Driver" Csub="DualTimer" Cversion="1.0.0" condition="A8125M0">
+      <description>DualTimer driver for A8125M0 Device</description>
+      <files>
+        <file category="header" name="Device/A8125M/Driver/include/dualtimer.h" condition="A8125M0"/>
+        <file category="source" name="Device/A8125M/Driver/source/dualtimer.c" attr="config" condition="A8125M0" version="1.0.0"/>
+      </files>
+    </component>
+		<component Cclass="Device" Cgroup="Driver" Csub="GPIO" Cversion="1.0.0" condition="A8125M0">
+      <description>GPIO driver for A8125M0 Device</description>
+      <files>
+        <file category="header" name="Device/A8125M/Driver/include/gpio.h" condition="A8125M0"/>
+        <file category="source" name="Device/A8125M/Driver/source/gpio.c" attr="config" condition="A8125M0" version="1.0.0"/>
+      </files>
+    </component>
+		<component Cclass="Device" Cgroup="Driver" Csub="PWM" Cversion="1.0.0" condition="A8125M0">
+      <description>PWM driver for A8125M0 Device</description>
+      <files>
+        <file category="header" name="Device/A8125M/Driver/include/pwm.h" condition="A8125M0"/>
+        <file category="source" name="Device/A8125M/Driver/source/pwm.c" attr="config" condition="A8125M0" version="1.0.0"/>
+      </files>
+    </component>
+		<component Cclass="Device" Cgroup="Driver" Csub="Timer" Cversion="1.0.0" condition="A8125M0">
+      <description>Timer driver for A8125M0 Device</description>
+      <files>
+        <file category="header" name="Device/A8125M/Driver/include/timer.h" condition="A8125M0"/>
+        <file category="source" name="Device/A8125M/Driver/source/timer.c" attr="config" condition="A8125M0" version="1.0.0"/>
+      </files>
+    </component>
+		<component Cclass="Device" Cgroup="Driver" Csub="UART" Cversion="1.0.0" condition="A8125M0">
+      <description>UART driver for A8125M0 Device</description>
+      <files>
+        <file category="header" name="Device/A8125M/Driver/include/uart.h" condition="A8125M0"/>
+        <file category="source" name="Device/A8125M/Driver/source/uart.c" attr="config" condition="A8125M0" version="1.0.0"/>
+      </files>
+    </component>
+		<component Cclass="Device" Cgroup="Driver" Csub="UTI" Cversion="1.0.0" condition="A8125M0">
+      <description>Delay driver for A8125M0 Device</description>
+      <files>
+        <file category="header" name="Device/A8125M/Driver/include/uti.h" condition="A8125M0"/>
+        <file category="source" name="Device/A8125M/Driver/source/uti.c" attr="config" condition="A8125M0" version="1.0.0"/>
+      </files>
+    </component>
+		<component Cclass="Device" Cgroup="Driver" Csub="WatchDog" Cversion="1.0.0" condition="A8125M0">
+      <description>WatchDog driver for A8125M0 Device</description>
+      <files>
+        <file category="header" name="Device/A8125M/Driver/include/watchdog.h" condition="A8125M0"/>
+        <file category="source" name="Device/A8125M/Driver/source/watchdog.c" attr="config" condition="A8125M0" version="1.0.0"/>
+      </files>
+    </component>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  </components>
+
+</package>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

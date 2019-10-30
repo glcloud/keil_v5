@@ -1,0 +1,69 @@
+[Version]
+Signature = "$Windows NT$"
+Class     = USBDevice
+ClassGUID = {88BAE032-5A81-49f0-BC3D-A4FF138216D6}
+Provider  = %ManufacturerName%
+DriverVer = 12/12/2017, 1.0.1.0
+CatalogFile.nt = ULINKplus_x86.cat
+CatalogFile.ntx86 = ULINKplus_x86.cat
+CatalogFile.ntamd64 = ULINKplus_amd64.cat
+
+; ========== Manufacturer/Models sections ===========
+
+[Manufacturer]
+%ManufacturerName% = Devices, NTx86, NTamd64
+
+[Devices.NTx86]
+;%DeviceName% = USB_Install, USB\VID_c251&PID_2750
+%DeviceName0% = USB_Install, USB\VID_c251&PID_2750&MI_00
+%DeviceName1% = USB_Install, USB\VID_c251&PID_2750&MI_01
+%DeviceName2% = USB_Install, USB\VID_c251&PID_2750&MI_02
+%DeviceName3% = USB_Install, USB\VID_c251&PID_2750&MI_03
+%DeviceNameB% = USB_Install, USB\VID_c251&PID_275F
+
+[Devices.NTamd64]
+;%DeviceName% = USB_Install, USB\VID_c251&PID_2750
+%DeviceName0% = USB_Install, USB\VID_c251&PID_2750&MI_00
+%DeviceName1% = USB_Install, USB\VID_c251&PID_2750&MI_01
+%DeviceName2% = USB_Install, USB\VID_c251&PID_2750&MI_02
+%DeviceName3% = USB_Install, USB\VID_c251&PID_2750&MI_03
+%DeviceNameB% = USB_Install, USB\VID_c251&PID_275F
+
+; ========== Class definition ===========
+
+[ClassInstall32]
+AddReg = ClassInstall_AddReg
+
+[ClassInstall_AddReg]
+HKR,,,,%ClassName%
+HKR,,NoInstallClass,,1
+HKR,,IconPath,0x10000,"%%SystemRoot%%\System32\setupapi.dll,-20"
+HKR,,LowerLogoVersion,,5.2
+
+; =================== Installation ===================
+
+[USB_Install]
+Include = winusb.inf
+Needs   = WINUSB.NT
+
+[USB_Install.Services]
+Include = winusb.inf
+Needs   = WINUSB.NT.Services
+
+[USB_Install.HW]
+AddReg = Dev_AddReg
+
+[Dev_AddReg]
+HKR,,DeviceInterfaceGUIDs,0x10000,"{CDB3B5AD-293B-4663-AA36-1AAE46463776}"
+
+; =================== Strings ===================
+
+[Strings]
+ClassName        = "Universal Serial Bus devices"
+ManufacturerName = "KEIL - Tools By ARM"
+DeviceName       = "Keil ULINKplus" 
+DeviceName0      = "ULINKplus CMSIS-DAP" 
+DeviceName1      = "ULINKplus Digital I/O" 
+DeviceName2      = "ULINKplus Analog I/O" 
+DeviceName3      = "ULINKplus Power Probe" 
+DeviceNameB      = "Keil ULINKplus Bootloader" 

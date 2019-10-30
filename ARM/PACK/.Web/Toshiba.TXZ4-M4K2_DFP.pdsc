@@ -1,0 +1,713 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<package schemaVersion="1.2" xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="PACK.xsd">
+  <license>License/SOFTWARE_LICENSE_AGREEMENT.txt</license> 
+  <vendor>Toshiba</vendor>
+  <url>https://toshiba.semicon-storage.com/content/dam/toshiba-ss/shared/docs/product/micro/device-family-Pack/</url>
+  <name>TXZ4-M4K2_DFP</name>
+  <description>Toshiba TXZ4 Series TMPM4K Group (2) Device Support</description>
+
+  <releases>
+    <release version="1.0.1" date="2019-03-25">
+      First Release version of TXZ4 Series TMPM4K Group (2) Device Family Pack.
+    </release>
+  </releases>
+
+  <keywords>
+    <!-- keywords for indexing -->
+    <keyword>Toshiba</keyword>
+    <keyword>Device Support</keyword>
+    <keyword>Device Family Package Toshiba</keyword>
+    <keyword>TMPM4</keyword>
+    <keyword>TXZ4</keyword>
+  </keywords>
+
+  <devices>
+    <family Dfamily="TXZ4 Series" Dvendor="Toshiba:92">
+      <processor Dcore="Cortex-M4" DcoreVersion="r0p1" Dfpu="1" Dmpu="1" Dendian="Little-endian"/>
+      <description>
+The TXZ4 microcontroller series embeds an ARM Cortex-M4 core, which provides high code density and fast interrupt response times required for real-time applications.
+      </description>
+      <!-- ************************  Subfamily 'TMPM4KQx'  **************************** -->
+      <subFamily DsubFamily="M4K(2)">
+
+        <!-- ***********************  Device 'TMPM4KQx'  ************************* -->
+        <device Dname="TMPM4KQFDFG">
+          <processor Dclock="160000000"/>
+          <compile header="Device/Include/TMPM4KQ.h" define="TMPM4KQ"/>
+          <debug svd="SVD/M4KQ.svd"/>
+          <memory id="IROM1"                           start="0x00000000" size="0x00080000" startup="1" default="1"/>
+          <memory id="IRAM1"                           start="0x20000000" size="0x00006000" init   ="0" default="1"/>
+          <algorithm name="Flash/TMPM4Kx_code_512.FLM" start="0x00000000" size="0x00080000"  RAMstart="0x20000000"  RAMsize="0x2000"  default="1"/>
+          <algorithm name="Flash/TMPM4Kx_data_32.FLM"  start="0x30000000" size="0x00008000"  RAMstart="0x20000000"   RAMsize="0x2000"  default="1"/>
+
+          <!--book name=""/-->
+
+          <feature type="WDT"           n="1"/>
+          <feature type="Timer"         n="6"      m="32"/>
+          <feature type="DMA"           n="32"                           name="DMA"/>
+          <feature type="UART"          n="4"/>
+          <feature type="I2C"           n="2"                           name="I2C"/>
+          <feature type="ADC"           n="16"     m="12"               name="AD converter"/>
+          <feature type="ExtInt"        n="22"/>
+          <feature type="IOs"           n="131"/>
+          <feature type="VCC"           n="2.70"    m="5.50"/>
+          <feature type="Temp"          n="-40"     m="105"/>
+          <feature type="QFP" n="144" name="P-LQFP144-2020-0.50-002"/>
+        </device>
+        <device Dname="TMPM4KQFYFG">
+          <processor Dclock="160000000"/>
+          <compile header="Device/Include/TMPM4KQ.h" define="TMPM4KQ"/>
+          <debug svd="SVD/M4KQ.svd"/>
+          <memory id="IROM1"                           start="0x00000000" size="0x00040000" startup="1" default="1"/>
+          <memory id="IRAM1"                           start="0x20000000" size="0x00006000" init   ="0" default="1"/>
+          <algorithm name="Flash/TMPM4Kx_code_256.FLM" start="0x00000000" size="0x00040000"  RAMstart="0x20000000"  RAMsize="0x2000"  default="1"/>
+          <algorithm name="Flash/TMPM4Kx_data_32.FLM"  start="0x30000000" size="0x00008000"  RAMstart="0x20000000"   RAMsize="0x2000"  default="1"/>
+
+          <!--book name=""/-->
+
+          <feature type="WDT"           n="1"/>
+          <feature type="Timer"         n="6"      m="32"/>
+          <feature type="DMA"           n="32"                           name="DMA"/>
+          <feature type="UART"          n="4"/>
+          <feature type="I2C"           n="2"                           name="I2C"/>
+          <feature type="ADC"           n="16"     m="12"               name="AD converter"/>
+          <feature type="ExtInt"        n="22"/>
+          <feature type="IOs"           n="131"/>
+          <feature type="VCC"           n="2.70"    m="5.50"/>
+          <feature type="Temp"          n="-40"     m="105"/>
+          <feature type="QFP" n="144" name="P-LQFP144-2020-0.50-002"/>
+        </device>
+        <device Dname="TMPM4KQFWFG">
+          <processor Dclock="160000000"/>
+          <compile header="Device/Include/TMPM4KQ.h" define="TMPM4KQ"/>
+          <debug svd="SVD/M4KQ.svd"/>
+          <memory id="IROM1"                           start="0x00000000" size="0x00020000" startup="1" default="1"/>
+          <memory id="IRAM1"                           start="0x20000000" size="0x00006000" init   ="0" default="1"/>
+          <algorithm name="Flash/TMPM4Kx_code_128.FLM" start="0x00000000" size="0x00020000"  RAMstart="0x20000000"  RAMsize="0x2000"  default="1"/>
+          <algorithm name="Flash/TMPM4Kx_data_32.FLM"  start="0x30000000" size="0x00008000"  RAMstart="0x20000000"   RAMsize="0x2000"  default="1"/>
+
+          <!--book name=""/-->
+
+          <feature type="WDT"           n="1"/>
+          <feature type="Timer"         n="6"      m="32"/>
+          <feature type="DMA"           n="32"                           name="DMA"/>
+          <feature type="UART"          n="4"/>
+          <feature type="I2C"           n="2"                           name="I2C"/>
+          <feature type="ADC"           n="16"     m="12"               name="AD converter"/>
+          <feature type="ExtInt"        n="22"/>
+          <feature type="IOs"           n="131"/>
+          <feature type="VCC"           n="2.70"    m="5.50"/>
+          <feature type="Temp"          n="-40"     m="105"/>
+          <feature type="QFP" n="144" name="P-LQFP144-2020-0.50-002"/>
+        </device>
+
+        <device Dname="TMPM4KPFDDFG">
+          <processor Dclock="160000000"/>
+          <compile header="Device/Include/TMPM4KP.h" define="TMPM4KP"/>
+          <debug svd="SVD/M4KP.svd"/>
+          <memory id="IROM1"                           start="0x00000000" size="0x00080000" startup="1" default="1"/>
+          <memory id="IRAM1"                           start="0x20000000" size="0x00006000" init   ="0" default="1"/>
+          <algorithm name="Flash/TMPM4Kx_code_512.FLM" start="0x00000000" size="0x00080000"  RAMstart="0x20000000"  RAMsize="0x2000"  default="1"/>
+          <algorithm name="Flash/TMPM4Kx_data_32.FLM"  start="0x30000000" size="0x00008000"  RAMstart="0x20000000"   RAMsize="0x2000"  default="1"/>
+
+          <!--book name=""/-->
+
+          <feature type="WDT"           n="1"/>
+          <feature type="Timer"         n="6"      m="32"/>
+          <feature type="DMA"           n="32"                           name="DMA"/>
+          <feature type="UART"          n="4"/>
+          <feature type="I2C"           n="2"                           name="I2C"/>
+          <feature type="ADC"           n="16"     m="12"               name="AD converter"/>
+          <feature type="ExtInt"        n="21"/>
+          <feature type="IOs"           n="115"/>
+          <feature type="VCC"           n="2.70"    m="5.50"/>
+          <feature type="Temp"          n="-40"     m="105"/>
+          <feature type="QFP" n="128" name="P-LQFP128-1420-0.50-xxx"/>
+        </device>
+        <device Dname="TMPM4KPFYDFG">
+          <processor Dclock="160000000"/>
+          <compile header="Device/Include/TMPM4KP.h" define="TMPM4KP"/>
+          <debug svd="SVD/M4KP.svd"/>
+          <memory id="IROM1"                           start="0x00000000" size="0x00040000" startup="1" default="1"/>
+          <memory id="IRAM1"                           start="0x20000000" size="0x00006000" init   ="0" default="1"/>
+          <algorithm name="Flash/TMPM4Kx_code_256.FLM" start="0x00000000" size="0x00040000"  RAMstart="0x20000000"  RAMsize="0x2000"  default="1"/>
+          <algorithm name="Flash/TMPM4Kx_data_32.FLM"  start="0x30000000" size="0x00008000"  RAMstart="0x20000000"   RAMsize="0x2000"  default="1"/>
+
+          <!--book name=""/-->
+
+          <feature type="WDT"           n="1"/>
+          <feature type="Timer"         n="6"      m="32"/>
+          <feature type="DMA"           n="32"                           name="DMA"/>
+          <feature type="UART"          n="4"/>
+          <feature type="I2C"           n="2"                           name="I2C"/>
+          <feature type="ADC"           n="16"     m="12"               name="AD converter"/>
+          <feature type="ExtInt"        n="21"/>
+          <feature type="IOs"           n="115"/>
+          <feature type="VCC"           n="2.70"    m="5.50"/>
+          <feature type="Temp"          n="-40"     m="105"/>
+          <feature type="QFP" n="128" name="P-LQFP128-1420-0.50-xxx"/>
+        </device>
+        <device Dname="TMPM4KPFWDFG">
+          <processor Dclock="160000000"/>
+          <compile header="Device/Include/TMPM4KP.h" define="TMPM4KP"/>
+          <debug svd="SVD/M4KP.svd"/>
+          <memory id="IROM1"                           start="0x00000000" size="0x00020000" startup="1" default="1"/>
+          <memory id="IRAM1"                           start="0x20000000" size="0x00006000" init   ="0" default="1"/>
+          <algorithm name="Flash/TMPM4Kx_code_128.FLM" start="0x00000000" size="0x00020000"  RAMstart="0x20000000"  RAMsize="0x2000"  default="1"/>
+          <algorithm name="Flash/TMPM4Kx_data_32.FLM"  start="0x30000000" size="0x00008000"  RAMstart="0x20000000"   RAMsize="0x2000"  default="1"/>
+
+          <!--book name=""/-->
+
+          <feature type="WDT"           n="1"/>
+          <feature type="Timer"         n="6"      m="32"/>
+          <feature type="DMA"           n="32"                           name="DMA"/>
+          <feature type="UART"          n="4"/>
+          <feature type="I2C"           n="2"                           name="I2C"/>
+          <feature type="ADC"           n="16"     m="12"               name="AD converter"/>
+          <feature type="ExtInt"        n="21"/>
+          <feature type="IOs"           n="115"/>
+          <feature type="VCC"           n="2.70"    m="5.50"/>
+          <feature type="Temp"          n="-40"     m="105"/>
+          <feature type="QFP" n="128" name="P-LQFP128-1420-0.50-xxx"/>
+        </device>
+
+        <device Dname="TMPM4KNFDDFG">
+          <processor Dclock="160000000"/>
+          <compile header="Device/Include/TMPM4KN.h" define="TMPM4KN"/>
+          <debug svd="SVD/M4KN.svd"/>
+          <memory id="IROM1"                           start="0x00000000" size="0x00080000" startup="1" default="1"/>
+          <memory id="IRAM1"                           start="0x20000000" size="0x00006000" init   ="0" default="1"/>
+          <algorithm name="Flash/TMPM4Kx_code_512.FLM" start="0x00000000" size="0x00080000"  RAMstart="0x20000000"  RAMsize="0x2000"  default="1"/>
+          <algorithm name="Flash/TMPM4Kx_data_32.FLM"  start="0x30000000" size="0x00008000"  RAMstart="0x20000000"   RAMsize="0x2000"  default="1"/>
+
+          <!--book name=""/-->
+
+          <feature type="WDT"           n="1"/>
+          <feature type="Timer"         n="6"      m="32"/>
+          <feature type="DMA"           n="32"                           name="DMA"/>
+          <feature type="UART"          n="4"/>
+          <feature type="I2C"           n="2"                           name="I2C"/>
+          <feature type="ADC"           n="11"     m="12"               name="AD converter"/>
+          <feature type="ExtInt"        n="20"/>
+          <feature type="IOs"           n="87"/>
+          <feature type="VCC"           n="2.70"    m="5.50"/>
+          <feature type="Temp"          n="-40"     m="105"/>
+          <feature type="QFP" n="100" name="P-QFP100-1420-0.65-001"/>
+        </device>
+        <device Dname="TMPM4KNFYDFG">
+          <processor Dclock="160000000"/>
+          <compile header="Device/Include/TMPM4KN.h" define="TMPM4KN"/>
+          <debug svd="SVD/M4KN.svd"/>
+          <memory id="IROM1"                           start="0x00000000" size="0x00040000" startup="1" default="1"/>
+          <memory id="IRAM1"                           start="0x20000000" size="0x00006000" init   ="0" default="1"/>
+          <algorithm name="Flash/TMPM4Kx_code_256.FLM" start="0x00000000" size="0x00040000"  RAMstart="0x20000000"  RAMsize="0x2000"  default="1"/>
+          <algorithm name="Flash/TMPM4Kx_data_32.FLM"  start="0x30000000" size="0x00008000"  RAMstart="0x20000000"   RAMsize="0x2000"  default="1"/>
+
+          <!--book name=""/-->
+
+          <feature type="WDT"           n="1"/>
+          <feature type="Timer"         n="6"      m="32"/>
+          <feature type="DMA"           n="32"                           name="DMA"/>
+          <feature type="UART"          n="4"/>
+          <feature type="I2C"           n="2"                           name="I2C"/>
+          <feature type="ADC"           n="11"     m="12"               name="AD converter"/>
+          <feature type="ExtInt"        n="20"/>
+          <feature type="IOs"           n="87"/>
+          <feature type="VCC"           n="2.70"    m="5.50"/>
+          <feature type="Temp"          n="-40"     m="105"/>
+          <feature type="QFP" n="100" name="P-QFP100-1420-0.65-001"/>
+        </device>
+        <device Dname="TMPM4KNFWDFG">
+          <processor Dclock="160000000"/>
+          <compile header="Device/Include/TMPM4KN.h" define="TMPM4KN"/>
+          <debug svd="SVD/M4KN.svd"/>
+          <memory id="IROM1"                           start="0x00000000" size="0x00020000" startup="1" default="1"/>
+          <memory id="IRAM1"                           start="0x20000000" size="0x00006000" init   ="0" default="1"/>
+          <algorithm name="Flash/TMPM4Kx_code_128.FLM" start="0x00000000" size="0x00020000"  RAMstart="0x20000000"  RAMsize="0x2000"  default="1"/>
+          <algorithm name="Flash/TMPM4Kx_data_32.FLM"  start="0x30000000" size="0x00008000"  RAMstart="0x20000000"   RAMsize="0x2000"  default="1"/>
+
+          <!--book name=""/-->
+
+          <feature type="WDT"           n="1"/>
+          <feature type="Timer"         n="6"      m="32"/>
+          <feature type="DMA"           n="32"                           name="DMA"/>
+          <feature type="UART"          n="4"/>
+          <feature type="I2C"           n="2"                           name="I2C"/>
+          <feature type="ADC"           n="11"     m="12"               name="AD converter"/>
+          <feature type="ExtInt"        n="20"/>
+          <feature type="IOs"           n="87"/>
+          <feature type="VCC"           n="2.70"    m="5.50"/>
+          <feature type="Temp"          n="-40"     m="105"/>
+          <feature type="QFP" n="100" name="P-QFP100-1420-0.65-001"/>
+        </device>
+
+        <device Dname="TMPM4KNFDFG">
+          <processor Dclock="160000000"/>
+          <compile header="Device/Include/TMPM4KN.h" define="TMPM4KN"/>
+          <debug svd="SVD/M4KN.svd"/>
+          <memory id="IROM1"                           start="0x00000000" size="0x00080000" startup="1" default="1"/>
+          <memory id="IRAM1"                           start="0x20000000" size="0x00006000" init   ="0" default="1"/>
+          <algorithm name="Flash/TMPM4Kx_code_512.FLM" start="0x00000000" size="0x00080000"  RAMstart="0x20000000"  RAMsize="0x2000"  default="1"/>
+          <algorithm name="Flash/TMPM4Kx_data_32.FLM"  start="0x30000000" size="0x00008000"  RAMstart="0x20000000"   RAMsize="0x2000"  default="1"/>
+
+          <!--book name=""/-->
+
+          <feature type="WDT"           n="1"/>
+          <feature type="Timer"         n="6"      m="32"/>
+          <feature type="DMA"           n="32"                           name="DMA"/>
+          <feature type="UART"          n="4"/>
+          <feature type="I2C"           n="2"                           name="I2C"/>
+          <feature type="ADC"           n="11"     m="12"               name="AD converter"/>
+          <feature type="ExtInt"        n="20"/>
+          <feature type="IOs"           n="87"/>
+          <feature type="VCC"           n="2.70"    m="5.50"/>
+          <feature type="Temp"          n="-40"     m="105"/>
+          <feature type="QFP" n="100" name="P-LQFP100-1414-0.50-002"/>
+        </device>
+        <device Dname="TMPM4KNFYFG">
+          <processor Dclock="160000000"/>
+          <compile header="Device/Include/TMPM4KN.h" define="TMPM4KN"/>
+          <debug svd="SVD/M4KN.svd"/>
+          <memory id="IROM1"                           start="0x00000000" size="0x00040000" startup="1" default="1"/>
+          <memory id="IRAM1"                           start="0x20000000" size="0x00006000" init   ="0" default="1"/>
+          <algorithm name="Flash/TMPM4Kx_code_256.FLM" start="0x00000000" size="0x00040000"  RAMstart="0x20000000"  RAMsize="0x2000"  default="1"/>
+          <algorithm name="Flash/TMPM4Kx_data_32.FLM"  start="0x30000000" size="0x00008000"  RAMstart="0x20000000"   RAMsize="0x2000"  default="1"/>
+
+          <!--book name=""/-->
+
+          <feature type="WDT"           n="1"/>
+          <feature type="Timer"         n="6"      m="32"/>
+          <feature type="DMA"           n="32"                           name="DMA"/>
+          <feature type="UART"          n="4"/>
+          <feature type="I2C"           n="2"                           name="I2C"/>
+          <feature type="ADC"           n="11"     m="12"               name="AD converter"/>
+          <feature type="ExtInt"        n="20"/>
+          <feature type="IOs"           n="87"/>
+          <feature type="VCC"           n="2.70"    m="5.50"/>
+          <feature type="Temp"          n="-40"     m="105"/>
+          <feature type="QFP" n="100" name="P-LQFP100-1414-0.50-002"/>
+        </device>
+        <device Dname="TMPM4KNFWFG">
+          <processor Dclock="160000000"/>
+          <compile header="Device/Include/TMPM4KN.h" define="TMPM4KN"/>
+          <debug svd="SVD/M4KN.svd"/>
+          <memory id="IROM1"                           start="0x00000000" size="0x00020000" startup="1" default="1"/>
+          <memory id="IRAM1"                           start="0x20000000" size="0x00006000" init   ="0" default="1"/>
+          <algorithm name="Flash/TMPM4Kx_code_128.FLM" start="0x00000000" size="0x00020000"  RAMstart="0x20000000"  RAMsize="0x2000"  default="1"/>
+          <algorithm name="Flash/TMPM4Kx_data_32.FLM"  start="0x30000000" size="0x00008000"  RAMstart="0x20000000"   RAMsize="0x2000"  default="1"/>
+
+          <!--book name=""/-->
+
+          <feature type="WDT"           n="1"/>
+          <feature type="Timer"         n="6"      m="32"/>
+          <feature type="DMA"           n="32"                           name="DMA"/>
+          <feature type="UART"          n="4"/>
+          <feature type="I2C"           n="2"                           name="I2C"/>
+          <feature type="ADC"           n="11"     m="12"               name="AD converter"/>
+          <feature type="ExtInt"        n="20"/>
+          <feature type="IOs"           n="87"/>
+          <feature type="VCC"           n="2.70"    m="5.50"/>
+          <feature type="Temp"          n="-40"     m="105"/>
+          <feature type="QFP" n="100" name="P-LQFP100-1414-0.50-002"/>
+        </device>
+
+        <device Dname="TMPM4KMFDDFG">
+          <processor Dclock="160000000"/>
+          <compile header="Device/Include/TMPM4KM.h" define="TMPM4KM"/>
+          <debug svd="SVD/M4KM.svd"/>
+          <memory id="IROM1"                           start="0x00000000" size="0x00080000" startup="1" default="1"/>
+          <memory id="IRAM1"                           start="0x20000000" size="0x00006000" init   ="0" default="1"/>
+          <algorithm name="Flash/TMPM4Kx_code_512.FLM" start="0x00000000" size="0x00080000"  RAMstart="0x20000000"  RAMsize="0x2000"  default="1"/>
+          <algorithm name="Flash/TMPM4Kx_data_32.FLM"  start="0x30000000" size="0x00008000"  RAMstart="0x20000000"   RAMsize="0x2000"  default="1"/>
+
+          <!--book name=""/-->
+
+          <feature type="WDT"           n="1"/>
+          <feature type="Timer"         n="6"      m="32"/>
+          <feature type="DMA"           n="32"                           name="DMA"/>
+          <feature type="UART"          n="4"/>
+          <feature type="I2C"           n="2"                           name="I2C"/>
+          <feature type="ADC"           n="8"     m="12"               name="AD converter"/>
+          <feature type="ExtInt"        n="18"/>
+          <feature type="IOs"           n="67"/>
+          <feature type="VCC"           n="2.70"    m="5.50"/>
+          <feature type="Temp"          n="-40"     m="105"/>
+          <feature type="QFP" n="80" name="P-LQFP80-1414-0.65-001"/>
+        </device>
+        <device Dname="TMPM4KMFYDFG">
+          <processor Dclock="160000000"/>
+          <compile header="Device/Include/TMPM4KM.h" define="TMPM4KM"/>
+          <debug svd="SVD/M4KM.svd"/>
+          <memory id="IROM1"                           start="0x00000000" size="0x00040000" startup="1" default="1"/>
+          <memory id="IRAM1"                           start="0x20000000" size="0x00006000" init   ="0" default="1"/>
+          <algorithm name="Flash/TMPM4Kx_code_256.FLM" start="0x00000000" size="0x00040000"  RAMstart="0x20000000"  RAMsize="0x2000"  default="1"/>
+          <algorithm name="Flash/TMPM4Kx_data_32.FLM"  start="0x30000000" size="0x00008000"  RAMstart="0x20000000"   RAMsize="0x2000"  default="1"/>
+
+          <!--book name=""/-->
+
+          <feature type="WDT"           n="1"/>
+          <feature type="Timer"         n="6"      m="32"/>
+          <feature type="DMA"           n="32"                           name="DMA"/>
+          <feature type="UART"          n="4"/>
+          <feature type="I2C"           n="2"                           name="I2C"/>
+          <feature type="ADC"           n="8"     m="12"               name="AD converter"/>
+          <feature type="ExtInt"        n="18"/>
+          <feature type="IOs"           n="67"/>
+          <feature type="VCC"           n="2.70"    m="5.50"/>
+          <feature type="Temp"          n="-40"     m="105"/>
+          <feature type="QFP" n="80" name="P-LQFP80-1414-0.65-001"/>
+        </device>
+        <device Dname="TMPM4KMFWDFG">
+          <processor Dclock="160000000"/>
+          <compile header="Device/Include/TMPM4KM.h" define="TMPM4KM"/>
+          <debug svd="SVD/M4KM.svd"/>
+          <memory id="IROM1"                           start="0x00000000" size="0x00020000" startup="1" default="1"/>
+          <memory id="IRAM1"                           start="0x20000000" size="0x00006000" init   ="0" default="1"/>
+          <algorithm name="Flash/TMPM4Kx_code_128.FLM" start="0x00000000" size="0x00020000"  RAMstart="0x20000000"  RAMsize="0x2000"  default="1"/>
+          <algorithm name="Flash/TMPM4Kx_data_32.FLM"  start="0x30000000" size="0x00008000"  RAMstart="0x20000000"   RAMsize="0x2000"  default="1"/>
+
+          <!--book name=""/-->
+
+          <feature type="WDT"           n="1"/>
+          <feature type="Timer"         n="6"      m="32"/>
+          <feature type="DMA"           n="32"                           name="DMA"/>
+          <feature type="UART"          n="4"/>
+          <feature type="I2C"           n="2"                           name="I2C"/>
+          <feature type="ADC"           n="8"     m="12"               name="AD converter"/>
+          <feature type="ExtInt"        n="18"/>
+          <feature type="IOs"           n="67"/>
+          <feature type="VCC"           n="2.70"    m="5.50"/>
+          <feature type="Temp"          n="-40"     m="105"/>
+          <feature type="QFP" n="80" name="P-LQFP80-1414-0.65-001"/>
+        </device>
+
+        <device Dname="TMPM4KMFDFG">
+          <processor Dclock="160000000"/>
+          <compile header="Device/Include/TMPM4KM.h" define="TMPM4KM"/>
+          <debug svd="SVD/M4KM.svd"/>
+          <memory id="IROM1"                           start="0x00000000" size="0x00080000" startup="1" default="1"/>
+          <memory id="IRAM1"                           start="0x20000000" size="0x00006000" init   ="0" default="1"/>
+          <algorithm name="Flash/TMPM4Kx_code_512.FLM" start="0x00000000" size="0x00080000"  RAMstart="0x20000000"  RAMsize="0x2000"  default="1"/>
+          <algorithm name="Flash/TMPM4Kx_data_32.FLM"  start="0x30000000" size="0x00008000"  RAMstart="0x20000000"   RAMsize="0x2000"  default="1"/>
+
+          <!--book name=""/-->
+
+          <feature type="WDT"           n="1"/>
+          <feature type="Timer"         n="6"      m="32"/>
+          <feature type="DMA"           n="32"                           name="DMA"/>
+          <feature type="UART"          n="4"/>
+          <feature type="I2C"           n="2"                           name="I2C"/>
+          <feature type="ADC"           n="8"     m="12"               name="AD converter"/>
+          <feature type="ExtInt"        n="18"/>
+          <feature type="IOs"           n="67"/>
+          <feature type="VCC"           n="2.70"    m="5.50"/>
+          <feature type="Temp"          n="-40"     m="105"/>
+          <feature type="QFP" n="80" name="P-LQFP80-1212-0.50-003"/>
+        </device>
+        <device Dname="TMPM4KMFYFG">
+          <processor Dclock="160000000"/>
+          <compile header="Device/Include/TMPM4KM.h" define="TMPM4KM"/>
+          <debug svd="SVD/M4KM.svd"/>
+          <memory id="IROM1"                           start="0x00000000" size="0x00040000" startup="1" default="1"/>
+          <memory id="IRAM1"                           start="0x20000000" size="0x00006000" init   ="0" default="1"/>
+          <algorithm name="Flash/TMPM4Kx_code_256.FLM" start="0x00000000" size="0x00040000"  RAMstart="0x20000000"  RAMsize="0x2000"  default="1"/>
+          <algorithm name="Flash/TMPM4Kx_data_32.FLM"  start="0x30000000" size="0x00008000"  RAMstart="0x20000000"   RAMsize="0x2000"  default="1"/>
+
+          <!--book name=""/-->
+
+          <feature type="WDT"           n="1"/>
+          <feature type="Timer"         n="6"      m="32"/>
+          <feature type="DMA"           n="32"                           name="DMA"/>
+          <feature type="UART"          n="4"/>
+          <feature type="I2C"           n="2"                           name="I2C"/>
+          <feature type="ADC"           n="8"     m="12"               name="AD converter"/>
+          <feature type="ExtInt"        n="18"/>
+          <feature type="IOs"           n="67"/>
+          <feature type="VCC"           n="2.70"    m="5.50"/>
+          <feature type="Temp"          n="-40"     m="105"/>
+          <feature type="QFP" n="80" name="P-LQFP80-1212-0.50-003"/>
+        </device>
+        <device Dname="TMPM4KMFWFG">
+          <processor Dclock="160000000"/>
+          <compile header="Device/Include/TMPM4KM.h" define="TMPM4KM"/>
+          <debug svd="SVD/M4KM.svd"/>
+          <memory id="IROM1"                           start="0x00000000" size="0x00020000" startup="1" default="1"/>
+          <memory id="IRAM1"                           start="0x20000000" size="0x00006000" init   ="0" default="1"/>
+          <algorithm name="Flash/TMPM4Kx_code_128.FLM" start="0x00000000" size="0x00020000"  RAMstart="0x20000000"  RAMsize="0x2000"  default="1"/>
+          <algorithm name="Flash/TMPM4Kx_data_32.FLM"  start="0x30000000" size="0x00008000"  RAMstart="0x20000000"   RAMsize="0x2000"  default="1"/>
+
+          <!--book name=""/-->
+
+          <feature type="WDT"           n="1"/>
+          <feature type="Timer"         n="6"      m="32"/>
+          <feature type="DMA"           n="32"                           name="DMA"/>
+          <feature type="UART"          n="4"/>
+          <feature type="I2C"           n="2"                           name="I2C"/>
+          <feature type="ADC"           n="8"     m="12"               name="AD converter"/>
+          <feature type="ExtInt"        n="18"/>
+          <feature type="IOs"           n="67"/>
+          <feature type="VCC"           n="2.70"    m="5.50"/>
+          <feature type="Temp"          n="-40"     m="105"/>
+          <feature type="QFP" n="80" name="P-LQFP80-1212-0.50-003"/>
+        </device>
+
+        <device Dname="TMPM4KLFDUG">
+          <processor Dclock="160000000"/>
+          <compile header="Device/Include/TMPM4KL.h" define="TMPM4KL"/>
+          <debug svd="SVD/M4KL.svd"/>
+          <memory id="IROM1"                           start="0x00000000" size="0x00080000" startup="1" default="1"/>
+          <memory id="IRAM1"                           start="0x20000000" size="0x00006000" init   ="0" default="1"/>
+          <algorithm name="Flash/TMPM4Kx_code_512.FLM" start="0x00000000" size="0x00080000"  RAMstart="0x20000000"  RAMsize="0x2000"  default="1"/>
+          <algorithm name="Flash/TMPM4Kx_data_32.FLM"  start="0x30000000" size="0x00008000"  RAMstart="0x20000000"   RAMsize="0x2000"  default="1"/>
+
+          <!--book name=""/-->
+
+          <feature type="WDT"           n="1"/>
+          <feature type="Timer"         n="6"      m="32"/>
+          <feature type="DMA"           n="32"                           name="DMA"/>
+          <feature type="UART"          n="4"/>
+          <feature type="I2C"           n="2"                           name="I2C"/>
+          <feature type="ADC"           n="8"     m="12"               name="AD converter"/>
+          <feature type="ExtInt"        n="16"/>
+          <feature type="IOs"           n="51"/>
+          <feature type="VCC"           n="2.70"    m="5.50"/>
+          <feature type="Temp"          n="-40"     m="105"/>
+          <feature type="QFP" n="64" name="P-LQFP64-1010-0.50-003"/>
+        </device>
+        <device Dname="TMPM4KLFYUG">
+          <processor Dclock="160000000"/>
+          <compile header="Device/Include/TMPM4KL.h" define="TMPM4KL"/>
+          <debug svd="SVD/M4KL.svd"/>
+          <memory id="IROM1"                           start="0x00000000" size="0x00040000" startup="1" default="1"/>
+          <memory id="IRAM1"                           start="0x20000000" size="0x00006000" init   ="0" default="1"/>
+          <algorithm name="Flash/TMPM4Kx_code_256.FLM" start="0x00000000" size="0x00040000"  RAMstart="0x20000000"  RAMsize="0x2000"  default="1"/>
+          <algorithm name="Flash/TMPM4Kx_data_32.FLM"  start="0x30000000" size="0x00008000"  RAMstart="0x20000000"   RAMsize="0x2000"  default="1"/>
+
+          <!--book name=""/-->
+
+          <feature type="WDT"           n="1"/>
+          <feature type="Timer"         n="6"      m="32"/>
+          <feature type="DMA"           n="32"                           name="DMA"/>
+          <feature type="UART"          n="4"/>
+          <feature type="I2C"           n="2"                           name="I2C"/>
+          <feature type="ADC"           n="8"     m="12"               name="AD converter"/>
+          <feature type="ExtInt"        n="16"/>
+          <feature type="IOs"           n="51"/>
+          <feature type="VCC"           n="2.70"    m="5.50"/>
+          <feature type="Temp"          n="-40"     m="105"/>
+          <feature type="QFP" n="64" name="P-LQFP64-1010-0.50-003"/>
+        </device>
+        <device Dname="TMPM4KLFWUG">
+          <processor Dclock="160000000"/>
+          <compile header="Device/Include/TMPM4KL.h" define="TMPM4KL"/>
+          <debug svd="SVD/M4KL.svd"/>
+          <memory id="IROM1"                           start="0x00000000" size="0x00020000" startup="1" default="1"/>
+          <memory id="IRAM1"                           start="0x20000000" size="0x00006000" init   ="0" default="1"/>
+          <algorithm name="Flash/TMPM4Kx_code_128.FLM" start="0x00000000" size="0x00020000"  RAMstart="0x20000000"  RAMsize="0x2000"  default="1"/>
+          <algorithm name="Flash/TMPM4Kx_data_32.FLM"  start="0x30000000" size="0x00008000"  RAMstart="0x20000000"   RAMsize="0x2000"  default="1"/>
+
+          <!--book name=""/-->
+
+          <feature type="WDT"           n="1"/>
+          <feature type="Timer"         n="6"      m="32"/>
+          <feature type="DMA"           n="32"                           name="DMA"/>
+          <feature type="UART"          n="4"/>
+          <feature type="I2C"           n="2"                           name="I2C"/>
+          <feature type="ADC"           n="8"     m="12"               name="AD converter"/>
+          <feature type="ExtInt"        n="16"/>
+          <feature type="IOs"           n="51"/>
+          <feature type="VCC"           n="2.70"    m="5.50"/>
+          <feature type="Temp"          n="-40"     m="105"/>
+          <feature type="QFP" n="64" name="P-LQFP64-1010-0.50-003"/>
+        </device>
+
+        <device Dname="TMPM4KLFDFG">
+          <processor Dclock="160000000"/>
+          <compile header="Device/Include/TMPM4KL.h" define="TMPM4KL"/>
+          <debug svd="SVD/M4KL.svd"/>
+          <memory id="IROM1"                           start="0x00000000" size="0x00080000" startup="1" default="1"/>
+          <memory id="IRAM1"                           start="0x20000000" size="0x00006000" init   ="0" default="1"/>
+          <algorithm name="Flash/TMPM4Kx_code_512.FLM" start="0x00000000" size="0x00080000"  RAMstart="0x20000000"  RAMsize="0x2000"  default="1"/>
+          <algorithm name="Flash/TMPM4Kx_data_32.FLM"  start="0x30000000" size="0x00008000"  RAMstart="0x20000000"   RAMsize="0x2000"  default="1"/>
+
+          <!--book name=""/-->
+
+          <feature type="WDT"           n="1"/>
+          <feature type="Timer"         n="6"      m="32"/>
+          <feature type="DMA"           n="32"                           name="DMA"/>
+          <feature type="UART"          n="4"/>
+          <feature type="I2C"           n="2"                           name="I2C"/>
+          <feature type="ADC"           n="8"     m="12"               name="AD converter"/>
+          <feature type="ExtInt"        n="16"/>
+          <feature type="IOs"           n="51"/>
+          <feature type="VCC"           n="2.70"    m="5.50"/>
+          <feature type="Temp"          n="-40"     m="105"/>
+          <feature type="QFP" n="64" name="P-LQFP64-1212-0.65-xxx"/>
+        </device>
+        <device Dname="TMPM4KLFYFG">
+          <processor Dclock="160000000"/>
+          <compile header="Device/Include/TMPM4KL.h" define="TMPM4KL"/>
+          <debug svd="SVD/M4KL.svd"/>
+          <memory id="IROM1"                           start="0x00000000" size="0x00040000" startup="1" default="1"/>
+          <memory id="IRAM1"                           start="0x20000000" size="0x00006000" init   ="0" default="1"/>
+          <algorithm name="Flash/TMPM4Kx_code_256.FLM" start="0x00000000" size="0x00040000"  RAMstart="0x20000000"  RAMsize="0x2000"  default="1"/>
+          <algorithm name="Flash/TMPM4Kx_data_32.FLM"  start="0x30000000" size="0x00008000"  RAMstart="0x20000000"   RAMsize="0x2000"  default="1"/>
+
+          <!--book name=""/-->
+
+          <feature type="WDT"           n="1"/>
+          <feature type="Timer"         n="6"      m="32"/>
+          <feature type="DMA"           n="32"                           name="DMA"/>
+          <feature type="UART"          n="4"/>
+          <feature type="I2C"           n="2"                           name="I2C"/>
+          <feature type="ADC"           n="8"     m="12"               name="AD converter"/>
+          <feature type="ExtInt"        n="16"/>
+          <feature type="IOs"           n="51"/>
+          <feature type="VCC"           n="2.70"    m="5.50"/>
+          <feature type="Temp"          n="-40"     m="105"/>
+          <feature type="QFP" n="64" name="P-LQFP64-1212-0.65-xxx"/>
+        </device>
+        <device Dname="TMPM4KLFWFG">
+          <processor Dclock="160000000"/>
+          <compile header="Device/Include/TMPM4KL.h" define="TMPM4KL"/>
+          <debug svd="SVD/M4KL.svd"/>
+          <memory id="IROM1"                           start="0x00000000" size="0x00020000" startup="1" default="1"/>
+          <memory id="IRAM1"                           start="0x20000000" size="0x00006000" init   ="0" default="1"/>
+          <algorithm name="Flash/TMPM4Kx_code_128.FLM" start="0x00000000" size="0x00020000"  RAMstart="0x20000000"  RAMsize="0x2000"  default="1"/>
+          <algorithm name="Flash/TMPM4Kx_data_32.FLM"  start="0x30000000" size="0x00008000"  RAMstart="0x20000000"   RAMsize="0x2000"  default="1"/>
+
+          <!--book name=""/-->
+
+          <feature type="WDT"           n="1"/>
+          <feature type="Timer"         n="6"      m="32"/>
+          <feature type="DMA"           n="32"                           name="DMA"/>
+          <feature type="UART"          n="4"/>
+          <feature type="I2C"           n="2"                           name="I2C"/>
+          <feature type="ADC"           n="8"     m="12"               name="AD converter"/>
+          <feature type="ExtInt"        n="16"/>
+          <feature type="IOs"           n="51"/>
+          <feature type="VCC"           n="2.70"    m="5.50"/>
+          <feature type="Temp"          n="-40"     m="105"/>
+          <feature type="QFP" n="64" name="P-LQFP64-1212-0.65-xxx"/>
+        </device>
+      </subFamily>
+
+
+    </family>
+  </devices>
+
+  <conditions>
+    <!-- Compiler Conditions -->
+    <condition id="Compiler ARMCC">
+      <require Tcompiler="ARMCC"/>
+    </condition>
+
+    <!-- Device + CMSIS Conditions -->
+    <condition id="TMPM4KQx CMSIS">
+      <description>Toshiba TMPM4KQx Devices and CMSIS-CORE</description>
+      <require Dvendor="Toshiba:92" Dname="TMPM4KQ*"/>
+      <require Cclass="CMSIS" Cgroup="CORE"/>
+    </condition>
+    <condition id="TMPM4KPx CMSIS">
+      <description>Toshiba TMPM4KPx Devices and CMSIS-CORE</description>
+      <require Dvendor="Toshiba:92" Dname="TMPM4KP*"/>
+      <require Cclass="CMSIS" Cgroup="CORE"/>
+    </condition>
+    <condition id="TMPM4KNx CMSIS">
+      <description>Toshiba TMPM4KNx Devices and CMSIS-CORE</description>
+      <require Dvendor="Toshiba:92" Dname="TMPM4KN*"/>
+      <require Cclass="CMSIS" Cgroup="CORE"/>
+    </condition>
+    <condition id="TMPM4KMx CMSIS">
+      <description>Toshiba TMPM4KMx Devices and CMSIS-CORE</description>
+      <require Dvendor="Toshiba:92" Dname="TMPM4KM*"/>
+      <require Cclass="CMSIS" Cgroup="CORE"/>
+    </condition>
+    <condition id="TMPM4KLx CMSIS">
+      <description>Toshiba TMPM4KLx Devices and CMSIS-CORE</description>
+      <require Dvendor="Toshiba:92" Dname="TMPM4KL*"/>
+      <require Cclass="CMSIS" Cgroup="CORE"/>
+    </condition>
+  </conditions>
+
+
+  <components>
+    <!-- Startup TMPM4KQx -->
+    <component Cclass="Device" Cgroup="Startup" Cversion="1.0.1" condition="TMPM4KQx CMSIS">
+      <description>System Startup for Toshiba TMPM4KQx Devices</description>
+      <RTE_Components_h>
+        <!-- the following content goes into file 'RTE_Components.h' -->
+        #define RTE_DEVICE_STARTUP_TMPM4KQx      /* Device Startup for TMPM4KQx */
+      </RTE_Components_h>
+
+      <files>
+        <file category="include" name="Device/Include/"/>
+        <file category="source"  name="Device/Source/ARM/startup_TMPM4KQ.s" attr="config" version="1.0.1" condition="Compiler ARMCC"/>
+        <file category="source"  name="Device/Source/system_TMPM4Ky.c"      attr="config" version="1.0.1"/>
+      </files>
+    </component>
+
+    <!-- Startup TMPM4KPx -->
+    <component Cclass="Device" Cgroup="Startup" Cversion="1.0.1" condition="TMPM4KPx CMSIS">
+      <description>System Startup for Toshiba TMPM4KPx Devices</description>
+      <RTE_Components_h>
+        <!-- the following content goes into file 'RTE_Components.h' -->
+        #define RTE_DEVICE_STARTUP_TMPM4KPx      /* Device Startup for TMPM4KPx */
+      </RTE_Components_h>
+
+      <files>
+        <file category="include" name="Device/Include/"/>
+        <file category="source"  name="Device/Source/ARM/startup_TMPM4KP.s" attr="config" version="1.0.1" condition="Compiler ARMCC"/>
+        <file category="source"  name="Device/Source/system_TMPM4Ky.c"      attr="config" version="1.0.1"/>
+      </files>
+    </component>
+
+    <!-- Startup TMPM4KNx -->
+    <component Cclass="Device" Cgroup="Startup" Cversion="1.0.1" condition="TMPM4KNx CMSIS">
+      <description>System Startup for Toshiba TMPM4KNx Devices</description>
+      <RTE_Components_h>
+        <!-- the following content goes into file 'RTE_Components.h' -->
+        #define RTE_DEVICE_STARTUP_TMPM4KNx      /* Device Startup for TMPM4KNx */
+      </RTE_Components_h>
+
+      <files>
+        <file category="include" name="Device/Include/"/>
+        <file category="source"  name="Device/Source/ARM/startup_TMPM4KN.s" attr="config" version="1.0.1" condition="Compiler ARMCC"/>
+        <file category="source"  name="Device/Source/system_TMPM4Ky.c"      attr="config" version="1.0.1"/>
+      </files>
+    </component>
+
+    <!-- Startup TMPM4KMx -->
+    <component Cclass="Device" Cgroup="Startup" Cversion="1.0.1" condition="TMPM4KMx CMSIS">
+      <description>System Startup for Toshiba TMPM4KMx Devices</description>
+      <RTE_Components_h>
+        <!-- the following content goes into file 'RTE_Components.h' -->
+        #define RTE_DEVICE_STARTUP_TMPM4KMx      /* Device Startup for TMPM4KMx */
+      </RTE_Components_h>
+
+      <files>
+        <file category="include" name="Device/Include/"/>
+        <file category="source"  name="Device/Source/ARM/startup_TMPM4KM.s" attr="config" version="1.0.1" condition="Compiler ARMCC"/>
+        <file category="source"  name="Device/Source/system_TMPM4Ky.c"      attr="config" version="1.0.1"/>
+      </files>
+    </component>
+
+    <!-- Startup TMPM4KLx -->
+    <component Cclass="Device" Cgroup="Startup" Cversion="1.0.1" condition="TMPM4KLx CMSIS">
+      <description>System Startup for Toshiba TMPM4KLx Devices</description>
+      <RTE_Components_h>
+        <!-- the following content goes into file 'RTE_Components.h' -->
+        #define RTE_DEVICE_STARTUP_TMPM4KLx      /* Device Startup for TMPM4KLx */
+      </RTE_Components_h>
+
+      <files>
+        <file category="include" name="Device/Include/"/>
+        <file category="source"  name="Device/Source/ARM/startup_TMPM4KL.s" attr="config" version="1.0.1" condition="Compiler ARMCC"/>
+        <file category="source"  name="Device/Source/system_TMPM4Ky.c"      attr="config" version="1.0.1"/>
+      </files>
+    </component>
+  </components>
+
+
+</package>

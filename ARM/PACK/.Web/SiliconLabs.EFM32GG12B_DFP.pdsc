@@ -1,0 +1,807 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<package schemaVersion="1.2" xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="PACK.xsd">
+  <vendor>SiliconLabs</vendor>
+  <url>https://www.silabs.com/documents/public/cmsis-packs/</url>
+  <name>EFM32GG12B_DFP</name>
+  <description>Silicon Labs EFM32GG12B Giant Gecko Series Device Support.</description>
+
+  <releases>
+    <release version="5.7.0" date="2018-12-12">
+      Added Mighty Gecko MGM1, MGM12, MGM13, MGM21 and ARTIKMG1 modules.
+      Added Blue Gecko BGM1, BGM13, BGM21 and ARTIKBG1 modules.
+      Added Mighty Gecko EFR32MG13P731 and EFR32MG14P731 parts.
+      Added Mighty Gecko EFR32MG21 family.
+      Added Blue Gecko EFR32BG21 family.
+      Added Zen Gecko EFR32ZG14P family.
+      Added Zen Gecko ZGM13 module.
+      Added Giant Gecko EFM32GG12B family.
+    </release>
+    <release version="5.5.0" date="2018-05-07">
+      Updates and minor fixes in packs for EFM32GG11B, EFM32TG11B, EFM32PG12B, EFM32JG12B, EFR32xG12x, EFR32xG13x and EFR32xG14x families.
+    </release>
+    <release version="5.4.1" date="2018-02-14">
+      Fixed bug in Keil flashloader for EFM32GG11B family, added EFR families.
+    </release>
+  </releases>
+
+  <keywords>
+    <!-- keywords for indexing -->
+    <keyword>Silicon Labs</keyword>
+    <keyword>Device Support</keyword>
+    <keyword>Device Family Package Silicon Labs</keyword>
+    <keyword>EFM32GG12B</keyword>
+    <keyword>EFM32</keyword>
+    <keyword>Giant Gecko</keyword>
+    <keyword>Gecko</keyword>
+  </keywords>
+
+  <devices>
+    <family Dfamily="EFM32GG12B Series" Dvendor="Silicon Labs:21">
+      <processor Dcore="Cortex-M4" DcoreVersion="r0p1" Dfpu="1" Dmpu="1" Dendian="Little-endian"/>
+      <processor Dclock="50000000"/>
+      <book name="Documents/cortex_m4_dgug.pdf"      title="Cortex-M4 Generic User Guide"/>
+      <description>
+- ARM Cortex-M4 at 72 MHz.
+      </description>
+
+      <subFamily DsubFamily="EFM32GG12B110">
+        <!-- *************************  Device 'EFM32GG12B110F1024GM64'  ***************************** -->
+        <device Dname="EFM32GG12B110F1024GM64">
+          <compile header="Device/SiliconLabs/EFM32GG12B/Include/em_device.h"  define="EFM32GG12B110F1024GM64"/>
+          <debug      svd="SVD/EFM32GG12B/EFM32GG12B110F1024GM64.svd"/>
+          <memory     id="IROM1"                start="0x00000000"  size="0x00100000"  startup="1"   default="1"/>
+          <memory     id="IRAM1"                start="0x20000000"  size="0x00030000"  init   ="0"   default="1"/>
+          <algorithm  name="Flash/GECKOG1.FLM"  start="0x00000000"  size="0x00100000"  RAMstart="0x20000000" RAMsize="0x4000" default="1" style="Keil"/>
+          <algorithm  name="Flash/FlashGECKOG1.flash"  start="0x00000000"  size="0x00100000"  default="0"  style="IAR"/>
+        </device>
+
+        <!-- *************************  Device 'EFM32GG12B110F1024GQ64'  ***************************** -->
+        <device Dname="EFM32GG12B110F1024GQ64">
+          <compile header="Device/SiliconLabs/EFM32GG12B/Include/em_device.h"  define="EFM32GG12B110F1024GQ64"/>
+          <debug      svd="SVD/EFM32GG12B/EFM32GG12B110F1024GQ64.svd"/>
+          <memory     id="IROM1"                start="0x00000000"  size="0x00100000"  startup="1"   default="1"/>
+          <memory     id="IRAM1"                start="0x20000000"  size="0x00030000"  init   ="0"   default="1"/>
+          <algorithm  name="Flash/GECKOG1.FLM"  start="0x00000000"  size="0x00100000"  RAMstart="0x20000000" RAMsize="0x4000" default="1" style="Keil"/>
+          <algorithm  name="Flash/FlashGECKOG1.flash"  start="0x00000000"  size="0x00100000"  default="0"  style="IAR"/>
+        </device>
+
+        <!-- *************************  Device 'EFM32GG12B110F1024IM64'  ***************************** -->
+        <device Dname="EFM32GG12B110F1024IM64">
+          <compile header="Device/SiliconLabs/EFM32GG12B/Include/em_device.h"  define="EFM32GG12B110F1024IM64"/>
+          <debug      svd="SVD/EFM32GG12B/EFM32GG12B110F1024IM64.svd"/>
+          <memory     id="IROM1"                start="0x00000000"  size="0x00100000"  startup="1"   default="1"/>
+          <memory     id="IRAM1"                start="0x20000000"  size="0x00030000"  init   ="0"   default="1"/>
+          <algorithm  name="Flash/GECKOG1.FLM"  start="0x00000000"  size="0x00100000"  RAMstart="0x20000000" RAMsize="0x4000" default="1" style="Keil"/>
+          <algorithm  name="Flash/FlashGECKOG1.flash"  start="0x00000000"  size="0x00100000"  default="0"  style="IAR"/>
+        </device>
+
+        <!-- *************************  Device 'EFM32GG12B110F1024IQ64'  ***************************** -->
+        <device Dname="EFM32GG12B110F1024IQ64">
+          <compile header="Device/SiliconLabs/EFM32GG12B/Include/em_device.h"  define="EFM32GG12B110F1024IQ64"/>
+          <debug      svd="SVD/EFM32GG12B/EFM32GG12B110F1024IQ64.svd"/>
+          <memory     id="IROM1"                start="0x00000000"  size="0x00100000"  startup="1"   default="1"/>
+          <memory     id="IRAM1"                start="0x20000000"  size="0x00030000"  init   ="0"   default="1"/>
+          <algorithm  name="Flash/GECKOG1.FLM"  start="0x00000000"  size="0x00100000"  RAMstart="0x20000000" RAMsize="0x4000" default="1" style="Keil"/>
+          <algorithm  name="Flash/FlashGECKOG1.flash"  start="0x00000000"  size="0x00100000"  default="0"  style="IAR"/>
+        </device>
+
+      </subFamily>
+
+      <subFamily DsubFamily="EFM32GG12B130">
+        <!-- *************************  Device 'EFM32GG12B130F512GM64'  ***************************** -->
+        <device Dname="EFM32GG12B130F512GM64">
+          <compile header="Device/SiliconLabs/EFM32GG12B/Include/em_device.h"  define="EFM32GG12B130F512GM64"/>
+          <debug      svd="SVD/EFM32GG12B/EFM32GG12B130F512GM64.svd"/>
+          <memory     id="IROM1"                start="0x00000000"  size="0x00080000"  startup="1"   default="1"/>
+          <memory     id="IRAM1"                start="0x20000000"  size="0x00030000"  init   ="0"   default="1"/>
+          <algorithm  name="Flash/GECKOG1.FLM"  start="0x00000000"  size="0x00080000"  RAMstart="0x20000000" RAMsize="0x4000" default="1" style="Keil"/>
+          <algorithm  name="Flash/FlashGECKOG1.flash"  start="0x00000000"  size="0x00080000"  default="0"  style="IAR"/>
+        </device>
+
+        <!-- *************************  Device 'EFM32GG12B130F512GQ64'  ***************************** -->
+        <device Dname="EFM32GG12B130F512GQ64">
+          <compile header="Device/SiliconLabs/EFM32GG12B/Include/em_device.h"  define="EFM32GG12B130F512GQ64"/>
+          <debug      svd="SVD/EFM32GG12B/EFM32GG12B130F512GQ64.svd"/>
+          <memory     id="IROM1"                start="0x00000000"  size="0x00080000"  startup="1"   default="1"/>
+          <memory     id="IRAM1"                start="0x20000000"  size="0x00030000"  init   ="0"   default="1"/>
+          <algorithm  name="Flash/GECKOG1.FLM"  start="0x00000000"  size="0x00080000"  RAMstart="0x20000000" RAMsize="0x4000" default="1" style="Keil"/>
+          <algorithm  name="Flash/FlashGECKOG1.flash"  start="0x00000000"  size="0x00080000"  default="0"  style="IAR"/>
+        </device>
+
+        <!-- *************************  Device 'EFM32GG12B130F512IM64'  ***************************** -->
+        <device Dname="EFM32GG12B130F512IM64">
+          <compile header="Device/SiliconLabs/EFM32GG12B/Include/em_device.h"  define="EFM32GG12B130F512IM64"/>
+          <debug      svd="SVD/EFM32GG12B/EFM32GG12B130F512IM64.svd"/>
+          <memory     id="IROM1"                start="0x00000000"  size="0x00080000"  startup="1"   default="1"/>
+          <memory     id="IRAM1"                start="0x20000000"  size="0x00030000"  init   ="0"   default="1"/>
+          <algorithm  name="Flash/GECKOG1.FLM"  start="0x00000000"  size="0x00080000"  RAMstart="0x20000000" RAMsize="0x4000" default="1" style="Keil"/>
+          <algorithm  name="Flash/FlashGECKOG1.flash"  start="0x00000000"  size="0x00080000"  default="0"  style="IAR"/>
+        </device>
+
+        <!-- *************************  Device 'EFM32GG12B130F512IQ64'  ***************************** -->
+        <device Dname="EFM32GG12B130F512IQ64">
+          <compile header="Device/SiliconLabs/EFM32GG12B/Include/em_device.h"  define="EFM32GG12B130F512IQ64"/>
+          <debug      svd="SVD/EFM32GG12B/EFM32GG12B130F512IQ64.svd"/>
+          <memory     id="IROM1"                start="0x00000000"  size="0x00080000"  startup="1"   default="1"/>
+          <memory     id="IRAM1"                start="0x20000000"  size="0x00030000"  init   ="0"   default="1"/>
+          <algorithm  name="Flash/GECKOG1.FLM"  start="0x00000000"  size="0x00080000"  RAMstart="0x20000000" RAMsize="0x4000" default="1" style="Keil"/>
+          <algorithm  name="Flash/FlashGECKOG1.flash"  start="0x00000000"  size="0x00080000"  default="0"  style="IAR"/>
+        </device>
+
+      </subFamily>
+
+      <subFamily DsubFamily="EFM32GG12B310">
+        <!-- *************************  Device 'EFM32GG12B310F1024GL112'  ***************************** -->
+        <device Dname="EFM32GG12B310F1024GL112">
+          <compile header="Device/SiliconLabs/EFM32GG12B/Include/em_device.h"  define="EFM32GG12B310F1024GL112"/>
+          <debug      svd="SVD/EFM32GG12B/EFM32GG12B310F1024GL112.svd"/>
+          <memory     id="IROM1"                start="0x00000000"  size="0x00100000"  startup="1"   default="1"/>
+          <memory     id="IRAM1"                start="0x20000000"  size="0x00030000"  init   ="0"   default="1"/>
+          <algorithm  name="Flash/GECKOG1.FLM"  start="0x00000000"  size="0x00100000"  RAMstart="0x20000000" RAMsize="0x4000" default="1" style="Keil"/>
+          <algorithm  name="Flash/FlashGECKOG1.flash"  start="0x00000000"  size="0x00100000"  default="0"  style="IAR"/>
+        </device>
+
+        <!-- *************************  Device 'EFM32GG12B310F1024GQ100'  ***************************** -->
+        <device Dname="EFM32GG12B310F1024GQ100">
+          <compile header="Device/SiliconLabs/EFM32GG12B/Include/em_device.h"  define="EFM32GG12B310F1024GQ100"/>
+          <debug      svd="SVD/EFM32GG12B/EFM32GG12B310F1024GQ100.svd"/>
+          <memory     id="IROM1"                start="0x00000000"  size="0x00100000"  startup="1"   default="1"/>
+          <memory     id="IRAM1"                start="0x20000000"  size="0x00030000"  init   ="0"   default="1"/>
+          <algorithm  name="Flash/GECKOG1.FLM"  start="0x00000000"  size="0x00100000"  RAMstart="0x20000000" RAMsize="0x4000" default="1" style="Keil"/>
+          <algorithm  name="Flash/FlashGECKOG1.flash"  start="0x00000000"  size="0x00100000"  default="0"  style="IAR"/>
+        </device>
+
+      </subFamily>
+
+      <subFamily DsubFamily="EFM32GG12B330">
+        <!-- *************************  Device 'EFM32GG12B330F512GL112'  ***************************** -->
+        <device Dname="EFM32GG12B330F512GL112">
+          <compile header="Device/SiliconLabs/EFM32GG12B/Include/em_device.h"  define="EFM32GG12B330F512GL112"/>
+          <debug      svd="SVD/EFM32GG12B/EFM32GG12B330F512GL112.svd"/>
+          <memory     id="IROM1"                start="0x00000000"  size="0x00080000"  startup="1"   default="1"/>
+          <memory     id="IRAM1"                start="0x20000000"  size="0x00030000"  init   ="0"   default="1"/>
+          <algorithm  name="Flash/GECKOG1.FLM"  start="0x00000000"  size="0x00080000"  RAMstart="0x20000000" RAMsize="0x4000" default="1" style="Keil"/>
+          <algorithm  name="Flash/FlashGECKOG1.flash"  start="0x00000000"  size="0x00080000"  default="0"  style="IAR"/>
+        </device>
+
+        <!-- *************************  Device 'EFM32GG12B330F512GQ100'  ***************************** -->
+        <device Dname="EFM32GG12B330F512GQ100">
+          <compile header="Device/SiliconLabs/EFM32GG12B/Include/em_device.h"  define="EFM32GG12B330F512GQ100"/>
+          <debug      svd="SVD/EFM32GG12B/EFM32GG12B330F512GQ100.svd"/>
+          <memory     id="IROM1"                start="0x00000000"  size="0x00080000"  startup="1"   default="1"/>
+          <memory     id="IRAM1"                start="0x20000000"  size="0x00030000"  init   ="0"   default="1"/>
+          <algorithm  name="Flash/GECKOG1.FLM"  start="0x00000000"  size="0x00080000"  RAMstart="0x20000000" RAMsize="0x4000" default="1" style="Keil"/>
+          <algorithm  name="Flash/FlashGECKOG1.flash"  start="0x00000000"  size="0x00080000"  default="0"  style="IAR"/>
+        </device>
+
+      </subFamily>
+
+      <subFamily DsubFamily="EFM32GG12B390">
+        <!-- *************************  Device 'EFM32GG12B390F512GL112'  ***************************** -->
+        <device Dname="EFM32GG12B390F512GL112">
+          <compile header="Device/SiliconLabs/EFM32GG12B/Include/em_device.h"  define="EFM32GG12B390F512GL112"/>
+          <debug      svd="SVD/EFM32GG12B/EFM32GG12B390F512GL112.svd"/>
+          <memory     id="IROM1"                start="0x00000000"  size="0x00080000"  startup="1"   default="1"/>
+          <memory     id="IRAM1"                start="0x20000000"  size="0x00030000"  init   ="0"   default="1"/>
+          <algorithm  name="Flash/GECKOG1.FLM"  start="0x00000000"  size="0x00080000"  RAMstart="0x20000000" RAMsize="0x4000" default="1" style="Keil"/>
+          <algorithm  name="Flash/FlashGECKOG1.flash"  start="0x00000000"  size="0x00080000"  default="0"  style="IAR"/>
+        </device>
+
+      </subFamily>
+
+      <subFamily DsubFamily="EFM32GG12B410">
+        <!-- *************************  Device 'EFM32GG12B410F1024GL112'  ***************************** -->
+        <device Dname="EFM32GG12B410F1024GL112">
+          <compile header="Device/SiliconLabs/EFM32GG12B/Include/em_device.h"  define="EFM32GG12B410F1024GL112"/>
+          <debug      svd="SVD/EFM32GG12B/EFM32GG12B410F1024GL112.svd"/>
+          <memory     id="IROM1"                start="0x00000000"  size="0x00100000"  startup="1"   default="1"/>
+          <memory     id="IRAM1"                start="0x20000000"  size="0x00030000"  init   ="0"   default="1"/>
+          <algorithm  name="Flash/GECKOG1.FLM"  start="0x00000000"  size="0x00100000"  RAMstart="0x20000000" RAMsize="0x4000" default="1" style="Keil"/>
+          <algorithm  name="Flash/FlashGECKOG1.flash"  start="0x00000000"  size="0x00100000"  default="0"  style="IAR"/>
+        </device>
+
+        <!-- *************************  Device 'EFM32GG12B410F1024GL120'  ***************************** -->
+        <device Dname="EFM32GG12B410F1024GL120">
+          <compile header="Device/SiliconLabs/EFM32GG12B/Include/em_device.h"  define="EFM32GG12B410F1024GL120"/>
+          <debug      svd="SVD/EFM32GG12B/EFM32GG12B410F1024GL120.svd"/>
+          <memory     id="IROM1"                start="0x00000000"  size="0x00100000"  startup="1"   default="1"/>
+          <memory     id="IRAM1"                start="0x20000000"  size="0x00030000"  init   ="0"   default="1"/>
+          <algorithm  name="Flash/GECKOG1.FLM"  start="0x00000000"  size="0x00100000"  RAMstart="0x20000000" RAMsize="0x4000" default="1" style="Keil"/>
+          <algorithm  name="Flash/FlashGECKOG1.flash"  start="0x00000000"  size="0x00100000"  default="0"  style="IAR"/>
+        </device>
+
+        <!-- *************************  Device 'EFM32GG12B410F1024GM64'  ***************************** -->
+        <device Dname="EFM32GG12B410F1024GM64">
+          <compile header="Device/SiliconLabs/EFM32GG12B/Include/em_device.h"  define="EFM32GG12B410F1024GM64"/>
+          <debug      svd="SVD/EFM32GG12B/EFM32GG12B410F1024GM64.svd"/>
+          <memory     id="IROM1"                start="0x00000000"  size="0x00100000"  startup="1"   default="1"/>
+          <memory     id="IRAM1"                start="0x20000000"  size="0x00030000"  init   ="0"   default="1"/>
+          <algorithm  name="Flash/GECKOG1.FLM"  start="0x00000000"  size="0x00100000"  RAMstart="0x20000000" RAMsize="0x4000" default="1" style="Keil"/>
+          <algorithm  name="Flash/FlashGECKOG1.flash"  start="0x00000000"  size="0x00100000"  default="0"  style="IAR"/>
+        </device>
+
+        <!-- *************************  Device 'EFM32GG12B410F1024GQ100'  ***************************** -->
+        <device Dname="EFM32GG12B410F1024GQ100">
+          <compile header="Device/SiliconLabs/EFM32GG12B/Include/em_device.h"  define="EFM32GG12B410F1024GQ100"/>
+          <debug      svd="SVD/EFM32GG12B/EFM32GG12B410F1024GQ100.svd"/>
+          <memory     id="IROM1"                start="0x00000000"  size="0x00100000"  startup="1"   default="1"/>
+          <memory     id="IRAM1"                start="0x20000000"  size="0x00030000"  init   ="0"   default="1"/>
+          <algorithm  name="Flash/GECKOG1.FLM"  start="0x00000000"  size="0x00100000"  RAMstart="0x20000000" RAMsize="0x4000" default="1" style="Keil"/>
+          <algorithm  name="Flash/FlashGECKOG1.flash"  start="0x00000000"  size="0x00100000"  default="0"  style="IAR"/>
+        </device>
+
+        <!-- *************************  Device 'EFM32GG12B410F1024GQ64'  ***************************** -->
+        <device Dname="EFM32GG12B410F1024GQ64">
+          <compile header="Device/SiliconLabs/EFM32GG12B/Include/em_device.h"  define="EFM32GG12B410F1024GQ64"/>
+          <debug      svd="SVD/EFM32GG12B/EFM32GG12B410F1024GQ64.svd"/>
+          <memory     id="IROM1"                start="0x00000000"  size="0x00100000"  startup="1"   default="1"/>
+          <memory     id="IRAM1"                start="0x20000000"  size="0x00030000"  init   ="0"   default="1"/>
+          <algorithm  name="Flash/GECKOG1.FLM"  start="0x00000000"  size="0x00100000"  RAMstart="0x20000000" RAMsize="0x4000" default="1" style="Keil"/>
+          <algorithm  name="Flash/FlashGECKOG1.flash"  start="0x00000000"  size="0x00100000"  default="0"  style="IAR"/>
+        </device>
+
+        <!-- *************************  Device 'EFM32GG12B410F1024IL112'  ***************************** -->
+        <device Dname="EFM32GG12B410F1024IL112">
+          <compile header="Device/SiliconLabs/EFM32GG12B/Include/em_device.h"  define="EFM32GG12B410F1024IL112"/>
+          <debug      svd="SVD/EFM32GG12B/EFM32GG12B410F1024IL112.svd"/>
+          <memory     id="IROM1"                start="0x00000000"  size="0x00100000"  startup="1"   default="1"/>
+          <memory     id="IRAM1"                start="0x20000000"  size="0x00030000"  init   ="0"   default="1"/>
+          <algorithm  name="Flash/GECKOG1.FLM"  start="0x00000000"  size="0x00100000"  RAMstart="0x20000000" RAMsize="0x4000" default="1" style="Keil"/>
+          <algorithm  name="Flash/FlashGECKOG1.flash"  start="0x00000000"  size="0x00100000"  default="0"  style="IAR"/>
+        </device>
+
+        <!-- *************************  Device 'EFM32GG12B410F1024IL120'  ***************************** -->
+        <device Dname="EFM32GG12B410F1024IL120">
+          <compile header="Device/SiliconLabs/EFM32GG12B/Include/em_device.h"  define="EFM32GG12B410F1024IL120"/>
+          <debug      svd="SVD/EFM32GG12B/EFM32GG12B410F1024IL120.svd"/>
+          <memory     id="IROM1"                start="0x00000000"  size="0x00100000"  startup="1"   default="1"/>
+          <memory     id="IRAM1"                start="0x20000000"  size="0x00030000"  init   ="0"   default="1"/>
+          <algorithm  name="Flash/GECKOG1.FLM"  start="0x00000000"  size="0x00100000"  RAMstart="0x20000000" RAMsize="0x4000" default="1" style="Keil"/>
+          <algorithm  name="Flash/FlashGECKOG1.flash"  start="0x00000000"  size="0x00100000"  default="0"  style="IAR"/>
+        </device>
+
+        <!-- *************************  Device 'EFM32GG12B410F1024IM64'  ***************************** -->
+        <device Dname="EFM32GG12B410F1024IM64">
+          <compile header="Device/SiliconLabs/EFM32GG12B/Include/em_device.h"  define="EFM32GG12B410F1024IM64"/>
+          <debug      svd="SVD/EFM32GG12B/EFM32GG12B410F1024IM64.svd"/>
+          <memory     id="IROM1"                start="0x00000000"  size="0x00100000"  startup="1"   default="1"/>
+          <memory     id="IRAM1"                start="0x20000000"  size="0x00030000"  init   ="0"   default="1"/>
+          <algorithm  name="Flash/GECKOG1.FLM"  start="0x00000000"  size="0x00100000"  RAMstart="0x20000000" RAMsize="0x4000" default="1" style="Keil"/>
+          <algorithm  name="Flash/FlashGECKOG1.flash"  start="0x00000000"  size="0x00100000"  default="0"  style="IAR"/>
+        </device>
+
+        <!-- *************************  Device 'EFM32GG12B410F1024IQ100'  ***************************** -->
+        <device Dname="EFM32GG12B410F1024IQ100">
+          <compile header="Device/SiliconLabs/EFM32GG12B/Include/em_device.h"  define="EFM32GG12B410F1024IQ100"/>
+          <debug      svd="SVD/EFM32GG12B/EFM32GG12B410F1024IQ100.svd"/>
+          <memory     id="IROM1"                start="0x00000000"  size="0x00100000"  startup="1"   default="1"/>
+          <memory     id="IRAM1"                start="0x20000000"  size="0x00030000"  init   ="0"   default="1"/>
+          <algorithm  name="Flash/GECKOG1.FLM"  start="0x00000000"  size="0x00100000"  RAMstart="0x20000000" RAMsize="0x4000" default="1" style="Keil"/>
+          <algorithm  name="Flash/FlashGECKOG1.flash"  start="0x00000000"  size="0x00100000"  default="0"  style="IAR"/>
+        </device>
+
+        <!-- *************************  Device 'EFM32GG12B410F1024IQ64'  ***************************** -->
+        <device Dname="EFM32GG12B410F1024IQ64">
+          <compile header="Device/SiliconLabs/EFM32GG12B/Include/em_device.h"  define="EFM32GG12B410F1024IQ64"/>
+          <debug      svd="SVD/EFM32GG12B/EFM32GG12B410F1024IQ64.svd"/>
+          <memory     id="IROM1"                start="0x00000000"  size="0x00100000"  startup="1"   default="1"/>
+          <memory     id="IRAM1"                start="0x20000000"  size="0x00030000"  init   ="0"   default="1"/>
+          <algorithm  name="Flash/GECKOG1.FLM"  start="0x00000000"  size="0x00100000"  RAMstart="0x20000000" RAMsize="0x4000" default="1" style="Keil"/>
+          <algorithm  name="Flash/FlashGECKOG1.flash"  start="0x00000000"  size="0x00100000"  default="0"  style="IAR"/>
+        </device>
+
+      </subFamily>
+
+      <subFamily DsubFamily="EFM32GG12B430">
+        <!-- *************************  Device 'EFM32GG12B430F512GL112'  ***************************** -->
+        <device Dname="EFM32GG12B430F512GL112">
+          <compile header="Device/SiliconLabs/EFM32GG12B/Include/em_device.h"  define="EFM32GG12B430F512GL112"/>
+          <debug      svd="SVD/EFM32GG12B/EFM32GG12B430F512GL112.svd"/>
+          <memory     id="IROM1"                start="0x00000000"  size="0x00080000"  startup="1"   default="1"/>
+          <memory     id="IRAM1"                start="0x20000000"  size="0x00030000"  init   ="0"   default="1"/>
+          <algorithm  name="Flash/GECKOG1.FLM"  start="0x00000000"  size="0x00080000"  RAMstart="0x20000000" RAMsize="0x4000" default="1" style="Keil"/>
+          <algorithm  name="Flash/FlashGECKOG1.flash"  start="0x00000000"  size="0x00080000"  default="0"  style="IAR"/>
+        </device>
+
+        <!-- *************************  Device 'EFM32GG12B430F512GL120'  ***************************** -->
+        <device Dname="EFM32GG12B430F512GL120">
+          <compile header="Device/SiliconLabs/EFM32GG12B/Include/em_device.h"  define="EFM32GG12B430F512GL120"/>
+          <debug      svd="SVD/EFM32GG12B/EFM32GG12B430F512GL120.svd"/>
+          <memory     id="IROM1"                start="0x00000000"  size="0x00080000"  startup="1"   default="1"/>
+          <memory     id="IRAM1"                start="0x20000000"  size="0x00030000"  init   ="0"   default="1"/>
+          <algorithm  name="Flash/GECKOG1.FLM"  start="0x00000000"  size="0x00080000"  RAMstart="0x20000000" RAMsize="0x4000" default="1" style="Keil"/>
+          <algorithm  name="Flash/FlashGECKOG1.flash"  start="0x00000000"  size="0x00080000"  default="0"  style="IAR"/>
+        </device>
+
+        <!-- *************************  Device 'EFM32GG12B430F512GM64'  ***************************** -->
+        <device Dname="EFM32GG12B430F512GM64">
+          <compile header="Device/SiliconLabs/EFM32GG12B/Include/em_device.h"  define="EFM32GG12B430F512GM64"/>
+          <debug      svd="SVD/EFM32GG12B/EFM32GG12B430F512GM64.svd"/>
+          <memory     id="IROM1"                start="0x00000000"  size="0x00080000"  startup="1"   default="1"/>
+          <memory     id="IRAM1"                start="0x20000000"  size="0x00030000"  init   ="0"   default="1"/>
+          <algorithm  name="Flash/GECKOG1.FLM"  start="0x00000000"  size="0x00080000"  RAMstart="0x20000000" RAMsize="0x4000" default="1" style="Keil"/>
+          <algorithm  name="Flash/FlashGECKOG1.flash"  start="0x00000000"  size="0x00080000"  default="0"  style="IAR"/>
+        </device>
+
+        <!-- *************************  Device 'EFM32GG12B430F512GQ100'  ***************************** -->
+        <device Dname="EFM32GG12B430F512GQ100">
+          <compile header="Device/SiliconLabs/EFM32GG12B/Include/em_device.h"  define="EFM32GG12B430F512GQ100"/>
+          <debug      svd="SVD/EFM32GG12B/EFM32GG12B430F512GQ100.svd"/>
+          <memory     id="IROM1"                start="0x00000000"  size="0x00080000"  startup="1"   default="1"/>
+          <memory     id="IRAM1"                start="0x20000000"  size="0x00030000"  init   ="0"   default="1"/>
+          <algorithm  name="Flash/GECKOG1.FLM"  start="0x00000000"  size="0x00080000"  RAMstart="0x20000000" RAMsize="0x4000" default="1" style="Keil"/>
+          <algorithm  name="Flash/FlashGECKOG1.flash"  start="0x00000000"  size="0x00080000"  default="0"  style="IAR"/>
+        </device>
+
+        <!-- *************************  Device 'EFM32GG12B430F512GQ64'  ***************************** -->
+        <device Dname="EFM32GG12B430F512GQ64">
+          <compile header="Device/SiliconLabs/EFM32GG12B/Include/em_device.h"  define="EFM32GG12B430F512GQ64"/>
+          <debug      svd="SVD/EFM32GG12B/EFM32GG12B430F512GQ64.svd"/>
+          <memory     id="IROM1"                start="0x00000000"  size="0x00080000"  startup="1"   default="1"/>
+          <memory     id="IRAM1"                start="0x20000000"  size="0x00030000"  init   ="0"   default="1"/>
+          <algorithm  name="Flash/GECKOG1.FLM"  start="0x00000000"  size="0x00080000"  RAMstart="0x20000000" RAMsize="0x4000" default="1" style="Keil"/>
+          <algorithm  name="Flash/FlashGECKOG1.flash"  start="0x00000000"  size="0x00080000"  default="0"  style="IAR"/>
+        </device>
+
+        <!-- *************************  Device 'EFM32GG12B430F512IL112'  ***************************** -->
+        <device Dname="EFM32GG12B430F512IL112">
+          <compile header="Device/SiliconLabs/EFM32GG12B/Include/em_device.h"  define="EFM32GG12B430F512IL112"/>
+          <debug      svd="SVD/EFM32GG12B/EFM32GG12B430F512IL112.svd"/>
+          <memory     id="IROM1"                start="0x00000000"  size="0x00080000"  startup="1"   default="1"/>
+          <memory     id="IRAM1"                start="0x20000000"  size="0x00030000"  init   ="0"   default="1"/>
+          <algorithm  name="Flash/GECKOG1.FLM"  start="0x00000000"  size="0x00080000"  RAMstart="0x20000000" RAMsize="0x4000" default="1" style="Keil"/>
+          <algorithm  name="Flash/FlashGECKOG1.flash"  start="0x00000000"  size="0x00080000"  default="0"  style="IAR"/>
+        </device>
+
+        <!-- *************************  Device 'EFM32GG12B430F512IL120'  ***************************** -->
+        <device Dname="EFM32GG12B430F512IL120">
+          <compile header="Device/SiliconLabs/EFM32GG12B/Include/em_device.h"  define="EFM32GG12B430F512IL120"/>
+          <debug      svd="SVD/EFM32GG12B/EFM32GG12B430F512IL120.svd"/>
+          <memory     id="IROM1"                start="0x00000000"  size="0x00080000"  startup="1"   default="1"/>
+          <memory     id="IRAM1"                start="0x20000000"  size="0x00030000"  init   ="0"   default="1"/>
+          <algorithm  name="Flash/GECKOG1.FLM"  start="0x00000000"  size="0x00080000"  RAMstart="0x20000000" RAMsize="0x4000" default="1" style="Keil"/>
+          <algorithm  name="Flash/FlashGECKOG1.flash"  start="0x00000000"  size="0x00080000"  default="0"  style="IAR"/>
+        </device>
+
+        <!-- *************************  Device 'EFM32GG12B430F512IM64'  ***************************** -->
+        <device Dname="EFM32GG12B430F512IM64">
+          <compile header="Device/SiliconLabs/EFM32GG12B/Include/em_device.h"  define="EFM32GG12B430F512IM64"/>
+          <debug      svd="SVD/EFM32GG12B/EFM32GG12B430F512IM64.svd"/>
+          <memory     id="IROM1"                start="0x00000000"  size="0x00080000"  startup="1"   default="1"/>
+          <memory     id="IRAM1"                start="0x20000000"  size="0x00030000"  init   ="0"   default="1"/>
+          <algorithm  name="Flash/GECKOG1.FLM"  start="0x00000000"  size="0x00080000"  RAMstart="0x20000000" RAMsize="0x4000" default="1" style="Keil"/>
+          <algorithm  name="Flash/FlashGECKOG1.flash"  start="0x00000000"  size="0x00080000"  default="0"  style="IAR"/>
+        </device>
+
+        <!-- *************************  Device 'EFM32GG12B430F512IQ100'  ***************************** -->
+        <device Dname="EFM32GG12B430F512IQ100">
+          <compile header="Device/SiliconLabs/EFM32GG12B/Include/em_device.h"  define="EFM32GG12B430F512IQ100"/>
+          <debug      svd="SVD/EFM32GG12B/EFM32GG12B430F512IQ100.svd"/>
+          <memory     id="IROM1"                start="0x00000000"  size="0x00080000"  startup="1"   default="1"/>
+          <memory     id="IRAM1"                start="0x20000000"  size="0x00030000"  init   ="0"   default="1"/>
+          <algorithm  name="Flash/GECKOG1.FLM"  start="0x00000000"  size="0x00080000"  RAMstart="0x20000000" RAMsize="0x4000" default="1" style="Keil"/>
+          <algorithm  name="Flash/FlashGECKOG1.flash"  start="0x00000000"  size="0x00080000"  default="0"  style="IAR"/>
+        </device>
+
+        <!-- *************************  Device 'EFM32GG12B430F512IQ64'  ***************************** -->
+        <device Dname="EFM32GG12B430F512IQ64">
+          <compile header="Device/SiliconLabs/EFM32GG12B/Include/em_device.h"  define="EFM32GG12B430F512IQ64"/>
+          <debug      svd="SVD/EFM32GG12B/EFM32GG12B430F512IQ64.svd"/>
+          <memory     id="IROM1"                start="0x00000000"  size="0x00080000"  startup="1"   default="1"/>
+          <memory     id="IRAM1"                start="0x20000000"  size="0x00030000"  init   ="0"   default="1"/>
+          <algorithm  name="Flash/GECKOG1.FLM"  start="0x00000000"  size="0x00080000"  RAMstart="0x20000000" RAMsize="0x4000" default="1" style="Keil"/>
+          <algorithm  name="Flash/FlashGECKOG1.flash"  start="0x00000000"  size="0x00080000"  default="0"  style="IAR"/>
+        </device>
+
+      </subFamily>
+
+      <subFamily DsubFamily="EFM32GG12B510">
+        <!-- *************************  Device 'EFM32GG12B510F1024GL112'  ***************************** -->
+        <device Dname="EFM32GG12B510F1024GL112">
+          <compile header="Device/SiliconLabs/EFM32GG12B/Include/em_device.h"  define="EFM32GG12B510F1024GL112"/>
+          <debug      svd="SVD/EFM32GG12B/EFM32GG12B510F1024GL112.svd"/>
+          <memory     id="IROM1"                start="0x00000000"  size="0x00100000"  startup="1"   default="1"/>
+          <memory     id="IRAM1"                start="0x20000000"  size="0x00030000"  init   ="0"   default="1"/>
+          <algorithm  name="Flash/GECKOG1.FLM"  start="0x00000000"  size="0x00100000"  RAMstart="0x20000000" RAMsize="0x4000" default="1" style="Keil"/>
+          <algorithm  name="Flash/FlashGECKOG1.flash"  start="0x00000000"  size="0x00100000"  default="0"  style="IAR"/>
+        </device>
+
+        <!-- *************************  Device 'EFM32GG12B510F1024GL120'  ***************************** -->
+        <device Dname="EFM32GG12B510F1024GL120">
+          <compile header="Device/SiliconLabs/EFM32GG12B/Include/em_device.h"  define="EFM32GG12B510F1024GL120"/>
+          <debug      svd="SVD/EFM32GG12B/EFM32GG12B510F1024GL120.svd"/>
+          <memory     id="IROM1"                start="0x00000000"  size="0x00100000"  startup="1"   default="1"/>
+          <memory     id="IRAM1"                start="0x20000000"  size="0x00030000"  init   ="0"   default="1"/>
+          <algorithm  name="Flash/GECKOG1.FLM"  start="0x00000000"  size="0x00100000"  RAMstart="0x20000000" RAMsize="0x4000" default="1" style="Keil"/>
+          <algorithm  name="Flash/FlashGECKOG1.flash"  start="0x00000000"  size="0x00100000"  default="0"  style="IAR"/>
+        </device>
+
+        <!-- *************************  Device 'EFM32GG12B510F1024GM64'  ***************************** -->
+        <device Dname="EFM32GG12B510F1024GM64">
+          <compile header="Device/SiliconLabs/EFM32GG12B/Include/em_device.h"  define="EFM32GG12B510F1024GM64"/>
+          <debug      svd="SVD/EFM32GG12B/EFM32GG12B510F1024GM64.svd"/>
+          <memory     id="IROM1"                start="0x00000000"  size="0x00100000"  startup="1"   default="1"/>
+          <memory     id="IRAM1"                start="0x20000000"  size="0x00030000"  init   ="0"   default="1"/>
+          <algorithm  name="Flash/GECKOG1.FLM"  start="0x00000000"  size="0x00100000"  RAMstart="0x20000000" RAMsize="0x4000" default="1" style="Keil"/>
+          <algorithm  name="Flash/FlashGECKOG1.flash"  start="0x00000000"  size="0x00100000"  default="0"  style="IAR"/>
+        </device>
+
+        <!-- *************************  Device 'EFM32GG12B510F1024GQ100'  ***************************** -->
+        <device Dname="EFM32GG12B510F1024GQ100">
+          <compile header="Device/SiliconLabs/EFM32GG12B/Include/em_device.h"  define="EFM32GG12B510F1024GQ100"/>
+          <debug      svd="SVD/EFM32GG12B/EFM32GG12B510F1024GQ100.svd"/>
+          <memory     id="IROM1"                start="0x00000000"  size="0x00100000"  startup="1"   default="1"/>
+          <memory     id="IRAM1"                start="0x20000000"  size="0x00030000"  init   ="0"   default="1"/>
+          <algorithm  name="Flash/GECKOG1.FLM"  start="0x00000000"  size="0x00100000"  RAMstart="0x20000000" RAMsize="0x4000" default="1" style="Keil"/>
+          <algorithm  name="Flash/FlashGECKOG1.flash"  start="0x00000000"  size="0x00100000"  default="0"  style="IAR"/>
+        </device>
+
+        <!-- *************************  Device 'EFM32GG12B510F1024GQ64'  ***************************** -->
+        <device Dname="EFM32GG12B510F1024GQ64">
+          <compile header="Device/SiliconLabs/EFM32GG12B/Include/em_device.h"  define="EFM32GG12B510F1024GQ64"/>
+          <debug      svd="SVD/EFM32GG12B/EFM32GG12B510F1024GQ64.svd"/>
+          <memory     id="IROM1"                start="0x00000000"  size="0x00100000"  startup="1"   default="1"/>
+          <memory     id="IRAM1"                start="0x20000000"  size="0x00030000"  init   ="0"   default="1"/>
+          <algorithm  name="Flash/GECKOG1.FLM"  start="0x00000000"  size="0x00100000"  RAMstart="0x20000000" RAMsize="0x4000" default="1" style="Keil"/>
+          <algorithm  name="Flash/FlashGECKOG1.flash"  start="0x00000000"  size="0x00100000"  default="0"  style="IAR"/>
+        </device>
+
+        <!-- *************************  Device 'EFM32GG12B510F1024IL120'  ***************************** -->
+        <device Dname="EFM32GG12B510F1024IL120">
+          <compile header="Device/SiliconLabs/EFM32GG12B/Include/em_device.h"  define="EFM32GG12B510F1024IL120"/>
+          <debug      svd="SVD/EFM32GG12B/EFM32GG12B510F1024IL120.svd"/>
+          <memory     id="IROM1"                start="0x00000000"  size="0x00100000"  startup="1"   default="1"/>
+          <memory     id="IRAM1"                start="0x20000000"  size="0x00030000"  init   ="0"   default="1"/>
+          <algorithm  name="Flash/GECKOG1.FLM"  start="0x00000000"  size="0x00100000"  RAMstart="0x20000000" RAMsize="0x4000" default="1" style="Keil"/>
+          <algorithm  name="Flash/FlashGECKOG1.flash"  start="0x00000000"  size="0x00100000"  default="0"  style="IAR"/>
+        </device>
+
+        <!-- *************************  Device 'EFM32GG12B510F1024IM64'  ***************************** -->
+        <device Dname="EFM32GG12B510F1024IM64">
+          <compile header="Device/SiliconLabs/EFM32GG12B/Include/em_device.h"  define="EFM32GG12B510F1024IM64"/>
+          <debug      svd="SVD/EFM32GG12B/EFM32GG12B510F1024IM64.svd"/>
+          <memory     id="IROM1"                start="0x00000000"  size="0x00100000"  startup="1"   default="1"/>
+          <memory     id="IRAM1"                start="0x20000000"  size="0x00030000"  init   ="0"   default="1"/>
+          <algorithm  name="Flash/GECKOG1.FLM"  start="0x00000000"  size="0x00100000"  RAMstart="0x20000000" RAMsize="0x4000" default="1" style="Keil"/>
+          <algorithm  name="Flash/FlashGECKOG1.flash"  start="0x00000000"  size="0x00100000"  default="0"  style="IAR"/>
+        </device>
+
+        <!-- *************************  Device 'EFM32GG12B510F1024IQ100'  ***************************** -->
+        <device Dname="EFM32GG12B510F1024IQ100">
+          <compile header="Device/SiliconLabs/EFM32GG12B/Include/em_device.h"  define="EFM32GG12B510F1024IQ100"/>
+          <debug      svd="SVD/EFM32GG12B/EFM32GG12B510F1024IQ100.svd"/>
+          <memory     id="IROM1"                start="0x00000000"  size="0x00100000"  startup="1"   default="1"/>
+          <memory     id="IRAM1"                start="0x20000000"  size="0x00030000"  init   ="0"   default="1"/>
+          <algorithm  name="Flash/GECKOG1.FLM"  start="0x00000000"  size="0x00100000"  RAMstart="0x20000000" RAMsize="0x4000" default="1" style="Keil"/>
+          <algorithm  name="Flash/FlashGECKOG1.flash"  start="0x00000000"  size="0x00100000"  default="0"  style="IAR"/>
+        </device>
+
+        <!-- *************************  Device 'EFM32GG12B510F1024IQ64'  ***************************** -->
+        <device Dname="EFM32GG12B510F1024IQ64">
+          <compile header="Device/SiliconLabs/EFM32GG12B/Include/em_device.h"  define="EFM32GG12B510F1024IQ64"/>
+          <debug      svd="SVD/EFM32GG12B/EFM32GG12B510F1024IQ64.svd"/>
+          <memory     id="IROM1"                start="0x00000000"  size="0x00100000"  startup="1"   default="1"/>
+          <memory     id="IRAM1"                start="0x20000000"  size="0x00030000"  init   ="0"   default="1"/>
+          <algorithm  name="Flash/GECKOG1.FLM"  start="0x00000000"  size="0x00100000"  RAMstart="0x20000000" RAMsize="0x4000" default="1" style="Keil"/>
+          <algorithm  name="Flash/FlashGECKOG1.flash"  start="0x00000000"  size="0x00100000"  default="0"  style="IAR"/>
+        </device>
+
+      </subFamily>
+
+      <subFamily DsubFamily="EFM32GG12B530">
+        <!-- *************************  Device 'EFM32GG12B530F512GL112'  ***************************** -->
+        <device Dname="EFM32GG12B530F512GL112">
+          <compile header="Device/SiliconLabs/EFM32GG12B/Include/em_device.h"  define="EFM32GG12B530F512GL112"/>
+          <debug      svd="SVD/EFM32GG12B/EFM32GG12B530F512GL112.svd"/>
+          <memory     id="IROM1"                start="0x00000000"  size="0x00080000"  startup="1"   default="1"/>
+          <memory     id="IRAM1"                start="0x20000000"  size="0x00030000"  init   ="0"   default="1"/>
+          <algorithm  name="Flash/GECKOG1.FLM"  start="0x00000000"  size="0x00080000"  RAMstart="0x20000000" RAMsize="0x4000" default="1" style="Keil"/>
+          <algorithm  name="Flash/FlashGECKOG1.flash"  start="0x00000000"  size="0x00080000"  default="0"  style="IAR"/>
+        </device>
+
+        <!-- *************************  Device 'EFM32GG12B530F512GL120'  ***************************** -->
+        <device Dname="EFM32GG12B530F512GL120">
+          <compile header="Device/SiliconLabs/EFM32GG12B/Include/em_device.h"  define="EFM32GG12B530F512GL120"/>
+          <debug      svd="SVD/EFM32GG12B/EFM32GG12B530F512GL120.svd"/>
+          <memory     id="IROM1"                start="0x00000000"  size="0x00080000"  startup="1"   default="1"/>
+          <memory     id="IRAM1"                start="0x20000000"  size="0x00030000"  init   ="0"   default="1"/>
+          <algorithm  name="Flash/GECKOG1.FLM"  start="0x00000000"  size="0x00080000"  RAMstart="0x20000000" RAMsize="0x4000" default="1" style="Keil"/>
+          <algorithm  name="Flash/FlashGECKOG1.flash"  start="0x00000000"  size="0x00080000"  default="0"  style="IAR"/>
+        </device>
+
+        <!-- *************************  Device 'EFM32GG12B530F512GM64'  ***************************** -->
+        <device Dname="EFM32GG12B530F512GM64">
+          <compile header="Device/SiliconLabs/EFM32GG12B/Include/em_device.h"  define="EFM32GG12B530F512GM64"/>
+          <debug      svd="SVD/EFM32GG12B/EFM32GG12B530F512GM64.svd"/>
+          <memory     id="IROM1"                start="0x00000000"  size="0x00080000"  startup="1"   default="1"/>
+          <memory     id="IRAM1"                start="0x20000000"  size="0x00030000"  init   ="0"   default="1"/>
+          <algorithm  name="Flash/GECKOG1.FLM"  start="0x00000000"  size="0x00080000"  RAMstart="0x20000000" RAMsize="0x4000" default="1" style="Keil"/>
+          <algorithm  name="Flash/FlashGECKOG1.flash"  start="0x00000000"  size="0x00080000"  default="0"  style="IAR"/>
+        </device>
+
+        <!-- *************************  Device 'EFM32GG12B530F512GQ100'  ***************************** -->
+        <device Dname="EFM32GG12B530F512GQ100">
+          <compile header="Device/SiliconLabs/EFM32GG12B/Include/em_device.h"  define="EFM32GG12B530F512GQ100"/>
+          <debug      svd="SVD/EFM32GG12B/EFM32GG12B530F512GQ100.svd"/>
+          <memory     id="IROM1"                start="0x00000000"  size="0x00080000"  startup="1"   default="1"/>
+          <memory     id="IRAM1"                start="0x20000000"  size="0x00030000"  init   ="0"   default="1"/>
+          <algorithm  name="Flash/GECKOG1.FLM"  start="0x00000000"  size="0x00080000"  RAMstart="0x20000000" RAMsize="0x4000" default="1" style="Keil"/>
+          <algorithm  name="Flash/FlashGECKOG1.flash"  start="0x00000000"  size="0x00080000"  default="0"  style="IAR"/>
+        </device>
+
+        <!-- *************************  Device 'EFM32GG12B530F512GQ64'  ***************************** -->
+        <device Dname="EFM32GG12B530F512GQ64">
+          <compile header="Device/SiliconLabs/EFM32GG12B/Include/em_device.h"  define="EFM32GG12B530F512GQ64"/>
+          <debug      svd="SVD/EFM32GG12B/EFM32GG12B530F512GQ64.svd"/>
+          <memory     id="IROM1"                start="0x00000000"  size="0x00080000"  startup="1"   default="1"/>
+          <memory     id="IRAM1"                start="0x20000000"  size="0x00030000"  init   ="0"   default="1"/>
+          <algorithm  name="Flash/GECKOG1.FLM"  start="0x00000000"  size="0x00080000"  RAMstart="0x20000000" RAMsize="0x4000" default="1" style="Keil"/>
+          <algorithm  name="Flash/FlashGECKOG1.flash"  start="0x00000000"  size="0x00080000"  default="0"  style="IAR"/>
+        </device>
+
+        <!-- *************************  Device 'EFM32GG12B530F512IL120'  ***************************** -->
+        <device Dname="EFM32GG12B530F512IL120">
+          <compile header="Device/SiliconLabs/EFM32GG12B/Include/em_device.h"  define="EFM32GG12B530F512IL120"/>
+          <debug      svd="SVD/EFM32GG12B/EFM32GG12B530F512IL120.svd"/>
+          <memory     id="IROM1"                start="0x00000000"  size="0x00080000"  startup="1"   default="1"/>
+          <memory     id="IRAM1"                start="0x20000000"  size="0x00030000"  init   ="0"   default="1"/>
+          <algorithm  name="Flash/GECKOG1.FLM"  start="0x00000000"  size="0x00080000"  RAMstart="0x20000000" RAMsize="0x4000" default="1" style="Keil"/>
+          <algorithm  name="Flash/FlashGECKOG1.flash"  start="0x00000000"  size="0x00080000"  default="0"  style="IAR"/>
+        </device>
+
+        <!-- *************************  Device 'EFM32GG12B530F512IM64'  ***************************** -->
+        <device Dname="EFM32GG12B530F512IM64">
+          <compile header="Device/SiliconLabs/EFM32GG12B/Include/em_device.h"  define="EFM32GG12B530F512IM64"/>
+          <debug      svd="SVD/EFM32GG12B/EFM32GG12B530F512IM64.svd"/>
+          <memory     id="IROM1"                start="0x00000000"  size="0x00080000"  startup="1"   default="1"/>
+          <memory     id="IRAM1"                start="0x20000000"  size="0x00030000"  init   ="0"   default="1"/>
+          <algorithm  name="Flash/GECKOG1.FLM"  start="0x00000000"  size="0x00080000"  RAMstart="0x20000000" RAMsize="0x4000" default="1" style="Keil"/>
+          <algorithm  name="Flash/FlashGECKOG1.flash"  start="0x00000000"  size="0x00080000"  default="0"  style="IAR"/>
+        </device>
+
+        <!-- *************************  Device 'EFM32GG12B530F512IQ100'  ***************************** -->
+        <device Dname="EFM32GG12B530F512IQ100">
+          <compile header="Device/SiliconLabs/EFM32GG12B/Include/em_device.h"  define="EFM32GG12B530F512IQ100"/>
+          <debug      svd="SVD/EFM32GG12B/EFM32GG12B530F512IQ100.svd"/>
+          <memory     id="IROM1"                start="0x00000000"  size="0x00080000"  startup="1"   default="1"/>
+          <memory     id="IRAM1"                start="0x20000000"  size="0x00030000"  init   ="0"   default="1"/>
+          <algorithm  name="Flash/GECKOG1.FLM"  start="0x00000000"  size="0x00080000"  RAMstart="0x20000000" RAMsize="0x4000" default="1" style="Keil"/>
+          <algorithm  name="Flash/FlashGECKOG1.flash"  start="0x00000000"  size="0x00080000"  default="0"  style="IAR"/>
+        </device>
+
+        <!-- *************************  Device 'EFM32GG12B530F512IQ64'  ***************************** -->
+        <device Dname="EFM32GG12B530F512IQ64">
+          <compile header="Device/SiliconLabs/EFM32GG12B/Include/em_device.h"  define="EFM32GG12B530F512IQ64"/>
+          <debug      svd="SVD/EFM32GG12B/EFM32GG12B530F512IQ64.svd"/>
+          <memory     id="IROM1"                start="0x00000000"  size="0x00080000"  startup="1"   default="1"/>
+          <memory     id="IRAM1"                start="0x20000000"  size="0x00030000"  init   ="0"   default="1"/>
+          <algorithm  name="Flash/GECKOG1.FLM"  start="0x00000000"  size="0x00080000"  RAMstart="0x20000000" RAMsize="0x4000" default="1" style="Keil"/>
+          <algorithm  name="Flash/FlashGECKOG1.flash"  start="0x00000000"  size="0x00080000"  default="0"  style="IAR"/>
+        </device>
+
+      </subFamily>
+
+      <subFamily DsubFamily="EFM32GG12B810">
+        <!-- *************************  Device 'EFM32GG12B810F1024GL112'  ***************************** -->
+        <device Dname="EFM32GG12B810F1024GL112">
+          <compile header="Device/SiliconLabs/EFM32GG12B/Include/em_device.h"  define="EFM32GG12B810F1024GL112"/>
+          <debug      svd="SVD/EFM32GG12B/EFM32GG12B810F1024GL112.svd"/>
+          <memory     id="IROM1"                start="0x00000000"  size="0x00100000"  startup="1"   default="1"/>
+          <memory     id="IRAM1"                start="0x20000000"  size="0x00030000"  init   ="0"   default="1"/>
+          <algorithm  name="Flash/GECKOG1.FLM"  start="0x00000000"  size="0x00100000"  RAMstart="0x20000000" RAMsize="0x4000" default="1" style="Keil"/>
+          <algorithm  name="Flash/FlashGECKOG1.flash"  start="0x00000000"  size="0x00100000"  default="0"  style="IAR"/>
+        </device>
+
+        <!-- *************************  Device 'EFM32GG12B810F1024GL120'  ***************************** -->
+        <device Dname="EFM32GG12B810F1024GL120">
+          <compile header="Device/SiliconLabs/EFM32GG12B/Include/em_device.h"  define="EFM32GG12B810F1024GL120"/>
+          <debug      svd="SVD/EFM32GG12B/EFM32GG12B810F1024GL120.svd"/>
+          <memory     id="IROM1"                start="0x00000000"  size="0x00100000"  startup="1"   default="1"/>
+          <memory     id="IRAM1"                start="0x20000000"  size="0x00030000"  init   ="0"   default="1"/>
+          <algorithm  name="Flash/GECKOG1.FLM"  start="0x00000000"  size="0x00100000"  RAMstart="0x20000000" RAMsize="0x4000" default="1" style="Keil"/>
+          <algorithm  name="Flash/FlashGECKOG1.flash"  start="0x00000000"  size="0x00100000"  default="0"  style="IAR"/>
+        </device>
+
+        <!-- *************************  Device 'EFM32GG12B810F1024GM64'  ***************************** -->
+        <device Dname="EFM32GG12B810F1024GM64">
+          <compile header="Device/SiliconLabs/EFM32GG12B/Include/em_device.h"  define="EFM32GG12B810F1024GM64"/>
+          <debug      svd="SVD/EFM32GG12B/EFM32GG12B810F1024GM64.svd"/>
+          <memory     id="IROM1"                start="0x00000000"  size="0x00100000"  startup="1"   default="1"/>
+          <memory     id="IRAM1"                start="0x20000000"  size="0x00030000"  init   ="0"   default="1"/>
+          <algorithm  name="Flash/GECKOG1.FLM"  start="0x00000000"  size="0x00100000"  RAMstart="0x20000000" RAMsize="0x4000" default="1" style="Keil"/>
+          <algorithm  name="Flash/FlashGECKOG1.flash"  start="0x00000000"  size="0x00100000"  default="0"  style="IAR"/>
+        </device>
+
+        <!-- *************************  Device 'EFM32GG12B810F1024GQ100'  ***************************** -->
+        <device Dname="EFM32GG12B810F1024GQ100">
+          <compile header="Device/SiliconLabs/EFM32GG12B/Include/em_device.h"  define="EFM32GG12B810F1024GQ100"/>
+          <debug      svd="SVD/EFM32GG12B/EFM32GG12B810F1024GQ100.svd"/>
+          <memory     id="IROM1"                start="0x00000000"  size="0x00100000"  startup="1"   default="1"/>
+          <memory     id="IRAM1"                start="0x20000000"  size="0x00030000"  init   ="0"   default="1"/>
+          <algorithm  name="Flash/GECKOG1.FLM"  start="0x00000000"  size="0x00100000"  RAMstart="0x20000000" RAMsize="0x4000" default="1" style="Keil"/>
+          <algorithm  name="Flash/FlashGECKOG1.flash"  start="0x00000000"  size="0x00100000"  default="0"  style="IAR"/>
+        </device>
+
+        <!-- *************************  Device 'EFM32GG12B810F1024GQ64'  ***************************** -->
+        <device Dname="EFM32GG12B810F1024GQ64">
+          <compile header="Device/SiliconLabs/EFM32GG12B/Include/em_device.h"  define="EFM32GG12B810F1024GQ64"/>
+          <debug      svd="SVD/EFM32GG12B/EFM32GG12B810F1024GQ64.svd"/>
+          <memory     id="IROM1"                start="0x00000000"  size="0x00100000"  startup="1"   default="1"/>
+          <memory     id="IRAM1"                start="0x20000000"  size="0x00030000"  init   ="0"   default="1"/>
+          <algorithm  name="Flash/GECKOG1.FLM"  start="0x00000000"  size="0x00100000"  RAMstart="0x20000000" RAMsize="0x4000" default="1" style="Keil"/>
+          <algorithm  name="Flash/FlashGECKOG1.flash"  start="0x00000000"  size="0x00100000"  default="0"  style="IAR"/>
+        </device>
+
+        <!-- *************************  Device 'EFM32GG12B810F1024IL120'  ***************************** -->
+        <device Dname="EFM32GG12B810F1024IL120">
+          <compile header="Device/SiliconLabs/EFM32GG12B/Include/em_device.h"  define="EFM32GG12B810F1024IL120"/>
+          <debug      svd="SVD/EFM32GG12B/EFM32GG12B810F1024IL120.svd"/>
+          <memory     id="IROM1"                start="0x00000000"  size="0x00100000"  startup="1"   default="1"/>
+          <memory     id="IRAM1"                start="0x20000000"  size="0x00030000"  init   ="0"   default="1"/>
+          <algorithm  name="Flash/GECKOG1.FLM"  start="0x00000000"  size="0x00100000"  RAMstart="0x20000000" RAMsize="0x4000" default="1" style="Keil"/>
+          <algorithm  name="Flash/FlashGECKOG1.flash"  start="0x00000000"  size="0x00100000"  default="0"  style="IAR"/>
+        </device>
+
+        <!-- *************************  Device 'EFM32GG12B810F1024IM64'  ***************************** -->
+        <device Dname="EFM32GG12B810F1024IM64">
+          <compile header="Device/SiliconLabs/EFM32GG12B/Include/em_device.h"  define="EFM32GG12B810F1024IM64"/>
+          <debug      svd="SVD/EFM32GG12B/EFM32GG12B810F1024IM64.svd"/>
+          <memory     id="IROM1"                start="0x00000000"  size="0x00100000"  startup="1"   default="1"/>
+          <memory     id="IRAM1"                start="0x20000000"  size="0x00030000"  init   ="0"   default="1"/>
+          <algorithm  name="Flash/GECKOG1.FLM"  start="0x00000000"  size="0x00100000"  RAMstart="0x20000000" RAMsize="0x4000" default="1" style="Keil"/>
+          <algorithm  name="Flash/FlashGECKOG1.flash"  start="0x00000000"  size="0x00100000"  default="0"  style="IAR"/>
+        </device>
+
+        <!-- *************************  Device 'EFM32GG12B810F1024IQ100'  ***************************** -->
+        <device Dname="EFM32GG12B810F1024IQ100">
+          <compile header="Device/SiliconLabs/EFM32GG12B/Include/em_device.h"  define="EFM32GG12B810F1024IQ100"/>
+          <debug      svd="SVD/EFM32GG12B/EFM32GG12B810F1024IQ100.svd"/>
+          <memory     id="IROM1"                start="0x00000000"  size="0x00100000"  startup="1"   default="1"/>
+          <memory     id="IRAM1"                start="0x20000000"  size="0x00030000"  init   ="0"   default="1"/>
+          <algorithm  name="Flash/GECKOG1.FLM"  start="0x00000000"  size="0x00100000"  RAMstart="0x20000000" RAMsize="0x4000" default="1" style="Keil"/>
+          <algorithm  name="Flash/FlashGECKOG1.flash"  start="0x00000000"  size="0x00100000"  default="0"  style="IAR"/>
+        </device>
+
+        <!-- *************************  Device 'EFM32GG12B810F1024IQ64'  ***************************** -->
+        <device Dname="EFM32GG12B810F1024IQ64">
+          <compile header="Device/SiliconLabs/EFM32GG12B/Include/em_device.h"  define="EFM32GG12B810F1024IQ64"/>
+          <debug      svd="SVD/EFM32GG12B/EFM32GG12B810F1024IQ64.svd"/>
+          <memory     id="IROM1"                start="0x00000000"  size="0x00100000"  startup="1"   default="1"/>
+          <memory     id="IRAM1"                start="0x20000000"  size="0x00030000"  init   ="0"   default="1"/>
+          <algorithm  name="Flash/GECKOG1.FLM"  start="0x00000000"  size="0x00100000"  RAMstart="0x20000000" RAMsize="0x4000" default="1" style="Keil"/>
+          <algorithm  name="Flash/FlashGECKOG1.flash"  start="0x00000000"  size="0x00100000"  default="0"  style="IAR"/>
+        </device>
+
+      </subFamily>
+
+      <subFamily DsubFamily="EFM32GG12B830">
+        <!-- *************************  Device 'EFM32GG12B830F512GL112'  ***************************** -->
+        <device Dname="EFM32GG12B830F512GL112">
+          <compile header="Device/SiliconLabs/EFM32GG12B/Include/em_device.h"  define="EFM32GG12B830F512GL112"/>
+          <debug      svd="SVD/EFM32GG12B/EFM32GG12B830F512GL112.svd"/>
+          <memory     id="IROM1"                start="0x00000000"  size="0x00080000"  startup="1"   default="1"/>
+          <memory     id="IRAM1"                start="0x20000000"  size="0x00030000"  init   ="0"   default="1"/>
+          <algorithm  name="Flash/GECKOG1.FLM"  start="0x00000000"  size="0x00080000"  RAMstart="0x20000000" RAMsize="0x4000" default="1" style="Keil"/>
+          <algorithm  name="Flash/FlashGECKOG1.flash"  start="0x00000000"  size="0x00080000"  default="0"  style="IAR"/>
+        </device>
+
+        <!-- *************************  Device 'EFM32GG12B830F512GL120'  ***************************** -->
+        <device Dname="EFM32GG12B830F512GL120">
+          <compile header="Device/SiliconLabs/EFM32GG12B/Include/em_device.h"  define="EFM32GG12B830F512GL120"/>
+          <debug      svd="SVD/EFM32GG12B/EFM32GG12B830F512GL120.svd"/>
+          <memory     id="IROM1"                start="0x00000000"  size="0x00080000"  startup="1"   default="1"/>
+          <memory     id="IRAM1"                start="0x20000000"  size="0x00030000"  init   ="0"   default="1"/>
+          <algorithm  name="Flash/GECKOG1.FLM"  start="0x00000000"  size="0x00080000"  RAMstart="0x20000000" RAMsize="0x4000" default="1" style="Keil"/>
+          <algorithm  name="Flash/FlashGECKOG1.flash"  start="0x00000000"  size="0x00080000"  default="0"  style="IAR"/>
+        </device>
+
+        <!-- *************************  Device 'EFM32GG12B830F512GM64'  ***************************** -->
+        <device Dname="EFM32GG12B830F512GM64">
+          <compile header="Device/SiliconLabs/EFM32GG12B/Include/em_device.h"  define="EFM32GG12B830F512GM64"/>
+          <debug      svd="SVD/EFM32GG12B/EFM32GG12B830F512GM64.svd"/>
+          <memory     id="IROM1"                start="0x00000000"  size="0x00080000"  startup="1"   default="1"/>
+          <memory     id="IRAM1"                start="0x20000000"  size="0x00030000"  init   ="0"   default="1"/>
+          <algorithm  name="Flash/GECKOG1.FLM"  start="0x00000000"  size="0x00080000"  RAMstart="0x20000000" RAMsize="0x4000" default="1" style="Keil"/>
+          <algorithm  name="Flash/FlashGECKOG1.flash"  start="0x00000000"  size="0x00080000"  default="0"  style="IAR"/>
+        </device>
+
+        <!-- *************************  Device 'EFM32GG12B830F512GQ100'  ***************************** -->
+        <device Dname="EFM32GG12B830F512GQ100">
+          <compile header="Device/SiliconLabs/EFM32GG12B/Include/em_device.h"  define="EFM32GG12B830F512GQ100"/>
+          <debug      svd="SVD/EFM32GG12B/EFM32GG12B830F512GQ100.svd"/>
+          <memory     id="IROM1"                start="0x00000000"  size="0x00080000"  startup="1"   default="1"/>
+          <memory     id="IRAM1"                start="0x20000000"  size="0x00030000"  init   ="0"   default="1"/>
+          <algorithm  name="Flash/GECKOG1.FLM"  start="0x00000000"  size="0x00080000"  RAMstart="0x20000000" RAMsize="0x4000" default="1" style="Keil"/>
+          <algorithm  name="Flash/FlashGECKOG1.flash"  start="0x00000000"  size="0x00080000"  default="0"  style="IAR"/>
+        </device>
+
+        <!-- *************************  Device 'EFM32GG12B830F512GQ64'  ***************************** -->
+        <device Dname="EFM32GG12B830F512GQ64">
+          <compile header="Device/SiliconLabs/EFM32GG12B/Include/em_device.h"  define="EFM32GG12B830F512GQ64"/>
+          <debug      svd="SVD/EFM32GG12B/EFM32GG12B830F512GQ64.svd"/>
+          <memory     id="IROM1"                start="0x00000000"  size="0x00080000"  startup="1"   default="1"/>
+          <memory     id="IRAM1"                start="0x20000000"  size="0x00030000"  init   ="0"   default="1"/>
+          <algorithm  name="Flash/GECKOG1.FLM"  start="0x00000000"  size="0x00080000"  RAMstart="0x20000000" RAMsize="0x4000" default="1" style="Keil"/>
+          <algorithm  name="Flash/FlashGECKOG1.flash"  start="0x00000000"  size="0x00080000"  default="0"  style="IAR"/>
+        </device>
+
+        <!-- *************************  Device 'EFM32GG12B830F512IL120'  ***************************** -->
+        <device Dname="EFM32GG12B830F512IL120">
+          <compile header="Device/SiliconLabs/EFM32GG12B/Include/em_device.h"  define="EFM32GG12B830F512IL120"/>
+          <debug      svd="SVD/EFM32GG12B/EFM32GG12B830F512IL120.svd"/>
+          <memory     id="IROM1"                start="0x00000000"  size="0x00080000"  startup="1"   default="1"/>
+          <memory     id="IRAM1"                start="0x20000000"  size="0x00030000"  init   ="0"   default="1"/>
+          <algorithm  name="Flash/GECKOG1.FLM"  start="0x00000000"  size="0x00080000"  RAMstart="0x20000000" RAMsize="0x4000" default="1" style="Keil"/>
+          <algorithm  name="Flash/FlashGECKOG1.flash"  start="0x00000000"  size="0x00080000"  default="0"  style="IAR"/>
+        </device>
+
+        <!-- *************************  Device 'EFM32GG12B830F512IM64'  ***************************** -->
+        <device Dname="EFM32GG12B830F512IM64">
+          <compile header="Device/SiliconLabs/EFM32GG12B/Include/em_device.h"  define="EFM32GG12B830F512IM64"/>
+          <debug      svd="SVD/EFM32GG12B/EFM32GG12B830F512IM64.svd"/>
+          <memory     id="IROM1"                start="0x00000000"  size="0x00080000"  startup="1"   default="1"/>
+          <memory     id="IRAM1"                start="0x20000000"  size="0x00030000"  init   ="0"   default="1"/>
+          <algorithm  name="Flash/GECKOG1.FLM"  start="0x00000000"  size="0x00080000"  RAMstart="0x20000000" RAMsize="0x4000" default="1" style="Keil"/>
+          <algorithm  name="Flash/FlashGECKOG1.flash"  start="0x00000000"  size="0x00080000"  default="0"  style="IAR"/>
+        </device>
+
+        <!-- *************************  Device 'EFM32GG12B830F512IQ100'  ***************************** -->
+        <device Dname="EFM32GG12B830F512IQ100">
+          <compile header="Device/SiliconLabs/EFM32GG12B/Include/em_device.h"  define="EFM32GG12B830F512IQ100"/>
+          <debug      svd="SVD/EFM32GG12B/EFM32GG12B830F512IQ100.svd"/>
+          <memory     id="IROM1"                start="0x00000000"  size="0x00080000"  startup="1"   default="1"/>
+          <memory     id="IRAM1"                start="0x20000000"  size="0x00030000"  init   ="0"   default="1"/>
+          <algorithm  name="Flash/GECKOG1.FLM"  start="0x00000000"  size="0x00080000"  RAMstart="0x20000000" RAMsize="0x4000" default="1" style="Keil"/>
+          <algorithm  name="Flash/FlashGECKOG1.flash"  start="0x00000000"  size="0x00080000"  default="0"  style="IAR"/>
+        </device>
+
+        <!-- *************************  Device 'EFM32GG12B830F512IQ64'  ***************************** -->
+        <device Dname="EFM32GG12B830F512IQ64">
+          <compile header="Device/SiliconLabs/EFM32GG12B/Include/em_device.h"  define="EFM32GG12B830F512IQ64"/>
+          <debug      svd="SVD/EFM32GG12B/EFM32GG12B830F512IQ64.svd"/>
+          <memory     id="IROM1"                start="0x00000000"  size="0x00080000"  startup="1"   default="1"/>
+          <memory     id="IRAM1"                start="0x20000000"  size="0x00030000"  init   ="0"   default="1"/>
+          <algorithm  name="Flash/GECKOG1.FLM"  start="0x00000000"  size="0x00080000"  RAMstart="0x20000000" RAMsize="0x4000" default="1" style="Keil"/>
+          <algorithm  name="Flash/FlashGECKOG1.flash"  start="0x00000000"  size="0x00080000"  default="0"  style="IAR"/>
+        </device>
+
+      </subFamily>
+
+    </family>
+  </devices>
+
+  <conditions>
+    <!-- Compiler Conditions -->
+    <condition id="Compiler ARMCC">
+      <require Tcompiler="ARMCC"/>
+    </condition>
+    <condition id="Compiler GCC">
+      <require Tcompiler="GCC"/>
+    </condition>
+
+    <!-- Device Conditions -->
+    <condition id="EFM32GG12B">
+      <description>Silicon Labs EFM32GG12B device series</description>
+      <require Dvendor="Silicon Labs:21" Dname="EFM32GG12B*"/>
+      <require Cclass="CMSIS" Cgroup="CORE"/>
+    </condition>
+  </conditions>
+
+  <components>
+    <component Cclass="Device" Cgroup="Startup" Cversion="5.7.0" condition="EFM32GG12B">
+      <description>System Startup for Silicon Labs EFM32GG12B device series</description>
+      <files>
+        <!-- include folder -->
+        <file category="include" name="Device/SiliconLabs/EFM32GG12B/Include/"/>
+        <file category="header"  name="Device/SiliconLabs/EFM32GG12B/Include/em_device.h"/>
+        <!-- startup files -->
+        <file category="source"  name="Device/SiliconLabs/EFM32GG12B/Source/ARM/startup_efm32gg12b.s" condition="Compiler ARMCC" attr="config" version="5.7.0"/>
+        <file category="source"  name="Device/SiliconLabs/EFM32GG12B/Source/GCC/startup_efm32gg12b.S" condition="Compiler GCC"   attr="config" version="5.7.0"/>
+        <!-- linker command file -->
+        <file category="linkerScript"  name="Device/SiliconLabs/EFM32GG12B/Source/GCC/efm32gg12b.ld" condition="Compiler GCC" attr="config" version="5.7.0"/>
+        <!-- system file -->
+        <file category="source"  name="Device/SiliconLabs/EFM32GG12B/Source/system_efm32gg12b.c" attr="config" version="5.7.0"/>
+      </files>
+    </component>
+  </components>
+</package>

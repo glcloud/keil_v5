@@ -1,0 +1,94 @@
+[Version]
+Signature = "$Windows NT$"
+Class     = USB
+ClassGUID = {36FC9E60-C465-11CF-8056-444553540000}
+Provider  = %Keil%
+DriverVer = 08/29/2013, 1.0.0.3
+CatalogFile.nt = KeilULX_x86.cat
+CatalogFile.ntx86 = KeilULX_x86.cat
+CatalogFile.ntamd64 = KeilULX_amd64.cat
+
+; ========== Manufacturer/Models sections ===========
+
+[Manufacturer]
+%Keil% = Devices, NTx86, NTamd64
+
+[Devices.NTx86]
+%USB\VID_c251&PID_2728.DeviceDesc% = USB_Install, USB\VID_c251&PID_2728
+%USB\VID_c251&PID_2730.DeviceDesc% = USB_Install, USB\VID_c251&PID_2730
+%USB\VID_c251&PID_2740.DeviceDesc% = USB_Install, USB\VID_c251&PID_2740
+
+[Devices.NTamd64]
+%USB\VID_c251&PID_2728.DeviceDesc% = USB_Install, USB\VID_c251&PID_2728
+%USB\VID_c251&PID_2730.DeviceDesc% = USB_Install, USB\VID_c251&PID_2730
+%USB\VID_c251&PID_2740.DeviceDesc% = USB_Install, USB\VID_c251&PID_2740
+
+; =================== Installation ===================
+
+[USB_Install]
+Include = winusb.inf
+Needs = WINUSB.NT
+
+[USB_Install.HW]
+AddReg = Dev_AddReg
+
+[USB_Install.Services]
+AddService = WinUSB, 0x00000002, WinUSB_ServiceInstall
+
+[USB_Install.Wdf]
+KmdfService = WINUSB, WinUSB_Install
+UmdfServiceOrder = WINUSB
+
+[USB_Install.CoInstallers]
+AddReg    = CoInstallers_AddReg
+CopyFiles = CoInstallers_CopyFiles
+
+[Dev_AddReg]
+HKR,,DeviceInterfaceGUIDs,0x10000,"{A50B306A-33F2-4694-B7C3-0FF565215732}"
+
+[WinUSB_Install]
+KmdfLibraryVersion = 1.9
+
+[WinUSB_ServiceInstall]
+DisplayName   = %WinUSB_SvcDesc%
+ServiceType   = 1
+StartType     = 3
+ErrorControl  = 1
+ServiceBinary = %12%\WinUSB.sys
+
+[CoInstallers_AddReg]
+HKR,,CoInstallers32,0x00010000,"WUDFUpdate_01009.dll","WinUSBCoInstaller2.dll","WdfCoInstaller01009.dll,WdfCoInstaller"
+
+[CoInstallers_CopyFiles]
+WUDFUpdate_01009.dll
+WdfCoInstaller01009.dll
+WinUSBCoInstaller2.dll
+
+[DestinationDirs]
+CoInstallers_CopyFiles = 11
+
+; ================= Source Media Section =====================
+
+[SourceDisksNames]
+1 = %DriversDisk%,,,\x86
+2 = %DriversDisk%,,,\amd64
+
+[SourceDisksFiles.x86]
+WUDFUpdate_01009.dll = 1
+WdfCoInstaller01009.dll = 1
+WinUSBCoInstaller2.dll = 1
+
+[SourceDisksFiles.amd64]
+WUDFUpdate_01009.dll = 2
+WdfCoInstaller01009.dll = 2
+WinUSBCoInstaller2.dll = 2
+
+; =================== Strings ===================
+
+[Strings]
+Keil                             = "KEIL - Tools By ARM"
+DriversDisk                      = "Keil ULINK Driver Installation Disk"
+USB\VID_c251&PID_2728.DeviceDesc = "Keil ULINK2" 
+USB\VID_c251&PID_2730.DeviceDesc = "Keil ULINKpro"
+USB\VID_c251&PID_2740.DeviceDesc = "Keil ULINKpro D"
+WinUSB_SvcDesc                   = "WinUSB"

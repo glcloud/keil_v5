@@ -1,0 +1,966 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<package xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="PACK.xsd" schemaVersion="1.4">
+  <name>LPC55S69_DFP</name>
+  <vendor>NXP</vendor>
+  <description>Device Family Pack for LPC55S69</description>
+  <url>http://mcuxpresso.nxp.com/cmsis_pack/repo/</url>
+  <license>Licenses.txt</license>
+  <releases>
+    <release version="11.0.0">NXP CMSIS packs based on MCUXpresso SDK 2.5.0</release>
+  </releases>
+  <keywords>
+    <keyword>Device Family Pack</keyword>
+  </keywords>
+  <taxonomy>
+    <description Cclass="Device" Cgroup="SDK Drivers">NXP MCUXpresso SDK Peripheral Drivers</description>
+    <description Cclass="Device" Cgroup="SDK Project Template">NXP MCUXpresso SDK RTE Device Project Template</description>
+    <description Cclass="CMSIS Driver">NXP MCUXpresso SDK Peripheral CMSIS Drivers</description>
+    <description Cclass="Device" Cgroup="SDK Utilities">NXP MCUXpresso SDK Utilities</description>
+    <description Cclass="Board Support" Cgroup="SDK Project Template">NXP MCUXpresso SDK Project Template</description>
+    <description Cclass="Device" Cgroup="Startup">NXP MCUXpresso SDK Start up</description>
+  </taxonomy>
+  <devices>
+    <family Dfamily="LPC55S69" Dvendor="NXP:11">
+      <debugconfig default="swd" clock="5000000" swj="true"/>
+      <sequences>
+        <sequence name="EnableTraceClk">
+          <block>
+        __var SYSCON_NS_Base_Addr = 0x40000000;
+        __var IOCON_NS_Base_Addr  = 0x40001000;
+        __var TRACECLKSEL_Addr    = SYSCON_NS_Base_Addr + 0x268;
+        __var TRACECLKDIV_Addr    = SYSCON_NS_Base_Addr + 0x308;
+        __var AHBCLKCTRLSET0_Addr = IOCON_NS_Base_Addr  + 0x220;
+        __var clksel              = 0;
+        __var clkdiv              = 0;
+      </block>
+          <control if="__traceout &amp; 0x3">
+            <block>
+          clksel = Read32(TRACECLKSEL_Addr);  // Read current TRACECLKSEL value
+        </block>
+            <control if="clksel &gt; 2" info="Trace (TPIU) Clock not selected?">
+              <block>
+            Write32(TRACECLKSEL_Addr, 0x0);   // Select Trace divided clock
+          </block>
+            </control>
+            <block>
+          clkdiv = (Read32(TRACECLKDIV_Addr) &amp; 0xFF);  // Read current TRACECLKDIV value, preserve divider but clear rest to enable
+          Write32(TRACECLKDIV_Addr, clkdiv);
+
+          Write32(AHBCLKCTRLSET0_Addr, (1 &lt;&lt; 13));   // Enable IOCON clock
+        </block>
+          </control>
+        </sequence>
+        <sequence name="DebugDeviceUnlockCore0">
+          <control if="__traceout &amp; 0x3" info="Trace output via TPIU selected">
+            <block>
+          Sequence("EnableTraceClk");       // Enable trace clock to enable TPIU register accesses
+        </block>
+          </control>
+        </sequence>
+        <sequence name="DebugDeviceUnlockCore1">
+          <control if="__traceout &amp; 0x3" info="Trace output via TPIU selected">
+            <block>
+          Sequence("EnableTraceClk");       // Enable trace clock to enable TPIU register accesses
+        </block>
+          </control>
+        </sequence>
+        <sequence name="ResetCatchSetCore0">
+          <block>
+        __var SCS_Addr    = 0xE000E000;
+        __var DHCSR_Addr  = SCS_Addr + 0xDF0;
+        __var DEMCR_Addr  = SCS_Addr + 0xDFC;
+        __var resetVector = 0xFFFFFFFF;                                    // Reset Vector
+
+        Write32(0xE000EDFC, Read32(DEMCR_Addr) &amp; (~0x00000001));       // Clear Reset Vector Catch
+
+        Write32(0x40034010, 0x00000000);                                   // Program Flash Word Start Address to 0x0 to read reset vector (STARTA)
+        Write32(0x40034014, 0x00000000);                                   // Program Flash Word Stop Address to 0x0 to read reset vector (STOPA)
+        Write32(0x40034080, 0x00000000);                                   // DATAW0: Prepare for read
+        Write32(0x40034084, 0x00000000);                                   // DATAW1: Prepare for read
+        Write32(0x40034088, 0x00000000);                                   // DATAW2: Prepare for read
+        Write32(0x4003408C, 0x00000000);                                   // DATAW3: Prepare for read
+        Write32(0x40034090, 0x00000000);                                   // DATAW4: Prepare for read
+        Write32(0x40034094, 0x00000000);                                   // DATAW5: Prepare for read
+        Write32(0x40034098, 0x00000000);                                   // DATAW6: Prepare for read
+        Write32(0x4003409C, 0x00000000);                                   // DATAW7: Prepare for read
+
+        Write32(0x40034FE8, 0x0000000F);                                   // Clear FLASH Controller Status (INT_CLR_STATUS)
+        Write32(0x40034000, 0x00000003);                                   // Read single Flash Word (CMD_READ_SINGLE_WORD)
+      </block>
+          <control while="(Read32(0x40034FE0) &amp; 0x00000004) == 0" timeout="100000" info="Wait for flash word read to finish"/>
+          <control if="(Read32(0x40034FE0) &amp; 0xB) == 0" info="No Error reading Flash Word with Reset Vector">
+            <block>
+          // Lowest flash page readable, read via AHB (flash controller for some reason returns garbage)
+          resetVector = Read32(0x00000004);                                // Read Reset Vector (Address 0x00000004)
+        </block>
+          </control>
+          <control if="resetVector != 0xFFFFFFFF" info="Breakpoint on user application reset vector">
+            <!-- we have a valid breakpoint address -->
+            <block>
+          Write32(0xE0002008, resetVector|1);                              // Program FPB Comparator 0 with reset handler address
+          Write32(0xE0002000, 0x00000003);                                 // Enable FPB
+        </block>
+          </control>
+          <control if="resetVector == 0xFFFFFFFF" info="Enable reset vector catch">
+            <!-- we do not have a valid breakpoint address -->
+            <block>
+          Write32(DEMCR_Addr, (Read32(DEMCR_Addr) | 0x00000001));          // Enable Reset Vector Catch in DEMCR
+        </block>
+          </control>
+          <block>
+        // Read DHCSR to clear potentially set DHCSR.S_RESET_ST bit
+        Read32(DHCSR_Addr);
+      </block>
+        </sequence>
+        <sequence name="ResetCatchSetCore1">
+          <block>
+        // Use DEMCR.VC_CORERESET for CPU1
+        __var SCS_Addr   = 0xE000E000;
+        __var DHCSR_Addr = SCS_Addr + 0xDF0;
+        __var DEMCR_Addr = SCS_Addr + 0xDFC;
+        __var value      = 0;
+
+        // Enable Reset Vector Catch in DEMCR
+        value = Read32(DEMCR_Addr);
+        Write32(DEMCR_Addr, (value | 0x00000001));
+        // Read DHCSR to clear potentially set DHCSR.S_RESET_ST bit
+        Read32(DHCSR_Addr);
+      </block>
+        </sequence>
+        <sequence name="ResetCatchClear">
+          <block>
+        __var DEMCR_Addr = 0xE000EDFC;
+
+        // Clear FPB Comparators 0 and 1
+        Write32(0xE0002008, 0x00000000);
+
+        // Disable FPB
+        Write32(0xE0002000, 0x00000002);
+
+        // Clear Reset Vector Catch
+        Write32(DEMCR_Addr, Read32(DEMCR_Addr) &amp; (~0x00000001));
+      </block>
+        </sequence>
+        <sequence name="WaitForStopAfterReset">
+          <block>
+        __var SCS_Addr    = 0xE000E000;
+        __var DHCSR_Addr  = SCS_Addr + 0xDF0;
+
+        // Give bootloader time to do what it needs to do
+        DAP_Delay(BootTime);  // try 10ms
+      </block>
+          <!-- Reset Recovery: Wait for DHCSR.S_RESET_ST bit to clear on read -->
+          <control while="(Read32(DHCSR_Addr) &amp; 0x02000000)" timeout="500000"/>
+          <control if="(Read32(DHCSR_Addr) &amp; 0x00020000) == 0">
+            <block>
+          Write32(DHCSR_Addr, 0xA05F0003);  // Force halt until finding a proper catch. Probably works better from flash.
+        </block>
+          </control>
+        </sequence>
+        <sequence name="ResetHardware">
+          <block>
+        __var nReset      = 0x80;
+        __var canReadPins = 0;
+        __var SCS_Addr    = 0xE000E000;
+        __var DHCSR_Addr  = SCS_Addr + 0xDF0;
+
+        // De-assert nRESET line
+        canReadPins = (DAP_SWJ_Pins(0x00, nReset, 0) != 0xFFFFFFFF);
+      </block>
+          <!-- Keep reset active for 50 ms -->
+          <control while="1" timeout="50000"/>
+          <control if="canReadPins">
+            <!-- Assert nRESET line and wait max. 1s for recovery -->
+            <control while="(DAP_SWJ_Pins(nReset, nReset, 0) &amp; nReset) == 0" timeout="1000000"/>
+          </control>
+          <control if="!canReadPins">
+            <block>
+          // Assert nRESET line
+          DAP_SWJ_Pins(nReset, nReset, 0);
+        </block>
+            <!-- Wait 100ms for recovery if nRESET not readable -->
+            <control while="1" timeout="100000"/>
+          </control>
+          <control if="(__connection &amp; (1 &lt;&lt; 17)) == 0">
+            <block>
+          Sequence("WaitForStopAfterReset");
+        </block>
+          </control>
+        </sequence>
+        <sequence name="ResetSystemCore0">
+          <block>
+        // System Control Space (SCS) offset as defined in Armv6-M/Armv7-M.
+        __var SCS_Addr   = 0xE000E000;
+        __var AIRCR_Addr = SCS_Addr + 0xD0C;
+        __var DHCSR_Addr = SCS_Addr + 0xDF0;
+
+        __errorcontrol = 1;
+
+        // Execute SYSRESETREQ via AIRCR
+        Write32(AIRCR_Addr, 0x05FA0004);
+
+        __errorcontrol = 0;
+
+        // Give bootloader time to do what it needs to do
+        DAP_Delay(BootTime);  // try 10ms
+
+        Sequence("WaitForStopAfterReset");
+      </block>
+        </sequence>
+        <sequence name="ResetSystemCore1" disable="1"/>
+        <sequence name="ResetProcessorCore0" disable="1"/>
+        <sequence name="ResetProcessorCore1">
+          <block>
+        __var SYSCON_NS_Base_Addr = 0x40000000;
+        __var CPUCTRL_Addr        = SYSCON_NS_Base_Addr + 0x800;
+        __var value               = 0;
+        __var apOrg               = __ap;
+
+        __ap = 0;                           // Switch to CPU0 AP to drive CPU1 reset via CPUCTRL register
+
+        value      = Read32(CPUCTRL_Addr);  // Read CPUCTRL Register
+        value &amp;= 0x0000FFFF;            // Preserve previous settings
+        value     |= 0xC0C40000;            // Set key value
+        value     |= 0x00000028;            // Set CPU1CLKEN and CPU1RSTEN
+        Write32(CPUCTRL_Addr, value);       // Put CPU1 into reset
+
+        value &amp;= ~0x00000020;           // Clear CPU1RSTEN
+        Write32(CPUCTRL_Addr, value);       // Release CPU1 from reset
+
+        __ap = apOrg;
+      </block>
+        </sequence>
+        <sequence name="TraceStart">
+          <control if="__traceout &amp; 0x1" info="SWO Trace output selected">
+            <block>
+          Sequence("EnableTraceClk");       // Enable and configure trace clock
+        </block>
+            <control if="SWO_Pin == 0" info="SWO via PIO0_10">
+              <block>
+            Write32(0x40001028, 0x00000046); // Configure PIO0_10: FUNC - 6, MODE - 0, SLEW - 1, INVERT - 0, DIGMODE - 0, OD - 0
+          </block>
+            </control>
+            <control if="SWO_Pin == 1" info="SWO via PIO0_8">
+              <block>
+            Write32(0x40001020, 0x00000044); // Configure PIO0_10: FUNC - 4, MODE - 0, SLEW - 1, INVERT - 0, DIGMODE - 0, OD - 0
+          </block>
+            </control>
+          </control>
+        </sequence>
+      </sequences>
+      <debugvars configfile="arm/LPC55xx.dbgconf">
+  // Debug Access Variables, can be modified by user via copies of DBGCONF files as created by uVision. Also see sub-family level.
+  __var SWO_Pin               = 0;                    // Serial Wire Output pin: 0 = PIO0_10, 1 = PIO0_8
+  __var Dbg_CR                = 0x00000000;           // DBG_CR
+  __var BootTime              = 10000;                // 10 milliseconds
+</debugvars>
+      <description>The LPC55xx/LPC55Sxx is an ARM Cortex M33 based micro-controller for embedded applications. These devices include up to 320 KB of on-chip SRAM, up to 640 KB on-chip flash, high-speed and full-speed USB host and device interface with crystal-less operation for full-speed, five general-purpose timers, one SCTimer/PWM, one RTC/alarm timer, one 24-bit Multi-Rate Timer (MRT), a Windowed Watchdog Timer (WWDT), eight flexible serial communication peripherals (each of which can be a USART, SPI, I2C, or I2S interface), one 16-bit 1.0 Msamples/sec ADC, temperature sensor.</description>
+      <device Dname="LPC55S69">
+        <processor Pname="cm33_core0" Dcore="Cortex-M33" Dfpu="SP_FPU" Dmpu="MPU" Dtz="TZ" Ddsp="DSP" Dendian="Little-endian" Dclock="100000000"/>
+        <processor Pname="cm33_core1" Dcore="Cortex-M33" Dfpu="NO_FPU" Dmpu="NO_MPU" Dtz="NO_TZ" Ddsp="NO_DSP" Dendian="Little-endian" Dclock="100000000"/>
+        <environment Pname="cm33_core0" name="iar">
+          <file category="linkerfile" name="iar/LPC55S69_cm33_core0_flash.icf"/>
+        </environment>
+        <environment Pname="cm33_core1" name="iar">
+          <file category="linkerfile" name="iar/LPC55S69_cm33_core0_flash.icf"/>
+        </environment>
+        <sequences>
+          <sequence name="DebugDeviceUnlock" Pname="cm33_core0">
+            <block>
+          Sequence("DebugDeviceUnlockCore0");
+      </block>
+          </sequence>
+          <sequence name="DebugDeviceUnlock" Pname="cm33_core1">
+            <block>
+          Sequence("DebugDeviceUnlockCore1");
+      </block>
+          </sequence>
+          <sequence name="ResetCatchSet" Pname="cm33_core0">
+            <block>
+          Sequence("ResetCatchSetCore0");
+      </block>
+          </sequence>
+          <sequence name="ResetCatchSet" Pname="cm33_core1">
+            <block>
+          Sequence("ResetCatchSetCore1");
+      </block>
+          </sequence>
+          <sequence name="ResetSystem" Pname="cm33_core0">
+            <block>
+          Sequence("ResetSystemCore0");
+      </block>
+          </sequence>
+          <sequence name="ResetProcessor" Pname="cm33_core1">
+            <block>
+          Sequence("ResetProcessorCore1");
+      </block>
+          </sequence>
+        </sequences>
+        <memory name="PROGRAM_FLASH" start="0x00000000" size="0x098000" access="rx" default="1" startup="1"/>
+        <memory name="SRAM" start="0x20000000" size="0x044000" access="rw" default="1"/>
+        <memory name="SRAMX" start="0x04000000" size="0x8000" access="rw"/>
+        <memory name="USB_RAM" start="0x40100000" size="0x4000" access="rw"/>
+        <algorithm name="arm/LPC55XX_640.FLM" start="0x00000000" size="0x00098000" RAMstart="0x20000000" RAMsize="0x00001000" default="1"/>
+        <algorithm name="arm/LPC55XX_S_640.FLM" start="0x10000000" size="0x00098000" RAMstart="0x20000000" RAMsize="0x00001000" default="1"/>
+        <debug svd="LPC55S69_cm33_core0.xml" Pname="cm33_core0" __dp="0" __ap="0"/>
+        <debug svd="LPC55S69_cm33_core1.xml" Pname="cm33_core1" __dp="0" __ap="1"/>
+        <variant Dvariant="LPC55S69JBD100">
+          <compile Pname="cm33_core0" header="fsl_device_registers.h" define="CPU_LPC55S69JBD100_cm33_core0"/>
+          <compile Pname="cm33_core1" header="fsl_device_registers.h" define="CPU_LPC55S69JBD100_cm33_core1"/>
+          <environment Pname="cm33_core0" name="uv">
+            <CMisc>--C99</CMisc>
+            <LMisc>--scatter "./RTE/Device/LPC55S69JBD100_cm33/LPC55S69_cm33_core0_flash.scf"</LMisc>
+          </environment>
+          <environment Pname="cm33_core1" name="uv">
+            <CMisc>--C99</CMisc>
+            <LMisc>--scatter "./RTE/Device/LPC55S69JBD100_cm33/LPC55S69_cm33_core0_flash.scf"</LMisc>
+          </environment>
+        </variant>
+        <variant Dvariant="LPC55S69JET98">
+          <compile Pname="cm33_core0" header="fsl_device_registers.h" define="CPU_LPC55S69JET98_cm33_core0"/>
+          <compile Pname="cm33_core1" header="fsl_device_registers.h" define="CPU_LPC55S69JET98_cm33_core1"/>
+          <environment Pname="cm33_core0" name="uv">
+            <CMisc>--C99</CMisc>
+            <LMisc>--scatter "./RTE/Device/LPC55S69JET98_cm33/LPC55S69_cm33_core0_flash.scf"</LMisc>
+          </environment>
+          <environment Pname="cm33_core1" name="uv">
+            <CMisc>--C99</CMisc>
+            <LMisc>--scatter "./RTE/Device/LPC55S69JET98_cm33/LPC55S69_cm33_core0_flash.scf"</LMisc>
+          </environment>
+        </variant>
+      </device>
+    </family>
+  </devices>
+  <conditions>
+    <condition id="cond_MCUXpressoConfigTools">
+      <accept Dname="LPC55S69*" Dvendor="NXP:11"/>
+      <require Cclass="CMSIS" Cgroup="CORE"/>
+    </condition>
+    <condition id="device.LPC55S69_AND_driver.common_AND_driver.power">
+      <accept Dname="LPC55S69*" Dvendor="NXP:11"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="power"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="common"/>
+    </condition>
+    <condition id="device.LPC55S69_AND_driver.lpc_dma">
+      <accept Dname="LPC55S69*" Dvendor="NXP:11"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="dma"/>
+    </condition>
+    <condition id="device.LPC55S69_AND_driver.common">
+      <accept Dname="LPC55S69*" Dvendor="NXP:11"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="common"/>
+    </condition>
+    <condition id="core_id.cm33_core0_AND_core_type.cm33_AND_mdk">
+      <require Tcompiler="ARMCC"/>
+      <require Dcore="Cortex-M33"/>
+      <require Pname="cm33_core0"/>
+    </condition>
+    <condition id="core_id.cm33_core1_AND_core_type.cm33_AND_mdk">
+      <require Tcompiler="ARMCC"/>
+      <require Dcore="Cortex-M33"/>
+      <require Pname="cm33_core1"/>
+    </condition>
+    <condition id="core_id.cm33_core0_AND_core_type.cm33_AND_iar">
+      <require Tcompiler="IAR"/>
+      <require Dcore="Cortex-M33"/>
+      <require Pname="cm33_core0"/>
+    </condition>
+    <condition id="core_id.cm33_core1_AND_core_type.cm33_AND_iar">
+      <require Tcompiler="IAR"/>
+      <require Dcore="Cortex-M33"/>
+      <require Pname="cm33_core1"/>
+    </condition>
+    <condition id="device.LPC55S69">
+      <accept Dname="LPC55S69*" Dvendor="NXP:11"/>
+    </condition>
+    <condition id="device.LPC55S69_AND_CMSIS_Driver_Include.USART_AND_RTE_Device_AND_driver.flexcomm_usart_dma">
+      <accept Dname="LPC55S69*" Dvendor="NXP:11"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="usart_dma"/>
+      <require Cclass="CMSIS Driver" Cgroup="USART" Capiversion="2.3.0"/>
+      <require Cclass="Device" Cgroup="SDK Project Template" Csub="RTE_Device"/>
+    </condition>
+    <condition id="device.LPC55S69_AND_CMSIS_Driver_Include.I2C_AND_RTE_Device_AND_driver.flexcomm_i2c_dma">
+      <accept Dname="LPC55S69*" Dvendor="NXP:11"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="i2c_dma"/>
+      <require Cclass="CMSIS Driver" Cgroup="I2C" Capiversion="2.3.0"/>
+      <require Cclass="Device" Cgroup="SDK Project Template" Csub="RTE_Device"/>
+    </condition>
+    <condition id="device.LPC55S69_AND_CMSIS_Driver_Include.SPI_AND_RTE_Device_AND_driver.flexcomm_spi_dma">
+      <accept Dname="LPC55S69*" Dvendor="NXP:11"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="spi_dma"/>
+      <require Cclass="CMSIS Driver" Cgroup="SPI" Capiversion="2.2.0"/>
+      <require Cclass="Device" Cgroup="SDK Project Template" Csub="RTE_Device"/>
+    </condition>
+    <condition id="device.LPC55S69_AND_driver.flexcomm_i2s_AND_driver.lpc_dma">
+      <accept Dname="LPC55S69*" Dvendor="NXP:11"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="flexcomm_i2s"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="dma"/>
+    </condition>
+    <condition id="device.LPC55S69_AND_driver.common_AND_driver.flexcomm">
+      <accept Dname="LPC55S69*" Dvendor="NXP:11"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="flexcomm"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="common"/>
+    </condition>
+    <condition id="device.LPC55S69_AND_utility.debug_console">
+      <accept Dname="LPC55S69*" Dvendor="NXP:11"/>
+      <require Cclass="Device" Cgroup="SDK Utilities" Csub="debug_console"/>
+    </condition>
+    <condition id="device.LPC55S69_AND_component.lists_AND_utility.debug_console">
+      <accept Dname="LPC55S69*" Dvendor="NXP:11"/>
+      <require Cclass="Device" Cgroup="SDK Utilities" Csub="debug_console"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="lists"/>
+    </condition>
+    <condition id="device.LPC55S69_AND_driver.flexcomm_AND_driver.flexcomm_spi_AND_driver.lpc_dma">
+      <accept Dname="LPC55S69*" Dvendor="NXP:11"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="flexcomm"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="spi"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="dma"/>
+    </condition>
+    <condition id="device.LPC55S69_AND_driver.common_AND_driver.flexcomm_AND_driver.flexcomm_i2c_AND_driver.lpc_dma">
+      <accept Dname="LPC55S69*" Dvendor="NXP:11"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="flexcomm"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="common"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="i2c"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="dma"/>
+    </condition>
+    <condition id="device.LPC55S69_AND_driver.common_AND_driver.inputmux_connections">
+      <accept Dname="LPC55S69*" Dvendor="NXP:11"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="common"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="inputmux_connections"/>
+    </condition>
+    <condition id="device.LPC55S69_AND_driver.flexcomm_usart">
+      <accept Dname="LPC55S69*" Dvendor="NXP:11"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="usart"/>
+    </condition>
+    <condition id="device.LPC55S69_AND_component.serial_manager_AND_driver.common">
+      <accept Dname="LPC55S69*" Dvendor="NXP:11"/>
+      <require Cclass="Device" Cgroup="SDK Utilities" Csub="serial_manager"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="common"/>
+    </condition>
+    <condition id="device.LPC55S69_AND_driver.flexcomm_AND_driver.flexcomm_usart_AND_driver.lpc_dma">
+      <accept Dname="LPC55S69*" Dvendor="NXP:11"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="flexcomm"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="usart"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="dma"/>
+    </condition>
+    <condition id="device.LPC55S69_AND_driver.flexcomm">
+      <accept Dname="LPC55S69*" Dvendor="NXP:11"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="flexcomm"/>
+    </condition>
+    <condition id="device.LPC55S69_AND_device.LPC55S69_CMSIS_AND_driver.clock_AND_driver.reset">
+      <accept Dname="LPC55S69*" Dvendor="NXP:11"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="clock"/>
+      <require Cclass="Device" Cgroup="Startup"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="reset"/>
+    </condition>
+    <condition id="device.LPC55S69_AND_component.serial_manager_uart_AND_component.usart_adapter_AND_device.LPC55S69_startup_AND_driver.clock_AND_driver.common_AND_driver.flexcomm_i2c_AND_driver.flexcomm_spi_AND_driver.flexcomm_usart_AND_driver.lpc_gpio_AND_driver.lpc_iocon_AND_driver.power_AND_driver.reset_AND_utility.debug_console">
+      <accept Dname="LPC55S69*" Dvendor="NXP:11"/>
+      <require Cclass="Device" Cgroup="SDK Utilities" Csub="serial_manager_uart"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="usart_adapter"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="usart"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="i2c"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="gpio"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="iocon"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="spi"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="power"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="reset"/>
+      <require Cclass="Device" Cgroup="Startup"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="common"/>
+      <require Cclass="Device" Cgroup="SDK Utilities" Csub="debug_console"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="clock"/>
+    </condition>
+    <condition id="device.LPC55S69_AND_CMSIS_Include_core_cm33">
+      <accept Dname="LPC55S69*" Dvendor="NXP:11"/>
+      <require Cclass="CMSIS" Cgroup="CORE"/>
+    </condition>
+    <condition id="core_id.cm33_core0_OR_core_id.cm33_core1">
+      <accept Pname="cm33_core0"/>
+      <accept Pname="cm33_core1"/>
+    </condition>
+    <condition id="core_type.cm33">
+      <require Dcore="Cortex-M33"/>
+      <require condition="core_id.cm33_core0_OR_core_id.cm33_core1"/>
+    </condition>
+    <condition id="core_id.cm33_core0_AND_core_type.cm33">
+      <require Dcore="Cortex-M33"/>
+      <require Pname="cm33_core0"/>
+    </condition>
+    <condition id="core_id.cm33_core1_AND_core_type.cm33">
+      <require Dcore="Cortex-M33"/>
+      <require Pname="cm33_core1"/>
+    </condition>
+  </conditions>
+  <components>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="clock" Cversion="2.1.0" condition="device.LPC55S69_AND_driver.common_AND_driver.power">
+      <description>Clock Driver</description>
+      <files>
+        <file category="header" name="drivers/fsl_clock.h"/>
+        <file category="sourceC" name="drivers/fsl_clock.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Project Template" Csub="RTE_Device" Cversion="1.0.0" condition="device.LPC55S69_AND_driver.lpc_dma">
+      <description/>
+      <files>
+        <file category="header" attr="config" name="template/RTE_Device.h"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="anactrl" Cversion="2.0.0" condition="device.LPC55S69_AND_driver.common">
+      <description>anactrl Driver</description>
+      <files>
+        <file category="header" name="drivers/fsl_anactrl.h"/>
+        <file category="sourceC" name="drivers/fsl_anactrl.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="cmp_1" Cversion="2.0.0" condition="device.LPC55S69_AND_driver.common">
+      <description>cmp_1 Driver</description>
+      <files>
+        <file category="header" name="drivers/fsl_cmp.h"/>
+        <file category="sourceC" name="drivers/fsl_cmp.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="ostimer" Cversion="2.0.0" condition="device.LPC55S69_AND_driver.common">
+      <description>OSTimer Driver</description>
+      <files>
+        <file category="header" name="drivers/fsl_ostimer.h"/>
+        <file category="sourceC" name="drivers/fsl_ostimer.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="sysctl" Cversion="2.0.1" condition="device.LPC55S69_AND_driver.common">
+      <description>SYSCTL Driver</description>
+      <files>
+        <file category="header" name="drivers/fsl_sysctl.h"/>
+        <file category="sourceC" name="drivers/fsl_sysctl.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="PUF" Cversion="2.0.0" condition="device.LPC55S69_AND_driver.common">
+      <description>PUF Driver</description>
+      <files>
+        <file category="header" name="drivers/fsl_puf.h"/>
+        <file category="sourceC" name="drivers/fsl_puf.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="plu" Cversion="2.0.1" condition="device.LPC55S69_AND_driver.common">
+      <description>PLU Driver</description>
+      <files>
+        <file category="header" name="drivers/fsl_plu.h"/>
+        <file category="sourceC" name="drivers/fsl_plu.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="PRINCE" Cversion="2.0.0" condition="device.LPC55S69_AND_driver.common">
+      <description>PRINCE Driver</description>
+      <files>
+        <file category="sourceC" name="drivers/fsl_prince.c"/>
+        <file category="header" name="drivers/fsl_prince.h"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="power" Cversion="2.0.0" condition="device.LPC55S69_AND_driver.common">
+      <description>Power driver with Power Lib Hard ABI</description>
+      <files>
+        <file category="header" name="drivers/fsl_power.h"/>
+        <file category="sourceC" name="drivers/fsl_power.c"/>
+        <file condition="core_id.cm33_core0_AND_core_type.cm33_AND_mdk" category="library" name="arm/keil_lib_power_cm33_core0.lib"/>
+        <file condition="core_id.cm33_core1_AND_core_type.cm33_AND_mdk" category="library" name="arm/keil_lib_power_cm33_core1.lib"/>
+        <file condition="core_id.cm33_core0_AND_core_type.cm33_AND_iar" category="library" name="iar/iar_lib_power_cm33_core0.a"/>
+        <file condition="core_id.cm33_core1_AND_core_type.cm33_AND_iar" category="library" name="iar/iar_lib_power_cm33_core1.a"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="wm8904" Cversion="2.0.2" condition="device.LPC55S69">
+      <description/>
+      <files>
+        <file category="header" name="components/codec/wm8904/fsl_wm8904.h"/>
+        <file category="sourceC" name="components/codec/wm8904/fsl_wm8904.c"/>
+        <file category="header" name="components/codec/fsl_codec_common.h"/>
+        <file category="sourceC" name="components/codec/fsl_codec_common.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="mma8652fc" Cversion="1.0.0" condition="device.LPC55S69">
+      <description/>
+      <files>
+        <file category="header" name="components/mma8652fc/fsl_mma.h"/>
+        <file category="sourceC" name="components/mma8652fc/fsl_mma.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="ili9341" Cversion="1.0.0" condition="device.LPC55S69">
+      <description/>
+      <files>
+        <file category="header" name="components/ili9341/fsl_ili9341.h"/>
+        <file category="sourceC" name="components/ili9341/fsl_ili9341.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="ft6x06" Cversion="1.0.0" condition="device.LPC55S69">
+      <description/>
+      <files>
+        <file category="header" name="components/ft6x06/fsl_ft6x06.h"/>
+        <file category="sourceC" name="components/ft6x06/fsl_ft6x06.c"/>
+      </files>
+    </component>
+    <component Cclass="CMSIS Driver" Cgroup="USART" Csub="flexcomm_usart_cmsis" Cversion="2.0.0" condition="device.LPC55S69_AND_CMSIS_Driver_Include.USART_AND_RTE_Device_AND_driver.flexcomm_usart_dma">
+      <description>USART CMSIS Driver</description>
+      <files>
+        <file category="header" name="cmsis_drivers/fsl_usart_cmsis.h"/>
+        <file category="sourceC" name="cmsis_drivers/fsl_usart_cmsis.c"/>
+      </files>
+    </component>
+    <component Cclass="CMSIS Driver" Cgroup="I2C" Csub="flexcomm_i2c_cmsis" Cversion="2.0.0" condition="device.LPC55S69_AND_CMSIS_Driver_Include.I2C_AND_RTE_Device_AND_driver.flexcomm_i2c_dma">
+      <description>I2C CMSIS Driver</description>
+      <files>
+        <file category="header" name="cmsis_drivers/fsl_i2c_cmsis.h"/>
+        <file category="sourceC" name="cmsis_drivers/fsl_i2c_cmsis.c"/>
+      </files>
+    </component>
+    <component Cclass="CMSIS Driver" Cgroup="SPI" Csub="flexcomm_spi_cmsis" Cversion="2.0.0" condition="device.LPC55S69_AND_CMSIS_Driver_Include.SPI_AND_RTE_Device_AND_driver.flexcomm_spi_dma">
+      <description>SPI CMSIS Driver</description>
+      <files>
+        <file category="header" name="cmsis_drivers/fsl_spi_cmsis.h"/>
+        <file category="sourceC" name="cmsis_drivers/fsl_spi_cmsis.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="sdif" Cversion="2.0.10" condition="device.LPC55S69_AND_driver.common">
+      <description>sdif Driver</description>
+      <files>
+        <file category="sourceC" name="drivers/fsl_sdif.c"/>
+        <file category="header" name="drivers/fsl_sdif.h"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="lpadc" Cversion="2.0.3" condition="device.LPC55S69_AND_driver.common">
+      <description>LPADC Driver</description>
+      <files>
+        <file category="sourceC" name="drivers/fsl_lpadc.c"/>
+        <file category="header" name="drivers/fsl_lpadc.h"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="flexcomm_i2s_dma" Cversion="2.0.1" condition="device.LPC55S69_AND_driver.flexcomm_i2s_AND_driver.lpc_dma">
+      <description>I2S Driver</description>
+      <files>
+        <file category="header" name="drivers/fsl_i2s_dma.h"/>
+        <file category="sourceC" name="drivers/fsl_i2s_dma.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="flexcomm_i2s" Cversion="2.0.2" condition="device.LPC55S69_AND_driver.common_AND_driver.flexcomm">
+      <description>I2S Driver</description>
+      <files>
+        <file category="header" name="drivers/fsl_i2s.h"/>
+        <file category="sourceC" name="drivers/fsl_i2s.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Utilities" Csub="assert" Cversion="1.0.0" condition="device.LPC55S69_AND_utility.debug_console">
+      <description/>
+      <files>
+        <file category="sourceC" name="utilities/fsl_assert.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Utilities" Csub="notifier" Cversion="1.0.0" condition="device.LPC55S69_AND_driver.common">
+      <description/>
+      <files>
+        <file category="sourceC" name="utilities/fsl_notifier.c"/>
+        <file category="header" name="utilities/fsl_notifier.h"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Utilities" Csub="shell" Cversion="1.0.0" condition="device.LPC55S69_AND_component.lists_AND_utility.debug_console">
+      <description/>
+      <files>
+        <file category="sourceC" name="utilities/fsl_shell.c"/>
+        <file category="header" name="utilities/fsl_shell.h"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="casper" Cversion="2.0.2" condition="device.LPC55S69_AND_driver.common">
+      <description>CASPER Driver</description>
+      <files>
+        <file category="header" name="drivers/fsl_casper.h"/>
+        <file category="sourceC" name="drivers/fsl_casper.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="rng" Cversion="2.0.0" condition="device.LPC55S69_AND_driver.common">
+      <description>RNG Driver</description>
+      <files>
+        <file category="header" name="drivers/fsl_rng.h"/>
+        <file category="sourceC" name="drivers/fsl_rng.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="wwdt" Cversion="2.1.1" condition="device.LPC55S69_AND_driver.common">
+      <description>WWDT Driver</description>
+      <files>
+        <file category="header" name="drivers/fsl_wwdt.h"/>
+        <file category="sourceC" name="drivers/fsl_wwdt.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="gint" Cversion="2.0.1" condition="device.LPC55S69_AND_driver.common">
+      <description>GINT Driver</description>
+      <files>
+        <file category="header" name="drivers/fsl_gint.h"/>
+        <file category="sourceC" name="drivers/fsl_gint.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="pint" Cversion="2.0.4" condition="device.LPC55S69_AND_driver.common">
+      <description>PINT Driver</description>
+      <files>
+        <file category="header" name="drivers/fsl_pint.h"/>
+        <file category="sourceC" name="drivers/fsl_pint.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="spi_dma" Cversion="2.0.3" condition="device.LPC55S69_AND_driver.flexcomm_AND_driver.flexcomm_spi_AND_driver.lpc_dma">
+      <description>SPI Driver</description>
+      <files>
+        <file category="sourceC" name="drivers/fsl_spi_dma.c"/>
+        <file category="header" name="drivers/fsl_spi_dma.h"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="lpc_rtc" Cversion="2.0.0" condition="device.LPC55S69_AND_driver.common">
+      <description>RTC Driver</description>
+      <files>
+        <file category="header" name="drivers/fsl_rtc.h"/>
+        <file category="sourceC" name="drivers/fsl_rtc.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="mrt" Cversion="2.0.1" condition="device.LPC55S69_AND_driver.common">
+      <description>MRT Driver</description>
+      <files>
+        <file category="header" name="drivers/fsl_mrt.h"/>
+        <file category="sourceC" name="drivers/fsl_mrt.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="i2c_dma" Cversion="2.0.3" condition="device.LPC55S69_AND_driver.common_AND_driver.flexcomm_AND_driver.flexcomm_i2c_AND_driver.lpc_dma">
+      <description>I2C Driver</description>
+      <files>
+        <file category="sourceC" name="drivers/fsl_i2c_dma.c"/>
+        <file category="header" name="drivers/fsl_i2c_dma.h"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="inputmux_connections" Cversion="2.0.0" condition="device.LPC55S69_AND_driver.common">
+      <description>Inputmux_connections Driver</description>
+      <files>
+        <file category="header" name="drivers/fsl_inputmux_connections.h"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="inputmux" Cversion="2.0.0" condition="device.LPC55S69_AND_driver.common_AND_driver.inputmux_connections">
+      <description>INPUTMUX Driver</description>
+      <files>
+        <file category="header" name="drivers/fsl_inputmux.h"/>
+        <file category="sourceC" name="drivers/fsl_inputmux.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="utick" Cversion="2.0.2" condition="device.LPC55S69_AND_driver.common">
+      <description>UTICK Driver</description>
+      <files>
+        <file category="header" name="drivers/fsl_utick.h"/>
+        <file category="sourceC" name="drivers/fsl_utick.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="spi" Cversion="2.0.3" condition="device.LPC55S69_AND_driver.common_AND_driver.flexcomm">
+      <description>SPI Driver</description>
+      <files>
+        <file category="sourceC" name="drivers/fsl_spi.c"/>
+        <file category="header" name="drivers/fsl_spi.h"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="sctimer" Cversion="2.0.1" condition="device.LPC55S69_AND_driver.common">
+      <description>SCT Driver</description>
+      <files>
+        <file category="header" name="drivers/fsl_sctimer.h"/>
+        <file category="sourceC" name="drivers/fsl_sctimer.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="ctimer" Cversion="2.0.2" condition="device.LPC55S69_AND_driver.common">
+      <description>CTimer Driver</description>
+      <files>
+        <file category="header" name="drivers/fsl_ctimer.h"/>
+        <file category="sourceC" name="drivers/fsl_ctimer.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="lpc_crc" Cversion="2.0.1" condition="device.LPC55S69_AND_driver.common">
+      <description>CRC Driver</description>
+      <files>
+        <file category="header" name="drivers/fsl_crc.h"/>
+        <file category="sourceC" name="drivers/fsl_crc.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="iap" Cversion="2.0.0" condition="device.LPC55S69_AND_driver.common">
+      <description>FLASHIAP Driver</description>
+      <files>
+        <file category="header" name="drivers/fsl_iap.h"/>
+        <file category="sourceC" name="drivers/fsl_iap.c"/>
+        <file category="header" name="drivers/fsl_iap_ffr.h"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="i2c" Cversion="2.0.3" condition="device.LPC55S69_AND_driver.common_AND_driver.flexcomm">
+      <description>I2C Driver</description>
+      <files>
+        <file category="header" name="drivers/fsl_i2c.h"/>
+        <file category="sourceC" name="drivers/fsl_i2c.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="dma" Cversion="2.0.0" condition="device.LPC55S69_AND_driver.common">
+      <description>DMA Driver</description>
+      <files>
+        <file category="sourceC" name="drivers/fsl_dma.c"/>
+        <file category="header" name="drivers/fsl_dma.h"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="usart_adapter" Cversion="1.0.0" condition="device.LPC55S69_AND_driver.flexcomm_usart">
+      <description/>
+      <files>
+        <file category="header" name="components/uart/uart.h"/>
+        <file category="sourceC" name="components/uart/usart_adapter.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="lists" Cversion="1.0.0" condition="device.LPC55S69">
+      <description/>
+      <files>
+        <file category="header" name="components/lists/generic_list.h"/>
+        <file category="sourceC" name="components/lists/generic_list.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Utilities" Csub="serial_manager" Cversion="1.0.0" condition="device.LPC55S69">
+      <description/>
+      <files>
+        <file category="header" name="components/serial_manager/serial_manager.h"/>
+        <file category="sourceC" name="components/serial_manager/serial_manager.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Utilities" Csub="serial_manager_uart" Cversion="1.0.0" condition="device.LPC55S69_AND_driver.flexcomm_usart">
+      <description/>
+      <files>
+        <file category="header" name="components/serial_manager/serial_port_uart.h"/>
+        <file category="sourceC" name="components/serial_manager/serial_port_uart.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Utilities" Csub="serial_manager_usb_config" Cversion="1.0.0" condition="device.LPC55S69">
+      <description/>
+      <files>
+        <file category="header" name="utilities/usb_device_config.h"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Utilities" Csub="debug_console" Cversion="1.0.0" condition="device.LPC55S69_AND_component.serial_manager_AND_driver.common">
+      <description/>
+      <files>
+        <file category="sourceC" name="utilities/str/fsl_str.c"/>
+        <file category="header" name="utilities/str/fsl_str.h"/>
+        <file category="sourceC" name="utilities/debug_console/fsl_debug_console.c"/>
+        <file category="header" name="utilities/debug_console/fsl_debug_console.h"/>
+        <file category="header" name="utilities/debug_console/fsl_debug_console_conf.h"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="powerquad" Cversion="2.0.0" condition="device.LPC55S69_AND_driver.common">
+      <description>POWERQUAD Driver</description>
+      <RTE_Components_h>
+#define ARM_MATH_CM33 
+</RTE_Components_h>
+      <files>
+        <file category="header" name="drivers/fsl_powerquad_data.h"/>
+        <file category="sourceC" name="drivers/fsl_powerquad_data.c"/>
+        <file category="header" name="drivers/fsl_powerquad.h"/>
+        <file category="sourceC" name="drivers/fsl_powerquad_basic.c"/>
+        <file category="sourceC" name="drivers/fsl_powerquad_math.c"/>
+        <file category="sourceC" name="drivers/fsl_powerquad_matrix.c"/>
+        <file category="sourceC" name="drivers/fsl_powerquad_filter.c"/>
+        <file category="sourceC" name="drivers/fsl_powerquad_transform.c"/>
+        <file category="sourceC" name="drivers/fsl_powerquad_cmsis.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="reset" Cversion="2.0.0" condition="device.LPC55S69_AND_driver.common">
+      <description>Reset Driver</description>
+      <files>
+        <file category="header" name="drivers/fsl_reset.h"/>
+        <file category="sourceC" name="drivers/fsl_reset.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="mailbox" Cversion="2.0.0" condition="device.LPC55S69_AND_driver.common">
+      <description>MAILBOX Driver</description>
+      <files>
+        <file category="header" name="drivers/fsl_mailbox.h"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="hashcrypt" Cversion="2.0.0" condition="device.LPC55S69_AND_driver.common">
+      <description>Hashcrypt Driver</description>
+      <files>
+        <file category="header" name="drivers/fsl_hashcrypt.h"/>
+        <file category="sourceC" name="drivers/fsl_hashcrypt.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="iocon" Cversion="2.0.0" condition="device.LPC55S69_AND_driver.common">
+      <description>IOCON Driver</description>
+      <files>
+        <file category="header" name="drivers/fsl_iocon.h"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="gpio" Cversion="2.1.3" condition="device.LPC55S69_AND_driver.common">
+      <description>GPIO Driver</description>
+      <files>
+        <file category="header" name="drivers/fsl_gpio.h"/>
+        <file category="sourceC" name="drivers/fsl_gpio.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="flexcomm" Cversion="2.0.0" condition="device.LPC55S69_AND_driver.common">
+      <description>FLEXCOMM Driver</description>
+      <files>
+        <file category="header" name="drivers/fsl_flexcomm.h"/>
+        <file category="sourceC" name="drivers/fsl_flexcomm.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="usart_dma" Cversion="2.0.1" condition="device.LPC55S69_AND_driver.flexcomm_AND_driver.flexcomm_usart_AND_driver.lpc_dma">
+      <description>USART Driver</description>
+      <files>
+        <file category="header" name="drivers/fsl_usart_dma.h"/>
+        <file category="sourceC" name="drivers/fsl_usart_dma.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="usart" Cversion="2.0.3" condition="device.LPC55S69_AND_driver.flexcomm">
+      <description>USART Driver</description>
+      <files>
+        <file category="header" name="drivers/fsl_usart.h"/>
+        <file category="sourceC" name="drivers/fsl_usart.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="common" Cversion="2.0.1" condition="device.LPC55S69_AND_device.LPC55S69_CMSIS_AND_driver.clock_AND_driver.reset">
+      <description>COMMON Driver</description>
+      <files>
+        <file category="header" name="drivers/fsl_common.h"/>
+        <file category="sourceC" name="drivers/fsl_common.c"/>
+      </files>
+    </component>
+    <component Cclass="Board Support" Cgroup="SDK Project Template" Csub="project_template" Cvariant="LPC55S69" Cversion="1.0.0" condition="device.LPC55S69_AND_component.serial_manager_uart_AND_component.usart_adapter_AND_device.LPC55S69_startup_AND_driver.clock_AND_driver.common_AND_driver.flexcomm_i2c_AND_driver.flexcomm_spi_AND_driver.flexcomm_usart_AND_driver.lpc_gpio_AND_driver.lpc_iocon_AND_driver.power_AND_driver.reset_AND_utility.debug_console" isDefaultVariant="1">
+      <description/>
+      <files>
+        <file category="header" attr="config" name="project_template/board.h"/>
+        <file category="sourceC" attr="config" name="project_template/board.c"/>
+        <file category="header" attr="config" name="project_template/clock_config.h"/>
+        <file category="sourceC" attr="config" name="project_template/clock_config.c"/>
+        <file category="header" attr="config" name="project_template/pin_mux.h"/>
+        <file category="sourceC" attr="config" name="project_template/pin_mux.c"/>
+        <file category="header" attr="config" name="project_template/peripherals.h"/>
+        <file category="sourceC" attr="config" name="project_template/peripherals.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="Startup" Cversion="1.0.0" condition="device.LPC55S69_AND_CMSIS_Include_core_cm33">
+      <description/>
+      <files>
+        <file condition="core_id.cm33_core0_AND_core_type.cm33_AND_mdk" category="sourceAsm" attr="config" name="arm/startup_LPC55S69_cm33_core0.s"/>
+        <file condition="core_id.cm33_core1_AND_core_type.cm33_AND_mdk" category="sourceAsm" attr="config" name="arm/startup_LPC55S69_cm33_core1.s"/>
+        <file condition="core_id.cm33_core0_AND_core_type.cm33_AND_iar" category="sourceAsm" attr="config" name="iar/startup_LPC55S69_cm33_core0.s"/>
+        <file condition="core_id.cm33_core1_AND_core_type.cm33_AND_iar" category="sourceAsm" attr="config" name="iar/startup_LPC55S69_cm33_core1.s"/>
+        <file condition="core_id.cm33_core0_AND_core_type.cm33_AND_mdk" category="linkerScript" attr="config" name="arm/LPC55S69_cm33_core0_flash.scf"/>
+        <file condition="core_id.cm33_core0_AND_core_type.cm33_AND_mdk" category="linkerScript" attr="config" name="arm/LPC55S69_cm33_core0_flash_ns.scf"/>
+        <file condition="core_id.cm33_core0_AND_core_type.cm33_AND_mdk" category="linkerScript" attr="config" name="arm/LPC55S69_cm33_core0_flash_s.scf"/>
+        <file condition="core_id.cm33_core0_AND_core_type.cm33_AND_mdk" category="linkerScript" attr="config" name="arm/LPC55S69_cm33_core0_ram.scf"/>
+        <file condition="core_id.cm33_core1_AND_core_type.cm33_AND_mdk" category="linkerScript" attr="config" name="arm/LPC55S69_cm33_core1_flash.scf"/>
+        <file condition="core_id.cm33_core1_AND_core_type.cm33_AND_mdk" category="linkerScript" attr="config" name="arm/LPC55S69_cm33_core1_ram.scf"/>
+        <file condition="core_id.cm33_core1_AND_core_type.cm33_AND_mdk" category="linkerScript" attr="config" name="arm/LPC55S69_cm33_core1_ram_s.scf"/>
+        <file condition="core_id.cm33_core0_AND_core_type.cm33_AND_iar" category="linkerScript" attr="config" name="iar/LPC55S69_cm33_core0_flash.icf"/>
+        <file condition="core_id.cm33_core0_AND_core_type.cm33_AND_iar" category="linkerScript" attr="config" name="iar/LPC55S69_cm33_core0_flash_ns.icf"/>
+        <file condition="core_id.cm33_core0_AND_core_type.cm33_AND_iar" category="linkerScript" attr="config" name="iar/LPC55S69_cm33_core0_flash_s.icf"/>
+        <file condition="core_id.cm33_core0_AND_core_type.cm33_AND_iar" category="linkerScript" attr="config" name="iar/LPC55S69_cm33_core0_ram.icf"/>
+        <file condition="core_id.cm33_core1_AND_core_type.cm33_AND_iar" category="linkerScript" attr="config" name="iar/LPC55S69_cm33_core1_flash.icf"/>
+        <file condition="core_id.cm33_core1_AND_core_type.cm33_AND_iar" category="linkerScript" attr="config" name="iar/LPC55S69_cm33_core1_ram.icf"/>
+        <file condition="core_id.cm33_core1_AND_core_type.cm33_AND_iar" category="linkerScript" attr="config" name="iar/LPC55S69_cm33_core1_ram_s.icf"/>
+        <file condition="core_type.cm33" category="header" attr="config" name="fsl_device_registers.h"/>
+        <file condition="core_id.cm33_core0_AND_core_type.cm33" category="header" attr="config" name="LPC55S69_cm33_core0.h"/>
+        <file condition="core_id.cm33_core0_AND_core_type.cm33" category="header" attr="config" name="LPC55S69_cm33_core0_features.h"/>
+        <file condition="core_id.cm33_core0_AND_core_type.cm33" category="sourceC" attr="config" name="system_LPC55S69_cm33_core0.c"/>
+        <file condition="core_id.cm33_core0_AND_core_type.cm33" category="header" attr="config" name="system_LPC55S69_cm33_core0.h"/>
+        <file condition="core_id.cm33_core1_AND_core_type.cm33" category="header" attr="config" name="LPC55S69_cm33_core1.h"/>
+        <file condition="core_id.cm33_core1_AND_core_type.cm33" category="header" attr="config" name="LPC55S69_cm33_core1_features.h"/>
+        <file condition="core_id.cm33_core1_AND_core_type.cm33" category="sourceC" attr="config" name="system_LPC55S69_cm33_core1.c"/>
+        <file condition="core_id.cm33_core1_AND_core_type.cm33" category="header" attr="config" name="system_LPC55S69_cm33_core1.h"/>
+      </files>
+    </component>
+  </components>
+</package>

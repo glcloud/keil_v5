@@ -1,0 +1,7 @@
+//------------------------------------------------------------------------------ 
+//                                IMPORTANT !!!
+//------------------------------------------------------------------------------
+
+Latest Windows Driver Kit (WDK) has to be installed!!!
+If you install WinDDK version other than 7600.16385.1 you need to change 
+include path from C:\WinDDK\7600.16385.1\inc\api to appropriate one. 

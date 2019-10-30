@@ -1,0 +1,254 @@
+// Microsoft Visual C++ generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// Slovenian resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_SLV)
+#ifdef _WIN32
+LANGUAGE LANG_SLOVENIAN, SUBLANG_DEFAULT
+#pragma code_page(1250)
+#endif //_WIN32
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE 
+BEGIN
+    "#define _AFX_NO_SPLITTER_RESOURCES\r\n"
+    "#define _AFX_NO_OLE_RESOURCES\r\n"
+    "#define _AFX_NO_TRACKER_RESOURCES\r\n"
+    "#define _AFX_NO_PROPERTY_RESOURCES\r\n"
+    "\r\n"
+    "#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)\r\n"
+    "#ifdef _WIN32\r\n"
+    "LANGUAGE 9, 1\r\n"
+    "#pragma code_page(1252)\r\n"
+    "#endif //_WIN32\r\n"
+    "#include ""res\\HIDClient.rc2""  // non-Microsoft Visual C++ edited resources\r\n"
+    "#include ""afxres.rc""         // Standard components\r\n"
+    "#endif\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+#endif    // Slovenian resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+/////////////////////////////////////////////////////////////////////////////
+// English (U.S.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+#pragma code_page(1252)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_ABOUTBOX DIALOGEX 0, 0, 235, 55
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "About HID Client"
+FONT 8, "MS Sans Serif", 0, 0, 0x0
+BEGIN
+    ICON            IDR_MAINFRAME,IDR_MAINFRAME,11,17,20,20
+    LTEXT           "HIDClient Version 1.10",IDC_STATIC,40,10,124,8,SS_NOPREFIX
+    LTEXT           "Copyright (C) 2005-2007 Keil Software",IDC_STATIC,40,25,124,8
+    DEFPUSHBUTTON   "OK",IDOK,178,7,50,14,WS_GROUP
+END
+
+IDD_HIDCLIENT_DIALOG DIALOGEX 0, 0, 166, 118
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
+EXSTYLE WS_EX_APPWINDOW
+CAPTION "HID Client"
+FONT 8, "MS Sans Serif", 0, 0, 0x1
+BEGIN
+    COMBOBOX        IDC_DEVICE,40,16,114,64,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+    RTEXT           "Device:",IDC_STATIC,10,18,28,8
+    CHECKBOX        "",IDC_INPUT0,136,54,9,8,NOT WS_TABSTOP
+    CHECKBOX        "",IDC_INPUT1,124,54,9,8,NOT WS_TABSTOP
+    CHECKBOX        "",IDC_INPUT2,112,54,9,8,NOT WS_TABSTOP
+    CHECKBOX        "",IDC_INPUT3,100,54,9,8,NOT WS_TABSTOP
+    CHECKBOX        "",IDC_INPUT4,88,54,9,8,NOT WS_TABSTOP
+    CHECKBOX        "",IDC_INPUT5,76,54,9,8,NOT WS_TABSTOP
+    CHECKBOX        "",IDC_INPUT6,64,54,9,8,NOT WS_TABSTOP
+    CHECKBOX        "",IDC_INPUT7,52,54,9,8,NOT WS_TABSTOP
+    CONTROL         "",IDC_OUTPUT0,"Button",BS_AUTOCHECKBOX,136,92,9,8
+    CONTROL         "",IDC_OUTPUT1,"Button",BS_AUTOCHECKBOX,124,92,9,8
+    CONTROL         "",IDC_OUTPUT2,"Button",BS_AUTOCHECKBOX,112,92,9,8
+    CONTROL         "",IDC_OUTPUT3,"Button",BS_AUTOCHECKBOX,100,92,9,8
+    CONTROL         "",IDC_OUTPUT4,"Button",BS_AUTOCHECKBOX,88,92,9,8
+    CONTROL         "",IDC_OUTPUT5,"Button",BS_AUTOCHECKBOX,76,92,9,8
+    CONTROL         "",IDC_OUTPUT6,"Button",BS_AUTOCHECKBOX,64,92,9,8
+    CONTROL         "",IDC_OUTPUT7,"Button",BS_AUTOCHECKBOX,52,92,9,8
+    GROUPBOX        "Inputs (Buttons)",IDC_STATIC,12,34,142,36
+    GROUPBOX        "Outputs (LEDs)",IDC_STATIC,12,72,142,36
+    GROUPBOX        "Human Interface Device",IDC_STATIC,6,2,154,112
+    CTEXT           "7",IDC_STATIC,52,44,8,8
+    CTEXT           "6",IDC_STATIC,64,44,8,8
+    CTEXT           "5",IDC_STATIC,76,44,8,8
+    CTEXT           "3",IDC_STATIC,100,44,8,8
+    CTEXT           "2",IDC_STATIC,112,44,8,8
+    CTEXT           "4",IDC_STATIC,88,44,8,8
+    CTEXT           "1",IDC_STATIC,124,44,8,8
+    CTEXT           "0",IDC_STATIC,136,44,8,8
+    EDITTEXT        IDC_INPUT,20,50,24,12,ES_AUTOHSCROLL | ES_READONLY | NOT WS_TABSTOP
+    CTEXT           "7",IDC_STATIC,52,82,8,8
+    CTEXT           "6",IDC_STATIC,64,82,8,8
+    CTEXT           "5",IDC_STATIC,76,82,8,8
+    CTEXT           "3",IDC_STATIC,100,82,8,8
+    CTEXT           "2",IDC_STATIC,112,82,8,8
+    CTEXT           "4",IDC_STATIC,88,82,8,8
+    CTEXT           "1",IDC_STATIC,124,82,8,8
+    CTEXT           "0",IDC_STATIC,136,82,8,8
+    EDITTEXT        IDC_OUTPUT,20,88,24,12,ES_AUTOHSCROLL | NOT WS_TABSTOP
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Version
+//
+
+VS_VERSION_INFO VERSIONINFO
+ FILEVERSION 1,10,0,1
+ PRODUCTVERSION 1,10,0,1
+ FILEFLAGSMASK 0x3fL
+#ifdef _DEBUG
+ FILEFLAGS 0x1L
+#else
+ FILEFLAGS 0x0L
+#endif
+ FILEOS 0x4L
+ FILETYPE 0x1L
+ FILESUBTYPE 0x0L
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "040904b0"
+        BEGIN
+            VALUE "CompanyName", "KEIL"
+            VALUE "FileDescription", "HID Client"
+            VALUE "FileVersion", "1.10"
+            VALUE "InternalName", "HIDClient"
+            VALUE "LegalCopyright", "Copyright (C) 2005-2007 Keil Sowftware Inc."
+            VALUE "OriginalFilename", "HIDClient.EXE"
+            VALUE "ProductName", "HID Client Application"
+            VALUE "ProductVersion", "1.10"
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x409, 1200
+    END
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO 
+BEGIN
+    IDD_ABOUTBOX, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 228
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 48
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+IDR_MAINFRAME           ICON                    "res\\HIDClient.ico"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog Info
+//
+
+IDD_HIDCLIENT_DIALOG DLGINIT
+BEGIN
+    IDC_DEVICE, 0x403, 7, 0
+0x4e3c, 0x6e6f, 0x3e65, "\000" 
+    0
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE 
+BEGIN
+    IDS_ABOUTBOX            "&About HIDClient..."
+END
+
+#endif    // English (U.S.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+#define _AFX_NO_SPLITTER_RESOURCES
+#define _AFX_NO_OLE_RESOURCES
+#define _AFX_NO_TRACKER_RESOURCES
+#define _AFX_NO_PROPERTY_RESOURCES
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE 9, 1
+#pragma code_page(1252)
+#endif //_WIN32
+#include "res\HIDClient.rc2"  // non-Microsoft Visual C++ edited resources
+#include "afxres.rc"         // Standard components
+#endif
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

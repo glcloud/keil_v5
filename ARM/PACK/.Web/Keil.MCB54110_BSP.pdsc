@@ -1,0 +1,516 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<package schemaVersion="1.4.0" xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="PACK.xsd">
+  <vendor>Keil</vendor>
+  <url>http://www.keil.com/pack/</url>
+  <name>MCB54110_BSP</name>
+  <description>Keil MCB54110 Board Support and CMSIS-Drivers for NXP LPC5411x Devices</description>
+
+  <requirements>
+    <packages>
+      <package vendor="NXP" name="LPC54114_DFP" version="11.0.0"/>
+    </packages>
+  </requirements>
+
+  <releases>
+    <release version="1.0.0" date="2019-05-02">
+      Initial Release of MCB54110_BSP containing examples from deprecated Keil.LPC54000_DFP ported to using NXP.LPC54114_DFP and CMSIS-Driver based on LPCOpen.
+    </release>
+  </releases>
+
+  <keywords>
+    <!-- keywords for indexing -->
+    <keyword>NXP</keyword>
+    <keyword>Board Support</keyword>
+    <keyword>LPC54114</keyword>
+    <keyword>MCB54110</keyword>
+  </keywords>
+
+  <conditions>
+    <!-- Device Conditions -->
+    <condition id="LPC5411x">
+      <description>NXP LPC5411x Devices</description>
+      <require Dvendor="NXP:11" Dname="LPC5411*"/>
+    </condition>
+
+    <!-- Device + Core Conditions -->
+    <condition id="LPC5411x CM4">
+      <description>NXP LPC5411x CM4 Devices</description>
+      <require condition="LPC5411x"/>
+      <require Dcore="Cortex-M4"/>
+    </condition>
+    <condition id="LPC5411x CM0+">
+      <description>NXP LPC5411x CM0+ Devices</description>
+      <require condition="LPC5411x"/>
+      <require Dcore="Cortex-M0+"/>
+    </condition>
+
+    <!-- Device + Core + Compiler Conditions -->
+    <condition id="LPC5411x CM4 ARMCC">
+      <description>NXP LPC5411x CM4 Devices and the ARM compiler</description>
+      <require condition="LPC5411x CM4"/>
+      <require Tcompiler="ARMCC"/>
+    </condition>
+    <condition id="LPC5411x CM0+ ARMCC">
+      <description>NXP LPC5411x CM0+ Devices and the ARM compiler</description>
+      <require condition="LPC5411x CM0+"/>
+      <require Tcompiler="ARMCC"/>
+    </condition>
+
+    <!-- Device + CMSIS Conditions -->
+    <condition id="LPC5411x CMSIS">
+      <description>NXP LPC5411x Devices and CMSIS-CORE</description>
+      <require condition="LPC5411x"/>
+      <require Cclass="CMSIS" Cgroup="CORE"/>
+    </condition>
+
+    <!-- Device + CMSIS + LPCOpen Conditions -->
+    <condition id="LPC5411x CMSIS LPCOPEN">
+      <description>NXP LPC5411x Devices and SDK</description>
+      <require condition="LPC5411x"/>
+      <require Cclass="CMSIS" Cgroup="CORE"/>
+      <require Cclass="Device" Cgroup="LPCOpen"/>
+    </condition>
+
+    <!-- CMSIS Driver Conditions -->
+    <condition id="LPC5411x CMSIS_Driver I2C">
+      <description>Requirement for CMSIS I2C Driver</description>
+      <require condition="LPC5411x CMSIS LPCOPEN"/>
+    </condition>
+
+    <condition id="LPC5411x CMSIS_Driver SPI">
+      <description>Requirement for CMSIS SPI Driver</description>
+      <require condition="LPC5411x CMSIS LPCOPEN"/>
+    </condition>
+
+    <condition id="LPC5411x CMSIS_Driver SAI">
+      <description>Requirement for CMSIS SAI Driver</description>
+      <require condition="LPC5411x CMSIS LPCOPEN"/>
+    </condition>
+
+    <condition id="LPC5411x CMSIS_Driver USART">
+      <description>Requirement for CMSIS USART Driver</description>
+      <require condition="LPC5411x CMSIS LPCOPEN"/>
+    </condition>
+
+    <condition id="LPC5411x CMSIS_Driver USB">
+      <description>Requirement for CMSIS USB Driver</description>
+      <require condition="LPC5411x CMSIS LPCOPEN"/>
+    </condition>
+
+    <!-- Device + CMSIS Driver -->
+    <condition id="LPC5411x I2C">
+      <description>Requirement for components using CMSIS I2C driver</description>
+      <require condition="LPC5411x"/>
+      <require Cclass="CMSIS Driver" Cgroup="I2C"/>
+    </condition>
+
+    <condition id="LPC5411x SPI">
+      <description>Requirement for components using CMSIS SPI driver</description>
+      <require condition="LPC5411x"/>
+      <require Cclass="CMSIS Driver" Cgroup="SPI"/>
+    </condition>
+
+    <condition id="LPC5411x I2C SAI">
+      <description>Requirement for components using CMSIS I2C and SAI drivers</description>
+      <require condition="LPC5411x"/>
+      <require Cclass="CMSIS Driver" Cgroup="I2C"/>
+      <require Cclass="CMSIS Driver" Cgroup="SAI"/>
+    </condition>
+
+    <!-- Board support Conditions -->
+    <condition id="MCB54110 Audio common Mic">
+      <description>Requirement for MCB54110 Audio microphone </description>
+      <require condition="LPC5411x"/>
+      <require Cclass="Board Support" Cgroup="Audio" Csub="Microphone"/>
+    </condition>
+    <condition id="MCB54110 Audio common Codec">
+      <description>Requirement for MCB54110 Audio Codec</description>
+      <require condition="LPC5411x"/>
+      <require Cclass="Board Support" Cgroup="Audio" Csub="Codec"/>
+    </condition>
+    <condition id="MCB54110 Audio common Codec Mic">
+      <description>Requirement for MCB54110 Audio Codec and Microphone</description>
+      <require condition="LPC5411x"/>
+      <require Cclass="Board Support" Cgroup="Audio" Csub="Codec"/>
+      <require Cclass="Board Support" Cgroup="Audio" Csub="Microphone"/>
+    </condition>
+    <condition id="MCB54110 Audio Codec">
+      <description>Requirement for MCB54110 Audio Codec</description>
+      <require condition="LPC5411x I2C SAI"/>
+      <require Cclass="Board Support" Cgroup="Audio" Csub="Audio"/>
+    </condition>
+    <condition id="MCB54110 Audio Mic">
+      <description>Requirement for MCB54110 Audio Microphone</description>
+      <require condition="LPC5411x CMSIS LPCOPEN"/>
+      <require Cclass="Board Support" Cgroup="Audio" Csub="Audio"/>
+    </condition>
+  </conditions>
+
+  <components>
+    <!-- LPCOpen -->
+    <component Cclass="Device" Cgroup="LPCOpen" Cversion="3.0.1" condition="LPC5411x CMSIS">
+      <description>LPCOpen chip drivers for the NXP LPC54110 family</description>
+      <Pre_Include_Global_h> <!-- set the defines necessary for LPCopen include files -->
+        #if   defined (CPU_LPC54114J256BD64_cm4) || defined (CPU_LPC54114J256UK49_cm4)
+          #define __LPC5411X__
+          #define CORE_M4
+        #elif defined (CPU_LPC54114J256BD64_cm0plus) || defined (CPU_LPC54114J256UK49_cm0plus)
+          #define __LPC5411X__
+          #define CORE_M0PLUS
+        #endif
+      </Pre_Include_Global_h>
+      <RTE_Components_h>
+        #define RTE_DEVICE_LPCOPEN
+      </RTE_Components_h>
+      <files>
+        <file category="header"                                  name="LPCOpen/lpc5411x/chip_5411x/inc/chip.h"/>
+
+        <file category="library" condition="LPC5411x CM4 ARMCC"  name="LPCOpen/lpc5411x/chip_5411x/libs/keil_lib_power.lib"/>
+        <file category="library" condition="LPC5411x CM4 ARMCC"  name="LPCOpen/lpc5411x/prj_xpresso54114/keil/lib_chip_5411x/keil_output/core_m4/lib_chip_5411x.lib"       src="LPCOpen/lpc5411x/chip_5411x/src/"/>
+        <file category="library" condition="LPC5411x CM0+ ARMCC" name="LPCOpen/lpc5411x/chip_5411x/libs/keil_lib_power_m0.lib"/>
+        <file category="library" condition="LPC5411x CM0+ ARMCC" name="LPCOpen/lpc5411x/prj_xpresso54114/keil/lib_chip_5411x_m0/keil_output/core_m0/lib_chip_5411x_m0.lib" src="LPCOpen/lpc5411x/chip_5411x/src/"/>
+      </files>
+    </component>
+
+    <!-- CMSIS Driver class -->
+    <component Cclass="CMSIS Driver" Cgroup="I2C"              Capiversion="2.2.0" Cversion="1.0.0" condition="LPC5411x CMSIS_Driver I2C">
+      <description>I2C Driver for LPC54110 using LPCOpen</description>
+      <RTE_Components_h>
+        #define RTE_Drivers_I2C0                /* Driver I2C0 */
+        #define RTE_Drivers_I2C1                /* Driver I2C1 */
+        #define RTE_Drivers_I2C2                /* Driver I2C2 */
+        #define RTE_Drivers_I2C3                /* Driver I2C3 */
+        #define RTE_Drivers_I2C4                /* Driver I2C4 */
+        #define RTE_Drivers_I2C5                /* Driver I2C5 */
+        #define RTE_Drivers_I2C6                /* Driver I2C6 */
+        #define RTE_Drivers_I2C7                /* Driver I2C7 */
+      </RTE_Components_h>
+      <files>
+        <file category="header" name="RTE_Driver/Config_LPC5411x/RTE_Device.h" attr="config" version="1.0.0" condition="LPC5411x"/>
+
+        <file category="source" name="RTE_Driver/I2C_LPC5411x.c" condition="LPC5411x"/>
+      </files>
+    </component>
+    <component Cclass="CMSIS Driver" Cgroup="SAI"              Capiversion="1.0.0" Cversion="1.1.0" condition="LPC5411x CMSIS_Driver SAI">
+      <description>SAI Driver for LPC54100 using LPCOpen</description>
+      <RTE_Components_h>
+        #define RTE_Drivers_SAI0                /* Driver SAI0 */
+        #define RTE_Drivers_SAI1                /* Driver SAI1 */
+      </RTE_Components_h>
+      <files>
+        <file category="header" name="RTE_Driver/Config_LPC5411x/RTE_Device.h" attr="config" version="1.0.0" condition="LPC5411x"/>
+
+        <file category="source" name="RTE_Driver/I2S_LPC5411x.c"/>
+      </files>
+    </component>
+    <component Cclass="CMSIS Driver" Cgroup="SPI"   Csub="SPI" Capiversion="2.1.0" Cversion="1.1.0" condition="LPC5411x CMSIS_Driver SPI">
+      <description>SPI Driver for LPC54110 using LPCOpen</description>
+      <RTE_Components_h>
+        #define RTE_Drivers_SPI0                /* Driver SPI0 */
+        #define RTE_Drivers_SPI1                /* Driver SPI1 */
+        #define RTE_Drivers_SPI2                /* Driver SPI2 */
+        #define RTE_Drivers_SPI3                /* Driver SPI3 */
+        #define RTE_Drivers_SPI4                /* Driver SPI4 */
+        #define RTE_Drivers_SPI5                /* Driver SPI5 */
+        #define RTE_Drivers_SPI6                /* Driver SPI6 */
+        #define RTE_Drivers_SPI7                /* Driver SPI7 */
+      </RTE_Components_h>
+      <files>
+        <file category="header" name="RTE_Driver/Config_LPC5411x/RTE_Device.h" attr="config" version="1.0.0" condition="LPC5411x"/>
+
+        <file category="source" name="RTE_Driver/SPI_LPC5411x.c"/>
+      </files>
+    </component>
+    <component Cclass="CMSIS Driver" Cgroup="USART"            Capiversion="2.1.0" Cversion="1.1.0" condition="LPC5411x CMSIS_Driver USART">
+      <description>USART Driver for LPC54110 using LPCOpen</description>
+      <RTE_Components_h>
+        #define RTE_Drivers_USART0              /* Driver USART0 */
+        #define RTE_Drivers_USART1              /* Driver USART1 */
+        #define RTE_Drivers_USART2              /* Driver USART2 */
+        #define RTE_Drivers_USART3              /* Driver USART3 */
+        #define RTE_Drivers_USART4              /* Driver USART4 */
+        #define RTE_Drivers_USART5              /* Driver USART5 */
+        #define RTE_Drivers_USART6              /* Driver USART6 */
+        #define RTE_Drivers_USART7              /* Driver USART7 */
+      </RTE_Components_h>
+      <files>
+        <file category="header" name="RTE_Driver/Config_LPC5411x/RTE_Device.h" attr="config" version="1.0.0" condition="LPC5411x"/>
+
+        <file category="source" name="RTE_Driver/USART_LPC5411x.c"/>
+      </files>
+    </component>
+    <component Cclass="CMSIS Driver" Cgroup="USB Device"       Capiversion="2.1.0" Cversion="1.0.0" condition="LPC5411x CMSIS_Driver USB">
+      <description>USB Device Driver for LPC54100 using LPCOpen</description>
+      <RTE_Components_h>
+        #define RTE_Drivers_USBD0               /* Driver USBD0 */
+      </RTE_Components_h>
+      <files>
+        <file category="header" name="RTE_Driver/Config_LPC5411x/RTE_Device.h" attr="config" version="1.0.0" condition="LPC5411x"/>
+
+        <file category="source" name="RTE_Driver/USBD_LPC5411x.c"/>
+      </files>
+    </component>
+
+    <!-- MCB54110 Board Support-->
+    <bundle Cbundle="MCB54110" Cclass="Board Support" Cversion="1.0.0">
+      <description>Keil Development Board MCB54110</description>
+      <doc>Boards/Keil/MCB54110/Documentation/MCB54110_CHM_Dummy.txt</doc>
+      <component Cgroup="A/D Converter" Capiversion="1.0.0" condition="LPC5411x CMSIS LPCOPEN">
+        <description>A/D Converter interface for Keil MCB54110 Development Board</description>
+        <files>
+          <file category="source" name="Boards/Keil/MCB54110/Common/ADC_MCB54110.c"/>
+        </files>
+      </component>
+      <component Cgroup="Audio" Csub="Audio"          Capiversion="1.1.0" Cvariant="Codec In/Out"       condition="MCB54110 Audio common Codec">
+        <description>Audio interface for Keil MCB54110 Development Board</description>
+        <RTE_Components_h>  <!-- the following content goes into file 'RTE_Components.h' -->
+          #define RTE_BSP_AUDIO_CODEC_OUT
+          #define RTE_BSP_AUDIO_CODEC_IN
+        </RTE_Components_h>
+        <files>
+          <file category="source" name="Boards/Keil/MCB54110/Common/Audio_MCB54110.c"/>
+        </files>
+      </component>
+      <component Cgroup="Audio" Csub="Audio"          Capiversion="1.1.0" Cvariant="Codec Out + Mic In" condition="MCB54110 Audio common Codec Mic">
+        <description>Audio interface for Keil MCB54110 Development Board</description>
+        <RTE_Components_h>  <!-- the following content goes into file 'RTE_Components.h' -->
+          #define RTE_BSP_AUDIO_CODEC_OUT
+          #define RTE_BSP_AUDIO_MIC_IN
+        </RTE_Components_h>
+        <files>
+          <file category="source" name="Boards/Keil/MCB54110/Common/Audio_MCB54110.c"/>
+        </files>
+      </component>
+      <component Cgroup="Audio" Csub="Audio"          Capiversion="1.1.0" Cvariant="Mic In"             condition="MCB54110 Audio common Mic">
+        <description>Audio interface for Keil MCB54110 Development Board</description>
+        <RTE_Components_h>  <!-- the following content goes into file 'RTE_Components.h' -->
+          #define RTE_BSP_AUDIO_MIC_IN
+        </RTE_Components_h>
+        <files>
+          <file category="source" name="Boards/Keil/MCB54110/Common/Audio_MCB54110.c"/>
+        </files>
+      </component>
+      <component Cgroup="Audio" Csub="Codec"          Capiversion="1.1.0"                               condition="MCB54110 Audio Codec">
+        <description>Audio Codec interface for Keil MCB54110 Development Board</description>
+        <files>
+          <file category="source" name="Boards/Keil/MCB54110/Common/Audio_WM8904.c"/>
+        </files>
+      </component>
+      <component Cgroup="Audio" Csub="Microphone"     Capiversion="1.1.0"                               condition="MCB54110 Audio Mic">
+        <description>Digital microphone interface for Keil MCB54110 Development Board</description>
+        <files>
+          <file category="source" name="Boards/Keil/MCB54110/Common/Audio_DMIC.c"/>
+        </files>
+      </component>
+      <component Cgroup="LED"                         Capiversion="1.0.0"                               condition="LPC5411x I2C">
+        <description>LED interface for Keil MCB54110 Development Board</description>
+        <files>
+          <file category="source" name="Boards/Keil/MCB54110/Common/LED_MCB54110.c"/>
+        </files>
+      </component>
+      <component Cgroup="Buttons"                     Capiversion="1.0.0"                               condition="LPC5411x CMSIS LPCOPEN">
+        <description>Buttons interface for Keil MCB54110 Development Board</description>
+        <files>
+          <file category="source" name="Boards/Keil/MCB54110/Common/Buttons_MCB54110.c"/>
+        </files>
+      </component>
+      <component Cgroup="Joystick"                    Capiversion="1.0.0"                               condition="LPC5411x I2C">
+        <description>Joystick interface for Keil MCB54110 Development Board</description>
+        <files>
+          <file category="source" name="Boards/Keil/MCB54110/Common/Joystick_MCB54110.c"/>
+        </files>
+      </component>
+      <component Cgroup="Graphic LCD"                 Capiversion="1.0.0"                               condition="LPC5411x SPI">
+        <description>Graphic LCD interface for Keil MCB54110 Development Board</description>
+        <files>
+          <file category="header" name="Boards/Keil/MCB54110/Common/GLCD_Config.h"/>
+          <file category="source" name="Boards/Keil/MCB54110/Common/GLCD_Fonts.c"/>
+          <file category="source" name="Boards/Keil/MCB54110/Common/GLCD_MCB54110.c"/>
+        </files>
+      </component>
+      <component Cgroup="emWin LCD"                   Capiversion="1.1.0" Cvariant="SPI IF"             condition="LPC5411x SPI">
+        <description>emWin LCD RGB Interface for Keil MCB54110 Development Board</description>
+        <files>
+          <file category="source" name="Boards/Keil/MCB54110/Common/LCD_X.c"/>
+        </files>
+      </component>
+      <component Cgroup="Touchscreen" Csub="STMPE811" Capiversion="1.0.0"                               condition="LPC5411x I2C">
+        <description>Touchscreen interface for STMPE811</description>
+        <files>
+          <file category="header" name="Boards/Keil/MCB54110/Common/STMPE811.h"/>
+          <file category="source" name="Boards/Keil/MCB54110/Common/Touch_STMPE811.c"/>
+        </files>
+      </component>
+      <component Cgroup="Thermometer" Csub="LM75"     Capiversion="1.0.0"                               condition="LPC5411x I2C">
+        <description>Thermometer interface for LM75</description>
+        <files>
+          <file category="source" name="Boards/Keil/MCB54110/Common/Thermometer_LM75.c"/>
+        </files>
+      </component>
+    </bundle>
+
+  </components>
+
+  <boards>
+    <board vendor="Keil" name="MCB54110" revision="Ver 1.0" salesContact="sales.intl@keil.com" orderForm="http://www.keil.com/product/prices.asp?MCB54110=ON">
+      <description>Keil MCB54110 Development Board</description>
+      <image small="Boards/Keil/MCB54110/Documentation/mcb54110_small.png"
+             large="Boards/Keil/MCB54110/Documentation/mcb54110_large.png"/>
+      <book category="overview" name="http://www.keil.com/boards2/keil/mcb54110/"          title="MCB54110 Evaluation Board Web Page"/>
+      <book category="setup"    name="Boards/Keil/MCB54110/Documentation/MCB54110_QSG.pdf" title="MCB54110 Quick Start Guide"/>
+      <!--
+      <book category="schematic" name="Boards/Keil/MCB54110/Documentation/mcb54110v1-0-schematics.pdf" title="MCB54110 Schematics"/>
+      <book category="manual"    name="Boards/Keil/MCB54110/Documentation/mcb54110.chm" title="User Manual"/>
+      -->
+      <mountedDevice    deviceIndex="0" Dvendor="NXP:11" Dname="LPC54114J256BD64"/>
+      <compatibleDevice deviceIndex="0" Dvendor="NXP:11" Dname="LPC5411*"/>
+      <feature type="PWR"             n="1"              name="USB Powered"/>
+      <feature type="ROM"             n="1"              name="8 MB SPI Flash"/>
+      <feature type="MemCard"         n="1"              name="microSD Card Holder"/>
+      <feature type="USB"             n="1"              name="USB 2.0 Full-speed Device interface (micro USB Device connectors)"/>
+      <feature type="RS232"           n="1"/>
+      <feature type="GLCD"            n="1"  m="240.320" name="2.4 inch Color QVGA TFT LCD with resistive touchscreen"/>
+      <feature type="Poti"            n="1"              name="Potentiometer for ADC Input"/>
+      <feature type="LineIn"          n="1"              name="Audio CODEC with Line-In/Out and Speaker/Microphone"/>
+      <feature type="LineOut"         n="1"              name="Audio CODEC with Line-In/Out and Speaker/Microphone"/>
+      <feature type="ConnOther"       n="1"              name="On-board Speaker"/>
+      <feature type="Button"          n="4"              name="Push-Buttons: Reset, ISP0, ISP1, WAKEUP"/>
+      <feature type="LED"             n="8"              name="I/O Port LEDs"/>
+      <debugInterface adapter="JTAG/SW" connector="20 pin JTAG (0.1 inch connector)"/>
+      <debugInterface adapter="JTAG/SW" connector="10 pin Cortex debug (0.05 inch connector)"/>
+    </board>
+  </boards>
+
+  <examples>
+    <!-- MCB54110 Board -->
+    <example name="CMSIS-RTOS Blinky" doc="Abstract.txt" folder="Boards/Keil/MCB54110/Blinky" version="1.0.0">
+      <description>CMSIS-RTOS Blinky example</description>
+      <board name="MCB54110" vendor="Keil"/>
+      <project>
+        <environment name="uv" load="Blinky.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <component Cclass="CMSIS" Cgroup="RTOS"/>
+        <category>Getting Started</category>
+        <category>CMSIS-RTX</category>
+      </attributes>
+    </example>
+
+    <example name="DualCore Blinky" doc="Abstract.txt" folder="Boards/Keil/MCB54110/DualCore" version="1.0.0">
+      <description>DualCore Blinky example</description>
+      <board name="MCB54110" vendor="Keil"/>
+      <project>
+        <environment name="uv" load="DualCore.uvmpw"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+
+    <example name="emWin Example" doc="Abstract.txt" folder="Boards/Keil/MCB54110/emWin/Example" version="1.0.0">
+      <description>emWin Graphics simple example</description>
+      <board name="MCB54110" vendor="Keil"/>
+      <project>
+        <environment name="uv" load="Example.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="Graphics" Cgroup="CORE"/>
+        <category>Middleware</category>
+        <category>Graphics</category>
+        <keyword>emWin</keyword>
+      </attributes>
+    </example>
+
+    <example name="emWin GUI Demo" doc="Abstract.txt" folder="Boards/Keil/MCB54110/emWin/GUIDemo" version="1.0.0">
+      <description>emWin Graphics Demo example</description>
+      <board name="MCB54110" vendor="Keil"/>
+      <project>
+        <environment name="uv" load="GUIDemo.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="Graphics" Cgroup="CORE"/>
+        <category>Middleware</category>
+        <category>Graphics</category>
+        <keyword>emWin</keyword>
+      </attributes>
+    </example>
+
+    <example name="File System Demo" doc="Abstract.txt" folder="Boards/Keil/MCB54110/Middleware/FileSystem/File_Demo" version="1.0.0">
+      <description>File manipulation example: create, read, copy, delete files on any enabled drive (SD/MMC Card) and format each drive</description>
+      <board name="MCB54110" vendor="Keil"/>
+      <project>
+        <environment name="uv" load="File_Demo.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="File System" Cgroup="Drive"/>
+        <category>Middleware</category>
+        <category>File System</category>
+        <keyword>SD/MMC Card</keyword>
+      </attributes>
+    </example>
+
+    <example name="USB Device Audio" doc="Abstract.txt" folder="Boards/Keil/MCB54110/Middleware/USB/Device/Audio" version="1.0.0">
+      <description>USB Audio Device demonstrating USB Headphone.</description>
+      <board name="MCB54110" vendor="Keil"/>
+      <project>
+        <environment name="uv" load="Audio.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="USB" Cgroup="Device" Csub="Audio"/>
+        <category>Middleware</category>
+        <category>USB Device</category>
+        <keyword>Audio</keyword>
+      </attributes>
+    </example>
+
+    <example name="USB Device HID" doc="Abstract.txt" folder="Boards/Keil/MCB54110/Middleware/USB/Device/HID" version="1.0.0">
+      <description>USB Human Interface Device providing access from PC to board LEDs and push buttons.</description>
+      <board name="MCB54110" vendor="Keil"/>
+      <project>
+        <environment name="uv" load="HID.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="USB" Cgroup="Device" Csub="HID"/>
+        <category>Middleware</category>
+        <category>USB Device</category>
+        <keyword>HID</keyword>
+      </attributes>
+    </example>
+
+    <example name="USB Device Mass Storage" doc="Abstract.txt" folder="Boards/Keil/MCB54110/Middleware/USB/Device/MassStorage" version="1.0.0">
+      <description>USB Mass Storage Device using SD/MMC Memory Card or RAM as storage media</description>
+      <board name="MCB54110" vendor="Keil"/>
+      <project>
+        <environment name="uv" load="MassStorage.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="USB" Cgroup="Device" Csub="MSC"/>
+        <category>Middleware</category>
+        <category>USB Device</category>
+        <keyword>Memory Disk</keyword>
+      </attributes>
+    </example>
+
+    <example name="USB Device Virtual COM" doc="Abstract.txt" folder="Boards/Keil/MCB54110/Middleware/USB/Device/VirtualCOM" version="1.0.0">
+      <description>Virtual COM Port example: bridges UART port of the eval board to a Virtual COM Port on the PC using the Communication Device Class (CDC) of USB Device</description>
+      <board name="MCB54110" vendor="Keil"/>
+      <project>
+        <environment name="uv" load="VirtualCOM.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="USB" Cgroup="Device"/>
+        <category>Middleware</category>
+        <category>USB Device</category>
+        <keyword>USB Device CDC</keyword>
+        <keyword>Virtual COM Port</keyword>
+      </attributes>
+    </example>
+
+  </examples>
+
+</package>

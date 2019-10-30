@@ -1,0 +1,1084 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<package schemaVersion="1.2" xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="PACK.xsd">
+  <vendor>AutoChips</vendor>
+  <name>AC781x_DFP</name>
+  <description>AutoChips ARM Cortex-M3 Device Family Pack</description>
+  <url>http://fex.autochips.com:90/download/CMSIS_PACK/AC781x/</url>
+  <supportContact>support@autochips.com</supportContact>
+  
+  <releases>
+     <release version="1.0.6" date="2018-12-26">
+      .Add the maximum clock frequency description
+      .Update AC781x MCU series Selection Description
+      .Update CMSIS Pack Download URL
+      .Update AC781x Peripheral Driver Library
+	 </release>   
+    <release version="1.0.5" date="2018-06-13">
+      .Modify AC781x Development Kit Feature Description
+	 </release>     
+    <release version="1.0.4" date="2018-05-28">
+      .Update CMSIS Pack Download URL
+      .Add AC781x Development Kit Description
+	 </release>   
+    <release version="1.0.3" date="2018-05-22">
+      .Update Demo Board Example
+      .Update CMSIS Pack Download URL
+	 </release>  
+  </releases>
+
+  <keywords>
+    <!-- keywords for indexing -->
+    <keyword>AutoChips</keyword>
+    <keyword>AC781x</keyword>
+	<keyword>AC78</keyword>
+  </keywords>
+
+<!-- devices section (mandatory for Device Family Packs) -->
+<devices>
+<family Dfamily="AC781x Series" Dvendor="AutoChips:150">
+    <processor  Dcore="Cortex-M3" DcoreVersion="r2p1" Dfpu="0" Dmpu="0" Dendian="Little-endian" Dclock="100000000"/>
+    <book       name="Documents/Cortex-M3 Embedded Software Development.pdf"     title="Cortex-M3 Development User Guide"/>
+    <compile    header="Device/Include/ac78xx.h"/>
+    <debug      svd="SVD/AC781x.svd"/>
+    <description>
+The AC781x product series of 32-bit automotive microcontrollers provides a highly integrated, high-reliability, low-power, 
+safe and secure single-chip solution. 
+The AC781x device family contains an ARM Cortex-M3 processor, running up to 100MHz with a versatile set of on-chip peripherals. 
+which cover the needs of a large variety of applications in the Automotive, Industrial and consumer markets.
+Typical applications include motor drives and application control, BCM, Pump, Fans, Seat Control, Sunroof and industrial applications. 
+Supply Voltage range from 2.7 to 5.5V
+    </description>   
+    <feature    type="VCC"     n="2.7"     m="5.5"/>
+    <feature    type="RTC"     n="32768"/>
+    <feature    type="WDT"     n="1"       name="Watchdog"/>        
+    <feature    type="CAN"     n="2"/>
+    <feature    type="SPI"     n="2"/>
+    <feature    type="I2C"     n="2"/>
+    <feature    type="LIN"     n="1"/>   
+    <feature    type="Timer"   n="2"       m="32"/>
+    <feature    type="Timer"   n="6"       m="16"/>         
+    <algorithm  name="Flash/sFlash/AC781x_external_2MB.FLM"     start="0x60000000"  size="0x200000"  default="0"/>        
+<!-- ************************  Subfamily 'AC7811'  **************************** -->
+    <subFamily DsubFamily="AC7811">
+        <feature    type="Temp"    n="-40"     m="125"     name="Operating Temperature Range"/>
+<!-- *************************  Device 'AC7811QBGE'  ***************************** -->
+        <device Dname="AC7811QBGE">
+            <feature    type="IOs"     n="68"/>
+            <feature    type="ADC"     n="16"      m="12"/>        
+            <feature    type="UART"    n="6"/>
+            <feature    type="PWM"     n="4"       m="16"/>    
+            <feature    type="TimerOther"     n="4"       name="Quadrature Encoder Interface"/>         
+            <feature    type="QFP"    n="80"/>
+            <memory     id="IROM1"  start="0x08000000"  size="0x40000"     startup="1"   default="1"/>
+            <memory     id="IRAM1"  start="0x20000000"  size="0x10000"     init ="0"     default="1"/>
+            <algorithm  name="Flash/eFlash/AC781x_internal_256KB.FLM"   start="0x08000000"  size="0x40000"   default="1"/>
+        </device>
+<!-- *************************  Device 'AC7811OBGE'  ***************************** -->
+        <device Dname="AC7811OBGE">
+            <feature    type="IOs"     n="68"/>
+            <feature    type="ADC"     n="16"      m="12"/>        
+            <feature    type="UART"    n="6"/>
+            <feature    type="PWM"     n="4"       m="16"/>
+            <feature    type="TimerOther"     n="4"       name="Quadrature Encoder Interface"/>           
+            <feature    type="QFP"    n="80"/>
+            <memory     id="IROM1"  start="0x08000000"  size="0x20000"    startup="1"   default="1"/>
+            <memory     id="IRAM1"  start="0x20000000"  size="0x8000"     init ="0"     default="1"/>
+            <algorithm  name="Flash/eFlash/AC781x_internal_128KB.FLM"   start="0x08000000"  size="0x20000"   default="1"/>    
+        </device>
+<!-- *************************  Device 'AC7811MBGE'  ***************************** -->
+        <device Dname="AC7811MBGE">
+            <feature    type="IOs"     n="68"/>
+            <feature    type="ADC"     n="16"      m="12"/>        
+            <feature    type="UART"    n="6"/>
+            <feature    type="PWM"     n="4"       m="16"/>
+            <feature    type="TimerOther"     n="4"       name="Quadrature Encoder Interface"/>           
+            <feature    type="QFP"    n="80"/>
+            <memory     id="IROM1"  start="0x08000000"  size="0x10000"    startup="1"   default="1"/>
+            <memory     id="IRAM1"  start="0x20000000"  size="0x4000"     init ="0"     default="1"/>
+            <algorithm  name="Flash/eFlash/AC781x_internal_64KB.FLM"   start="0x08000000"  size="0x10000"   default="1"/>        
+        </device>
+<!-- *************************  Device 'AC7811OBFE'  ***************************** -->
+        <device Dname="AC7811OBFE">
+            <feature    type="IOs"     n="52"/>
+            <feature    type="ADC"     n="12"      m="12"/>        
+            <feature    type="UART"    n="3"/>
+            <feature    type="PWM"     n="3"       m="16"/>
+            <feature    type="TimerOther"     n="3"       name="Quadrature Encoder Interface"/>           
+            <feature    type="QFP"    n="64"/>
+            <memory     id="IROM1"  start="0x08000000"  size="0x20000"    startup="1"   default="1"/>
+            <memory     id="IRAM1"  start="0x20000000"  size="0x8000"     init ="0"     default="1"/>
+            <algorithm  name="Flash/eFlash/AC781x_internal_128KB.FLM"   start="0x08000000"  size="0x20000"   default="1"/>       
+        </device>
+<!-- *************************  Device 'AC7811MBFE'  ***************************** -->
+        <device Dname="AC7811MBFE">
+            <feature    type="IOs"     n="52"/>
+            <feature    type="ADC"     n="12"      m="12"/>         
+            <feature    type="UART"    n="3"/>
+            <feature    type="PWM"     n="3"       m="16"/>
+            <feature    type="TimerOther"     n="3"       name="Quadrature Encoder Interface"/>           
+            <feature    type="QFP"    n="64"/>
+            <memory     id="IROM1"  start="0x08000000"  size="0x10000"    startup="1"   default="1"/>
+            <memory     id="IRAM1"  start="0x20000000"  size="0x4000"     init ="0"     default="1"/>
+            <algorithm  name="Flash/eFlash/AC781x_internal_64KB.FLM"   start="0x08000000"  size="0x10000"   default="1"/>         
+        </device>
+<!-- *************************  Device 'AC7811JBFE'  ***************************** -->
+        <device Dname="AC7811JBFE">
+            <feature    type="IOs"     n="52"/>
+            <feature    type="ADC"     n="12"      m="12"/>         
+            <feature    type="UART"    n="3"/>
+            <feature    type="PWM"     n="3"       m="16"/>
+            <feature    type="TimerOther"     n="3"       name="Quadrature Encoder Interface"/>           
+            <feature    type="QFP"    n="64"/>
+            <memory     id="IROM1"  start="0x08000000"  size="0x8000"    startup="1"   default="1"/>
+            <memory     id="IRAM1"  start="0x20000000"  size="0x2000"     init ="0"     default="1"/>
+            <algorithm  name="Flash/eFlash/AC781x_internal_32KB.FLM"   start="0x08000000"  size="0x8000"   default="1"/>            
+        </device>
+<!-- *************************  Device 'AC7811QJGE'  ***************************** -->
+        <device Dname="AC7811QJGE">
+            <feature    type="IOs"     n="68"/>
+            <feature    type="ADC"     n="16"      m="12"/>        
+            <feature    type="UART"    n="6"/>
+            <feature    type="PWM"     n="4"       m="16"/>    
+            <feature    type="TimerOther"     n="4"       name="Quadrature Encoder Interface"/>         
+            <feature    type="QFP"    n="80"/>
+            <memory     id="IROM1"  start="0x08000000"  size="0x40000"     startup="1"   default="1"/>
+            <memory     id="IRAM1"  start="0x20000000"  size="0x10000"     init ="0"     default="1"/>
+            <algorithm  name="Flash/eFlash/AC781x_internal_256KB.FLM"   start="0x08000000"  size="0x40000"   default="1"/>      
+        </device>
+<!-- *************************  Device 'AC7811OJGE'  ***************************** -->
+        <device Dname="AC7811OJGE">
+            <feature    type="IOs"     n="52"/>
+            <feature    type="ADC"     n="12"      m="12"/>        
+            <feature    type="UART"    n="3"/>
+            <feature    type="PWM"     n="3"       m="16"/>
+            <feature    type="TimerOther"     n="3"       name="Quadrature Encoder Interface"/>           
+            <feature    type="QFP"    n="64"/>
+            <memory     id="IROM1"  start="0x08000000"  size="0x20000"    startup="1"   default="1"/>
+            <memory     id="IRAM1"  start="0x20000000"  size="0x8000"     init ="0"     default="1"/>
+            <algorithm  name="Flash/eFlash/AC781x_internal_128KB.FLM"   start="0x08000000"  size="0x20000"   default="1"/>         
+        </device>
+<!-- *************************  Device 'AC7811MJGE'  ***************************** -->
+        <device Dname="AC7811MJGE">
+            <feature    type="IOs"     n="68"/>
+            <feature    type="ADC"     n="16"      m="12"/>        
+            <feature    type="UART"    n="6"/>
+            <feature    type="PWM"     n="4"       m="16"/>
+            <feature    type="TimerOther"     n="4"       name="Quadrature Encoder Interface"/>           
+            <feature    type="QFP"    n="80"/>
+            <memory     id="IROM1"  start="0x08000000"  size="0x10000"    startup="1"   default="1"/>
+            <memory     id="IRAM1"  start="0x20000000"  size="0x4000"     init ="0"     default="1"/>
+            <algorithm  name="Flash/eFlash/AC781x_internal_64KB.FLM"   start="0x08000000"  size="0x10000"   default="1"/>        
+        </device>
+<!-- *************************  Device 'AC7811OJFE'  ***************************** -->
+        <device Dname="AC7811OJFE">
+            <feature    type="IOs"     n="52"/>
+            <feature    type="ADC"     n="12"      m="12"/>        
+            <feature    type="UART"    n="3"/>
+            <feature    type="PWM"     n="3"       m="16"/>
+            <feature    type="TimerOther"     n="3"       name="Quadrature Encoder Interface"/>           
+            <feature    type="QFP"    n="64"/>
+            <memory     id="IROM1"  start="0x08000000"  size="0x20000"    startup="1"   default="1"/>
+            <memory     id="IRAM1"  start="0x20000000"  size="0x8000"     init ="0"     default="1"/>
+            <algorithm  name="Flash/eFlash/AC781x_internal_128KB.FLM"   start="0x08000000"  size="0x20000"   default="1"/>       
+        </device>
+<!-- *************************  Device 'AC7811MJFE'  ***************************** -->
+        <device Dname="AC7811MJFE">
+            <feature    type="IOs"     n="52"/>
+            <feature    type="ADC"     n="12"      m="12"/>         
+            <feature    type="UART"    n="3"/>
+            <feature    type="PWM"     n="3"       m="16"/>
+            <feature    type="TimerOther"     n="3"       name="Quadrature Encoder Interface"/>           
+            <feature    type="QFP"    n="64"/>
+            <memory     id="IROM1"  start="0x08000000"  size="0x10000"    startup="1"   default="1"/>
+            <memory     id="IRAM1"  start="0x20000000"  size="0x4000"     init ="0"     default="1"/>
+            <algorithm  name="Flash/eFlash/AC781x_internal_64KB.FLM"   start="0x08000000"  size="0x10000"   default="1"/>        
+        </device>
+<!-- *************************  Device 'AC7811JJFE'  ***************************** -->
+        <device Dname="AC7811JJFE">
+            <feature    type="IOs"     n="52"/>
+            <feature    type="ADC"     n="12"      m="12"/>         
+            <feature    type="UART"    n="3"/>
+            <feature    type="PWM"     n="3"       m="16"/>
+            <feature    type="TimerOther"     n="3"       name="Quadrature Encoder Interface"/>           
+            <feature    type="QFP"    n="64"/>
+            <memory     id="IROM1"  start="0x08000000"  size="0x8000"    startup="1"   default="1"/>
+            <memory     id="IRAM1"  start="0x20000000"  size="0x2000"     init ="0"     default="1"/>
+            <algorithm  name="Flash/eFlash/AC781x_internal_32KB.FLM"   start="0x08000000"  size="0x8000"   default="1"/>        
+        </device>
+    </subFamily>
+<!-- ************************  Subfamily 'AC7813'  **************************** -->
+    <subFamily DsubFamily="AC7813">    
+        <feature    type="Temp"    n="-40"     m="85"     name="Operating Temperature Range"/>     
+<!-- *************************  Device 'AC7813QBGE'  ***************************** -->
+        <device Dname="AC7813QBGE">
+            <feature    type="IOs"     n="68"/>
+            <feature    type="ADC"     n="16"      m="12"/>        
+            <feature    type="UART"    n="6"/>
+            <feature    type="PWM"     n="4"       m="16"/>    
+            <feature    type="TimerOther"     n="4"       name="Quadrature Encoder Interface"/>         
+            <feature    type="QFP"    n="80"/>
+            <memory     id="IROM1"  start="0x08000000"  size="0x40000"     startup="1"   default="1"/>
+            <memory     id="IRAM1"  start="0x20000000"  size="0x10000"     init ="0"     default="1"/>
+            <algorithm  name="Flash/eFlash/AC781x_internal_256KB.FLM"   start="0x08000000"  size="0x40000"   default="1"/>      
+        </device>
+<!-- *************************  Device 'AC7813OBGE'  ***************************** -->
+        <device Dname="AC7813OBGE">
+            <feature    type="IOs"     n="68"/>
+            <feature    type="ADC"     n="16"      m="12"/>        
+            <feature    type="UART"    n="6"/>
+            <feature    type="PWM"     n="4"       m="16"/>
+            <feature    type="TimerOther"     n="4"       name="Quadrature Encoder Interface"/>           
+            <feature    type="QFP"    n="80"/>
+            <memory     id="IROM1"  start="0x08000000"  size="0x20000"    startup="1"   default="1"/>
+            <memory     id="IRAM1"  start="0x20000000"  size="0x8000"     init ="0"     default="1"/>
+            <algorithm  name="Flash/eFlash/AC781x_internal_128KB.FLM"   start="0x08000000"  size="0x20000"   default="1"/>          
+        </device>
+<!-- *************************  Device 'AC7813MBGE'  ***************************** -->
+        <device Dname="AC7813MBGE">
+            <feature    type="IOs"     n="68"/>
+            <feature    type="ADC"     n="16"      m="12"/>        
+            <feature    type="UART"    n="6"/>
+            <feature    type="PWM"     n="4"       m="16"/>
+            <feature    type="TimerOther"     n="4"       name="Quadrature Encoder Interface"/>           
+            <feature    type="QFP"    n="80"/>
+            <memory     id="IROM1"  start="0x08000000"  size="0x10000"    startup="1"   default="1"/>
+            <memory     id="IRAM1"  start="0x20000000"  size="0x4000"     init ="0"     default="1"/>
+            <algorithm  name="Flash/eFlash/AC781x_internal_64KB.FLM"   start="0x08000000"  size="0x10000"   default="1"/>        
+        </device>
+<!-- *************************  Device 'AC7813OBFE'  ***************************** -->
+        <device Dname="AC7813OBFE">
+            <feature    type="IOs"     n="52"/>
+            <feature    type="ADC"     n="12"      m="12"/>        
+            <feature    type="UART"    n="3"/>
+            <feature    type="PWM"     n="3"       m="16"/>
+            <feature    type="TimerOther"     n="3"       name="Quadrature Encoder Interface"/>           
+            <feature    type="QFP"    n="64"/>
+            <memory     id="IROM1"  start="0x08000000"  size="0x20000"    startup="1"   default="1"/>
+            <memory     id="IRAM1"  start="0x20000000"  size="0x8000"     init ="0"     default="1"/>
+            <algorithm  name="Flash/eFlash/AC781x_internal_128KB.FLM"   start="0x08000000"  size="0x20000"   default="1"/>        
+        </device>    
+<!-- *************************  Device 'AC7813MBFE'  ***************************** -->
+        <device Dname="AC7813MBFE">
+            <feature    type="IOs"     n="52"/>
+            <feature    type="ADC"     n="12"      m="12"/>         
+            <feature    type="UART"    n="3"/>
+            <feature    type="PWM"     n="3"       m="16"/>
+            <feature    type="TimerOther"     n="3"       name="Quadrature Encoder Interface"/>           
+            <feature    type="QFP"    n="64"/>
+            <memory     id="IROM1"  start="0x08000000"  size="0x10000"    startup="1"   default="1"/>
+            <memory     id="IRAM1"  start="0x20000000"  size="0x4000"     init ="0"     default="1"/>
+            <algorithm  name="Flash/eFlash/AC781x_internal_64KB.FLM"   start="0x08000000"  size="0x10000"   default="1"/>          
+        </device>
+<!-- *************************  Device 'AC7813JBFE'  ***************************** -->
+        <device Dname="AC7813JBFE">
+            <feature    type="IOs"     n="52"/>
+            <feature    type="ADC"     n="12"      m="12"/>         
+            <feature    type="UART"    n="3"/>
+            <feature    type="PWM"     n="3"       m="16"/>
+            <feature    type="TimerOther"     n="3"       name="Quadrature Encoder Interface"/>           
+            <feature    type="QFP"    n="64"/>
+            <memory     id="IROM1"  start="0x08000000"  size="0x8000"    startup="1"   default="1"/>
+            <memory     id="IRAM1"  start="0x20000000"  size="0x2000"     init ="0"     default="1"/>
+            <algorithm  name="Flash/eFlash/AC781x_internal_32KB.FLM"   start="0x08000000"  size="0x8000"   default="1"/>       
+        </device>
+    </subFamily>  
+<!-- ************************  Subfamily 'AC7815'  **************************** -->
+    <subFamily DsubFamily="AC7815">   
+<!-- *************************  Device 'AC7815QBGE'  ***************************** -->
+        <device Dname="AC7815QBGE">
+            <feature    type="IOs"     n="68"/>
+            <feature    type="ADC"     n="16"      m="12"/>        
+            <feature    type="UART"    n="6"/>
+            <feature    type="PWM"     n="4"       m="16"/>    
+            <feature    type="TimerOther"     n="4"       name="Quadrature Encoder Interface"/>         
+            <feature    type="QFP"    n="80"/>
+            <memory     id="IROM1"  start="0x08000000"  size="0x40000"     startup="1"   default="1"/>
+            <memory     id="IRAM1"  start="0x20000000"  size="0x10000"     init ="0"     default="1"/>
+            <algorithm  name="Flash/eFlash/AC781x_internal_256KB.FLM"   start="0x08000000"  size="0x40000"   default="1"/>      
+        </device>
+<!-- *************************  Device 'AC7815OBGE'  ***************************** -->
+        <device Dname="AC7815OBGE">
+            <feature    type="IOs"     n="68"/>
+            <feature    type="ADC"     n="16"      m="12"/>        
+            <feature    type="UART"    n="6"/>
+            <feature    type="PWM"     n="4"       m="16"/>
+            <feature    type="TimerOther"     n="4"       name="Quadrature Encoder Interface"/>           
+            <feature    type="QFP"    n="80"/>
+            <memory     id="IROM1"  start="0x08000000"  size="0x20000"    startup="1"   default="1"/>
+            <memory     id="IRAM1"  start="0x20000000"  size="0x8000"     init ="0"     default="1"/>
+            <algorithm  name="Flash/eFlash/AC781x_internal_128KB.FLM"   start="0x08000000"  size="0x20000"   default="1"/>          
+        </device>  
+<!-- *************************  Device 'AC7815MBGE'  ***************************** -->
+        <device Dname="AC7815MBGE">
+            <feature    type="IOs"     n="68"/>
+            <feature    type="ADC"     n="16"      m="12"/>        
+            <feature    type="UART"    n="6"/>
+            <feature    type="PWM"     n="4"       m="16"/>
+            <feature    type="TimerOther"     n="4"       name="Quadrature Encoder Interface"/>           
+            <feature    type="QFP"    n="80"/>
+            <memory     id="IROM1"  start="0x08000000"  size="0x10000"    startup="1"   default="1"/>
+            <memory     id="IRAM1"  start="0x20000000"  size="0x4000"     init ="0"     default="1"/>
+            <algorithm  name="Flash/eFlash/AC781x_internal_64KB.FLM"   start="0x08000000"  size="0x10000"   default="1"/>        
+        </device>
+<!-- *************************  Device 'AC7815OBFE'  ***************************** -->
+        <device Dname="AC7815OBFE">
+            <feature    type="IOs"     n="52"/>
+            <feature    type="ADC"     n="12"      m="12"/>        
+            <feature    type="UART"    n="3"/>
+            <feature    type="PWM"     n="3"       m="16"/>
+            <feature    type="TimerOther"     n="3"       name="Quadrature Encoder Interface"/>           
+            <feature    type="QFP"    n="64"/>
+            <memory     id="IROM1"  start="0x08000000"  size="0x20000"    startup="1"   default="1"/>
+            <memory     id="IRAM1"  start="0x20000000"  size="0x8000"     init ="0"     default="1"/>
+            <algorithm  name="Flash/eFlash/AC781x_internal_128KB.FLM"   start="0x08000000"  size="0x20000"   default="1"/>        
+        </device> 
+<!-- *************************  Device 'AC7815MBFE'  ***************************** -->
+        <device Dname="AC7815MBFE">
+            <feature    type="IOs"     n="52"/>
+            <feature    type="ADC"     n="12"      m="12"/>         
+            <feature    type="UART"    n="3"/>
+            <feature    type="PWM"     n="3"       m="16"/>
+            <feature    type="TimerOther"     n="3"       name="Quadrature Encoder Interface"/>           
+            <feature    type="QFP"    n="64"/>
+            <memory     id="IROM1"  start="0x08000000"  size="0x10000"    startup="1"   default="1"/>
+            <memory     id="IRAM1"  start="0x20000000"  size="0x4000"     init ="0"     default="1"/>
+            <algorithm  name="Flash/eFlash/AC781x_internal_64KB.FLM"   start="0x08000000"  size="0x10000"   default="1"/>          
+        </device>
+<!-- *************************  Device 'AC7815JBFE'  ***************************** -->
+        <device Dname="AC7815JBFE">
+            <feature    type="IOs"     n="52"/>
+            <feature    type="ADC"     n="12"      m="12"/>         
+            <feature    type="UART"    n="3"/>
+            <feature    type="PWM"     n="3"       m="16"/>
+            <feature    type="TimerOther"     n="3"       name="Quadrature Encoder Interface"/>           
+            <feature    type="QFP"    n="64"/>
+            <memory     id="IROM1"  start="0x08000000"  size="0x8000"    startup="1"   default="1"/>
+            <memory     id="IRAM1"  start="0x20000000"  size="0x2000"     init ="0"     default="1"/>
+            <algorithm  name="Flash/eFlash/AC781x_internal_32KB.FLM"   start="0x08000000"  size="0x8000"   default="1"/>       
+        </device>  
+    </subFamily>    
+</family>
+</devices>
+
+  <!-- conditions section (optional for all Software Packs)-->
+  <conditions>
+    <condition id="AC781x CMSIS-CORE">
+      <!-- conditions selecting Devices -->
+      <description>AutoChips AC781x Series devices and CMSIS-CORE</description>
+      <require Cclass="CMSIS" Cgroup="CORE"/>
+      <require Dvendor="AutoChips:150" Dname="AC781?????"/>
+    </condition>
+    <condition id="Startup ARM">
+      <description>Startup assembler file for ARMCC</description>
+      <require Tcompiler="ARMCC"/>
+    </condition>
+     <condition id="AC781x Driver">
+      <description>AutoChips AC781x Driver</description>
+      <require condition="Startup ARM"/>
+      <require condition="AC781x CMSIS-CORE"/>
+      <require Tcompiler="ARMCC"/>
+    </condition>   
+    <condition id="AC781x OLED Driver">
+     <description>AutoChips AC781x Development Kit OLED Driver</description>
+     <require Cclass="Device" Cgroup="ATC Drivers" Csub="I2C"/>
+     <require Cclass="Device" Cgroup="ATC Drivers" Csub="GPIO"/>
+     <require Dvendor="AutoChips:150" Dname="AC781?????"/>
+     </condition>
+    <condition id="AC781x Debug Interface">
+     <description>AutoChips AC781x Development Kit Debug Interface</description>
+     <require Cclass="Device" Cgroup="ATC Drivers" Csub="UART"/>
+     <require Cclass="Device" Cgroup="ATC Drivers" Csub="GPIO"/>
+     <require Cclass="Device" Cgroup="ATC Drivers" Csub="DMA"/>     
+     <require Dvendor="AutoChips:150" Dname="AC781?????"/>
+     </condition>     
+  </conditions>
+
+
+<boards>
+    <board vendor="AutoChips" name="AC781x Development Kit">
+        <description>AutoChips AC781x Development Board</description>
+        <image small="Images/AC781x Development Kit_small.png" large="Images/AC781x Development Kit_large.png"/>
+        <book category="schematic" name="Documents/AC781x-development-kit-schematics.pdf" title="Development Board Schematics"/>
+        <feature type="XTAL"            n="8000000"/>
+        <feature type="RS232"           n="1"/>
+        <feature type="CAN"             n="2"/>
+        <feature type="I2C"             n="2"/>
+        <feature type="Button"          n="7" name="key button for ADC,Reset,Wakeup and user application"/>
+        <feature type="Other"           n="1" name="other feature"/>
+        <mountedDevice deviceIndex="0" Dvendor="AutoChips:150" Dname="AC7811QBGE"/>
+        <compatibleDevice deviceIndex="0" Dvendor="AutoChips:150" DsubFamily="AC7811"/>
+        <compatibleDevice deviceIndex="0" Dvendor="AutoChips:150" DsubFamily="AC7813"/>
+        <compatibleDevice deviceIndex="0" Dvendor="AutoChips:150" DsubFamily="AC7815"/>        
+        <debugInterface adapter="JTAG/SW" connector="20 pin JTAG (0.1 inch connector)"/>
+    </board>    
+</boards>
+  
+  <examples>
+    <!-- ATCBOARD Development Board -->
+    <example name="ACMP" doc="Abstract.txt" folder="Boards/AC781x Development Kit/Demo/ACMP">
+      <description>ACMP example</description>
+      <board name="AC781x Development Kit" vendor="AutoChips"/>
+      <project>
+        <environment name="uv" load="acmp_demo.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <category>Example Project</category>
+      </attributes>
+    </example>
+    <example name="ADC" doc="Abstract.txt" folder="Boards/AC781x Development Kit/Demo/ADC">
+      <description>ADC example</description>
+      <board name="AC781x Development Kit" vendor="AutoChips"/>
+      <project>
+        <environment name="uv" load="adc_demo.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <category>Example Project</category>
+      </attributes>
+    </example>    
+    <example name="BKP" doc="Abstract.txt" folder="Boards/AC781x Development Kit/Demo/BKP">
+      <description>BKP example</description>
+      <board name="AC781x Development Kit" vendor="AutoChips"/>
+      <project>
+        <environment name="uv" load="bkp_demo.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <category>Example Project</category>
+      </attributes>
+    </example>
+    <example name="CAN" doc="Abstract.txt" folder="Boards/AC781x Development Kit/Demo/CAN">
+      <description>CAN example</description>
+      <board name="AC781x Development Kit" vendor="AutoChips"/>
+      <project>
+        <environment name="uv" load="can_demo.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <category>Example Project</category>
+      </attributes>
+    </example>    
+    <example name="CRC" doc="Abstract.txt" folder="Boards/AC781x Development Kit/Demo/CRC">
+      <description>CRC example</description>
+      <board name="AC781x Development Kit" vendor="AutoChips"/>
+      <project>
+        <environment name="uv" load="crc_demo.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <category>Example Project</category>
+      </attributes>
+    </example>
+    <example name="DMA" doc="Abstract.txt" folder="Boards/AC781x Development Kit/Demo/DMA">
+      <description>DMA example</description>
+      <board name="AC781x Development Kit" vendor="AutoChips"/>
+      <project>
+        <environment name="uv" load="dma_demo.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <category>Example Project</category>
+      </attributes>
+    </example>    
+    <example name="eFlash" doc="Abstract.txt" folder="Boards/AC781x Development Kit/Demo/eFlash">
+      <description>eFlash example</description>
+      <board name="AC781x Development Kit" vendor="AutoChips"/>
+      <project>
+        <environment name="uv" load="eflash_demo.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <category>Example Project</category>
+      </attributes>
+    </example>
+    <example name="GPIO" doc="Abstract.txt" folder="Boards/AC781x Development Kit/Demo/GPIO">
+      <description>GPIO example</description>
+      <board name="AC781x Development Kit" vendor="AutoChips"/>
+      <project>
+        <environment name="uv" load="gpio_demo.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <category>Example Project</category>
+      </attributes>
+    </example>   
+    <example name="IIC Master DMA" doc="Abstract.txt" folder="Boards/AC781x Development Kit/Demo/IIC/I2C_Master_DMA">
+      <description>IIC Master DMA example</description>
+      <board name="AC781x Development Kit" vendor="AutoChips"/>
+      <project>
+        <environment name="uv" load="i2c_master_dma_demo.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <category>Example Project</category>
+      </attributes>
+    </example>
+    <example name="IIC Master Interrupt" doc="Abstract.txt" folder="Boards/AC781x Development Kit/Demo/IIC/I2C_Master_Interrupt">
+      <description>IIC Master Interrupt example</description>
+      <board name="AC781x Development Kit" vendor="AutoChips"/>
+      <project>
+        <environment name="uv" load="i2c_master_interrupt_demo.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <category>Example Project</category>
+      </attributes>
+    </example>
+    <example name="IIC Master Polling" doc="Abstract.txt" folder="Boards/AC781x Development Kit/Demo/IIC/I2C_Master_Polling">
+      <description>I2C_Master_Polling example</description>
+      <board name="AC781x Development Kit" vendor="AutoChips"/>
+      <project>
+        <environment name="uv" load="i2c_master_Polling_demo.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <category>Example Project</category>
+      </attributes>
+    </example>
+    <example name="IIC Slave DMA" doc="Abstract.txt" folder="Boards/AC781x Development Kit/Demo/IIC/I2C_Slave_DMA">
+      <description>I2C_Slave_DMA example</description>
+      <board name="AC781x Development Kit" vendor="AutoChips"/>
+      <project>
+        <environment name="uv" load="i2c_slave_dma_demo.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <category>Example Project</category>
+      </attributes>
+    </example>
+    <example name="IIC Slave Interrupt" doc="Abstract.txt" folder="Boards/AC781x Development Kit/Demo/IIC/I2C_Slave_Interrupt">
+      <description>I2C_Slave_Interrupt example</description>
+      <board name="AC781x Development Kit" vendor="AutoChips"/>
+      <project>
+        <environment name="uv" load="i2c_slave_interrupt_demo.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <category>Example Project</category>
+      </attributes>
+    </example>    
+    <example name="LIN Demo" doc="Abstract.txt" folder="Boards/AC781x Development Kit/Demo/LIN/LIN_Demo">
+      <description>LIN_Demo example</description>
+      <board name="AC781x Development Kit" vendor="AutoChips"/>
+      <project>
+        <environment name="uv" load="lin_demo.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <category>Example Project</category>
+      </attributes>
+    </example>   
+    <example name="LIN Master" doc="Abstract.txt" folder="Boards/AC781x Development Kit/Demo/LIN/LIN_Master">
+      <description>LIN_Master example</description>
+      <board name="AC781x Development Kit" vendor="AutoChips"/>
+      <project>
+        <environment name="uv" load="lin_master.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <category>Example Project</category>
+      </attributes>
+    </example>     
+    <example name="LIN Slave" doc="Abstract.txt" folder="Boards/AC781x Development Kit/Demo/LIN/LIN_Slave">
+      <description>LIN_Slave example</description>
+      <board name="AC781x Development Kit" vendor="AutoChips"/>
+      <project>
+        <environment name="uv" load="lin_slave.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <category>Example Project</category>
+      </attributes>
+    </example>         
+    <example name="OLED" doc="Abstract.txt" folder="Boards/AC781x Development Kit/Demo/OLED">
+      <description>OLED example</description>
+      <board name="AC781x Development Kit" vendor="AutoChips"/>
+      <project>
+        <environment name="uv" load="oled_i2c.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <category>Example Project</category>
+      </attributes>
+    </example>
+    <example name="PWDT" doc="Abstract.txt" folder="Boards/AC781x Development Kit/Demo/PWDT">
+      <description>PWDT example</description>
+      <board name="AC781x Development Kit" vendor="AutoChips"/>
+      <project>
+        <environment name="uv" load="pwdt_demo.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <category>Example Project</category>
+      </attributes>
+    </example>    
+    <example name="PWM Combine" doc="Abstract.txt" folder="Boards/AC781x Development Kit/Demo/PWM/Combine_Demo">
+      <description>PWM example</description>
+      <board name="AC781x Development Kit" vendor="AutoChips"/>
+      <project>
+        <environment name="uv" load="PWM_Combine_Demo.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <category>Example Project</category>
+      </attributes>
+    </example>
+    <example name="PWM DualCapture" doc="Abstract.txt" folder="Boards/AC781x Development Kit/Demo/PWM/DualCapture_Demo">
+      <description>PWM DualCapture_Demo example</description>
+      <board name="AC781x Development Kit" vendor="AutoChips"/>
+      <project>
+        <environment name="uv" load="PWM_DualCapture_Demo.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <category>Example Project</category>
+      </attributes>
+    </example>
+    <example name="PWM InputCapture_Demo" doc="Abstract.txt" folder="Boards/AC781x Development Kit/Demo/PWM/InputCapture_Demo">
+      <description>PWM InputCapture_Demo example</description>
+      <board name="AC781x Development Kit" vendor="AutoChips"/>
+      <project>
+        <environment name="uv" load="PWM_InputCapture_Demo.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <category>Example Project</category>
+      </attributes>
+    </example>   
+    <example name="PWM OutputCompare_Demo" doc="Abstract.txt" folder="Boards/AC781x Development Kit/Demo/PWM/OutputCompare_Demo">
+      <description>PWM OutputCompare_Demo example</description>
+      <board name="AC781x Development Kit" vendor="AutoChips"/>
+      <project>
+        <environment name="uv" load="PWM_OutputCompare_Demo.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <category>Example Project</category>
+      </attributes>
+    </example>    
+    <example name="RTC" doc="Abstract.txt" folder="Boards/AC781x Development Kit/Demo/RTC">
+      <description>RTC example</description>
+      <board name="AC781x Development Kit" vendor="AutoChips"/>
+      <project>
+        <environment name="uv" load="rtc_demo.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <category>Example Project</category>
+      </attributes>
+    </example>    
+    <example name="SerialFlash" doc="Abstract.txt" folder="Boards/AC781x Development Kit/Demo/SerialFlash">
+      <description>SerialFlash example</description>
+      <board name="AC781x Development Kit" vendor="AutoChips"/>
+      <project>
+        <environment name="uv" load="sflash_demo.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <category>Example Project</category>
+      </attributes>
+    </example>
+    <example name="SPI_Master_DMA" doc="Abstract.txt" folder="Boards/AC781x Development Kit/Demo/SPI/SPI_Master_DMA">
+      <description>SPI_Master_DMA example</description>
+      <board name="AC781x Development Kit" vendor="AutoChips"/>
+      <project>
+        <environment name="uv" load="spi_master_dma_demo.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <category>Example Project</category>
+      </attributes>
+    </example>   
+    <example name="SPI_Master_Interrupt" doc="Abstract.txt" folder="Boards/AC781x Development Kit/Demo/SPI/SPI_Master_Interrupt">
+      <description>SPI_Master_Interrupt example</description>
+      <board name="AC781x Development Kit" vendor="AutoChips"/>
+      <project>
+        <environment name="uv" load="spi_master_interrupt_demo.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <category>Example Project</category>
+      </attributes>
+    </example>   
+    <example name="SPI_Master_Polling" doc="Abstract.txt" folder="Boards/AC781x Development Kit/Demo/SPI/SPI_Master_Polling">
+      <description>SPI_Master_Polling example</description>
+      <board name="AC781x Development Kit" vendor="AutoChips"/>
+      <project>
+        <environment name="uv" load="spi_master_Polling_demo.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <category>Example Project</category>
+      </attributes>
+    </example>   
+    <example name="SPI_Slave_DMA" doc="Abstract.txt" folder="Boards/AC781x Development Kit/Demo/SPI/SPI_Slave_DMA">
+      <description>SPI_Slave_DMA example</description>
+      <board name="AC781x Development Kit" vendor="AutoChips"/>
+      <project>
+        <environment name="uv" load="spi_slave_dma_demo.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <category>Example Project</category>
+      </attributes>
+    </example>       
+    <example name="SPI_Slave_Interrupt" doc="Abstract.txt" folder="Boards/AC781x Development Kit/Demo/SPI/SPI_Slave_Interrupt">
+      <description>SPI_Slave_Interrupt example</description>
+      <board name="AC781x Development Kit" vendor="AutoChips"/>
+      <project>
+        <environment name="uv" load="spi_slave_interrupt_demo.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <category>Example Project</category>
+      </attributes>
+    </example>  
+    <example name="Standby" doc="Abstract.txt" folder="Boards/AC781x Development Kit/Demo/Standby">
+      <description>Standby example</description>
+      <board name="AC781x Development Kit" vendor="AutoChips"/>
+      <project>
+        <environment name="uv" load="Standby.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <category>Example Project</category>
+      </attributes>
+    </example>  
+    <example name="Stop" doc="Abstract.txt" folder="Boards/AC781x Development Kit/Demo/Stop">
+      <description>Stop example</description>
+      <board name="AC781x Development Kit" vendor="AutoChips"/>
+      <project>
+        <environment name="uv" load="Stop.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <category>Example Project</category>
+      </attributes>
+    </example>  
+    <example name="Multi-module" doc="Abstract.txt" folder="Boards/AC781x Development Kit/Demo/Multi-module">
+      <description>Multi-module example</description>
+      <board name="AC781x Development Kit" vendor="AutoChips"/>
+      <project>
+        <environment name="uv" load="multi_module_demo.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <category>Example Project</category>
+      </attributes>
+    </example>     
+    <example name="TIMER" doc="Abstract.txt" folder="Boards/AC781x Development Kit/Demo/TIMER">
+      <description>TIMER example</description>
+      <board name="AC781x Development Kit" vendor="AutoChips"/>
+      <project>
+        <environment name="uv" load="timer_demo.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <category>Example Project</category>
+      </attributes>
+    </example>  
+    <example name="UART_DMA" doc="Abstract.txt" folder="Boards/AC781x Development Kit/Demo/UART/UART_DMA">
+      <description>UART_DMA example</description>
+      <board name="AC781x Development Kit" vendor="AutoChips"/>
+      <project>
+        <environment name="uv" load="uart_dma_demo.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <category>Example Project</category>
+      </attributes>
+    </example>  
+    <example name="UART_Interrupt" doc="Abstract.txt" folder="Boards/AC781x Development Kit/Demo/UART/UART_Interrupt">
+      <description>UART_Interrupt example</description>
+      <board name="AC781x Development Kit" vendor="AutoChips"/>
+      <project>
+        <environment name="uv" load="uart_interrupt_demo.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <category>Example Project</category>
+      </attributes>
+    </example> 
+    <example name="UART_Polling" doc="Abstract.txt" folder="Boards/AC781x Development Kit/Demo/UART/UART_Polling">
+      <description>UART_Polling example</description>
+      <board name="AC781x Development Kit" vendor="AutoChips"/>
+      <project>
+        <environment name="uv" load="uart_polling_demo.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <category>Example Project</category>
+      </attributes>
+    </example>     
+    <example name="UART_LIN" doc="Abstract.txt" folder="Boards/AC781x Development Kit/Demo/UART_LIN">
+      <description>UART_LIN example</description>
+      <board name="AC781x Development Kit" vendor="AutoChips"/>
+      <project>
+        <environment name="uv" load="uart_lin.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <category>Example Project</category>
+      </attributes>
+    </example>  
+    <example name="WDG" doc="Abstract.txt" folder="Boards/AC781x Development Kit/Demo/WDG">
+      <description>WDG example</description>
+      <board name="AC781x Development Kit" vendor="AutoChips"/>
+      <project>
+        <environment name="uv" load="wdg_demo.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <category>Example Project</category>
+      </attributes>
+    </example>      
+  </examples>
+  
+  <!-- component section (optional for all Software Packs)-->
+ <components>
+    <component Cclass="Device" Cgroup="Startup" Cversion="1.0.0" condition="AC781x CMSIS-CORE">
+      <description>System Startup for AutoChips AC781x Series</description>
+      <files>
+        <!--  include folder -->
+        <file category="include" name="Device/Include/"/>
+        <!-- startup files -->
+        <file category="source"  name="Device/Source/ARM/startup_ac78xx.s" attr="config" condition="Startup ARM" version="1.0.0"/>
+        <!-- system file -->     
+        <file category="source"  name="Device/Source/system_ac78xx.c"  attr="config" version="1.0.0"/>
+        <file category="source"  name="Device/Source/ac78xx_ckgen.c"  attr="config" version="1.0.0"/> 
+        <file category="header"  name="Device/Source/ac78xx_ckgen_regs.h"  attr="config" version="1.0.0"/> 
+        <file category="source"  name="Device/Source/ac78xx_spm.c"  attr="config" version="1.0.0"/>
+        <file category="header"  name="Device/Source/ac78xx_spm_regs.h"  attr="config" version="1.0.0"/> 
+      </files>
+    </component>
+    
+   <!-- START: AutoChips AC781x Standard Peripherals Drivers -->
+
+    <component Cclass="Device" Cgroup="ATC Drivers" Csub="ACMP" Cversion="1.0.0" condition="AC781x Driver">
+      <description>Analog-Comparator driver for AC781x</description>
+      <files>
+        <file category="header" name="ATC_Driver/Drivers/ACMP/ac78xx_acmp.h"/>
+        <file category="header" name="ATC_Driver/Drivers/ACMP/ac78xx_acmp_reg.h"/>
+        <file category="source" name="ATC_Driver/Drivers/ACMP/ac78xx_acmp.c"/>
+      </files>
+    </component>
+    
+    <component Cclass="Device" Cgroup="ATC Drivers" Csub="ADC" Cversion="1.0.0" condition="AC781x Driver">
+      <description>Analog-to-digital converter (ADC) driver for AC781x</description>
+      <files>
+        <file category="header" name="ATC_Driver/Drivers/ADC/ac78xx_adc.h"/>
+        <file category="header" name="ATC_Driver/Drivers/ADC/ac78xx_adc_reg.h"/>
+        <file category="source" name="ATC_Driver/Drivers/ADC/ac78xx_adc.c"/>
+      </files>
+    </component>
+   
+    <component Cclass="Device" Cgroup="ATC Drivers" Csub="CAN" Cversion="1.0.0" condition="AC781x Driver">
+      <description>Controller area network (CAN) driver for AC781x</description>
+      <files>
+        <file category="header" name="ATC_Driver/Drivers/CAN/ac78xx_can.h"/>
+        <file category="header" name="ATC_Driver/Drivers/CAN/ac78xx_can_reg.h"/>
+        <file category="source" name="ATC_Driver/Drivers/CAN/ac78xx_can.c"/>
+      </files>
+    </component>
+
+      <component Cclass="Device" Cgroup="ATC Drivers" Csub="CRC" Cversion="1.0.0" condition="AC781x Driver">
+      <description>CRC calculation unit (CRC) driver for AC781x</description>
+      <files>
+        <file category="header" name="ATC_Driver/Drivers/CRC/ac78xx_crc.h"/>
+        <file category="header" name="ATC_Driver/Drivers/CRC/ac78xx_crc_reg.h"/>
+        <file category="source" name="ATC_Driver/Drivers/CRC/ac78xx_crc.c"/>
+      </files>
+    </component>
+    
+    <component Cclass="Device" Cgroup="ATC Drivers" Csub="CTU" Cversion="1.0.0" condition="AC781x Driver">
+      <description>CTU driver for AC781x</description>
+      <files>
+        <file category="header" name="ATC_Driver/Drivers/CTU/ac78xx_ctu.h"/>
+        <file category="header" name="ATC_Driver/Drivers/CTU/ac78xx_ctu_reg.h"/>
+        <file category="source" name="ATC_Driver/Drivers/CTU/ac78xx_ctu.c"/>
+      </files>
+    </component>
+   
+    <component Cclass="Device" Cgroup="ATC Drivers" Csub="DMA" Cversion="1.0.0" condition="AC781x Driver">
+      <description>DMA controller (DMA) driver driver for AC781x</description>
+      <files>
+        <file category="header" name="ATC_Driver/Drivers/DMA/ac78xx_dma.h"/>
+        <file category="header" name="ATC_Driver/Drivers/DMA/ac78xx_dma_reg.h"/>
+        <file category="source" name="ATC_Driver/Drivers/DMA/ac78xx_dma.c"/>
+      </files>
+    </component>
+
+    <component Cclass="Device" Cgroup="ATC Drivers" Csub="eFlash" Cversion="1.0.0" condition="AC781x Driver">
+      <description>Embedded Flash memory(eFlash) driver for AC781x</description>
+      <files>
+        <file category="header" name="ATC_Driver/Drivers/eFlash/ac78xx_eflash.h"/>
+        <file category="header" name="ATC_Driver/Drivers/eFlash/ac78xx_eflash_reg.h"/>
+        <file category="source" name="ATC_Driver/Drivers/eFlash/ac78xx_eflash.c"/>
+      </files>
+    </component>
+    
+    <component Cclass="Device" Cgroup="ATC Drivers" Csub="GPIO" Cversion="1.0.0" condition="AC781x Driver">
+      <description>General-purpose I/O (GPIO) driver for AC781x</description>
+      <files>
+        <file category="header" name="ATC_Driver/Drivers/GPIO/ac78xx_gpio.h"/>
+        <file category="header" name="ATC_Driver/Drivers/GPIO/ac78xx_gpio_reg.h"/>
+        <file category="source" name="ATC_Driver/Drivers/GPIO/ac78xx_gpio.c"/>
+      </files>
+    </component>
+   
+    <component Cclass="Device" Cgroup="ATC Drivers" Csub="I2C" Cversion="1.0.0" condition="AC781x Driver">
+      <description>Inter-integrated circuit (I2C) interface driver for AC781x</description>
+      <files>
+        <file category="header" name="ATC_Driver/Drivers/IIC/ac78xx_i2c.h"/>
+        <file category="header" name="ATC_Driver/Drivers/IIC/ac78xx_i2c_reg.h"/>
+        <file category="source" name="ATC_Driver/Drivers/IIC/ac78xx_i2c.c"/>
+      </files>
+    </component>
+
+    <component Cclass="Device" Cgroup="ATC Drivers" Csub="LIN" Cversion="1.0.0" condition="AC781x Driver">
+      <description>Local Interconnect Network (LIN) driver for AC781x</description>
+      <files>
+        <file category="header" name="ATC_Driver/Drivers/LIN/ac78xx_lin.h"/>
+        <file category="header" name="ATC_Driver/Drivers/LIN/ac78xx_lin_reg.h"/>
+        <file category="source" name="ATC_Driver/Drivers/LIN/ac78xx_lin.c"/>
+      </files>
+    </component>
+    
+    <component Cclass="Device" Cgroup="ATC Drivers" Csub="PWDT" Cversion="1.0.0" condition="AC781x Driver">
+      <description>Pulse Width Detection Timer (PWDT) driver for AC781x</description>
+      <files>
+        <file category="header" name="ATC_Driver/Drivers/PWDT/ac78xx_pwdt.h"/>
+        <file category="header" name="ATC_Driver/Drivers/PWDT/ac78xx_pwdt_reg.h"/>
+        <file category="source" name="ATC_Driver/Drivers/PWDT/ac78xx_pwdt.c"/>
+      </files>
+    </component>
+   
+    <component Cclass="Device" Cgroup="ATC Drivers" Csub="PWM" Cversion="1.0.0" condition="AC781x Driver">
+      <description>Pulse Width Modulation (PWM) driver for AC781x</description>
+      <files>
+        <file category="header" name="ATC_Driver/Drivers/PWM/ac78xx_pwm.h"/>
+        <file category="header" name="ATC_Driver/Drivers/PWM/ac78xx_pwm_reg.h"/>
+        <file category="source" name="ATC_Driver/Drivers/PWM/ac78xx_pwm.c"/>
+      </files>
+    </component>
+
+    <component Cclass="Device" Cgroup="ATC Drivers" Csub="RTC" Cversion="1.0.0" condition="AC781x Driver">
+      <description>Real-time clock (RTC) driver for AC781x</description>
+      <files>
+        <file category="header" name="ATC_Driver/Drivers/RTC/ac78xx_rtc.h"/>
+        <file category="header" name="ATC_Driver/Drivers/RTC/ac78xx_rtc_reg.h"/>
+        <file category="source" name="ATC_Driver/Drivers/RTC/ac78xx_rtc.c"/>
+      </files>
+    </component>
+    
+    <component Cclass="Device" Cgroup="ATC Drivers" Csub="sFlash" Cversion="1.0.0" condition="AC781x Driver">
+      <description>Serial Flash Memory(sFlash) driver for AC781x</description>
+      <files>
+        <file category="header" name="ATC_Driver/Drivers/SerialFlash/ac78xx_serialflash.h"/>
+        <file category="header" name="ATC_Driver/Drivers/SerialFlash/ac78xx_serialflash_reg.h"/>
+        <file category="source" name="ATC_Driver/Drivers/SerialFlash/ac78xx_serialflash.c"/>
+      </files>
+    </component>
+   
+    <component Cclass="Device" Cgroup="ATC Drivers" Csub="SPI" Cversion="1.0.0" condition="AC781x Driver">
+      <description>Serial peripheral interface (SPI) driver for AC781x</description>
+      <files>
+        <file category="header" name="ATC_Driver/Drivers/SPI/ac78xx_spi.h"/>
+        <file category="header" name="ATC_Driver/Drivers/SPI/ac78xx_spi_reg.h"/>
+        <file category="source" name="ATC_Driver/Drivers/SPI/ac78xx_spi.c"/>
+      </files>
+    </component>
+
+    <component Cclass="Device" Cgroup="ATC Drivers" Csub="TIMER" Cversion="1.0.0" condition="AC781x Driver">
+      <description>Timers (TIMER) driver for AC781x</description>
+      <files>
+        <file category="header" name="ATC_Driver/Drivers/TIMER/ac78xx_timer.h"/>
+        <file category="header" name="ATC_Driver/Drivers/TIMER/ac78xx_timer_reg.h"/>
+        <file category="source" name="ATC_Driver/Drivers/TIMER/ac78xx_timer.c"/>
+      </files>
+    </component>
+    
+    <component Cclass="Device" Cgroup="ATC Drivers" Csub="UART" Cversion="1.0.0" condition="AC781x Driver">
+      <description>Universal asynchronous receiver transmitter (UART) driver for AC781x</description>
+      <files>
+        <file category="header" name="ATC_Driver/Drivers/UART/ac78xx_uart.h"/>
+        <file category="header" name="ATC_Driver/Drivers/UART/ac78xx_uart_reg.h"/>
+        <file category="source" name="ATC_Driver/Drivers/UART/ac78xx_uart.c"/>
+      </files>
+    </component>
+   
+    <component Cclass="Device" Cgroup="ATC Drivers" Csub="Watchdog" Cversion="1.0.0" condition="AC781x Driver">
+      <description>Watchdog (WDG) driver for AC781x</description>
+      <files>
+        <file category="header" name="ATC_Driver/Drivers/WDG/ac78xx_wdg.h"/>
+        <file category="header" name="ATC_Driver/Drivers/WDG/ac78xx_wdg_reg.h"/>
+        <file category="source" name="ATC_Driver/Drivers/WDG/ac78xx_wdg.c"/>
+      </files>
+    </component>       
+    <!-- END: AutoChips AC781x Standard Peripherals Drivers -->
+    
+   <!-- AutoChips AC7811 Development Board -->
+    <bundle Cbundle="AC781x Development Kit" Cclass="Board Support" Cversion="1.0.0">
+      <description>AutoChips AC781x Development Board </description>
+       <doc>Doucments/AutoChips AC781x Development Kit StartupSOP.pdf</doc>
+      <component Cgroup="AC781x Development Kit" Csub="OLED" condition="AC781x OLED Driver">
+        <description>OLED Display for AutoChips AC7811 Development Board </description>
+        <files>
+          <file category="header" name="Boards/AC781x Development Kit/Demo/OLED/oled.h"/>
+          <file category="header" name="Boards/AC781x Development Kit/Demo/OLED/oledfont.h"/>     
+          <file category="header" name="Boards/AC781x Development Kit/Demo/OLED/bmp.h"/>            
+          <file category="source" name="Boards/AC781x Development Kit/Demo/OLED/oled.c"/>
+        </files>
+      </component>
+      <component Cgroup="AC781x Development Kit" Csub="Debug Interface" condition="AC781x Debug Interface">
+        <description>Uart Debug Interface for AutoChips AC7811 Development Board</description>
+        <files>        
+          <file category="header" name="Device/Include/ac78xx_debugout.h"/>       
+          <file category="source" name="Device/Source/ac78xx_debugout.c"/>
+        </files>
+      </component>      
+    </bundle>
+    
+    </components>
+
+</package>

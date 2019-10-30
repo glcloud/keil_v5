@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<package schemaVersion="1.2" xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="PACK.xsd">
+  <license>License/SOFTWARE_LICENSE_AGREEMENT.txt</license> 
+  <vendor>Toshiba</vendor>
+  <url>https://toshiba.semicon-storage.com/content/dam/toshiba-ss/shared/docs/product/micro/device-family-Pack/</url>
+  <name>TX03-M3U_DFP</name>
+  <description>Toshiba TX03 Series TMPM3Ux Device Support</description>
+
+  <releases>
+    <release version="1.0.0" date="2019-03-25">
+      First Release version of TX03 Series TMPM3Ux Device Family Pack.
+    </release>
+  </releases>
+
+  <keywords>
+    <!-- keywords for indexing -->
+    <keyword>Toshiba</keyword>
+    <keyword>Device Support</keyword>
+    <keyword>Device Family Package Toshiba</keyword>
+    <keyword>TMPM3</keyword>
+    <keyword>TX03</keyword>
+  </keywords>
+
+  <devices>
+    <family Dfamily="TX03 Series" Dvendor="Toshiba:92">
+      <processor Dcore="Cortex-M3" DcoreVersion="r2p0" Dfpu="0" Dmpu="0" Dendian="Little-endian"/>
+      <description>
+The TX03 microcontroller series embeds an ARM Cortex-M3 core, which provides high code density and fast interrupt response times required for real-time applications.
+The TX03 Series also incorporates a Toshiba-proprietary NANO FLASH™ memory featuring high capacity and low power consumption.
+      </description>
+
+      <!-- ************************  Subfamily 'M3U0'  **************************** -->
+      <subFamily DsubFamily="M3U0">
+
+        <feature type="WDT"           n="1"/>
+
+        <!-- *************************  Device 'TMPM3U0FSDMG'  ***************************** -->
+        <device Dname="TMPM3U0FSDMG">
+          <processor Dclock="40000000"/>
+          <compile header="Device/Include/TMPM3U0.h"/>
+          <debug svd="SVD/M3U0.svd"/>
+          <memory id="IROM1"                     start="0x00000000" size="0x00010000" startup="1" default="1"/>
+          <memory id="IRAM1"                     start="0x20000000" size="0x00001000" init   ="0" default="1"/>
+          <algorithm name="Flash/TMPM3U0_64.FLM" start="0x00000000" size="0x00010000"             default="1"/>
+
+          <feature type="Other"         n="1"                           name="Vector Engine(VE)"/>
+          <feature type="VCC"           n="4.50"    m="5.50"/>
+
+          <feature type="UART"          n="2"                           name="UART/SIO"/>
+          <feature type="I2C"           n="1"                           name="I2C/SIO"/>
+          <feature type="ADC"           n="4"       m="12"/>
+          <feature type="Timer"         n="4"       m="16"/>
+          <feature type="PWM"           n="1"                           name="Three Phase PWM Output"/>
+          <feature type="Other"         n="1"                           name="Incremental Encoder Input"/>
+          <feature type="ExtInt"        n="3"/>
+          <feature type="IOs"           n="21"/>
+          <feature type="Temp"          n="-40"     m="105"/>
+          <feature type="SOP"           n="30"                          name="SSOP30-P-300-0.65"/>
+        </device>
+
+        <!-- *************************  Device 'TMPM3U6FWFG'  ***************************** -->
+        <device Dname="TMPM3U6FWFG">
+          <processor Dclock="40000000"/>
+          <compile header="Device/Include/TMPM3U6.h"/>
+          <debug svd="SVD/M3U6.svd"/>
+          <memory id="IROM1"                      start="0x00000000" size="0x00020000" startup="1" default="1"/>
+          <memory id="IRAM1"                      start="0x20000000" size="0x00003000" init   ="0" default="1"/>
+          <algorithm name="Flash/TMPM3U6_128.FLM" start="0x00000000" size="0x00020000"             default="1"/>
+
+          <feature type="MPSerial"      n="2"/>
+          <feature type="UART"          n="5"                           name="UART/SIO"/>
+          <feature type="I2C"           n="2"                           name="I2C/SIO"/>
+          <feature type="Other"         n="1"                           name="Remote Control Preprocessor"/>
+          <feature type="PWM"           n="2"                           name="Three Phase PWM Output"/>
+          <feature type="Other"         n="2"                           name="Incremental Encoder Input"/>
+          <feature type="ExtInt"        n="16"/>
+          <feature type="RTC"           n="1"       m="32768"/>
+          <feature type="Temp"          n="-40"     m="85"/>
+          <feature type="DMA"           n="2"/>
+          <feature type="ADC"           n="18"      m="12"/>
+          <feature type="Timer"         n="8"       m="16"/>
+          <feature type="TimerOther"    n="3"                           name="Multi-Purpose Timer (MPT)"/>
+          <feature type="IOs"           n="84"/>
+          <feature type="VCC"           n="4.00"    m="5.50"/>
+          <feature type="QFP"           n="100"                         name="LQFP100-P-1414-0.50H"/>
+        </device>
+
+        <!-- *************************  Device 'TMPM3U6FWDFG'  ***************************** -->
+        <device Dname="TMPM3U6FWDFG">
+          <processor Dclock="40000000"/>
+          <compile header="Device/Include/TMPM3U6.h"/>
+          <debug svd="SVD/M3U6.svd"/>
+          <memory id="IROM1"                      start="0x00000000" size="0x00020000" startup="1" default="1"/>
+          <memory id="IRAM1"                      start="0x20000000" size="0x00003000" init   ="0" default="1"/>
+          <algorithm name="Flash/TMPM3U6_128.FLM" start="0x00000000" size="0x00020000"             default="1"/>
+
+          <feature type="MPSerial"      n="2"/>
+          <feature type="UART"          n="5"                           name="UART/SIO"/>
+          <feature type="I2C"           n="2"                           name="I2C/SIO"/>
+          <feature type="Other"         n="1"                           name="Remote Control Preprocessor"/>
+          <feature type="PWM"           n="2"                           name="Three Phase PWM Output"/>
+          <feature type="Other"         n="2"                           name="Incremental Encoder Input"/>
+          <feature type="ExtInt"        n="16"/>
+          <feature type="RTC"           n="1"       m="32768"/>
+          <feature type="Temp"          n="-40"     m="85"/>
+          <feature type="DMA"           n="2"/>
+          <feature type="ADC"           n="18"      m="12"/>
+          <feature type="Timer"         n="8"       m="16"/>
+          <feature type="TimerOther"    n="3"                           name="Multi-Purpose Timer (MPT)"/>
+          <feature type="IOs"           n="84"/>
+          <feature type="VCC"           n="4.00"    m="5.50"/>
+          <feature type="QFP"           n="100"                         name="QFP100-P-1420-0.65Q"/>
+        </device>
+      </subFamily>
+
+    </family>
+  </devices>
+
+  <conditions>
+    <!-- Compiler Conditions -->
+    <condition id="Compiler ARMCC">
+      <require Tcompiler="ARMCC"/>
+    </condition>
+
+    <!-- Device + CMSIS Conditions -->
+    <condition id="TMPM3U0 CMSIS">
+      <description>Toshiba TMPMU05 devices and CMSIS-CORE</description>
+      <require Dvendor="Toshiba:92" Dname="TMPM3U0*"/>
+      <require Cclass="CMSIS" Cgroup="CORE"/>
+    </condition>
+    <condition id="TMPM3U6 CMSIS">
+      <description>Toshiba TMPM3U6 devices and CMSIS-CORE</description>
+      <require Dvendor="Toshiba:92" Dname="TMPM3U6*"/>
+      <require Cclass="CMSIS" Cgroup="CORE"/>
+    </condition>
+  </conditions>
+
+  <components>
+    <!-- Startup TMPM3U0 -->
+    <component Cclass="Device" Cgroup="Startup" Cversion="1.0.0" condition="TMPM3U0 CMSIS">
+      <description>System Startup for Toshiba TMPM3U0 Devices</description>
+      <files>
+        <file category="include" name="Device/Include/"/>
+        <file category="source"  name="Device/Source/ARM/startup_TMPM3U0.s"    attr="config" version="1.0.0" condition="Compiler ARMCC"/>
+        <file category="source"  name="Device/Source/system_TMPM3U0.c"         attr="config" version="1.0.0"/>
+      </files>
+    </component>
+
+    <!-- Startup TMPM3U6 -->
+    <component Cclass="Device" Cgroup="Startup" Cversion="1.0.0" condition="TMPM3U6 CMSIS">
+      <description>System Startup for Toshiba TMPM3U6 Devices</description>
+      <files>
+        <file category="include" name="Device/Include/"/>
+        <file category="source"  name="Device/Source/ARM/startup_TMPM3U6.s"    attr="config" version="1.0.0" condition="Compiler ARMCC"/>
+        <file category="source"  name="Device/Source/system_TMPM3U6.c"         attr="config" version="1.0.0"/>
+      </files>
+    </component>
+  </components>
+
+</package>

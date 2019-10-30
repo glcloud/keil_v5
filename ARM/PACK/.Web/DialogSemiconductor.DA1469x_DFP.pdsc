@@ -1,0 +1,244 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<package schemaVersion="1.4" xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="PACK.xsd">
+  
+    <name>DA1469x_DFP</name>
+    <description>Dialog Semiconductor BLE ARM devices DA1469x Device Family Pack.</description>
+    <vendor>DialogSemiconductor</vendor>
+    <url>https://s3.eu-west-2.amazonaws.com/lpccs-docs.dialog-semiconductor.com/CMSIS</url>
+    <supportContact>support.dialog-semiconductor.com</supportContact>
+	<license>License\license.txt</license>
+
+    <keywords>
+        <keyword>DeviceFamilyPack</keyword>
+        <keyword>Dialog</keyword>
+        <keyword>Dialog Semiconductor</keyword>
+        <keyword>da14691</keyword>
+        <keyword>da14695</keyword>
+        <keyword>da14697</keyword>
+        <keyword>da14699</keyword>
+        <keyword>BLE</keyword>
+    </keywords>
+
+   <releases>
+    <release version="1.0.3" date="2019-03-06">
+      Date: 06.03.2019
+      Added Data access macro definitions.
+    </release>
+    <release version="1.0.4" date="2019-04-01">
+      Date: 01.04.2019
+      Set FPU option.
+    </release>
+  </releases>
+  
+  <!-- devices section (mandatory for Device Family Packs) -->
+  <devices>
+
+        
+	   <family Dfamily="da1469x Series" Dvendor="Dialog Semiconductor:113">
+
+		   <processor Dcore="Cortex-M33"
+					  DcoreVersion="r0p2"
+					  Dendian="Little-endian"
+					  Dclock="96000000"
+					  Dfpu="SP_FPU"
+					  Dmpu="MPU" />
+			<description>The DA1469x is a family of multi-core wireless microcontrollers, combining the latest ARM Cortex M33TM application processor with floating-point unit, advanced power management functionality, a cryptographic security engine, analog and digital peripherals, a dedicated sensor node controller, and a software configurable protocol engine with a radio that is compliant to the Bluetooth® 5.1 low energy standard. The DA1469x is based on an ARM Cortex-M33TM CPU with an 8-region MPU and a single-precision FPU offering up to 144 dMIPS. The dedicated application processor executes code from embedded memory (RAM) or external QSPI FLASH via a 16 kB 4-way associative cache controller, which is equipped with an on the fly decrypting capability without extra wait states. Bluetooth 5.1 connectivity is guaranteed by a new software-configurable Bluetooth low energy protocol engine (MAC) with an ultra-low-power radio transceiver, capable of +6 dBm output power and -96 dBm sensitivity offering a total link budget of 102 dBm. </description>
+
+            <!-- *************************  Device 'da14691'  ***************************** -->			  
+			<device Dname="DA14691">
+                <book name="http://infocenter.arm.com/help/topic/com.arm.doc.100235_0004_00_en/index.html" title="Cortex-M33 Device Generic Users Guide"/>
+				<book name="Documents/DA1469x.pdf" title="DA1469x - Data Sheet"/>  
+				<description>The da14691 has a SRAM of 384kB with retention capabilities, 43 Configurable GPIO pins </description>
+                <compile header="Device/Include/DA14691.h"/>
+                <compile header="Device/Include/system_da1469x.h"/>
+				<debug  svd="Device/SVD/da14691.svd"/>
+				<memory name="IRAM1" access ="rw" start="0x80000000" size="0x60000" init="0" default="1"/>
+				<memory name="IROM1" access ="rx" start="0x00000000" size="0x40000" startup="1" default="1"/>
+			</device>
+
+			<!-- *************************  Device 'da14695'  ***************************** -->			  
+			<device Dname="DA14695">
+                <book name="http://infocenter.arm.com/help/topic/com.arm.doc.100235_0004_00_en/index.html" title="Cortex-M33 Device Generic Users Guide"/>
+				<book name="Documents/DA1469x.pdf" title="DA1469x - Data Sheet"/>  
+				<description>The da14695 has a SRAM of 512kB with retention capabilities, 43 Configurable GPIO pins, an embedded LCD controller</description>
+                <compile header="Device/Include/DA14695.h"/>
+                <compile header="Device/Include/system_da1469x.h"/>
+				<debug  svd="Device/SVD/da14695.svd"/>
+				<memory name="IRAM1" access ="rw" start="0x80000000" size="0x80000" init="0" default="1"/>
+				<memory name="IROM1" access ="rx" start="0x00000000" size="0x40000" startup="1" default="1"/>
+			</device>
+
+			<!-- *************************  Device 'da14697'  ***************************** -->			  
+			<device Dname="DA14697">
+                <book name="http://infocenter.arm.com/help/topic/com.arm.doc.100235_0004_00_en/index.html" title="Cortex-M33 Device Generic Users Guide"/>
+				<book name="Documents/DA1469x.pdf" title="DA1469x - Data Sheet"/>  
+				<description>The da14697 has a SRAM of 512kB with retention capabilities, 55 Configurable GPIO pins, an embedded LCD controller, Haptic driver and white LED driver</description>
+                <compile header="Device/Include/DA14697.h"/>
+                <compile header="Device/Include/system_da1469x.h"/>
+				<debug  svd="Device/SVD/da14697.svd"/>
+				<memory name="IRAM1" access ="rw" start="0x80000000" size="0x80000" init="0" default="1"/>
+				<memory name="IROM1" access ="rx" start="0x00000000" size="0x40000" startup="1" default="1"/>
+			</device>
+
+			<!-- *************************  Device 'da14699'  ***************************** -->			  
+			<device Dname="DA14699">
+                <book name="http://infocenter.arm.com/help/topic/com.arm.doc.100235_0004_00_en/index.html" title="Cortex-M33 Device Generic Users Guide"/>
+				<book name="Documents/DA1469x.pdf" title="DA1469x - Data Sheet"/>  
+				<description>The da14699 has a SRAM of 512kB with retention capabilities, 55 Configurable GPIO pins, an embedded LCD controller, Haptic driver and white LED driver and Analog hand motor driver</description>
+                <compile header="Device/Include/DA14699.h"/>
+                <compile header="Device/Include/system_da1469x.h"/>
+				<debug  svd="Device/SVD/da14699.svd"/>
+				<memory name="IRAM1" access ="rw" start="0x80000000" size="0x80000" init="0" default="1"/>
+				<memory name="IROM1" access ="rx" start="0x00000000" size="0x40000" startup="1" default="1"/>
+			</device>
+
+		</family>
+		
+  </devices>
+  <!-- conditions section (optional for all Software Packs)-->
+  
+    <conditions>
+	<!-- Compiler Conditions -->
+        <condition id="ARM Compiler">
+            <require Tcompiler="ARMCC"/>
+        </condition>
+        <condition id="GCC Compiler">
+            <require Tcompiler="GCC"/>
+        </condition>
+        <condition id="IAR Compiler">
+            <require Tcompiler="IAR"/>
+        </condition>
+        
+   		<condition id="DA1469x">
+			<!-- conditions selecting Devices -->
+			<description>Dialog Semiconductor da1468x Series devices</description>
+			<accept Dvendor="Dialog Semiconductor:113" Dname="DA14691"/>
+			<accept Dvendor="Dialog Semiconductor:113" Dname="DA14695"/>
+			<accept Dvendor="Dialog Semiconductor:113" Dname="DA14697"/>
+			<accept Dvendor="Dialog Semiconductor:113" Dname="DA14699"/>
+		</condition>		
+
+	    <!-- da1469x Conditions -->
+   		<condition id="DA1469x CMSIS-Core">
+			<!-- defines the condition with the ID "CMSIS-CORE" -->
+			<description>Dialog Semiconductor da1469x Serieas and CMSIS Core</description>
+     		<require condition="DA1469x"/>
+			<require Cclass="CMSIS" Cgroup="CORE"/>
+		</condition>
+
+	    <!-- da14691 Conditions -->
+		<condition id="DA14691 device and CMSIS">
+		  <!-- defines the condition with the ID "CMSIS-CORE" -->
+		  <description>Dialog Semiconductor da14691 CMSIS device</description>
+            <require condition="DA1469x CMSIS-Core"/>
+		  <require Dvendor="Dialog Semiconductor:113" Dname="DA14691"/>
+		</condition>
+
+	    <!-- da14695 Conditions -->
+		<condition id="DA14695 device and CMSIS">
+		  <!-- defines the condition with the ID "CMSIS-CORE" -->
+		  <description>Dialog Semiconductor da14695 CMSIS device</description>
+          <require condition="DA1469x CMSIS-Core"/>
+		  <require Dvendor="Dialog Semiconductor:113" Dname="DA14695"/>
+		</condition>
+
+	    <!-- da14697 Conditions -->
+		<condition id="DA14697 device and CMSIS">
+		  <!-- defines the condition with the ID "CMSIS-CORE" -->
+		  <description>Dialog Semiconductor da14697 CMSIS device</description>
+          <require condition="DA1469x CMSIS-Core"/>
+		  <require Dvendor="Dialog Semiconductor:113" Dname="DA14697"/>
+		</condition>
+        
+	    <!-- da14699 Conditions -->
+		<condition id="DA14699 device and CMSIS">
+		  <!-- defines the condition with the ID "CMSIS-CORE" -->
+		  <description>Dialog Semiconductor da14699 CMSIS device</description>
+          <require condition="DA1469x CMSIS-Core"/>
+		  <require Dvendor="Dialog Semiconductor:113" Dname="DA14699"/>
+		</condition>
+	
+    </conditions>
+
+  <!-- component section (optional for all Software Packs)-->
+  
+	<components>
+	
+		<component Cclass="Device" Cgroup="Startup" Cversion="1.0.0" condition="DA14691 device and CMSIS">
+			<description>System startup for Dialog Semiconductor da14691 device</description>
+			<files>
+				<file category="include" name="Device/Include/"/>
+                <file category="header"  name="Device/Include/DialogDevices.h"                        version="1.0.0"/>
+                <file category="header"  name="Device/Include/DA14691.h"                                   version="1.0.0"/>
+                <file category="source"  name="Device/Source/ARM/arm_startup_da1469x.S"      attr="config" version="1.0.0" condition="ARM Compiler"/>
+                <file category="source"  name="Device/Source/ARM/arm_deepsleep.S"            attr="config" version="1.0.0" condition="ARM Compiler"/>
+                <file category="source"  name="Device/Source/GCC/gcc_startup_da1469x.S"      attr="config" version="1.0.0" condition="GCC Compiler"/>
+                <file category="source"  name="Device/Source/GCC/gcc_vector_table_da1469x.S" attr="config" version="1.0.0" condition="GCC Compiler"/>
+                <file category="source"  name="Device/Source/GCC/gcc_deepsleep.S"            attr="config" version="1.0.0" condition="GCC Compiler"/>
+                <file category="source"  name="Device/Source/IAR/iar_startup_da1469x.S"      attr="config" version="1.0.0" condition="IAR Compiler"/>
+                <file category="source"  name="Device/Source/IAR/iar_deepsleep.S"            attr="config" version="1.0.0" condition="IAR Compiler"/>
+                <file category="sourceC" name="Device/Source/system_da1469x.c"               attr="config" version="1.0.0"/>
+                <file category="header"  name="Device/Include/system_da1469x.h"                            version="1.0.0"/>
+                <file category="header"  name="Device/Include/DataAccess.h" 	                  version="1.0.0"/>
+			</files>		
+		</component>
+
+		<component Cclass="Device" Cgroup="Startup" Cversion="1.0.0" condition="DA14695 device and CMSIS">
+			<description>System startup for Dialog Semiconductor da14695 device</description>
+			<files>
+				<file category="include" name="Device/Include/"/>
+                <file category="header"  name="Device/Include/DialogDevices.h"                        version="1.0.0"/>
+                <file category="header"  name="Device/Include/DA14695.h"                                   version="1.0.0"/>
+                <file category="source"  name="Device/Source/ARM/arm_startup_da1469x.S"      attr="config" version="1.0.0" condition="ARM Compiler"/>
+                <file category="source"  name="Device/Source/ARM/arm_deepsleep.S"            attr="config" version="1.0.0" condition="ARM Compiler"/>
+                <file category="source"  name="Device/Source/GCC/gcc_startup_da1469x.S"      attr="config" version="1.0.0" condition="GCC Compiler"/>
+                <file category="source"  name="Device/Source/GCC/gcc_vector_table_da1469x.S" attr="config" version="1.0.0" condition="GCC Compiler"/>
+                <file category="source"  name="Device/Source/GCC/gcc_deepsleep.S"            attr="config" version="1.0.0" condition="GCC Compiler"/>
+                <file category="source"  name="Device/Source/IAR/iar_startup_da1469x.S"      attr="config" version="1.0.0" condition="IAR Compiler"/>
+                <file category="source"  name="Device/Source/IAR/iar_deepsleep.S"            attr="config" version="1.0.0" condition="IAR Compiler"/>
+                <file category="sourceC" name="Device/Source/system_da1469x.c"               attr="config" version="1.0.0"/>
+                <file category="header"  name="Device/Include/system_da1469x.h"                            version="1.0.0"/>
+                <file category="header"  name="Device/Include/DataAccess.h" 	                  version="1.0.0"/>
+			</files>		
+		</component>
+
+		<component Cclass="Device" Cgroup="Startup" Cversion="1.0.0" condition="DA14697 device and CMSIS">
+			<description>System startup for Dialog Semiconductor da14699 device</description>
+			<files>
+				<file category="include" name="Device/Include/"/>
+                <file category="header"  name="Device/Include/DialogDevices.h"                        version="1.0.0"/>
+                <file category="header"  name="Device/Include/DA14697.h"                                   version="1.0.0"/>
+                <file category="source"  name="Device/Source/ARM/arm_startup_da1469x.S"      attr="config" version="1.0.0" condition="ARM Compiler"/>
+                <file category="source"  name="Device/Source/ARM/arm_deepsleep.S"            attr="config" version="1.0.0" condition="ARM Compiler"/>
+                <file category="source"  name="Device/Source/GCC/gcc_startup_da1469x.S"      attr="config" version="1.0.0" condition="GCC Compiler"/>
+                <file category="source"  name="Device/Source/GCC/gcc_vector_table_da1469x.S" attr="config" version="1.0.0" condition="GCC Compiler"/>
+                <file category="source"  name="Device/Source/GCC/gcc_deepsleep.S"            attr="config" version="1.0.0" condition="GCC Compiler"/>
+                <file category="source"  name="Device/Source/IAR/iar_startup_da1469x.S"      attr="config" version="1.0.0" condition="IAR Compiler"/>
+                <file category="source"  name="Device/Source/IAR/iar_deepsleep.S"            attr="config" version="1.0.0" condition="IAR Compiler"/>
+                <file category="sourceC" name="Device/Source/system_da1469x.c"               attr="config" version="1.0.0"/>
+                <file category="header"  name="Device/Include/system_da1469x.h"                            version="1.0.0"/>
+                <file category="header"  name="Device/Include/DataAccess.h" 	                  version="1.0.0"/>
+			</files>		
+		</component>
+
+		<component Cclass="Device" Cgroup="Startup" Cversion="1.0.0" condition="DA14699 device and CMSIS">
+			<description>System startup for Dialog Semiconductor da14699 device</description>
+			<files>
+				<file category="include" name="Device/Include/"/>
+                <file category="header"  name="Device/Include/DialogDevices.h"                        version="1.0.0"/>
+                <file category="header"  name="Device/Include/DA14699.h"                                   version="1.0.0"/>
+                <file category="source"  name="Device/Source/ARM/arm_startup_da1469x.S"      attr="config" version="1.0.0" condition="ARM Compiler"/>
+                <file category="source"  name="Device/Source/ARM/arm_deepsleep.S"            attr="config" version="1.0.0" condition="ARM Compiler"/>
+                <file category="source"  name="Device/Source/GCC/gcc_startup_da1469x.S"      attr="config" version="1.0.0" condition="GCC Compiler"/>
+                <file category="source"  name="Device/Source/GCC/gcc_vector_table_da1469x.S" attr="config" version="1.0.0" condition="GCC Compiler"/>
+                <file category="source"  name="Device/Source/GCC/gcc_deepsleep.S"            attr="config" version="1.0.0" condition="GCC Compiler"/>
+                <file category="source"  name="Device/Source/IAR/iar_startup_da1469x.S"      attr="config" version="1.0.0" condition="IAR Compiler"/>
+                <file category="source"  name="Device/Source/IAR/iar_deepsleep.S"            attr="config" version="1.0.0" condition="IAR Compiler"/>
+                <file category="sourceC" name="Device/Source/system_da1469x.c"               attr="config" version="1.0.0"/>
+                <file category="header"  name="Device/Include/system_da1469x.h"                            version="1.0.0"/>
+                <file category="header"  name="Device/Include/DataAccess.h" 	                  version="1.0.0"/>
+			</files>		
+		</component>
+	</components>
+</package>

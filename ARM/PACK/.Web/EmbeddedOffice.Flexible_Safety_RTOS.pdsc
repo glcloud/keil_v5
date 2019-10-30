@@ -1,0 +1,239 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<package schemaVersion="1.4" xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="PACK.xsd">
+  <vendor>EmbeddedOffice</vendor>
+  <name>Flexible_Safety_RTOS</name>
+  <description>Flexible Safety RTOS</description>
+  <url>http://www.embedded-office.eu/download/public/pack/</url>
+  <supportContact>info@embedded-office.de</supportContact>
+  <!-- optional license file -->
+  <license>Documentation\license.txt</license>
+  
+  <releases>
+    <release version="1.0.0" date="2019-04-15">
+      - Initial Release of flexible safety RTOS (1.2.1) for Cortex-M4F
+    </release>
+  </releases>
+
+  <keywords>
+    <!-- keywords for indexing -->
+    <keyword>RTOS</keyword>
+    <keyword>Safety</keyword>
+    <keyword>Flexible Safety RTOS</keyword>
+    <keyword>Embedded Office</keyword>
+    <keyword>EmbeddedOffice</keyword>
+  </keywords>
+
+  <!-- apis section (optional - for Application Programming Interface descriptions) -->
+<!-- 
+  <apis>
+  </apis>
+-->
+  <!-- devices section (mandatory for Device Family Packs) -->
+
+  <!-- boards section (mandatory for Board Support Packs) -->
+
+  <!-- conditions are dependency rules that can apply to a component or an individual file -->
+  <conditions>
+    <condition id="Cortex-M Device">
+      <description>Only for CM4 processer devices</description>
+      <accept Dcore="Cortex-M4"/>
+    </condition>
+    
+    <!-- ARM compiler -->
+    <condition id="CM4F_LE_ARMCC">
+      <description>Cortex-M4 processor based device using Floating Point Unit in little endian mode for the ARM Compiler without NXP devices</description>
+      <require Dcore="Cortex-M4" Dfpu="FPU" Dmpu="MPU" Dendian="Little-endian"/>
+      <deny Dvendor="NXP:11"/>
+      <require Tcompiler="ARMCC"/>
+    </condition>
+    
+    <condition id="KM4F_LE_ARMCC">
+      <description>Cortex-M4 processor based device using Floating Point Unit in little endian mode for the ARM Compiler and NXP devices</description>
+      <require Dcore="Cortex-M4" Dfpu="FPU" Dmpu="MPU" Dendian="Little-endian"/>
+      <require Dvendor="NXP:11"/>
+      <require Tcompiler="ARMCC"/>
+    </condition>
+    
+    <!-- GCC compiler -->
+    <condition id="CM4F_LE_GCC">
+      <description>Cortex-M4 processor based device using Floating Point Unit in little endian mode for the GCC Compiler without NXP devices</description>
+      <require Dcore="Cortex-M4" Dfpu="FPU" Dmpu="MPU" Dendian="Little-endian"/>
+      <deny Dvendor="NXP:11"/>
+      <require Tcompiler="GCC"/>
+    </condition>
+    
+    <condition id="KM4F_LE_GCC">
+      <description>Cortex-M4 processor based device using Floating Point Unit in little endian mode for the GCC Compiler and NXP devices</description>
+      <require Dcore="Cortex-M4" Dfpu="FPU" Dmpu="MPU" Dendian="Little-endian"/>
+      <require Dvendor="NXP:11"/>
+      <require Tcompiler="GCC"/>
+    </condition>
+    
+    <!-- IAR compiler -->
+    <condition id="CM4F_LE_IAR">
+      <description>Cortex-M4 processor based device using Floating Point Unit in little endian mode for the IAR Compiler without NXP devices</description>
+      <require Dcore="Cortex-M4" Dfpu="FPU" Dmpu="MPU" Dendian="Little-endian"/>
+      <deny Dvendor="NXP:11"/>
+      <require Tcompiler="IAR"/>
+    </condition>
+    
+    <condition id="KM4F_LE_IAR">
+      <description>Cortex-M4 processor based device using Floating Point Unit in little endian mode for the IAR Compiler and NXP devices</description>
+      <require Dcore="Cortex-M4" Dfpu="FPU" Dmpu="MPU" Dendian="Little-endian"/>
+      <require Dvendor="NXP:11"/>
+      <require Tcompiler="IAR"/>
+    </condition>
+  </conditions>
+  
+    <!-- Flexible Safety RTOS component -->  
+  <components>
+    <bundle Cbundle="EmbeddedOffice" Cclass="RTOS" Cversion="1.2.1">
+      <description>Flexible Safety RTOS for Cortex-M4F</description>
+      <doc></doc>
+
+      <component Cgroup="Flexible Safety RTOS" Csub="Cortex-M4F" Cvariant="Eval" Cversion="1.2.1-86768" condition="Cortex-M Device">
+        <description>Evaluation version of Flexible Safety RTOS for Cortex-M4F</description>
+        <files>
+         <!-- CPU independent -->
+           <file category="doc"    name="Documentation/Flexible_Safety_RTOS.html"/>
+           <file category="header" name="Include/sp_core.h"/>
+           <file category="header" name="Include/sp_mon.h"/>
+           <file category="header" name="Include/sp_osapi.h"/>
+           <file category="header" name="Include/sp_type.h" />
+           <file category="header" name="Include/ucos_ii.h" />
+           <file category="header" name="UserCodeTemplates/app_cfg.h"  version="1.0.0" attr="config"/>
+           <file category="source" name="UserCodeTemplates/app_hook.c" version="1.0.0" attr="config"/>
+           
+         <!-- RTOS templates -->
+           <file category="source"       name="UserCodeTemplates/main.c"             select="Flexible Safety RTOS 'main' function"                   version="1.0.0" attr="template"/>
+           <file category="source"       name="UserCodeTemplates/rtos_excep.c"       select="Flexible Safety RTOS Exception handler Configuration"   version="1.0.0" attr="template"/> 
+           <file category="source"       name="UserCodeTemplates/app_hook.c"         select="Flexible Safety RTOS Configuration"                     version="1.0.0" attr="template"/>
+           <file category="header"       name="UserCodeTemplates/app_cfg.h"          select="Flexible Safety RTOS Configuration"                     version="1.0.0" attr="template"/>
+           <file category="header"       name="UserCodeTemplates/main.h"             select="Flexible Safety RTOS 'main' function"                   version="1.0.0" attr="template"/>
+           <file category="header"       name="UserCodeTemplates/rtos_excep.h"       select="Flexible Safety RTOS Exception handler Configuration"   version="1.0.0" attr="template"/>
+           <file category="linkerScript" name="UserCodeTemplates/GCC/cortex-m4f.lds" select="linker file template"                                   version="1.0.0" attr="template" condition="CM4F_LE_GCC"/>
+           <file category="linkerScript" name="UserCodeTemplates/IAR/cortex-m4f.icf" select="linker file template"                                   version="1.0.0" attr="template" condition="CM4F_LE_IAR"/>
+           <file category="linkerScript" name="UserCodeTemplates/MDK/cortex-m4f.sct" select="linker file template"                                   version="1.0.0" attr="template" condition="CM4F_LE_ARMCC"/>
+          
+         <!-- CPU and Compiler dependent -->
+         <!-- ARMCC -->
+           <file category="library"      name="Lib/cortex-m4f_keil/cert-mpu_cortex-m4f_keil.a"                     condition="CM4F_LE_ARMCC"/>
+           <file category="header"       name="Lib/cortex-m4f_keil/os_cfg.h"                                       condition="CM4F_LE_ARMCC"/>
+           <file category="header"       name="Lib/cortex-m4f_keil/os_cpu.h"                                       condition="CM4F_LE_ARMCC"/>
+           <file category="header"       name="Lib/cortex-m4f_keil/sp_cfg.h"                                       condition="CM4F_LE_ARMCC"/>
+           <file category="header"       name="Lib/cortex-m4f_keil/sp_cpu.h"                                       condition="CM4F_LE_ARMCC"/>
+           <file category="header"       name="Lib/cortex-m4f_keil/sp_env.h"                                       condition="CM4F_LE_ARMCC"/>
+           <file category="header"       name="Lib/cortex-m4f_keil/sp_mon_cfg.h"                                   condition="CM4F_LE_ARMCC"/>
+           <file category="linkerScript" name="UserCodeTemplates/MDK/cortex-m4f.sct" version="1.0.0" attr="config" condition="CM4F_LE_ARMCC"/>
+         <!-- GCC -->
+           <file category="library"      name="Lib/cortex-m4f_gcc/cert-mpu_cortex-m4f_gcc.a"                       condition="CM4F_LE_GCC"/>
+           <file category="header"       name="Lib/cortex-m4f_gcc/os_cfg.h"                                        condition="CM4F_LE_GCC"/>
+           <file category="header"       name="Lib/cortex-m4f_gcc/os_cpu.h"                                        condition="CM4F_LE_GCC"/>
+           <file category="header"       name="Lib/cortex-m4f_gcc/sp_cfg.h"                                        condition="CM4F_LE_GCC"/>
+           <file category="header"       name="Lib/cortex-m4f_gcc/sp_cpu.h"                                        condition="CM4F_LE_GCC"/>
+           <file category="header"       name="Lib/cortex-m4f_gcc/sp_env.h"                                        condition="CM4F_LE_GCC"/>
+           <file category="header"       name="Lib/cortex-m4f_gcc/sp_mon_cfg.h"                                    condition="CM4F_LE_GCC"/>
+           <file category="linkerScript" name="UserCodeTemplates/GCC/cortex-m4f.lds" version="1.0.0" attr="config" condition="CM4F_LE_GCC"/>
+         <!-- IAR -->   
+           <file category="library"      name="Lib/cortex-m4f_iar/cert-mpu_cortex-m4f_iar-v8.a"                    condition="CM4F_LE_IAR"/>
+           <file category="header"       name="Lib/cortex-m4f_iar/os_cfg.h"                                        condition="CM4F_LE_IAR"/>
+           <file category="header"       name="Lib/cortex-m4f_iar/os_cpu.h"                                        condition="CM4F_LE_IAR"/>
+           <file category="header"       name="Lib/cortex-m4f_iar/sp_cfg.h"                                        condition="CM4F_LE_IAR"/>
+           <file category="header"       name="Lib/cortex-m4f_iar/sp_cpu.h"                                        condition="CM4F_LE_IAR"/>
+           <file category="header"       name="Lib/cortex-m4f_iar/sp_env.h"                                        condition="CM4F_LE_IAR"/>
+           <file category="header"       name="Lib/cortex-m4f_iar/sp_mon_cfg.h"                                    condition="CM4F_LE_IAR"/>
+           <file category="linkerScript" name="UserCodeTemplates/IAR/cortex-m4f.icf" version="1.0.0" attr="config" condition="CM4F_LE_IAR"/>
+           <!-- Kinetis ARMCC -->
+           <file category="library"      name="Lib/kinetis-m4f_keil/cert-mpu_kinetis-m4f_keil.a"                    condition="KM4F_LE_ARMCC"/>
+           <file category="header"       name="Lib/kinetis-m4f_keil/os_cfg.h"                                       condition="KM4F_LE_ARMCC"/>
+           <file category="header"       name="Lib/kinetis-m4f_keil/os_cpu.h"                                       condition="KM4F_LE_ARMCC"/>
+           <file category="header"       name="Lib/kinetis-m4f_keil/sp_cfg.h"                                       condition="KM4F_LE_ARMCC"/>
+           <file category="header"       name="Lib/kinetis-m4f_keil/sp_cpu.h"                                       condition="KM4F_LE_ARMCC"/>
+           <file category="header"       name="Lib/kinetis-m4f_keil/sp_env.h"                                       condition="KM4F_LE_ARMCC"/>
+           <file category="header"       name="Lib/kinetis-m4f_keil/sp_mon_cfg.h"                                   condition="KM4F_LE_ARMCC"/>
+           <file category="linkerScript" name="UserCodeTemplates/MDK/cortex-m4f.sct" version="1.0.0" attr="config"  condition="KM4F_LE_ARMCC"/>
+           <!-- Kinetis GCC -->
+           <file category="library"      name="Lib/kinetis-m4f_gcc/cert-mpu_kinetis-m4f_gcc.a"                     condition="KM4F_LE_GCC"/>
+           <file category="header"       name="Lib/kinetis-m4f_gcc/os_cfg.h"                                       condition="KM4F_LE_GCC"/>
+           <file category="header"       name="Lib/kinetis-m4f_gcc/os_cpu.h"                                       condition="KM4F_LE_GCC"/>
+           <file category="header"       name="Lib/kinetis-m4f_gcc/sp_cfg.h"                                       condition="KM4F_LE_GCC"/>
+           <file category="header"       name="Lib/kinetis-m4f_gcc/sp_cpu.h"                                       condition="KM4F_LE_GCC"/>
+           <file category="header"       name="Lib/kinetis-m4f_gcc/sp_env.h"                                       condition="KM4F_LE_GCC"/>
+           <file category="header"       name="Lib/kinetis-m4f_gcc/sp_mon_cfg.h"                                   condition="KM4F_LE_GCC"/>
+           <file category="linkerScript" name="UserCodeTemplates/GCC/cortex-m4f.lds" version="1.0.0" attr="config" condition="KM4F_LE_GCC"/>
+           
+           <!-- Kinetis IAR -->
+           <file category="library"      name="Lib/kinetis-m4f_iar/cert-mpu_kinetis-m4f_iar-v8.a"                  condition="KM4F_LE_IAR"/>
+           <file category="header"       name="Lib/kinetis-m4f_iar/os_cfg.h"                                       condition="KM4F_LE_IAR"/>
+           <file category="header"       name="Lib/kinetis-m4f_iar/os_cpu.h"                                       condition="KM4F_LE_IAR"/>
+           <file category="header"       name="Lib/kinetis-m4f_iar/sp_cfg.h"                                       condition="KM4F_LE_IAR"/>
+           <file category="header"       name="Lib/kinetis-m4f_iar/sp_cpu.h"                                       condition="KM4F_LE_IAR"/>
+           <file category="header"       name="Lib/kinetis-m4f_iar/sp_env.h"                                       condition="KM4F_LE_IAR"/>
+           <file category="header"       name="Lib/kinetis-m4f_iar/sp_mon_cfg.h"                                   condition="KM4F_LE_IAR"/>
+           <file category="linkerScript" name="UserCodeTemplates/IAR/cortex-m4f.icf" version="1.0.0" attr="config" condition="KM4F_LE_IAR"/>
+        </files>
+      </component>
+    </bundle>
+  </components>
+
+  <examples>
+      <example name="Safety RTOS Quickstart Application" folder="Examples/SP_QuickStart" doc="sp_quickstart.chm" version="1.0.0">
+      <description>Flexible Safety RTOS integrtion with STM32F407VGTx (Application description in "Examples/SP_QuickStart/sp_quickstart.chm")</description>
+      <board name="STM32F4-Discovery" vendor="STMicroelectronics"/>
+      <project>
+        <environment name="uv" load="STM32F4-Discovery(STM32F407VGTx)/Keil/Safety RTOS Quickstart Application.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <component Cclass="RTOS" Cgroup="Flexible Safety RTOS"/>
+      </attributes>
+      </example>
+      
+      <example name="Safety RTOS Quickstart Application GCC" folder="Examples/SP_QuickStart" doc="sp_quickstart.chm" version="1.0.0">
+      <description>Flexible Safety RTOS integrtion with STM32F407VGTx for GCC compiler (Application description in "Examples/SP_QuickStart/sp_quickstart.chm")</description>
+      <board name="STM32F4-Discovery" vendor="STMicroelectronics"/>
+      <project>
+        <environment name="uv" load="STM32F4-Discovery(STM32F407VGTx)/GCC/Safety RTOS Quickstart Application.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <component Cclass="RTOS" Cgroup="Flexible Safety RTOS"/>
+      </attributes>
+      </example>
+      
+      <example name="Safety RTOS Quickstart Application" folder="Examples/SP_QuickStart" doc="sp_quickstart.chm" version="1.0.0">
+      <description>Flexible Safety RTOS integrtion with STM32F446RETx (Application description in "Examples/SP_QuickStart/sp_quickstart.chm")</description>
+      <board name="NUCLEO-F446RE" vendor="STMicroelectronics"/>
+      <project>
+        <environment name="uv" load="NUCLEO-F446RE(STM32F446RETx)/Keil/Safety RTOS Quickstart Application.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <component Cclass="RTOS" Cgroup="Flexible Safety RTOS"/>
+      </attributes>
+      </example>
+      
+      <example name="Safety RTOS Quickstart Application GCC" folder="Examples/SP_QuickStart" doc="sp_quickstart.chm" version="1.0.0">
+      <description>Flexible Safety RTOS integrtion with STM32F446RETx for GCC compiler (Application description in "Examples/SP_QuickStart/sp_quickstart.chm")</description>
+      <board name="NUCLEO-F446RE" vendor="STMicroelectronics"/>
+      <project>
+        <environment name="uv" load="NUCLEO-F446RE(STM32F446RETx)/GCC/Safety RTOS Quickstart Application.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <component Cclass="RTOS" Cgroup="Flexible Safety RTOS"/>
+      </attributes>
+      </example>
+  </examples>
+  <!-- optional taxonomy section for defining new component Class and Group names -->
+  <!--
+  <taxonomy>
+  </taxonomy>
+  -->
+  
+</package>

@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<package schemaVersion="1.2" xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="PACK.xsd">
+  <license>License/SOFTWARE_LICENSE_AGREEMENT.txt</license> 
+  <vendor>Toshiba</vendor>
+  <url>https://toshiba.semicon-storage.com/content/dam/toshiba-ss/shared/docs/product/micro/device-family-Pack/</url>
+  <name>TX03-M3V_DFP</name>
+  <description>Toshiba TX03 Series TMPM3Vx Device Support</description>
+
+  <releases>
+    <release version="1.0.0" date="2019-03-25">
+      First Release version of TX03 Series TMPM3Vx Device Family Pack.
+    </release>
+  </releases>
+
+  <keywords>
+    <!-- keywords for indexing -->
+    <keyword>Toshiba</keyword>
+    <keyword>Device Support</keyword>
+    <keyword>Device Family Package Toshiba</keyword>
+    <keyword>TMPM3</keyword>
+    <keyword>TX03</keyword>
+  </keywords>
+
+  <devices>
+    <family Dfamily="TX03 Series" Dvendor="Toshiba:92">
+      <processor Dcore="Cortex-M3" DcoreVersion="r2p0" Dfpu="0" Dmpu="0" Dendian="Little-endian"/>
+      <description>
+The TX03 microcontroller series embeds an ARM Cortex-M3 core, which provides high code density and fast interrupt response times required for real-time applications.
+The TX03 Series also incorporates a Toshiba-proprietary NANO FLASH™ memory featuring high capacity and low power consumption.
+      </description>
+
+      <!-- ************************  Subfamily 'M3V0'  **************************** -->
+      <subFamily DsubFamily="M3V0">
+
+        <feature type="WDT"           n="1"/>
+        <feature type="MPSerial"      n="2"/>
+        <feature type="I2C"           n="2"                           name="I2C/SIO"/>
+        <feature type="Other"         n="1"                           name="Remote Control Preprocessor"/>
+        <feature type="PWM"           n="2"                           name="Three Phase PWM Output"/>
+        <feature type="Other"         n="2"                           name="Incremental Encoder Input"/>
+        <feature type="ExtInt"        n="16"/>
+        <feature type="RTC"           n="1"       m="32768"/>
+        <feature type="Temp"          n="-40"     m="85"/>
+        <feature type="Timer"         n="8"       m="16"/>
+        <feature type="CoreOther"     n="1"                           name="Remote control signal preprocessor (RMC)"/>
+
+        <!-- *************************  Device 'TMPM3V6FWFG'  ****************************** -->
+        <device Dname="TMPM3V6FWFG">
+          <processor Dclock="40000000"/>
+          <compile header="Device/Include/TMPM3V6.h"/>
+          <debug svd="SVD/M3V6.svd"/>
+          <memory id="IROM1"                      start="0x00000000" size="0x00020000" startup="1" default="1"/>
+          <memory id="IRAM1"                      start="0x20000000" size="0x00002800" init   ="0" default="1"/>
+          <algorithm name="Flash/TMPM3V6_128.FLM" start="0x00000000" size="0x00020000"             default="1"/>
+
+          <feature type="UART"          n="3"                           name="UART/SIO"/>
+          <feature type="ADC"           n="18"      m="12"/>
+          <feature type="IOs"           n="83"/>
+          <feature type="QFP"           n="100"                         name="LQFP100-P-1414-0.50H"/>
+        </device>
+
+        <!-- *************************  Device 'TMPM3V6FWDFG'  ***************************** -->
+        <device Dname="TMPM3V6FWDFG">
+          <processor Dclock="40000000"/>
+          <compile header="Device/Include/TMPM3V6.h"/>
+          <debug svd="SVD/M3V6.svd"/>
+          <memory id="IROM1"                      start="0x00000000" size="0x00020000" startup="1" default="1"/>
+          <memory id="IRAM1"                      start="0x20000000" size="0x00002800" init   ="0" default="1"/>
+          <algorithm name="Flash/TMPM3V6_128.FLM" start="0x00000000" size="0x00020000"             default="1"/>
+
+          <feature type="UART"          n="3"                           name="UART/SIO"/>
+          <feature type="ADC"           n="18"      m="12"/>
+          <feature type="IOs"           n="83"/>
+          <feature type="QFP"           n="100"                         name="QFP100-P-1420-0.65Q"/>
+        </device>
+
+        <!-- *************************  Device 'TMPM3V4FWUG'  ***************************** -->
+        <device Dname="TMPM3V4FWUG">
+          <processor Dclock="40000000"/>
+          <compile header="Device/Include/TMPM3V4.h"/>
+          <debug svd="SVD/M3V4.svd"/>
+          <memory id="IROM1"                      start="0x00000000" size="0x00020000" startup="1" default="1"/>
+          <memory id="IRAM1"                      start="0x20000000" size="0x00002800" init   ="0" default="1"/>
+          <algorithm name="Flash/TMPM3V4_128.FLM" start="0x00000000" size="0x00020000"             default="1"/>
+
+          <feature type="UART"          n="2"                           name="UART/SIO"/>
+          <feature type="ADC"           n="10"      m="12"/>
+          <feature type="IOs"           n="47"/>
+          <feature type="QFP"           n="64"                          name="LQFP64-P-1010-0.50E"/>
+        </device>
+
+        <!-- *************************  Device 'TMPM3V4FWEFG'  **************************** -->
+        <device Dname="TMPM3V4FWEFG">
+          <processor Dclock="40000000"/>
+          <compile header="Device/Include/TMPM3V4.h"/>
+          <debug svd="SVD/M3V4.svd"/>
+          <memory id="IROM1"                      start="0x00000000" size="0x00020000" startup="1" default="1"/>
+          <memory id="IRAM1"                      start="0x20000000" size="0x00002800" init   ="0" default="1"/>
+          <algorithm name="Flash/TMPM3V4_128.FLM" start="0x00000000" size="0x00020000"             default="1"/>
+
+          <feature type="UART"          n="2"                           name="UART/SIO"/>
+          <feature type="ADC"           n="10"      m="12"/>
+          <feature type="IOs"           n="47"/>
+          <feature type="QFP"           n="64"                          name="QFP64-P-1414-0.80A"/>
+        </device>
+
+        <!-- *************************  Device 'TMPM3V4FSUG'  ***************************** -->
+        <device Dname="TMPM3V4FSUG">
+          <processor Dclock="40000000"/>
+          <compile header="Device/Include/TMPM3V4.h"/>
+          <debug svd="SVD/M3V4.svd"/>
+          <memory id="IROM1"                      start="0x00000000" size="0x00010000" startup="1" default="1"/>
+          <memory id="IRAM1"                      start="0x20000000" size="0x00002000" init   ="0" default="1"/>
+          <algorithm name="Flash/TMPM3V4_64.FLM"  start="0x00000000" size="0x00010000"             default="1"/>
+
+          <feature type="UART"          n="2"                           name="UART/SIO"/>
+          <feature type="ADC"           n="10"      m="12"/>
+          <feature type="IOs"           n="47"/>
+          <feature type="QFP"           n="64"                          name="LQFP64-P-1010-0.50E"/>
+        </device>
+
+        <!-- *************************  Device 'TMPM3V4FSEFG'  **************************** -->
+        <device Dname="TMPM3V4FSEFG">
+          <processor Dclock="40000000"/>
+          <compile header="Device/Include/TMPM3V4.h"/>
+          <debug svd="SVD/M3V4.svd"/>
+          <memory id="IROM1"                      start="0x00000000" size="0x00010000" startup="1" default="1"/>
+          <memory id="IRAM1"                      start="0x20000000" size="0x00002000" init   ="0" default="1"/>
+          <algorithm name="Flash/TMPM3V4_64.FLM"  start="0x00000000" size="0x00010000"             default="1"/>
+
+          <feature type="UART"          n="2"                           name="UART/SIO"/>
+          <feature type="ADC"           n="10"      m="12"/>
+          <feature type="IOs"           n="47"/>
+          <feature type="QFP"           n="64"                          name="QFP64-P-1414-0.80A"/>
+        </device>
+      </subFamily>
+
+    </family>
+  </devices>
+
+  <conditions>
+    <!-- Compiler Conditions -->
+    <condition id="Compiler ARMCC">
+      <require Tcompiler="ARMCC"/>
+    </condition>
+
+    <!-- Device + CMSIS Conditions -->
+    <condition id="TMPM3V6 CMSIS">
+      <description>Toshiba TMPM3V6 devices and CMSIS-CORE</description>
+      <require Dvendor="Toshiba:92" Dname="TMPM3V6*"/>
+      <require Cclass="CMSIS" Cgroup="CORE"/>
+    </condition>
+    <condition id="TMPM3V4 CMSIS">
+      <description>Toshiba TMPM3V4 devices and CMSIS-CORE</description>
+      <require Dvendor="Toshiba:92" Dname="TMPM3V4*"/>
+      <require Cclass="CMSIS" Cgroup="CORE"/>
+    </condition>
+  </conditions>
+
+  <components>
+    <!-- Startup TMPM3V6 -->
+    <component Cclass="Device" Cgroup="Startup" Cversion="1.0.0" condition="TMPM3V6 CMSIS">
+      <description>System Startup for Toshiba TMPM3V6 Devices</description>
+      <files>
+        <file category="include" name="Device/Include/"/>
+        <file category="source"  name="Device/Source/ARM/startup_TMPM3V6.s"    attr="config" version="1.0.0" condition="Compiler ARMCC"/>
+        <file category="source"  name="Device/Source/system_TMPM3V6.c"         attr="config" version="1.0.0"/>
+      </files>
+    </component>
+    <!-- Startup TMPM3V4 -->
+    <component Cclass="Device" Cgroup="Startup" Cversion="1.0.0" condition="TMPM3V4 CMSIS">
+      <description>System Startup for Toshiba TMPM3V4 Devices</description>
+      <files>
+        <file category="include" name="Device/Include/"/>
+        <file category="source"  name="Device/Source/ARM/startup_TMPM3V4.s"    attr="config" version="1.0.0" condition="Compiler ARMCC"/>
+        <file category="source"  name="Device/Source/system_TMPM3V4.c"         attr="config" version="1.0.0"/>
+      </files>
+    </component>
+    
+  </components>
+
+</package>

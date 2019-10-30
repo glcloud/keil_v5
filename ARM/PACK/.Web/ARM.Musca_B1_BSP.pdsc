@@ -1,0 +1,484 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ Copyright (c) 2018-2019 Arm Limited. All rights reserved.
+
+ Licensed under the Apache License, Version 2.0 (the "License");
+ you may not use this file except in compliance with the License.
+ You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
+ -->
+<package schemaVersion="1.2" xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="PACK.xsd">
+  <vendor>ARM</vendor>
+  <url>http://www.keil.com/pack/</url>
+  <name>Musca_B1_BSP</name>
+  <description>
+  Musca B1 Board Support PACK for CoreLink SSE-200 based - TrustZone enabled subsystem for embedded. TFM Pack is required.
+  </description>
+  <releases>
+    <release version="1.1.0" date="2019-04-11">
+    Adds SSE-200 System Information and System Control block to the SVD file.
+    Adds iCache, PWM and watchdog drivers.
+    Runs code in eFlash, adds NVIC reset for platform reset and various other improvements.
+    </release>
+    <release version="1.0.0" date="2018-11-14">
+    Musca B1 SoC Support Pack for CoreLink SSE-200 - TrustZone enabled subsystem including device definition.
+    This BSP pack has mandatory requiremant for the TFM pack.
+    The flag __DOMAIN_NS is used in the internal files to distinguish between secure and non-secure application.
+    Please, use the flag as follow:
+    -> secure application uses -D__DOMAIN_NS=0
+    -> non-secure application uses -D__DOMAIN_NS=1
+    </release>
+  </releases>
+  <keywords>
+    <!-- keywords for indexing -->
+    <keyword>ARM</keyword>
+    <keyword>Device Support</keyword>
+    <keyword>Device Family Package ARM CMSDK</keyword>
+    <keyword>Board Support Package for Musca B1</keyword>
+    <keyword>SSE-200</keyword>
+    <keyword>Musca B1</keyword>
+  </keywords>
+  <devices>
+    <!-- ****************************** ARM Musca B1 SoC ************************************** -->
+    <family Dfamily="ARM Cortex M33" Dvendor="ARM:82">
+      <!-- Select JTAG as default protocol -->
+
+      <debugconfig default="jtag" clock="1000000" swj="true"/>
+      <!-- The text below is formatted to be displayed correctly in the device description box. -->
+      <description>
+Musca B1 SoC (TrustZone enabled subsystem).
+
+The flag DOMAIN_NS is used in the internal files to distinguish between secure and non-secure application. Please, use the flag as follow:
+  -> secure application uses -DDOMAIN_NS=0
+  -> non-secure application uses -DDOMAIN_NS=1
+      </description>
+
+      <book name="Documents/arm_musca_b1_test_chip_and_board_technical_reference_manual_101312_0000_00_en.pdf" title ="Musca B1 TRM"/>
+
+      <memory name="IROM1" access="rxs"  start="0x1A000000" size="0x00200000" default="1" startup="1"/>
+      <memory name="IROM2" access="rxn"  start="0x0A000000" size="0x00200000" default="1" startup="1" alias="IROM1"/>
+      <memory name="ROM1"  access="rxs"  start="0x10000000" size="0x00800000" default="1" startup="0"/>
+      <memory name="ROM2"  access="rxn"  start="0x00000000" size="0x00800000" default="1" startup="0" alias="ROM1"/>
+      <memory name="ROM3"  access="rxs"  start="0x1A200000" size="0x00200000" default="1" startup="0"/>
+      <memory name="ROM4"  access="rxn"  start="0x0A200000" size="0x00200000" default="1" startup="0" alias="ROM3"/>
+      <memory name="IRAM1" access="rwxs" start="0x30000000" size="0x00080000" default="1"/>
+      <memory name="IRAM2" access="rwxn" start="0x20000000" size="0x00080000" default="1" alias="IRAM1"/>
+
+      <debugvars configfile="Device/Debug/CM33.dbgconf">
+        // Debug Authentication Variables
+        __var DAuthFixed  = 0x1;     // 1 - Use fixed authentication, 0 - Ask for user input
+        __var DAuthConfig = 0xF;     // Authentication Value (Security Control Block)
+        // Bit 0 - Invasive Debug (Hardwired to 1)
+        // Bit 1 - Non-Invasive Debug (Hardwired to 1)
+        // Bit 2 - Invasive Secure Debug
+        // Bit 3 - Non-Invasive Secure Debug
+      </debugvars>
+
+      <sequences>
+        <!-- Local processor reset not avaialable in ARMv8-M -->
+        <sequence name="ResetProcessor" disable="true"/>
+
+        <sequence name="DebugDeviceUnlock">
+          <block>
+            __var DAuthUserInput  = 0;
+            __var DAUTHSTATUS_Val = 0;
+            __var DHCSR_Val       = 0;
+            __var SecureDebugEna   = 0;
+            __var SecureDebugAvail = 0;
+            __var DAuthVal         = 0;
+            __var SECDBGSTAT_Val   = 0;
+            __var SECDBGSET_Val    = 0;
+            __var SECDBGCLR_Val    = 0;
+            __var RESET_MASK       = 0;
+
+            DAUTHSTATUS_Val  = Read32(0xE000EE04);    // struct CoreDebug_Type of v8m/cm33
+            DHCSR_Val        = Read32(0xE000EDF0);    // struct CoreDebug_Type of v8m/cm33
+            SecureDebugAvail = (DAUTHSTATUS_Val &amp; 0x00000020) ? 1 : 0;  // SID: Secure Invasive Debug Implemented
+
+            RESET_MASK  = Read32(0x50021104);  // SSE-200 System Control Element - System Control register block - RESET_MASK register
+            RESET_MASK |= (1 &lt;&lt; 4) | (1 &lt;&lt; 6);   // RESET_MASK: Enable SYSRESETREQ0_EN and LOCKUP0_EN
+            Write32(0x50021104, RESET_MASK);
+          </block>
+
+          <control if="SecureDebugAvail" info="Configure Debug Authentication if Security Extensions available">
+            <block>
+              SecureDebugEna = ((DHCSR_Val &amp; 0x00100000) || ((DAUTHSTATUS_Val &amp; 0x00000030) == 0x00000030)) ? 1 : 0;
+            </block>
+
+            <control if="DAuthFixed">
+              <block>
+                // Debug Authentication as per Debug Configuration File
+                DAuthVal = DAuthConfig;
+              </block>
+            </control>
+            <control if="DAuthFixed == 0">
+              <block>
+                DAuthUserInput = Query(1, "Enable Secure Debug?", 3);
+              </block>
+              <control if="DAuthUserInput == 3">
+                <block>
+                  // Enable Secure Debug
+                  DAuthVal = 0xF;
+                </block>
+              </control>
+              <control if="DAuthUserInput != 3">
+                <block>
+                  // Disable Secure Debug
+                  DAuthVal = 0x3;
+                </block>
+              </control>
+            </control>
+
+            <control if="SecureDebugEna">
+              <block>
+                // Read Secure Debug Authentication Status
+                SECDBGSTAT_Val = Read32(0x50021000); // SSE-200 System Control Element - System Control register block - SECDBGSTAT register
+
+                // Assemble SECDBGSET and SECDBGCLR Values
+                SECDBGSET_Val  = 0x000000AA;                                // Use internal signals:
+                                                                            // DBGEN_SEL_SET   - 1,
+                                                                            // NIDEN_SEL_SET   - 1,
+                                                                            // SPIDEN_SEL_SET  - 1,
+                                                                            // SPNIDEN_SEL_SET - 1
+
+                SECDBGSET_Val |=  DAuthVal &amp; 0x1;                       // DBGEN_I_SET
+                SECDBGSET_Val |= (DAuthVal &amp; 0x2) &lt;&lt; 1;           // NIDEN_I_SET
+                SECDBGSET_Val |= (DAuthVal &amp; 0x4) &lt;&lt; 2;           // SPIDEN_I_SET
+                SECDBGSET_Val |= (DAuthVal &amp; 0x8) &lt;&lt; 3;           // SPNIDEN_I_SET
+
+                SECDBGCLR_Val |=   (DAuthVal ^ 0x1) &amp; 0x1;              // DBGEN_I_SET
+                SECDBGCLR_Val |= (((DAuthVal ^ 0x2) &amp; 0x2) &lt;&lt; 1); // NIDEN_I_SET
+                SECDBGCLR_Val |= (((DAuthVal ^ 0x4) &amp; 0x4) &lt;&lt; 2); // SPIDEN_I_SET
+                SECDBGCLR_Val |= (((DAuthVal ^ 0x8) &amp; 0x8) &lt;&lt; 3); // SPNIDEN_I_SET
+
+                // Write Secure Debug Authentication Set Register
+                Write32(0x50021004, SECDBGSET_Val);
+
+                // Write Secure Debug Authentication Clear Register
+                Write32(0x50021008, SECDBGCLR_Val);
+              </block>
+            </control>
+            <control if="SecureDebugEna == 0">
+              <control if="DAuthVal &amp; 0x4">
+                <block>
+                  Query(0, "Cannot configure Debug Authentication, secure debug disabled! Please reboot Board!", 1);
+                </block>
+              </control>
+            </control>
+
+          </control>
+        </sequence>
+      </sequences>
+
+      <device Dname="Musca_B1">
+        <processor Pname="Cortex-M33-0" Dcore="Cortex-M33" DcoreVersion="r0p2" Dfpu="FPU" Dmpu="MPU" Ddsp="DSP" Dtz="TZ" Dendian="Configurable" Dclock="40000000" />
+        <processor Pname="Cortex-M33-1" Dcore="Cortex-M33" DcoreVersion="r0p2" Dfpu="FPU" Dmpu="MPU" Ddsp="DSP" Dtz="TZ" Dendian="Configurable" Dclock="160000000" />
+        <debug Pname="Cortex-M33-0" svd="SVD/Musca_B1.svd" __dp="0" __ap="1" address="0xE000E000"/>
+        <debug Pname="Cortex-M33-1" svd="SVD/Musca_B1.svd" __dp="0" __ap="2" address="0xE000E000"/>
+        <algorithm name="Flash/MuscaB1_qspi_flash.FLM" start="0x00000000" size="0x00800000" RAMstart="0x20000000" RAMsize="0x00080000" default="1" style="Keil"/>
+        <algorithm name="Flash/MuscaB1_eflash.FLM" start="0x0A000000" size="0x00400000" RAMstart="0x20000000" RAMsize="0x00080000" default="0" style="Keil"/>
+        <compile header="Device/Include/cmsis.h" />
+      </device>
+    </family>
+  </devices>
+
+  <!-- conditions are dependecy rules that can apply to a component or an individual file -->
+  <conditions>
+    <condition id="ARMCC">
+      <require Tcompiler="ARMCC"/>
+    </condition>
+    <condition id="Musca B1 CMSIS Core">
+      <description>ARM Musca B1 CMSIS Core</description>
+      <accept Cclass="CMSIS" Cgroup="CORE" Cversion="5.0.2:5.0.2"/>
+      <accept Cclass="TFM" Cgroup="Core"/>
+    </condition>
+    <condition id="Musca B1 Core Device">
+      <description>ARM Musca B1 Core Device</description>
+      <require Dvendor="ARM:82" Dname="Musca_B1"/>
+      <require Tcompiler="ARMCC"/>
+    </condition>
+    <condition id="Musca B1 SoC Device Common">
+      <description>Musca B1 SoC Device Common</description>
+      <require condition="Musca B1 Core Device"/>
+      <require condition="Musca B1 CMSIS Core"/>
+      <require Cclass="Device" Cgroup="Startup"/>
+    </condition>
+    <condition id="Secure Musca B1 SoC Device">
+      <description>Secure Musca B1 SoC Device</description>
+      <require condition="Musca B1 SoC Device Common"/>
+      <require Dsecure="Secure"/>
+      <require Cclass="Device" Cgroup="Memory map"/>
+      <require Cclass="TFM" Cgroup="Core"/>
+    </condition>
+    <condition id="Non-Secure Musca B1 SoC Device">
+      <description>Non-Secure Musca B1 SoC Device</description>
+      <require condition="Musca B1 SoC Device Common"/>
+      <require Dsecure="Non-secure"/>
+      <require Cclass="Device" Cgroup="Memory map"/>
+      <require Cclass="TFM" Cgroup="API"/>
+    </condition>
+    <condition id="Musca B1 Native MPC Device">
+      <description>Musca B1 Native MPC Device</description>
+      <require condition="Musca B1 SoC Device Common"/>
+      <require Cclass="Native Driver" Cgroup="Native MPC"/>
+    </condition>
+    <condition id="Musca B1 Native PPC Device">
+      <description>Musca B1 Native PPC Device</description>
+      <require condition="Musca B1 SoC Device Common"/>
+      <require Cclass="Native Driver" Cgroup="Native PPC"/>
+    </condition>
+    <condition id="Musca B1 Native USART Device">
+      <description>Musca B1 Native USART Device</description>
+      <require condition="Musca B1 SoC Device Common"/>
+      <require Cclass="Native Driver" Cgroup="Native UART"/>
+      <require Cclass="Native Driver" Cgroup="Native SCC"/>
+    </condition>
+    <condition id="Musca B1 Native EFlash Device">
+      <description>Musca B1 Native EFlash Device</description>
+       <require condition="Musca B1 SoC Device Common"/>
+	  <require Cclass="Native Driver" Cgroup="Native EFlash"/>
+    </condition>
+    <condition id="Musca B1 Native QSPI Flash Device">
+      <description>Musca B1 Native QSPI Flash Device</description>
+      <require condition="Musca B1 SoC Device Common"/>
+      <require Cclass="Native Driver" Cgroup="Native QSPI"/>
+    </condition>
+    <condition id="Musca B1 QSPI Flash Device">
+      <description>Musca B1 QSPI Flash Device</description>
+      <require condition="Musca B1 Native QSPI Flash Device"/>
+      <require Cclass="Library" Cgroup="MT25QL QSPI Flash"/>
+    </condition>
+  </conditions>
+
+  <components>
+    <!-- Musca B1 Memory Map -->
+    <component Cclass="Device" Cgroup="Memory map" Cversion="1.0.0" condition="Musca B1 Core Device">
+      <description>Musca B1 Memory map</description>
+      <files>
+        <file category="header" name="Device/Include/partition/flash_layout.h" version="1.0.0" attr="config"/>
+        <file category="header" name="Device/Include/partition/region_defs.h" version="1.0.0" attr="config"/>
+      </files>
+    </component>
+    <!-- Musca B1 Secure Startup -->
+    <component Cclass="Device" Cgroup="Startup" Cvariant="Secure" Cversion="1.0.0" condition="Secure Musca B1 SoC Device">
+      <description>Secure System and Startup for Musca B1 SoC device</description>
+      <files>
+        <!-- device include path -->
+        <file category="include" name="Device/Include/"/>
+        <file category="include" name="Native_Driver/"/>
+        <file category="include" name="CMSIS_Driver/Include/"/>
+        <file category="include" name="Libraries/Include/"/>
+        <!-- startup / system file -->
+        <file category="linkerScript" name="Device/Source/armclang/musca_s.sct " version="1.0.0" attr="config" condition="ARMCC"/>
+        <file category="source" name="Device/Source/armclang/startup_cmsdk_musca_s.s" version="1.0.0" attr="config" condition="ARMCC"/>
+        <file category="source" name="Device/Source/system_core_init.c" version="1.0.0" attr="config"/>
+        <!-- Retarget files -->
+        <file category="source" name="Device/Source/device_definition.c" version="1.0.0"/>
+        <!-- device configuration -->
+        <file category="header" name="CMSIS_Driver/Config/RTE_Device.h" attr="config" version="1.0.0"/>
+        <file category="header" name="CMSIS_Driver/Config/cmsis_driver_config.h" attr="config" version="1.0.0"/>
+        <file category="header" name="Device/Config/device_cfg.h" version="1.0.0" attr="config"/>
+        <!-- TFM specific files -->
+        <file category="source" name="Device/Source/TFM/dummy_crypto_keys.c" version="1.0.0"/>
+        <file category="source" name="Device/Source/TFM/dummy_nv_counters.c" version="1.0.0"/>
+        <file category="source" name="Device/Source/TFM/tfm_platform_system.c" version="1.0.0"/>
+        <file category="source" name="Device/Source/TFM/target_cfg.c" version="1.0.0"/>
+        <file category="source" name="Device/Source/TFM/spm_hal.c" version="1.0.0"/>
+      </files>
+    </component>
+    <!-- Musca B1 Non-Secure Startup -->
+    <component Cclass="Device" Cgroup="Startup" Cvariant="Non-Secure" Cversion="1.0.0" condition="Non-Secure Musca B1 SoC Device">
+      <description>Non-Secure System and Startup for Musca B1 SoC device</description>
+      <files>
+        <!-- device include path -->
+        <file category="include" name="Device/Include/"/>
+        <file category="include" name="Native_Driver/"/>
+        <file category="include" name="CMSIS_Driver/Include/"/>
+        <file category="include" name="Libraries/Include/"/>
+        <!-- startup / system file -->
+        <file category="linkerScript" name="Device/Source/armclang/musca_ns.sct " version="1.0.0" attr="config" condition="ARMCC"/>
+        <file category="source" name="Device/Source/armclang/startup_cmsdk_musca_ns.s" version="1.0.0" attr="config" condition="ARMCC"/>
+        <file category="source" name="Device/Source/system_core_init.c" version="1.0.0" attr="config"/>
+        <!-- Retarget files -->
+        <file category="source" name="Device/Source/device_definition.c" version="1.0.0"/>
+        <!-- device configuration -->
+        <file category="header" name="CMSIS_Driver/Config/RTE_Device.h" version="1.0.0" attr="config"/>
+        <file category="header" name="CMSIS_Driver/Config/cmsis_driver_config.h" version="1.0.0" attr="config"/>
+        <file category="header" name="Device/Config/device_cfg.h" version="1.0.0" attr="config"/>
+      </files>
+    </component>
+    <component Cclass="CMSIS Driver" Cgroup="MPC" Cversion="1.0.0" condition="Musca B1 Native MPC Device">
+      <description>MPC (Memory Protection Controller) driver for Musca B1</description>
+      <files>
+        <file category="include" name="CMSIS_Driver/Config/"/>
+        <file category="source" name="CMSIS_Driver/Driver_MPC.c"/>
+        <file category="header" name="CMSIS_Driver/Include/Driver_MPC.h"/>
+      </files>
+    </component>
+    <component Cclass="CMSIS Driver" Cgroup="PPC" Cversion="1.0.0" condition="Musca B1 Native PPC Device">
+      <description>PPC (Preipheral Protection Controller) driver for Musca B1</description>
+      <files>
+        <file category="include" name="CMSIS_Driver/Config/"/>
+        <file category="source" name="CMSIS_Driver/Driver_PPC.c"/>
+        <file category="header" name="CMSIS_Driver/Include/Driver_PPC.h"/>
+      </files>
+    </component>
+    <component Cclass="CMSIS Driver" Cgroup="USART" Cversion="1.0.0" condition="Musca B1 Native USART Device">
+      <description>UART driver for Musca B1</description>
+      <files>
+        <file category="include" name="CMSIS_Driver/Config/"/>
+        <file category="source" name="CMSIS_Driver/Driver_USART.c"/>
+      </files>
+    </component>
+    <component Cclass="CMSIS Driver" Cgroup="Flash" Csub="Embedded Flash" Cversion="1.0.0" condition="Musca B1 Native EFlash Device">
+      <description>Embedded Flash driver for Musca B1</description>
+      <files>
+        <file category="include" name="CMSIS_Driver/Config/"/>
+        <file category="source" name="CMSIS_Driver/Driver_GFC100_EFlash.c"/>
+      </files>
+    </component>
+    <component Cclass="CMSIS Driver" Cgroup="Flash" Csub="QSPI Flash" Cversion="1.0.0" condition="Musca B1 QSPI Flash Device">
+      <description>QSPI Flash driver for Musca B1</description>
+      <files>
+        <file category="source" name="CMSIS_Driver/Driver_QSPI_Flash.c"/>
+      </files>
+    </component>
+        <component Cclass="CMSIS Driver" Cgroup="Flash" Csub="SRAM Emulated Flash" Cversion="1.0.0" condition="Musca B1 SoC Device Common">
+      <description>Flash driver emulated in SRAM for Musca B1</description>
+      <files>
+        <file category="source" name="CMSIS_Driver/Driver_Flash.c"/>
+      </files>
+    </component>
+    <component Cclass="Native Driver" Cgroup="Native MPC" Cversion="1.0.0" condition="Musca B1 SoC Device Common">
+      <description>Native MPC driver used by CMSIS Drivers for Musca B1</description>
+      <files>
+        <file category="source" name="Native_Driver/mpc_sie200_drv.c"/>
+        <file category="header" name="Native_Driver/mpc_sie200_drv.h"/>
+      </files>
+    </component>
+    <component Cclass="Native Driver" Cgroup="Native PPC" Cversion="1.0.0" condition="Musca B1 SoC Device Common">
+      <description>Native MPC driver used by CMSIS Drivers for Musca B1</description>
+      <files>
+        <file category="source" name="Native_Driver/ppc_sse200_drv.c"/>
+        <file category="header" name="Native_Driver/ppc_sse200_drv.h"/>
+      </files>
+    </component>
+    <component Cclass="Native Driver" Cgroup="Native GPIO" Cversion="1.0.0" condition="Musca B1 SoC Device Common">
+      <description>Native GPIO driver for Musca B1</description>
+      <files>
+        <file category="source" name="Native_Driver/gpio_cmsdk_drv.c"/>
+        <file category="header" name="Native_Driver/gpio_cmsdk_drv.h"/>
+      </files>
+    </component>
+    <component Cclass="Native Driver" Cgroup="Native SCC" Cversion="1.0.0" condition="Musca B1 SoC Device Common">
+      <description>Native SCC driver for Musca B1</description>
+      <files>
+        <file category="source" name="Native_Driver/musca_b1_scc_drv.c"/>
+        <file category="header" name="Native_Driver/musca_b1_scc_drv.h"/>
+      </files>
+    </component>
+    <component Cclass="Native Driver" Cgroup="Native CMSDK Timer" Cversion="1.0.0" condition="Musca B1 SoC Device Common">
+      <description>Native CMSDK Timer driver for Musca B1</description>
+      <files>
+        <file category="source" name="Native_Driver/timer_cmsdk_drv.c"/>
+        <file category="header" name="Native_Driver/timer_cmsdk_drv.h"/>
+      </files>
+    </component>
+    <component Cclass="Native Driver" Cgroup="Native CMSDK DualTimer" Cversion="1.0.0" condition="Musca B1 SoC Device Common">
+      <description>Native CMSDK DualTimer driver for Musca B1</description>
+      <files>
+        <file category="source" name="Native_Driver/dualtimer_cmsdk_drv.c"/>
+        <file category="header" name="Native_Driver/dualtimer_cmsdk_drv.h"/>
+      </files>
+    </component>
+    <component Cclass="Native Driver" Cgroup="Native MHU" Cversion="1.0.0" condition="Musca B1 SoC Device Common">
+      <description>Native MHU driver for Musca B1</description>
+      <files>
+        <file category="source" name="Native_Driver/mhu_sse_200_drv.c"/>
+        <file category="header" name="Native_Driver/mhu_sse_200_drv.h"/>
+      </files>
+    </component>
+    <component Cclass="Native Driver" Cgroup="Native UART" Cversion="1.0.0" condition="Musca B1 SoC Device Common">
+      <description>Native UART driver for Musca B1</description>
+      <files>
+        <file category="source" name="Native_Driver/uart_pl011_drv.c"/>
+        <file category="header" name="Native_Driver/uart_pl011_drv.h"/>
+      </files>
+    </component>
+    <component Cclass="Native Driver" Cgroup="Native QSPI" Cversion="1.0.0" condition="Musca B1 SoC Device Common">
+        <description>Native QSPI Flash Controller for Musca B1</description>
+        <files>
+            <file category="source" name="Native_Driver/qspi_ip6514e_drv.c"/>
+            <file category="header" name="Native_Driver/qspi_ip6514e_drv.h"/>
+        </files>
+    </component>
+    <component Cclass="Library" Cgroup="MT25QL QSPI Flash" Cversion="1.0.0" condition="Musca B1 Native QSPI Flash Device">
+        <description>MT25QL Flash Memory Library for Musca B1 Board</description>
+        <files>
+            <file category="source" name="Libraries/mt25ql_flash_lib.c"/>
+            <file category="header" name="Libraries/Include/mt25ql_flash_lib.h"/>
+        </files>
+    </component>
+    <component Cclass="Native Driver" Cgroup="Native EFlash" Cversion="1.0.0" condition="Musca B1 SoC Device Common">
+        <description>Native GFC100 EFlash driver for Musca B1</description>
+        <files>
+            <file category="source" name="Native_Driver/musca_b1_eflash_drv.c"/>
+            <file category="source" name="Native_Driver/gfc100_eflash_drv.c"/>
+            <file category="header" name="Native_Driver/gfc100_eflash_drv.h"/>
+            <file category="header" name="Native_Driver/gfc100_process_spec_api.h"/>
+        </files>
+    </component>
+    <component Cclass="Native Driver" Cgroup="Native SPI" Cversion="1.0.0" condition="Musca B1 SoC Device Common">
+      <description>Native SPI driver for Musca B1</description>
+      <files>
+        <file category="source" name="Native_Driver/spi_ip6524_drv.c"/>
+        <file category="header" name="Native_Driver/spi_ip6524_drv.h"/>
+      </files>
+    </component>
+    <component Cclass="Native Driver" Cgroup="Native Cache" Cversion="1.0.0" condition="Musca B1 SoC Device Common">
+        <description>SSE200 iCache driver for Musca B1</description>
+        <files>
+            <file category="source" name="Native_Driver/cache_drv.c"/>
+            <file category="header" name="Native_Driver/cache_drv.h"/>
+         </files>
+    </component>
+    <component Cclass="Native Driver" Cgroup="Native PWM" Cversion="1.0.0" condition="Musca B1 SoC Device Common">
+        <description>Native PWM driver for Musca B1</description>
+        <files>
+            <file category="source" name="Native_Driver/pwm_ip6512_drv.c"/>
+            <file category="header" name="Native_Driver/pwm_ip6512_drv.h"/>
+         </files>
+    </component>
+    <component Cclass="Native Driver" Cgroup="Native Watchdog" Cversion="1.0.0" condition="Musca B1 SoC Device Common">
+        <description>Native watchdog driver for Musca B1</description>
+        <files>
+            <file category="source" name="Native_Driver/arm_watchdog_drv.c"/>
+            <file category="header" name="Native_Driver/arm_watchdog_drv.h"/>
+         </files>
+    </component>
+  </components>
+
+  <boards>
+    <board name="Musca_B1" vendor="ARM" revision="B1" salesContact="sales.intl@keil.com" orderForm="http://www.keil.com/product/prices.asp">
+      <description>ARM Musca B1 SoC IoT Board</description>
+      <image large="Documents/Musca_B1_SoC_IoT_Board.jpg"/>
+      <mountedDevice    deviceIndex="0" Dvendor="ARM:82" Dname="Musca_B1"/>
+      <!-- <compatibleDevice    deviceIndex="0" Dvendor="ARM:82" Dname="CMSDK_IOTSS"/> -->
+      <feature type="XTAL"      n="40000000"/>
+      <feature type="Batt"      n="1"              name="3V battery"/>
+      <feature type="Button"    n="2"              name="Push-buttons: Hardware RESET, ON/OFF soft RESET"/>
+      <feature type="USB"       n="1"              name="USB 2.0 configuration port"/>
+      <feature type="ConnOther" n="1"              name="ARM JTAG 20 Interface"/>
+
+      <debugInterface adapter="JTAG/SW"   connector="20 pin JTAG (0.1 inch connector)"/>
+    </board>
+  </boards>
+
+ </package>

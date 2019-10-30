@@ -1,0 +1,43 @@
+﻿===============================================================================
+This file contains details of any applicable specific extensions, limitations 
+or other variations to the terms of the End User License Agreement that 
+accompanies this release of 'Keil MDK'.
+=============================================================================== 
+MDK-SPECIFIC DEFINITIONS: 
+
+“MDK-Plus Middleware” means all of the following software components in object  
+code form: (a) IPv4 networking suite; (b) USB device; (c) Flash (flash file system); 
+d) GUI emWin. 
+
+“MDK-Professional Middleware” means all of the following software components 
+in object code form: (a) IPv4 and IPv6 networking suite; (b) USB host and device; 
+(c) Flash (flash file system); (d) GUI emWin; and (e) any other middleware software 
+components delivered by ARM as part of the MDK Professional edition software package, 
+and found in your installation at <install base>\ARM\PACK\Keil\MDK-Middleware.  
+
+“Middleware” means either or both of the MDK-Plus Middleware and MDK-Professional 
+Middleware, as applicable. 
+
+--------------------------------------------------------------------- 
+MIDDLEWARE: 
+
+Use of Middleware is granted per licensed Seat of MDK-Plus or MDK-Pro edition. 
+
+You acknowledge and agree that you shall not use the MDK-Plus Middleware or   
+MDK-Professional Middleware (as applicable) unless you have licensed either 
+MDK-Plus edition or MDK-Professional edition respectively. 
+
+The FlashFS libraries FS_ARM_L.lib, FS_ARM_B.lib, FS_CM1.lib, FS_CM3.lib, 
+FS_LFN_CM0_B.lib, FS_LFN_CM0_L.lib, FS_LFN_CM3_B.lib and FS_LFN_CM3_L.lib include 
+source code that is capable of supporting a file system with long filenames in 
+Software Applications that you develop. You warrant to ARM that unless you have 
+first obtained a licence from Microsoft for its FAT file system with long filename 
+support then you will not develop or distribute Software Applications that include 
+a file system with long filenames see 
+https://www.microsoft.com/en-us/legal/intellectualproperty/mtl/technologylicensing.aspx 
+for more details). As an alternative, the libraries FSN_ARM_L.lib, FSN_ARM_B.lib, 
+FSN_CM1.lib, FSN_CM3.lib, FS_SFN_CM0_B.lib, FS_SFN_CM0_L.lib, FS_SFN_CM3_B.lib 
+and FS_SFN_CM3_L.lib are not capable of supporting a file system with long filenames 
+and are licensed to you as part of the Arm Software provided under this Licence.
+---------------------------------------------------------------------- 
+END OF FILE: supplementary_terms.txt

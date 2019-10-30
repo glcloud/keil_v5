@@ -1,0 +1,902 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<package schemaVersion="1.3" xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="PACK.xsd">
+  <vendor>Keil</vendor>
+  <name>STM32WBxx_DFP</name>
+  <description>STMicroelectronics STM32WB Series Device Support</description>
+  <url>http://www.keil.com/pack</url>
+
+  <releases>
+    <release version="1.0.0" date="2019-03-01">
+      Initial version of STM32WB Device Family Pack.
+      This Device Family Pack requires the installation of:
+      - STM32CubeMX V5.1.0
+      - STM32Cube WB Firmware Package V1.0.0
+    </release>
+  </releases>
+
+<!-- keywords for indexing -->
+  <keywords>
+    <keyword>ST</keyword>
+    <keyword>Device Support</keyword>
+    <keyword>Device Family Package STMicroelectronics</keyword>
+    <keyword>STM32WB</keyword>
+    <keyword>STM32WBxx</keyword>
+  </keywords>
+
+  <devices>
+    <family Dfamily="STM32WB Series" Dvendor="STMicroelectronics:13">
+      <processor Dcore="Cortex-M4" DcoreVersion="r0p1" Dfpu="SP_FPU" Dmpu="MPU" Dendian="Configurable" Dclock="10000000"/>
+      <book name="Documentation/DUI0553.pdf" title="Cortex-M4 Generic User Guide"/>
+      <description>
+The STM32WB55xx multiprotocol wireless and ultra-low-power devices embed a powerful and ultra-low-power radio compliant with the Bluetooth® Low Energy SIG specification v5.0 and with IEEE 802.15.4-2011.
+They contain a dedicated Arm® Cortex® -M0+ for performing all the real-time low layer operation. The STM32WB55xx devices are designed to be extremely low-power and are based on the high-performance Arm® Cortex®-M4 32-bit RISC core operating at a frequency of up to 64 MHz.
+The Cortex®-M4 core features a Floating point unit (FPU) single precision that supports all Arm® single-precision data-processing instructions and data types.
+It also implements a full set of DSP instructions and a memory protection unit (MPU) that enhances application security.
+    </description>
+
+      <!-- ************************  Subfamily 'STM32WB55'  **************************** -->
+      <subFamily DsubFamily="STM32WB55">
+        <debug svd="CMSIS/SVD/STM32WBxx_CM4.svd"/>
+        <compile header="Drivers/CMSIS/Device/ST/STM32WBxx/Include/stm32wbxx.h" define="STM32WB55xx"/>
+
+        <book name="Documentation/DM00344191.pdf" title="STM32WB55xx Data Sheet"/>
+
+        <!-- *************************  Device 'STM32WB55CC'  ***************************** -->
+        <device Dname="STM32WB55CCUx">
+          <memory id="IROM1"                           start="0x08000000" size="0x00040000" startup="1" default="1" />
+          <memory id="IRAM1"                           start="0x20000000" size="0x00020000" init="0"    default="1" />
+          <algorithm name="CMSIS/Flash/STM32WB_M4.FLM" start="0x08000000" size="0x00040000"             default="1" />
+
+          <feature type="QFP" n="48"/>
+        </device>
+
+        <!-- *************************  Device 'STM32WB55CE'  ***************************** -->
+        <device Dname="STM32WB55CEUx">
+
+          <memory id="IROM1"                           start="0x08000000" size="0x00080000" startup="1" default="1" />
+          <memory id="IRAM1"                           start="0x20000000" size="0x00040000" init="0"    default="1" />
+          <algorithm name="CMSIS/Flash/STM32WB_M4.FLM" start="0x08000000" size="0x00080000"             default="1" />
+
+          <feature type="QFP" n="48"/>
+        </device>
+
+        <!-- *************************  Device 'STM32WB55CG'  ***************************** -->
+        <device Dname="STM32WB55CGUx">
+          <memory id="IROM1"                           start="0x08000000" size="0x00100000" startup="1" default="1" />
+          <memory id="IRAM1"                           start="0x20000000" size="0x00040000" init="0"    default="1" />
+          <algorithm name="CMSIS/Flash/STM32WB_M4.FLM" start="0x08000000" size="0x00100000"             default="1" />
+
+          <feature type="QFP" n="48"/>
+        </device>
+
+        <!-- *************************  Device 'STM32WB55RC'  ***************************** -->
+        <device Dname="STM32WB55RCVx">
+          <memory id="IROM1"                           start="0x08000000" size="0x00040000" startup="1" default="1" />
+          <memory id="IRAM1"                           start="0x20000000" size="0x00020000" init="0"    default="1" />
+          <algorithm name="CMSIS/Flash/STM32WB_M4.FLM" start="0x08000000" size="0x00040000"             default="1" />
+
+          <feature type="QFP" n="68"/>
+        </device>
+
+        <!-- *************************  Device 'STM32WB55RE'  ***************************** -->
+        <device Dname="STM32WB55REVx">
+          <memory id="IROM1"                           start="0x08000000" size="0x00080000" startup="1" default="1" />
+          <memory id="IRAM1"                           start="0x20000000" size="0x00040000" init="0"    default="1" />
+          <algorithm name="CMSIS/Flash/STM32WB_M4.FLM" start="0x08000000" size="0x00080000"             default="1" />
+
+          <feature type="QFP" n="68"/>
+        </device>
+
+        <!-- *************************  Device 'STM32WB55RG'  ***************************** -->
+        <device Dname="STM32WB55RGVx">
+          <memory id="IROM1"                           start="0x08000000" size="0x001000000" startup="1" default="1" />
+          <memory id="IRAM1"                           start="0x20000000" size="0x000040000" init="0"    default="1" />
+          <algorithm name="CMSIS/Flash/STM32WB_M4.FLM" start="0x08000000" size="0x001000000"             default="1" />
+
+          <feature type="QFP" n="68"/>
+        </device>
+
+         <!-- *************************  Device 'STM32WB55VC'  ***************************** -->
+        <device Dname="STM32WB55VCYx">
+          <memory id="IROM1"                           start="0x08000000" size="0x00040000" startup="1" default="1" />
+          <memory id="IRAM1"                           start="0x20000000" size="0x00020000" init="0"    default="1" />
+          <algorithm name="CMSIS/Flash/STM32WB_M4.FLM" start="0x08000000" size="0x00040000"             default="1" />
+
+          <feature type="CSP" n="100"/>
+        </device>
+
+        <!-- *************************  Device 'STM32WB55VE'  ***************************** -->
+        <device Dname="STM32WB55VEYx">
+          <memory id="IROM1"                           start="0x08000000" size="0x00080000" startup="1" default="1" />
+          <memory id="IRAM1"                           start="0x20000000" size="0x00040000" init="0"    default="1" />
+          <algorithm name="CMSIS/Flash/STM32WB_M4.FLM" start="0x08000000" size="0x00080000"             default="1" />
+
+          <feature type="CSP" n="100"/>
+        </device>
+
+        <!-- *************************  Device 'STM32WB55VG'  ***************************** -->
+        <device Dname="STM32WB55VGYx">
+          <memory id="IROM1"                           start="0x08000000" size="0x001000000" startup="1" default="1" />
+          <memory id="IRAM1"                           start="0x20000000" size="0x000040000"    init="0" default="1" />
+          <algorithm name="CMSIS/Flash/STM32WB_M4.FLM" start="0x08000000" size="0x001000000"             default="1" />
+
+          <feature type="CSP" n="100"/>
+        </device>
+      </subFamily>
+
+   </family>
+
+  </devices>
+
+  <conditions>
+    <!-- Compiler Conditions -->
+    <condition id="Compiler ARMCC">
+      <require Tcompiler="ARMCC"/>
+    </condition>
+    <condition id="Compiler GCC">
+      <require Tcompiler="GCC"/>
+    </condition>
+    <condition id="Compiler IAR">
+      <require Tcompiler="IAR"/>
+    </condition>
+
+    <!-- Device Conditions -->
+    <condition id="STM32WB">
+      <description>STMicroelectronics STM32WB Devices</description>
+      <require Dvendor="STMicroelectronics:13" Dname="STM32WB*"/>
+    </condition>
+
+    <condition id="STM32WB55">
+      <description>STMicroelectronics STM32WB55 Devices</description>
+      <require Dvendor="STMicroelectronics:13" Dname="STM32WB55*"/>
+    </condition>
+
+    <!-- Device + CMSIS Conditions -->
+    <condition id="STM32WB CMSIS">
+      <description>STMicroelectronics STM32WB Device and CMSIS-CORE</description>
+      <require condition="STM32WB"/>
+      <require Cclass="CMSIS" Cgroup="CORE"/>
+    </condition>
+
+    <!-- Device + Compiler Conditions (ARMCC) -->
+    <condition id="STM32WB55 ARMCC">
+      <description>STMicroelectronics STM32WB55 Devices and ARMCC Compiler</description>
+      <require condition="STM32WB55"/>
+      <require condition="Compiler ARMCC"/>
+    </condition>
+
+    <!-- Device + Compiler Conditions (GCC) -->
+    <condition id="STM32WB55 GCC">
+      <description>STMicroelectronics STM32WB55 Devices and GCC Compiler</description>
+      <require condition="STM32WB55"/>
+      <require condition="Compiler GCC"/>
+    </condition>
+
+    <!-- Device + Compiler Conditions (IAR) -->
+    <condition id="STM32WB55 IAR">
+      <description>STMicroelectronics STM32WB55 Devices and IAR Compiler</description>
+      <require condition="STM32WB55"/>
+      <require condition="Compiler IAR"/>
+    </condition>
+
+    <!-- HAL Conditions -->
+    <condition id="STM32WB HAL">
+      <description>STMicroelectronics STM32WB Device and HAL</description>
+      <require condition="STM32WB"/>
+      <require Cclass="Device" Cgroup="STM32Cube HAL" Csub="Common"/>
+    </condition>
+    <condition id="STM32WB HAL Common">
+      <description>STMicroelectronics STM32L4 Device and HAL Common</description>
+      <require condition="STM32WB"/>
+      <require Cclass="CMSIS"  Cgroup="CORE"/>
+      <require Cclass="Device" Cgroup="STM32Cube Framework"/>
+      <require Cclass="Device" Cgroup="STM32Cube HAL" Csub="Common"/>
+      <require Cclass="Device" Cgroup="STM32Cube HAL" Csub="Cortex"/>
+      <require Cclass="Device" Cgroup="STM32Cube HAL" Csub="RCC"/>
+      <require Cclass="Device" Cgroup="STM32Cube HAL" Csub="PWR"/>
+    </condition>
+    <condition id="STM32WB HAL DMA">
+      <description>STMicroelectronics STM32WB Device and HAL with DMA</description>
+      <require condition="STM32WB"/>
+      <require Cclass="Device" Cgroup="STM32Cube HAL" Csub="Common"/>
+      <require Cclass="Device" Cgroup="STM32Cube HAL" Csub="DMA"/>
+    </condition>
+    <condition id="STM32WB HAL GPIO">
+      <description>STMicroelectronics STM32WB Device and HAL with GPIO</description>
+      <require condition="STM32WB"/>
+      <require Cclass="Device" Cgroup="STM32Cube HAL" Csub="Common"/>
+      <require Cclass="Device" Cgroup="STM32Cube HAL" Csub="GPIO"/>
+    </condition>
+
+    <!-- LL driver Conditions -->
+    <condition id="STM32WB LL">
+      <description>STMicroelectronics STM32WB Device and LL</description>
+      <require condition="STM32WB"/>
+      <require Cclass="Device" Cgroup="STM32Cube LL" Csub="Common"/>
+    </condition>
+    <condition id="STM32WB LL Common">
+      <description>STMicroelectronics STM32WB Device and LL</description>
+      <require condition="STM32WB"/>
+      <require Cclass="CMSIS"  Cgroup="CORE"/>
+      <require Cclass="Device" Cgroup="STM32Cube Framework"/>
+      <require Cclass="Device" Cgroup="STM32Cube LL" Csub="UTILS"/>
+      <require Cclass="Device" Cgroup="STM32Cube LL" Csub="RCC"/>
+      <require Cclass="Device" Cgroup="STM32Cube LL" Csub="PWR"/>
+    </condition>
+
+    <!-- NUCLEO-WB55 Conditions -->
+    <condition id="NUCLEO-WB55 LED">
+      <description>STMicroelectronics NUCLEO-WB55 LED</description>
+      <require condition="STM32WB55"/>
+      <require Cclass="Device" Cgroup="STM32Cube HAL" Csub="Common"/>
+      <require Cclass="Device" Cgroup="STM32Cube HAL" Csub="GPIO"/>
+    </condition>
+    <condition id="NUCLEO-WB55 Buttons">
+      <description>STMicroelectronics NUCLEO-WB55 Buttons</description>
+      <require condition="STM32WB55"/>
+      <require Cclass="Device" Cgroup="STM32Cube HAL" Csub="Common"/>
+      <require Cclass="Device" Cgroup="STM32Cube HAL" Csub="GPIO"/>
+    </condition>
+
+  </conditions>
+
+  <generators>
+    <!-- This generator is launched if any component referencing this generator by 'id' is selected and the specified <gpdsc> file does not exist -->
+    <generator id="STM32CubeMX">
+      <description>ST Microelectronics: STCubeMX Environment</description>
+      <command>MDK/CubeMX/STM32CubeMxLauncher.exe</command> <!-- path is specified either absolute or relative to PDSC or GPDSC file -->
+      <workingDir>$PRTE/Device</workingDir> <!-- path is specified either absolute or relative to PDSC or GPDSC file. If not specified it is the project directory configured by the environment -->
+      <arguments>
+        <!-- D = Device (Dname/Dvariant as configured by environment) -->
+        <argument>$D</argument>
+        <!-- Project path and project name (as configured by environment) -->
+        <argument>#P</argument>
+        <!-- absolute or relative to workingDir. $S = Device Family Pack base folder -->
+        <argument>$S</argument>
+      </arguments>
+      <!-- path is either absolute or relative to working directory -->
+      <gpdsc name="$PRTE/Device/$D/FrameworkCubeMX.gpdsc"/>
+    </generator>
+  </generators>
+
+  <taxonomy>
+    <description Cclass="Device" Cgroup="STM32Cube HAL">STM32WBxx Hardware Abstraction Layer (HAL) Drivers</description>
+  </taxonomy>
+
+  <apis>
+    <api Cclass="Device" Cgroup="STM32Cube Framework" Capiversion="1.1.0" exclusive="1">
+      <description>STM32Cube Framework</description>
+      <files>
+        <file category="doc" name="MDK/CubeMX/Documentation/index.html"/>
+      </files>
+    </api>
+  </apis>
+
+  <components>
+    <component Cclass="Device" Cgroup="Startup" Cversion="1.0.0" condition="STM32WB CMSIS">
+      <description>System Startup for STMicroelectronics STM32WB Series</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_STARTUP_STM32WBXX    /* Device Startup for STM32WB */
+      </RTE_Components_h>
+
+      <files>
+        <!--  include folder -->
+        <file category="include" name="Drivers/CMSIS/Device/ST/STM32WBxx/Include/"/>
+
+        <!-- Flash Option Bytes templates -->
+        <!--file category="source" condition="STM32WB ARMCC" name="MDK/Device/Source/ARM/STM32WBxx_OPT.s" attr="template" select="Flash Option Bytes"/-->
+        <!--file category="source" condition="STM32WB ARMCC" name="MDK/Device/Source/ARM/STM32WBxx_OTP.s" attr="template" select="Flash One-Time programmable Bytes"/-->
+
+        <!-- common device header file -->
+        <file category="header" name="Drivers/CMSIS/Device/ST/STM32WBxx/Include/stm32wbxx.h"/>
+
+        <!-- startup files -->
+        <!-- ARM Compiler Toolchain -->
+        <file category="source"       condition="STM32WB55 ARMCC" name="Drivers/CMSIS/Device/ST/STM32WBxx/Source/Templates/arm/startup_stm32wb55xx_cm4.s"         attr="config" version="1.0.0"/>
+        <file category="linkerScript" condition="STM32WB55 ARMCC" name="Drivers/CMSIS/Device/ST/STM32WBxx/Source/Templates/arm/linker/stm32wb55xx_flash_cm4.sct"  attr="config" version="1.0.0"/>
+
+        <!-- GCC Toolchain -->
+        <file category="source"       condition="STM32WB55 GCC"   name="Drivers/CMSIS/Device/ST/STM32WBxx/Source/Templates/gcc/startup_stm32wb55xx_cm4.S"         attr="config" version="1.0.0"/>
+        <file category="linkerScript" condition="STM32WB55 GCC"   name="Drivers/CMSIS/Device/ST/STM32WBxx/Source/Templates/gcc/linker/stm32wb55xx_flash_cm4.ld"   attr="config" version="1.0.0"/>
+
+        <!-- IAR Toolchain -->
+        <file category="source"       condition="STM32WB55 IAR"   name="Drivers/CMSIS/Device/ST/STM32WBxx/Source/Templates/iar/startup_stm32wb55xx_cm4.s"         attr="config" version="1.0.0"/>
+        <file category="linkerScript" condition="STM32WB55 IAR"   name="Drivers/CMSIS/Device/ST/STM32WBxx/Source/Templates/iar/linker/stm32wb55xx_flash_cm4.icf"  attr="config" version="1.0.0"/>
+
+        <!-- system file -->
+        <file category="source"                                   name="Drivers/CMSIS/Device/ST/STM32WBxx/Source/Templates/system_stm32wbxx.c"            attr="config" version="1.0.0"/>
+      </files>
+    </component>
+
+    <component generator="STM32CubeMX" Cclass="Device" Cgroup="STM32Cube Framework" Csub="STM32CubeMX" Cversion="1.0.0" Capiversion="1.1.0" condition="STM32WB">
+      <description>Configuration via STM32CubeMX</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_FRAMEWORK_CUBE_MX
+      </RTE_Components_h>
+      <files>
+        <!-- this component will be replaced by the component described in gpdsc from generator -->
+<!--
+        <file category="doc"     name="MDK/CubeMX/Documentation/cubemx.html"/>
+-->
+        <file category="source" name="MDK/CubeMX/run_STM32CubeMX.c"         version="1.0.0"/>
+        <file category="other"  name="MDK/CubeMX/FrameworkCubeMX_gpdsc.ftl" version="1.0.0"/>
+        <file category="other"  name="MDK/CubeMX/MX_Device_h.ftl"           version="1.0.0"/>
+      </files>
+    </component>
+
+    <!-- START: STMicroelectronics STM32CubeWB HAL -->
+    <component Cclass="Device" Cgroup="STM32Cube HAL" Csub="Common"    Cversion="1.0.0" condition="STM32WB HAL Common">
+      <description>Common HAL driver</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_HAL_COMMON
+      </RTE_Components_h>
+      <files>
+        <file category="include" name="Drivers/STM32WBxx_HAL_Driver/Inc/"/>
+        <file category="include" name="Drivers/STM32WBxx_HAL_Driver/Inc/Legacy/"/>
+        <file category="header"  name="Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_hal.h"/>
+        <file category="source"  name="Drivers/STM32WBxx_HAL_Driver/Src/stm32wbxx_hal.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="STM32Cube HAL" Csub="ADC"       Cversion="1.0.0" condition="STM32WB HAL DMA">
+      <description>Analog-to-digital converter (ADC) HAL driver</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_HAL_ADC
+      </RTE_Components_h>
+      <files>
+        <file category="source" name="Drivers/STM32WBxx_HAL_Driver/Src/stm32wbxx_hal_adc.c"/>
+        <file category="source" name="Drivers/STM32WBxx_HAL_Driver/Src/stm32wbxx_hal_adc_ex.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="STM32Cube HAL" Csub="COMP"      Cversion="1.0.0" condition="STM32WB HAL">
+      <description>Analog Comparator (CRC) HAL driver</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_HAL_COMP
+      </RTE_Components_h>
+      <files>
+        <file category="source" name="Drivers/STM32WBxx_HAL_Driver/Src/stm32wbxx_hal_comp.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="STM32Cube HAL" Csub="Cortex"    Cversion="1.0.0" condition="STM32WB HAL">
+      <description>Cortex HAL driver</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_HAL_CORTEX
+      </RTE_Components_h>
+      <files>
+        <file category="source" name="Drivers/STM32WBxx_HAL_Driver/Src/stm32wbxx_hal_cortex.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="STM32Cube HAL" Csub="CRC"       Cversion="1.0.0" condition="STM32WB HAL">
+      <description>CRC calculation unit (CRC) HAL driver</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_HAL_CRC
+      </RTE_Components_h>
+      <files>
+        <file category="source" name="Drivers/STM32WBxx_HAL_Driver/Src/stm32wbxx_hal_crc.c"/>
+        <file category="source" name="Drivers/STM32WBxx_HAL_Driver/Src/stm32wbxx_hal_crc_ex.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="STM32Cube HAL" Csub="CRYP"      Cversion="1.0.0" condition="STM32WB HAL DMA">
+      <description>Cryptographic processor (CRYP) HAL driver</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_HAL_CRYP
+      </RTE_Components_h>
+      <files>
+        <file category="source" name="Drivers/STM32WBxx_HAL_Driver/Src/stm32wbxx_hal_cryp.c"/>
+        <file category="source" name="Drivers/STM32WBxx_HAL_Driver/Src/stm32wbxx_hal_cryp_ex.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="STM32Cube HAL" Csub="DMA"       Cversion="1.0.0" condition="STM32WB HAL">
+      <description>DMA controller (DMA) HAL driver</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_HAL_DMA
+      </RTE_Components_h>
+      <files>
+        <file category="source" name="Drivers/STM32WBxx_HAL_Driver/Src/stm32wbxx_hal_dma.c"/>
+        <file category="source" name="Drivers/STM32WBxx_HAL_Driver/Src/stm32wbxx_hal_dma_ex.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="STM32Cube HAL" Csub="EXTI"      Cversion="1.0.0" condition="STM32WB HAL">
+      <description>EXTI HAL driver</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_HAL_EXTI
+      </RTE_Components_h>
+      <files>
+        <file category="source" name="Drivers/STM32WBxx_HAL_Driver/Src/stm32wbxx_hal_exti.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="STM32Cube HAL" Csub="Flash"     Cversion="1.0.0" condition="STM32WB HAL">
+      <description>Embedded Flash memory HAL driver</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_HAL_FLASH
+      </RTE_Components_h>
+      <files>
+        <file category="source" name="Drivers/STM32WBxx_HAL_Driver/Src/stm32wbxx_hal_flash.c"/>
+        <file category="source" name="Drivers/STM32WBxx_HAL_Driver/Src/stm32wbxx_hal_flash_ex.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="STM32Cube HAL" Csub="GPIO"      Cversion="1.0.0" condition="STM32WB HAL">
+      <description>General-purpose I/O (GPIO) HAL driver</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_HAL_GPIO
+      </RTE_Components_h>
+      <files>
+        <file category="source" name="Drivers/STM32WBxx_HAL_Driver/Src/stm32wbxx_hal_gpio.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="STM32Cube HAL" Csub="HSEM"      Cversion="1.0.0" condition="STM32WB HAL">
+      <description>Hardware semaphore (HSEM) HAL driver</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_HAL_HSEM
+      </RTE_Components_h>
+      <files>
+        <file category="source" name="Drivers/STM32WBxx_HAL_Driver/Src/stm32wbxx_hal_hsem.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="STM32Cube HAL" Csub="I2C"       Cversion="1.0.0" condition="STM32WB HAL DMA">
+      <description>Inter-integrated circuit (I2C) interface HAL driver</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_HAL_I2C
+      </RTE_Components_h>
+      <files>
+        <file category="source" name="Drivers/STM32WBxx_HAL_Driver/Src/stm32wbxx_hal_i2c.c"/>
+        <file category="source" name="Drivers/STM32WBxx_HAL_Driver/Src/stm32wbxx_hal_i2c_ex.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="STM32Cube HAL" Csub="IPCC"      Cversion="1.0.0" condition="STM32WB HAL">
+      <description>Interprocessor Communication I/O (IPCC) HAL driver</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_HAL_IPCC
+      </RTE_Components_h>
+      <files>
+        <file category="source" name="Drivers/STM32WBxx_HAL_Driver/Src/stm32wbxx_hal_ipcc.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="STM32Cube HAL" Csub="IRDA"      Cversion="1.0.0" condition="STM32WB HAL DMA">
+      <description>IrDA HAL driver</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_HAL_IRDA
+      </RTE_Components_h>
+      <files>
+        <file category="source" name="Drivers/STM32WBxx_HAL_Driver/Src/stm32wbxx_hal_irda.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="STM32Cube HAL" Csub="IWDG"      Cversion="1.0.0" condition="STM32WB HAL">
+      <description>Independent watchdog (IWDG) HAL driver</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_HAL_IWDG
+      </RTE_Components_h>
+      <files>
+        <file category="source" name="Drivers/STM32WBxx_HAL_Driver/Src/stm32wbxx_hal_iwdg.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="STM32Cube HAL" Csub="LCD"       Cversion="1.0.0" condition="STM32WB HAL">
+      <description>LCD Controller (LCD) HAL driver</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_HAL_LCD
+      </RTE_Components_h>
+      <files>
+        <file category="source" name="Drivers/STM32WBxx_HAL_Driver/Src/stm32wbxx_hal_lcd.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="STM32Cube HAL" Csub="LPTIM"     Cversion="1.0.0" condition="STM32WB HAL">
+      <description>Low-power timer (LPTIM) HAL driver</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_HAL_LPTIM
+      </RTE_Components_h>
+      <files>
+        <file category="source" name="Drivers/STM32WBxx_HAL_Driver/Src/stm32wbxx_hal_lptim.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="STM32Cube HAL" Csub="PCD"       Cversion="1.0.0" condition="STM32WB HAL">
+      <description>USB Peripheral controller (PCD) HAL driver</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_HAL_PCD
+      </RTE_Components_h>
+      <files>
+        <file category="source" name="Drivers/STM32WBxx_HAL_Driver/Src/stm32wbxx_hal_pcd.c"/>
+        <file category="source" name="Drivers/STM32WBxx_HAL_Driver/Src/stm32wbxx_hal_pcd_ex.c"/>
+        <file category="source" name="Drivers/STM32WBxx_HAL_Driver/Src/stm32wbxx_ll_usb.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="STM32Cube HAL" Csub="PKA"       Cversion="1.0.0" condition="STM32WB HAL">
+      <description>Public key accelerator (PKA) HAL driver</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_HAL_PKA
+      </RTE_Components_h>
+      <files>
+        <file category="source" name="Drivers/STM32WBxx_HAL_Driver/Src/stm32wbxx_hal_pka.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="STM32Cube HAL" Csub="PWR"       Cversion="1.0.0" condition="STM32WB HAL">
+      <description>Power controller (PWR) HAL driver</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_HAL_PWR
+      </RTE_Components_h>
+      <files>
+        <file category="source" name="Drivers/STM32WBxx_HAL_Driver/Src/stm32wbxx_hal_pwr.c"/>
+        <file category="source" name="Drivers/STM32WBxx_HAL_Driver/Src/stm32wbxx_hal_pwr_ex.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="STM32Cube HAL" Csub="QSPI"      Cversion="1.0.0" condition="STM32WB HAL DMA">
+      <description>Quad Serial peripheral interface (QSPI) HAL driver</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_HAL_QSPI
+      </RTE_Components_h>
+      <files>
+        <file category="source" name="Drivers/STM32WBxx_HAL_Driver/Src/stm32wbxx_hal_qspi.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="STM32Cube HAL" Csub="RCC"       Cversion="1.0.0" condition="STM32WB HAL GPIO">
+      <description>Reset and clock control (RCC) HAL driver</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_HAL_RCC
+      </RTE_Components_h>
+      <files>
+        <file category="source" name="Drivers/STM32WBxx_HAL_Driver/Src/stm32wbxx_hal_rcc.c"/>
+        <file category="source" name="Drivers/STM32WBxx_HAL_Driver/Src/stm32wbxx_hal_rcc_ex.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="STM32Cube HAL" Csub="RNG"       Cversion="1.0.0" condition="STM32WB HAL">
+      <description>Random number generator (RNG) HAL driver</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_HAL_RNG
+      </RTE_Components_h>
+      <files>
+        <file category="source" name="Drivers/STM32WBxx_HAL_Driver/Src/stm32wbxx_hal_rng.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="STM32Cube HAL" Csub="RTC"       Cversion="1.0.0" condition="STM32WB HAL">
+      <description>Real-time clock (RTC) HAL driver</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_HAL_RTC
+      </RTE_Components_h>
+      <files>
+        <file category="source" name="Drivers/STM32WBxx_HAL_Driver/Src/stm32wbxx_hal_rtc.c"/>
+        <file category="source" name="Drivers/STM32WBxx_HAL_Driver/Src/stm32wbxx_hal_rtc_ex.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="STM32Cube HAL" Csub="SAI"       Cversion="1.0.0" condition="STM32WB HAL DMA">
+      <description>Serial audio interface (SAI) HAL driver</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_HAL_SAI
+      </RTE_Components_h>
+      <files>
+        <file category="source" name="Drivers/STM32WBxx_HAL_Driver/Src/stm32wbxx_hal_sai.c"/>
+        <file category="source" name="Drivers/STM32WBxx_HAL_Driver/Src/stm32wbxx_hal_sai_ex.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="STM32Cube HAL" Csub="Smartcard" Cversion="1.0.0" condition="STM32WB HAL DMA">
+      <description>Smartcard HAL driver</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_HAL_SMARTCARD
+      </RTE_Components_h>
+      <files>
+        <file category="source" name="Drivers/STM32WBxx_HAL_Driver/Src/stm32wbxx_hal_smartcard.c"/>
+        <file category="source" name="Drivers/STM32WBxx_HAL_Driver/Src/stm32wbxx_hal_smartcard_ex.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="STM32Cube HAL" Csub="SMBUS"     Cversion="1.0.0" condition="STM32WB HAL">
+      <description>System Management Bus (SMBus) HAL driver</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_HAL_SMBUS
+      </RTE_Components_h>
+      <files>
+        <file category="source" name="Drivers/STM32WBxx_HAL_Driver/Src/stm32wbxx_hal_smbus.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="STM32Cube HAL" Csub="SPI"       Cversion="1.0.0" condition="STM32WB HAL DMA">
+      <description>Serial peripheral interface (SPI) HAL driver</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_HAL_SPI
+      </RTE_Components_h>
+      <files>
+        <file category="source" name="Drivers/STM32WBxx_HAL_Driver/Src/stm32wbxx_hal_spi.c"/>
+        <file category="source" name="Drivers/STM32WBxx_HAL_Driver/Src/stm32wbxx_hal_spi_ex.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="STM32Cube HAL" Csub="TIM"       Cversion="1.0.0" condition="STM32WB HAL DMA">
+      <description>Timers (TIM) HAL driver</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_HAL_TIM
+      </RTE_Components_h>
+      <files>
+        <file category="source" name="Drivers/STM32WBxx_HAL_Driver/Src/stm32wbxx_hal_tim.c"/>
+        <file category="source" name="Drivers/STM32WBxx_HAL_Driver/Src/stm32wbxx_hal_tim_ex.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="STM32Cube HAL" Csub="TSC"       Cversion="1.0.0" condition="STM32WB HAL">
+      <description>Touch Sensing Controller (TSC) HAL driver</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_HAL_TSC
+      </RTE_Components_h>
+      <files>
+        <file category="source" name="Drivers/STM32WBxx_HAL_Driver/Src/stm32wbxx_hal_tsc.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="STM32Cube HAL" Csub="UART"      Cversion="1.0.0" condition="STM32WB HAL DMA">
+      <description>Universal asynchronous receiver transmitter (UART) HAL driver</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_HAL_UART
+      </RTE_Components_h>
+      <files>
+        <file category="source" name="Drivers/STM32WBxx_HAL_Driver/Src/stm32wbxx_hal_uart.c"/>
+        <file category="source" name="Drivers/STM32WBxx_HAL_Driver/Src/stm32wbxx_hal_uart_ex.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="STM32Cube HAL" Csub="USART"     Cversion="1.0.0" condition="STM32WB HAL DMA">
+      <description>Universal synchronous asynchronous receiver transmitter (USART) HAL driver</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_HAL_USART
+      </RTE_Components_h>
+      <files>
+        <file category="source" name="Drivers/STM32WBxx_HAL_Driver/Src/stm32wbxx_hal_usart.c"/>
+        <file category="source" name="Drivers/STM32WBxx_HAL_Driver/Src/stm32wbxx_hal_usart_ex.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="STM32Cube HAL" Csub="WWDG"      Cversion="1.0.0" condition="STM32WB HAL">
+      <description>Window watchdog (WWDG) HAL driver</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_HAL_WWDG
+      </RTE_Components_h>
+      <files>
+        <file category="source" name="Drivers/STM32WBxx_HAL_Driver/Src/stm32wbxx_hal_wwdg.c"/>
+      </files>
+    </component>
+    <!-- END: STMicroelectronics STM32CubeWB HAL -->
+
+    <!-- START: STMicroelectronics STM32CubeWB LL -->
+    <component Cclass="Device" Cgroup="STM32Cube LL" Csub="Common" Cversion="1.0.0" condition="STM32WB LL Common">
+      <description>Common LL driver</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_LL_COMMON
+      </RTE_Components_h>
+      <files>
+        <file category="include" name="Drivers/STM32WBxx_HAL_Driver/Inc/"/>
+        <file category="include" name="Drivers/STM32WBxx_HAL_Driver/Inc/Legacy/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="STM32Cube LL" Csub="ADC"    Cversion="1.0.0" condition="STM32WB LL">
+      <description>Analog-to-digital converter (ADC) LL driver</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_LL_ADC
+      </RTE_Components_h>
+      <files>
+        <file category="source" name="Drivers/STM32WBxx_HAL_Driver/Src/stm32wbxx_ll_adc.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="STM32Cube LL" Csub="COMP"   Cversion="1.0.0" condition="STM32WB LL">
+      <description>Analog Comparator (CRC) LL driver</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_LL_COMP
+      </RTE_Components_h>
+      <files>
+        <file category="source" name="Drivers/STM32WBxx_HAL_Driver/Src/stm32wbxx_ll_comp.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="STM32Cube LL" Csub="CRC"    Cversion="1.0.0" condition="STM32WB LL">
+      <description>CRC calculation unit (CRC) LL driver</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_LL_CRC
+      </RTE_Components_h>
+      <files>
+        <file category="source" name="Drivers/STM32WBxx_HAL_Driver/Src/stm32wbxx_ll_crc.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="STM32Cube LL" Csub="CRS"    Cversion="1.0.0" condition="STM32WB LL">
+      <description>Clock recovery system (CRS) LL driver</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_LL_CRS
+      </RTE_Components_h>
+      <files>
+        <file category="source" name="Drivers/STM32WBxx_HAL_Driver/Src/stm32wbxx_ll_crs.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="STM32Cube LL" Csub="DMA"    Cversion="1.0.0" condition="STM32WB LL">
+      <description>DMA controller (DMA) LL driver</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_LL_DMA
+      </RTE_Components_h>
+      <files>
+        <file category="source" name="Drivers/STM32WBxx_HAL_Driver/Src/stm32wbxx_ll_dma.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="STM32Cube LL" Csub="EXTI"   Cversion="1.0.0" condition="STM32WB LL">
+      <description>Extended interrupts and events controler (EXTI) LL driver</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_LL_EXTI
+      </RTE_Components_h>
+      <files>
+        <file category="source" name="Drivers/STM32WBxx_HAL_Driver/Src/stm32wbxx_ll_exti.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="STM32Cube LL" Csub="GPIO"   Cversion="1.0.0" condition="STM32WB LL">
+      <description>General-purpose I/O (GPIO) LL driver</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_LL_GPIO
+      </RTE_Components_h>
+      <files>
+        <file category="source" name="Drivers/STM32WBxx_HAL_Driver/Src/stm32wbxx_ll_gpio.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="STM32Cube LL" Csub="I2C"    Cversion="1.0.0" condition="STM32WB LL">
+      <description>Inter-integrated circuit (I2C) interface LL driver</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_LL_I2C
+      </RTE_Components_h>
+      <files>
+        <file category="source" name="Drivers/STM32WBxx_HAL_Driver/Src/stm32wbxx_ll_i2c.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="STM32Cube LL" Csub="LPTIM"  Cversion="1.0.0" condition="STM32WB LL">
+      <description>Low-power timer (LPTIM) interface LL driver</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_LL_LPTIM
+      </RTE_Components_h>
+      <files>
+        <file category="source" name="Drivers/STM32WBxx_HAL_Driver/Src/stm32wbxx_ll_lptim.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="STM32Cube LL" Csub="LPUART" Cversion="1.0.0" condition="STM32WB LL">
+      <description>Low-power universal asynchronous receiver transmitter (LPUART) LL driver</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_LL_LPUART
+      </RTE_Components_h>
+      <files>
+        <file category="source" name="Drivers/STM32WBxx_HAL_Driver/Src/stm32wbxx_ll_lpuart.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="STM32Cube LL" Csub="PKA"    Cversion="1.0.0" condition="STM32WB LL">
+      <description>Public key accelerator (PKA) LL driver</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_LL_PKA
+      </RTE_Components_h>
+      <files>
+        <file category="source" name="Drivers/STM32WBxx_HAL_Driver/Src/stm32wbxx_ll_pka.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="STM32Cube LL" Csub="PWR"    Cversion="1.0.0" condition="STM32WB LL">
+      <description>Power controller (PWR) LL driver</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_LL_PWR
+      </RTE_Components_h>
+      <files>
+        <file category="source" name="Drivers/STM32WBxx_HAL_Driver/Src/stm32wbxx_ll_pwr.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="STM32Cube LL" Csub="RCC"    Cversion="1.0.0" condition="STM32WB LL">
+      <description>Reset and clock control (RCC) LL driver</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_LL_RCC
+      </RTE_Components_h>
+      <files>
+        <file category="source" name="Drivers/STM32WBxx_HAL_Driver/Src/stm32wbxx_ll_rcc.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="STM32Cube LL" Csub="RNG"    Cversion="1.0.0" condition="STM32WB LL">
+      <description>Random number generator (RNG) LL driver</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_LL_RNG
+      </RTE_Components_h>
+      <files>
+        <file category="source" name="Drivers/STM32WBxx_HAL_Driver/Src/stm32wbxx_ll_rng.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="STM32Cube LL" Csub="RTC"    Cversion="1.0.0" condition="STM32WB LL">
+      <description>Real-time clock (RTC) LL driver</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_LL_RTC
+      </RTE_Components_h>
+      <files>
+        <file category="source" name="Drivers/STM32WBxx_HAL_Driver/Src/stm32wbxx_ll_rtc.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="STM32Cube LL" Csub="SPI"    Cversion="1.0.0" condition="STM32WB LL">
+      <description>Serial peripheral interface (SPI) LL driver</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_LL_SPI
+      </RTE_Components_h>
+      <files>
+        <file category="source" name="Drivers/STM32WBxx_HAL_Driver/Src/stm32wbxx_ll_spi.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="STM32Cube LL" Csub="TIM"    Cversion="1.0.0" condition="STM32WB LL">
+      <description>Timers (TIM) LL driver</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_LL_TIM
+      </RTE_Components_h>
+      <files>
+        <file category="source" name="Drivers/STM32WBxx_HAL_Driver/Src/stm32wbxx_ll_tim.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="STM32Cube LL" Csub="USART"  Cversion="1.0.0" condition="STM32WB LL">
+      <description>Universal synchronous asynchronous receiver transmitter (USART) LL driver</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_LL_USART
+      </RTE_Components_h>
+      <files>
+        <file category="source" name="Drivers/STM32WBxx_HAL_Driver/Src/stm32wbxx_ll_usart.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="STM32Cube LL" Csub="USB"    Cversion="1.0.0" condition="STM32WB LL">
+      <description>Universal serial bus full-speed device interface (USB) LL driver</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_LL_USB
+      </RTE_Components_h>
+      <files>
+        <file category="source" name="Drivers/STM32WBxx_HAL_Driver/Src/stm32wbxx_ll_usb.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="STM32Cube LL" Csub="UTILS"  Cversion="1.0.0" condition="STM32WB">
+      <description>UTILS LL driver</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_LL_UTILS
+      </RTE_Components_h>
+      <files>
+        <file category="source" name="Drivers/STM32WBxx_HAL_Driver/Src/stm32wbxx_ll_utils.c"/>
+      </files>
+    </component>
+    <!-- END: STMicroelectronics STM32CubeWB LL -->
+
+    <!-- NUCLEO-WB55 Board -->
+    <bundle Cbundle="NUCLEO-WB55" Cclass="Board Support" Cversion="1.0.0">
+      <description>STMicroelectronics NUCLEO-WB55 Board</description>
+      <doc></doc>
+      <component Cgroup="LED"           Capiversion="1.0.0" condition="NUCLEO-WB55 LED">
+        <description>LED Interface for STMicroelectronics NUCLEO-WB55 Board</description>
+        <files>
+          <file category="source" name="MDK/Boards/ST/NUCLEO-WB55/Common/LED_NUCLEO-WB55.c"/>
+        </files>
+      </component>
+      <component Cgroup="Buttons"       Capiversion="1.0.0" condition="NUCLEO-WB55 Buttons">
+        <description>Buttons Interface for STMicroelectronics NUCLEO-WB55 Board</description>
+        <files>
+          <file category="source" name="MDK/Boards/ST/NUCLEO-WB55/Common/Buttons_NUCLEO-WB55.c"/>
+        </files>
+      </component>
+    </bundle>
+
+  </components>
+
+  <boards>
+    <!-- NUCLEO-WB55 -->
+    <board vendor="STMicroelectronics" name="NUCLEO-WB55"
+           salesContact="http://www.st.com/stonline/contactus/contacts/index.php"
+           orderForm   ="http://www.st.com/web/en/estore">
+      <description>STM32 Nucleo development board with STM32WB55 MCU</description>
+      <image small="MDK/Boards/ST/NUCLEO-WB55/Documentation/nucleo_wb55_small.jpg"
+             large="MDK/Boards/ST/NUCLEO-WB55/Documentation/nucleo_wb55_large.jpg"/>
+      <book category="overview"  name="https://www.st.com/en/evaluation-tools/p-nucleo-wb55.html" title="STM32 Nucleo board"/>
+      <book category="manual"    name="MDK/Boards/ST/NUCLEO-WB55/Documentation/p-nucleo-wb55.pdf" title="Data brief"/>
+      <mountedDevice    deviceIndex="0" Dvendor="STMicroelectronics:13" Dname="STM32WB55RGVx"/>
+      <compatibleDevice deviceIndex="0" Dvendor="STMicroelectronics:13" DsubFamily="STM32WB55"/>
+      <feature type="ODbg"      n="1"              name="On-board ST-LINK/V2-1"/>
+      <feature type="PWR"       n="4"              name="USB VBUS, ext. VIN, ext. 5V, ext +3.3V"/>
+      <feature type="CustomFF"  n="2"              name="STMicroelectronics Morpho connector"/>
+      <feature type="ArduinoFF" n="2"              name="STMicroelectronics Arduino connector"/>
+      <feature type="USB"       n="1"              name="USB re-enumeration capability"/>
+      <feature type="Button"    n="4"              name="Push-buttons: 3 User and Reset"/>
+      <feature type="LED"       n="5"              name="LEDs: COM, Power, 3 User LEDs"/>
+      <debugInterface adapter="ST-Link" connector="Micro-USB"/>
+    </board>
+  </boards>
+
+  <examples>
+    <!-- NUCLEO-WB55 -->
+    <example name="CMSIS-RTOS2 Blinky" doc="Abstract.txt" folder="MDK/Boards/ST/NUCLEO-WB55/Blinky">
+      <description>CMSIS-RTOS2 Blinky example</description>
+      <board name="NUCLEO-WB55" vendor="STMicroelectronics"/>
+      <project>
+        <environment name="uv" load="Blinky.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <component Cclass="CMSIS" Cgroup="RTOS"/>
+        <category>Getting Started</category>
+        <category>CMSIS-RTX</category>
+      </attributes>
+    </example>
+  </examples>
+
+</package>

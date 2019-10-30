@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<package schemaVersion="1.3" xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="PACK.xsd">
+	<name>bi-pcm3060</name>
+	<description>CMSIS-Driver for sound codec TI PCM3060</description>
+	<vendor>birdec</vendor>
+	<url>http://birdec.tech/bi-cmsis/pack/apache-2.0/bi-pcm3060/</url>
+	<supportContact>Kirill Marinushkin &lt;kmarinushkin@birdec.tech&gt;</supportContact>
+	<license>LICENSE.txt</license>
+
+	<releases>
+		<release version="1.0.0" date="2019-04-25">
+			Initial release
+		</release>
+	</releases>
+
+	<conditions>
+		<condition id="CM0">
+			<description>Cortex-M0 or Cortex-M0+ or SC000 processor based device</description>
+			<accept Dcore="Cortex-M0"/>
+			<accept Dcore="Cortex-M0+"/>
+			<accept Dcore="SC000"/>
+		</condition>
+		<condition id="CM0_PLUS">
+			<description>Cortex-M0+ processor based device</description>
+			<accept Dcore="Cortex-M0+"/>
+		</condition>
+		<condition id="CM1">
+			<description>Cortex-M1</description>
+			<require Dcore="Cortex-M1"/>
+		</condition>
+		<condition id="CM3">
+			<description>Cortex-M3 or SC300 processor based device</description>
+			<accept Dcore="Cortex-M3"/>
+			<accept Dcore="SC300"/>
+		</condition>
+		<condition id="CM4">
+			<description>Cortex-M4 processor based device</description>
+			<require Dcore="Cortex-M4" Dfpu="NO_FPU"/>
+		</condition>
+		<condition id="CM4_FP">
+			<description>Cortex-M4 processor based device using Floating Point Unit</description>
+			<accept Dcore="Cortex-M4" Dfpu="FPU"/>
+			<accept Dcore="Cortex-M4" Dfpu="SP_FPU"/>
+			<accept Dcore="Cortex-M4" Dfpu="DP_FPU"/>
+		</condition>
+		<condition id="CM7">
+			<description>Cortex-M7 processor based device</description>
+			<require Dcore="Cortex-M7" Dfpu="NO_FPU"/>
+		</condition>
+		<condition id="CM7_FP">
+			<description>Cortex-M7 processor based device using Floating Point Unit</description>
+			<accept Dcore="Cortex-M7" Dfpu="SP_FPU"/>
+			<accept Dcore="Cortex-M7" Dfpu="DP_FPU"/>
+		</condition>
+		<condition id="CM7_SP">
+			<description>Cortex-M7 processor based device using Floating Point Unit (SP)</description>
+			<require Dcore="Cortex-M7" Dfpu="SP_FPU"/>
+		</condition>
+		<condition id="CM7_DP">
+			<description>Cortex-M7 processor based device using Floating Point Unit (DP)</description>
+			<require Dcore="Cortex-M7" Dfpu="DP_FPU"/>
+		</condition>
+
+		<condition id="Supported MCU core">
+			<accept condition="CM0"/>
+			<accept condition="CM0_PLUS"/>
+			<accept condition="CM3"/>
+			<accept condition="CM4"/>
+			<accept condition="CM4_FP"/>
+			<accept condition="CM7"/>
+			<accept condition="CM7_FP"/>
+		</condition>
+		<condition id="Supported compiler">
+			<description>Compiler is configured as LE</description>
+			<require Dendian="Little-endian"/>
+		</condition>
+		<condition id="Supported CMSIS core">
+			<description>Dependency to CMSIS core headers</description>
+			<require Cclass="CMSIS" Cgroup="CORE"/>
+			<require Cclass="CMSIS Driver" Cgroup="SAI"/>
+			<require Cclass="CMSIS Driver" Cgroup="I2C"/>
+			<require Cclass="CMSIS Driver" Cgroup="SPI"/>
+		</condition>
+		<condition id="Supported OS">
+			<description>Dependency to CMSIS-RTOS API</description>
+			<require Cclass="CMSIS" Cgroup="RTOS"/>
+		</condition>
+
+		<condition id="Supported">
+			<description>MCU and compiler configuration are supported</description>
+			<require condition="Supported MCU core"/>
+			<require condition="Supported compiler"/>
+			<require condition="Supported CMSIS core"/>
+		</condition>
+		<condition id="Supported template">
+			<description>All template dependecies are resolved</description>
+			<require Cclass="CMSIS Driver" Cgroup="Audio" Csub="TI PCM3060"/>
+		</condition>
+	</conditions>
+
+	<components>
+		<component Cclass="CMSIS Driver" Cgroup="Audio" Csub="TI PCM3060" Cversion="1.0.0" condition="Supported">
+			<description>CMSIS-Driver for sound codec TI PCM3060</description>
+			<files>
+				<file category="library" name="lib/libbi_pcm3060_cm0.a" condition="CM0"/>
+				<file category="library" name="lib/libbi_pcm3060_cm0plus.a" condition="CM0_PLUS"/>
+				<file category="library" name="lib/libbi_pcm3060_cm3.a" condition="CM3"/>
+				<file category="library" name="lib/libbi_pcm3060_cm4.a" condition="CM4"/>
+				<file category="library" name="lib/libbi_pcm3060_cm4fp.a" condition="CM4_FP"/>
+				<file category="library" name="lib/libbi_pcm3060_cm7.a" condition="CM7"/>
+				<file category="library" name="lib/libbi_pcm3060_cm7fp.a" condition="CM7_FP"/>
+				<file category="header" name="include/Driver_SAI_Codec.h"/>
+				<file category="header" name="include/Driver_SAI_PCM3060.h"/>
+				<!-- Template code -->
+				<file category="header" name="template/Template_SAI_PCM3060.h" attr="template" select="Template for using TI PCM3060" condition="Supported template"/>
+				<file category="source" name="template/Template_SAI_PCM3060.c" attr="template" select="Template for using TI PCM3060" condition="Supported template"/>
+			</files>
+		</component>
+	</components>
+</package>

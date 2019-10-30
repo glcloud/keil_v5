@@ -1,0 +1,1415 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package schemaVersion="1.3" xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="PACK.xsd">
+   <vendor>Maxim</vendor>
+   <name>MAX32665</name>
+   <url>http://www.mxim.net/microcontroller/pack/</url>
+   <description>Maxim Integrated MAX32665 Series Device Support, Board Support Package and Examples</description>
+   <supportContact>support@maximintegrated.com</supportContact>
+
+   <license>License/END_USER_LICENSE_AGREEMENT.rtf</license>
+
+   <releases>
+        <release version="0.3.0" date="2019-04-26">
+         -Added advertising-only BLE option (smaller RAM usage) for KEIL
+         -Added DTM to BLE Libraries for KEIL
+        </release>
+        <release version="0.2.9-g" date="2019-04-16">
+         -Added advertising-only BLE option (smaller RAM usage)
+         -Added DTM to BLE Libraries
+        </release>
+        <release version="0.2.9-c" date="2019-04-16">
+         -Fixed issues regarding backup mode
+        </release>
+        <release version="0.2.8" date="2019-04-08">
+         -Updated BLE IAR Libraries to v1.4
+         -Option to use BLE Coprocessor
+        </release>         
+        <release version="0.2.7-c" date="2019-04-03">
+         -Updated MAXUSB Libraries
+         -Added ECC Example
+        </release>
+        <release version="0.2.7-a" date="2019-02-22">
+         -Updated BLE IAR Libraries to v1.3
+         -Updated BLE Keils Libraries to v1.3
+        </release>    
+        <release version="0.2.0-6" date="2019-01-25">
+         -Updated BLE Keil Libraries to v1.2
+         -Fixes to ADC
+        </release>      
+        <release version="0.2.0-5q" date="2019-01-24">
+         -Updated BLE Libraries to v1.2
+        </release>      
+        <release version="0.2.0-5p" date="2018-11-16">
+         -Added USB_CompositeDevice
+        </release>
+        <release version="0.2.0-5l" date="2018-11-15">
+         -Updated BLE KEIL Library 
+         -Added BLE_scanner, BLE_beacon to KEIL
+        </release>
+        <release version="0.2.0-5i" date="2018-11-14">
+         -Updated BLE Library 
+         -Added BLE_scanner, BLE_beacon
+        </release>
+        <release version="0.2.0-5d" date="2018-10-24">
+         -Added BLE Examples to Keil (dats and fit)
+        </release>
+        <release version="0.2.0-5c" date="2018-10-23">
+         -Added BLE Examples (dats and fit)
+        </release>
+        <release version="0.2.0-5" date="2018-09-28">
+         -Added keil support
+         -BLE For Keil
+        </release>
+        <release version="0.2.0-4i" date="2018-09-27">
+         -Added Dual Core Debugging Support
+         -Added BLE
+        </release>
+   	  <release version="0.2.0-4" date="2018-08-29">
+   	  	-Added SDHC and USB Drivers
+         -Added new examples
+         -Name changes
+   	  	-Bug fixes
+   	  </release>
+      <release version="0.1.0-2g" date="2018-08-16">
+      	-Refactored Peripheral Drivers
+      	-Updates to Examples
+      </release>   	
+      <release version="0.1.0-1" date="2018-08-13">
+      	-Initial limited release of SDK
+      </release>
+   </releases>
+
+   <keywords>
+      <keyword>Maxim</keyword>
+      <keyword>MAX32665</keyword>
+      <keyword>MAX32666</keyword>
+      <keyword>MAX32665 Evaluation Kit</keyword>
+      <keyword>Maxim Device Support</keyword>
+      <keyword>Device Support</keyword>
+      <keyword>Device Family Package Maxim</keyword>
+      <keyword>Maxim Evaluation Kit</keyword>
+   </keywords>
+
+   <requirements>
+      <languages>
+         <language name="C" version="99" />
+      </languages>
+   </requirements>
+   
+   <devices>
+      <family Dfamily="MAX32665-66" Dvendor="Maxim:23">
+         <book name="Doc/MAX32665_datasheet.txt" title="MAX32665 Family Data Sheet"/>
+         <book name="Doc/MAX32665_userguide.txt" title="MAX32665 Family Users Guide"/>         
+         <compile header="Libraries/Device/Maxim/MAX32665/Include/max32665.h" />
+         <compile header="Libraries/Device/Maxim/MAX32665/Include/max32665.h" define="MAX32665"/>
+         <memory id="IROM1" start="0x10000000" size="0x00100000" startup="1" default="1"/>
+         <memory id="IRAM1" access="rwx" start="0x20000000" size="0x00080000" init="0" default="1"/>
+         <algorithm name="Flash/MAX32665.FLM" start="0x10000000" size="0x00100000" default="1"/>
+         <algorithm  name="FlashIAR/FlashMAX32665.flash" start="0x10000000" size="0x00100000" RAMstart="0x20000000" RAMsize="0x00080000" default="0" style="IAR"/>
+         <description>
+         	DARWIN is a new breed of low-power microcontrollers built to thrive in the rapidly evolving Internet of Things (IoT). They are smart, with the biggest memories in their class, and a massively scalable memory architecture. They run forever, thanks to wearable-grade power technology. They are durable enough to withstand the most advanced cyberattacks. DARWIN microcontrollers are designed to run any application imaginable - in places where you would not dream of sending other microcontrollers. 
+         	Generation UB microcontrollers are designed to handle the increasingly complex applications demanded by today's advanced battery powered devices and wirelessly connected devices, while providing robust hardware security and Bluetooth(R) 5 Low Energy (BLE) radio connectivity.
+         	The MAX32665-MAX32668 UB class microcontrollers are advanced systems-on-chips featuring an Arm(R) Cortex(R)-M4 with FPU CPU for efficient computation of complex functions and algorithms with integrated power management. They also include the newest generation Bluetooth 5 Low Energy radio with support for long range (4x) and high throughput (2Mbps) and Maxim's best-in-class hardware security suite trust protection unit (TPU). The devices offer large on-board memory with 1MB flash and up to 560KB STAM that can be configured as 447KB SRAM with error correction coding (ECC). Split flash banks and 512KB each support seamless over the air upgrades, adding an additional degree of reliability. Memory scalability of data (SRAM) and code (flash) space is supported two SPI execute-in-place (SPIX) interfaces. 
+         	Multiple high-speed interfaces are supported included HS_USB, secure digital interface (SD, SDIO, MMC, SDHC, and microSD(tm)), SPI, UART, and I2C serial interfaces, and TDM interfaces. An 8-input 10-bit ADC is available to monitor analog inputs from external sensors and meters. The devices are available in 109-bump WLP (0.35mm pitch) and 121-bump CTBGA (0.65mm pitch) packages.
+         </description>
+         <feature type="IOs" n="48"/>
+         <feature type="NVIC" n="110" name="NVIC"/>
+         <feature type="DMA" n="16" name="DMA"/>
+         <feature type="Timer" n="6" m="32" name="Timer Module"/>
+         <feature type="WDT" n="3"/>
+         <feature type="I2C" n="3" name="I2C"/>
+         <feature type="SPI" n="3" m="50000000" name="QSPI"/>
+         <feature type="UART" n="3" m="3000000" name="High-Speed UART Interface"/>
+         <feature type="USBD" n="1" name="High-Speed USB Device"/>
+         <debug svd="SVD/MAX32665/max32665.svd" />
+
+         <debugport __dp="0">
+            <swd idcode="0x2BA01477" />
+         </debugport>
+
+         <device Dname="MAX32665">
+            <processor Dcore="Cortex-M4" DcoreVersion="r0p1" Pname="Cortex-M4" Punits="2" Dfpu="FPU" Dmpu="NO_MPU" Dendian="Little-endian" Dclock="96000000" />
+         </device>
+
+         <device Dname="MAX32666">
+            <processor Dcore="Cortex-M4" DcoreVersion="r0p1" Pname="Cortex-M4" Punits="2" Dfpu="FPU" Dmpu="NO_MPU" Dendian="Little-endian" Dclock="96000000" />
+            <feature type="Crypto" n="128.256" name="HW Accelerated Trust Protection Unit"/>
+         </device>         
+      </family>
+   </devices>
+
+   <!-- MAX32665 Evaluation Kit Board Support Package -->
+   <boards>
+      <board vendor="Maxim" name="MAX32665-66 EvKit" revision="Rev A" salesContact="sales@maximintegrated.com">
+         <description>The MAX32665-66 Evaluation Kit provides a convenient platform for evaluating the capabilities of the MAX32665 Family of microcontrollers. The Evaluation Kit also provides a complete, functional system ideal for developing and debugging applications.
+         </description>
+         <book category="overview" name="Doc/MAX32665_EvKit.txt" title="MAX32665 EvKit Datasheet"/>
+         <book category="schematic" name="Doc/MAX32665_EvKitSchematic.txt" title="MAX32665 EvKit Schematic"/>
+         <feature type="PWR" n="5" name="USB Powered"/>
+         <feature type="MemCard" n="1" name="SD Card Holder"/>
+         <feature type="RAM" n="1" name="128kB SPIXR RAM"/>
+         <feature type="ROM" n="1" name="8 MB SPIXF NOR-Flash"/>
+         <feature type="USB" n="1" name="High-Speed USB Device, Micro-B receptacle"/>
+         <feature type="Button" n="3" name="Push-buttons: Reset, 2x User"/>
+         <feature type="LED" n="2" name="User LEDs"/>
+         <feature type="GLCD" n="1" m="128.128" name="1.3 inch SPI LCD"/>
+         <feature type="LineIn" n="1" name="TRS Audio Jack"/>
+         <feature type="LineOut" n="1" name="TRS Audio Jack"/>
+         <feature type="AIO" n="8" name="Analog Inputs"/>
+         <feature type="DIO" n="16" name="Digital IOs"/>
+         <mountedDevice Dvendor="Maxim:23" Dname="MAX32666"/>
+         <mountedDevice Dvendor="Maxim:23" Dname="MAX32665"/>
+         <debugInterface adapter="CMSIS-DAP" connector="10-pin Cortex Debug Connector (0.05 inch connector)"/>
+         <debugInterface adapter="JTAG/SW" connector="20-pin Arm Standard JTAG Connector"/>
+      </board>
+   </boards>
+
+   <!-- Evaluation Kit Example Programs -->
+   <examples>
+      <example name="Hello_World" doc="ARM/Abstract.txt" folder="Boards/Maxim/MAX32665_EVKIT/Hello_World">
+         <description>Hello World Demo</description>
+         <board name="MAX32665-66 EvKit" vendor="Maxim"/>
+         <project>
+            <environment name="iar" load="IAR/Hello_World.ewp" />
+            <environment name="uv" load="ARM/Hello_World.uvprojx" />
+         </project>
+         <attributes>
+            <category>Example Project</category>
+            <category>MAX32665 Evaluation Kit</category>
+            <component Cclass="CMSIS" Cgroup="CORE"/>
+            <component Cbundle="Maxim API" Cclass="Device" Cgroup="Startup"/>
+            <component Cbundle="Maxim API" Cclass="Device" Cgroup="Timers"/>
+            <component Cbundle="MAX32665 BSP" Cclass="BSP" Cgroup="Board Support"/>
+            <keyword>Getting Started</keyword>
+         </attributes>
+      </example>
+      <example name="Flash" doc="ARM/Abstract.txt" folder="Boards/Maxim/MAX32665_EVKIT/Flash">
+         <description>Flash Demo</description>
+         <board name="MAX32665-66 EvKit" vendor="Maxim"/>
+         <project>
+            <environment name="iar" load="IAR/Flash.ewp" />
+            <environment name="uv" load="ARM/Flash.uvprojx" />
+         </project>
+         <attributes>
+            <category>Example Project</category>
+            <category>MAX32665 Evaluation Kit</category>
+            <component Cclass="CMSIS" Cgroup="CORE"/>
+            <component Cbundle="Maxim API" Cclass="Device" Cgroup="Startup"/>
+            <component Cbundle="Maxim API" Cclass="Device" Cgroup="FLC"/>
+            <component Cbundle="MAX32665 BSP" Cclass="BSP" Cgroup="Board Support"/>
+            <keyword>Getting Started</keyword>
+         </attributes>
+      </example>
+      <example name="GPIO" doc="ARM/Abstract.txt" folder="Boards/Maxim/MAX32665_EVKIT/GPIO">
+         <description>GPIO Demo</description>
+         <board name="MAX32665-66 EvKit" vendor="Maxim"/>
+         <project>
+            <environment name="iar" load="IAR/GPIO.ewp" />
+            <environment name="uv" load="ARM/GPIO.uvprojx" />
+         </project>
+         <attributes>
+            <category>Example Project</category>
+            <category>MAX32665 Evaluation Kit</category>
+            <component Cclass="CMSIS" Cgroup="CORE"/>
+            <component Cbundle="Maxim API" Cclass="Device" Cgroup="Startup"/>
+            <component Cbundle="MAX32665 BSP" Cclass="BSP" Cgroup="Board Support"/>
+            <keyword>Getting Started</keyword>
+         </attributes>
+      </example>
+      <example name="I2C" doc="ARM/Abstract.txt" folder="Boards/Maxim/MAX32665_EVKIT/I2C">
+         <description>I2C Demo</description>
+         <board name="MAX32665-66 EvKit" vendor="Maxim"/>
+         <project>
+            <environment name="iar" load="IAR/I2C.ewp" />
+            <environment name="uv" load="ARM/I2C.uvprojx" />
+         </project>
+         <attributes>
+            <category>Example Project</category>
+            <category>MAX32665 Evaluation Kit</category>
+            <component Cclass="CMSIS" Cgroup="CORE"/>
+            <component Cbundle="Maxim API" Cclass="Device" Cgroup="Startup"/>
+            <component Cbundle="Maxim API" Cclass="Device" Cgroup="I2C"/>
+            <component Cbundle="MAX32665 BSP" Cclass="BSP" Cgroup="Board Support"/>
+            <keyword>Getting Started</keyword>
+         </attributes>
+      </example>   
+      <example name="RTC" doc="ARM/Abstract.txt" folder="Boards/Maxim/MAX32665_EVKIT/RTC">
+         <description>Real Time Clock Demo</description>
+         <board name="MAX32665-66 EvKit" vendor="Maxim"/>
+         <project>
+            <environment name="iar" load="IAR/RTC.ewp" />
+            <environment name="uv" load="ARM/RTC.uvprojx" />
+         </project>
+         <attributes>
+            <category>Example Project</category>
+            <category>MAX32665 Evaluation Kit</category>
+            <component Cclass="CMSIS" Cgroup="CORE"/>
+            <component Cbundle="Maxim API" Cclass="Device" Cgroup="Startup"/>
+            <component Cbundle="Maxim API" Cclass="Device" Cgroup="RTC" />
+            <component Cbundle="MAX32665 BSP" Cclass="BSP" Cgroup="Board Support"/>
+            <keyword>Getting Started</keyword>
+         </attributes>
+      </example>         
+      <example name="SPI" doc="ARM/Abstract.txt" folder="Boards/Maxim/MAX32665_EVKIT/SPI">
+         <description>SPI Demo</description>
+         <board name="MAX32665-66 EvKit" vendor="Maxim"/>
+         <project>
+            <environment name="iar" load="IAR/SPI.ewp" />
+            <environment name="uv" load="ARM/SPI.uvprojx" />
+         </project>
+         <attributes>
+            <category>Example Project</category>
+            <category>MAX32665 Evaluation Kit</category>
+            <component Cclass="CMSIS" Cgroup="CORE"/>
+            <component Cbundle="Maxim API" Cclass="Device" Cgroup="Startup"/>          
+            <component Cbundle="Maxim API" Cclass="Device" Cgroup="SPI"/>
+            <component Cbundle="MAX32665 BSP" Cclass="BSP" Cgroup="Board Support"/>
+            <keyword>Getting Started</keyword>
+         </attributes>      
+      </example>      
+      <example name="TMR" doc="ARM/Abstract.txt" folder="Boards/Maxim/MAX32665_EVKIT/TMR">
+         <description>Timer Demo</description>
+         <board name="MAX32665-66 EvKit" vendor="Maxim"/>
+         <project>
+            <environment name="iar" load="IAR/TMR.ewp" />
+            <environment name="uv" load="ARM/TMR.uvprojx" />
+         </project>
+         <attributes>
+            <category>Example Project</category>
+            <category>MAX32665 Evaluation Kit</category>
+            <component Cclass="CMSIS" Cgroup="CORE"/>
+            <component Cbundle="Maxim API" Cclass="Device" Cgroup="Startup"/>
+            <component Cbundle="Maxim API" Cclass="Device" Cgroup="Timers"/>
+            <component Cbundle="MAX32665 BSP" Cclass="BSP" Cgroup="Board Support"/>
+            <keyword>Getting Started</keyword>
+         </attributes>
+      </example>      
+      <example name="UART" doc="ARM/Abstract.txt" folder="Boards/Maxim/MAX32665_EVKIT/UART">
+         <description>UART Demo</description>
+         <board name="MAX32665-66 EvKit" vendor="Maxim"/>
+         <project>
+            <environment name="iar" load="IAR/UART.ewp" />
+            <environment name="uv" load="ARM/UART.uvprojx" />
+         </project>
+         <attributes>
+            <category>Example Project</category>
+            <category>MAX32665 Evaluation Kit</category>
+            <component Cclass="CMSIS" Cgroup="CORE"/>
+            <component Cbundle="Maxim API" Cclass="Device" Cgroup="Startup"/>
+            <component Cbundle="Maxim API" Cclass="Device" Cgroup="UART"/>
+            <component Cbundle="MAX32665 BSP" Cclass="BSP" Cgroup="Board Support"/>
+            <keyword>Getting Started</keyword>
+         </attributes>
+      </example>      
+      <example name="Watchdog" doc="ARM/Abstract.txt" folder="Boards/Maxim/MAX32665_EVKIT/Watchdog">
+         <description>Watchdog Demo</description>
+         <board name="MAX32665-66 EvKit" vendor="Maxim"/>
+         <project>
+            <environment name="iar" load="IAR/Watchdog.ewp" />
+            <environment name="uv" load="ARM/Watchdog.uvprojx" />
+         </project>
+         <attributes>
+            <category>Example Project</category>
+            <category>MAX32665 Evaluation Kit</category>
+            <component Cclass="CMSIS" Cgroup="CORE"/>
+            <component Cbundle="Maxim API" Cclass="Device" Cgroup="Startup"/>
+            <component Cbundle="Maxim API" Cclass="Device" Cgroup="WDT"/>
+            <component Cbundle="MAX32665 BSP" Cclass="BSP" Cgroup="Board Support"/>
+            <keyword>Getting Started</keyword>
+         </attributes>
+      </example> 
+      <example name="Pulse Train" doc="ARM/Abstract.txt" folder="Boards/Maxim/MAX32665_EVKIT/Pulse_Train">
+         <description>Pulse Train Demo</description>
+         <board name="MAX32665-66 EvKit" vendor="Maxim"/>
+         <project>
+            <environment name="iar" load="IAR/Pulse_Train.ewp" />
+            <environment name="uv" load="ARM/Pulse_Train.uvprojx" />
+         </project>
+         <attributes>
+            <category>Example Project</category>
+            <category>MAX32665 Evaluation Kit</category>
+            <component Cclass="CMSIS" Cgroup="CORE"/>
+            <component Cbundle="Maxim API" Cclass="Device" Cgroup="Startup"/>
+            <component Cbundle="Maxim API" Cclass="Device" Cgroup="Pulse Train"/>
+            <component Cbundle="MAX32665 BSP" Cclass="BSP" Cgroup="Board Support"/>
+            <keyword>Getting Started</keyword>
+         </attributes>
+      </example> 
+      <example name="ADC" doc="ARM/Abstract.txt" folder="Boards/Maxim/MAX32665_EVKIT/ADC">
+         <description>Analog to Digital Converter Demo</description>
+         <board name="MAX32665-66 EvKit" vendor="Maxim"/>
+         <project>
+            <environment name="iar" load="IAR/ADC.ewp" />
+            <environment name="uv" load="ARM/ADC.uvprojx" />
+         </project>
+         <attributes>
+            <category>Example Project</category>
+            <category>MAX32665 Evaluation Kit</category>
+            <component Cclass="CMSIS" Cgroup="CORE"/>
+            <component Cbundle="Maxim API" Cclass="Device" Cgroup="Startup"/>
+            <component Cbundle="Maxim API" Cclass="Device" Cgroup="ADC"/>
+            <component Cbundle="MAX32665 BSP" Cclass="BSP" Cgroup="Board Support"/>
+            <keyword>Getting Started</keyword>
+         </attributes>
+      </example> 
+      <example name="DMA" doc="ARM/Abstract.txt" folder="Boards/Maxim/MAX32665_EVKIT/DMA">
+         <description>Direct Memory Access Controller Demo</description>
+         <board name="MAX32665-66 EvKit" vendor="Maxim"/>
+         <project>
+            <environment name="iar" load="IAR/DMA.ewp" />
+            <environment name="uv" load="ARM/DMA.uvprojx" />
+         </project>
+         <attributes>
+            <category>Example Project</category>
+            <category>MAX32665 Evaluation Kit</category>
+            <component Cclass="CMSIS" Cgroup="CORE"/>
+            <component Cbundle="Maxim API" Cclass="Device" Cgroup="Startup"/>
+            <component Cbundle="Maxim API" Cclass="Device" Cgroup="DMA"/>
+            <component Cbundle="MAX32665 BSP" Cclass="BSP" Cgroup="Board Support"/>
+            <keyword>Getting Started</keyword>
+         </attributes>
+      </example>    
+      <example name="HTMR" doc="ARM/Abstract.txt" folder="Boards/Maxim/MAX32665_EVKIT/HTMR">
+         <description>HTimer Demo</description>
+         <board name="MAX32665-66 EvKit" vendor="Maxim"/>
+         <project>
+            <environment name="iar" load="IAR/HTMR.ewp" />
+            <environment name="uvprojx" load="ARM/HTMR.uvprojx" />
+         </project>
+         <attributes>
+            <category>Example Project</category>
+            <category>MAX32665 Evaluation Kit</category>
+            <component Cclass="CMSIS" Cgroup="CORE"/>
+            <component Cbundle="Maxim API" Cclass="Device" Cgroup="Startup"/>
+            <component Cbundle="Maxim API" Cclass="Device" Cgroup="HTMR"/>
+            <component Cbundle="MAX32665 BSP" Cclass="BSP" Cgroup="Board Support"/>
+            <keyword>Getting Started</keyword>
+         </attributes>
+      </example> 
+      <example name="ICC" doc="ARM/Abstract.txt" folder="Boards/Maxim/MAX32665_EVKIT/ICC">
+         <description>Instruction Cache Controller Demo</description>
+         <board name="MAX32665-66 EvKit" vendor="Maxim"/>
+         <project>
+            <environment name="iar" load="IAR/ICC.ewp" />
+            <environment name="uv" load="ARM/ICC.uvprojx" />
+         </project>
+         <attributes>
+            <category>Example Project</category>
+            <category>MAX32665 Evaluation Kit</category>
+            <component Cclass="CMSIS" Cgroup="CORE"/>
+            <component Cbundle="Maxim API" Cclass="Device" Cgroup="Startup"/>
+            <component Cbundle="Maxim API" Cclass="Device" Cgroup="ICC"/>
+            <component Cbundle="MAX32665 BSP" Cclass="BSP" Cgroup="Board Support"/>
+            <keyword>Getting Started</keyword>
+         </attributes>
+      </example>     
+      <example name="Semaphore" doc="ARM/Abstract.txt" folder="Boards/Maxim/MAX32665_EVKIT/Semaphore">
+         <description>Semaphore Module Demo</description>
+         <board name="MAX32665-66 EvKit" vendor="Maxim"/>
+         <project>
+            <environment name="iar" load="IAR/Semaphore.ewp" />
+            <environment name="uv" load="ARM/Semaphore.uvprojx" />
+         </project>
+         <attributes>
+            <category>Example Project</category>
+            <category>MAX32665 Evaluation Kit</category>
+            <component Cclass="CMSIS" Cgroup="CORE"/>
+            <component Cbundle="Maxim API" Cclass="Device" Cgroup="Startup"/>
+            <component Cbundle="Maxim API" Cclass="Device" Cgroup="SEMA"/>
+            <component Cbundle="MAX32665 BSP" Cclass="BSP" Cgroup="Board Support"/>
+            <keyword>Getting Started</keyword>
+         </attributes>
+      </example>                  
+      <example name="AES" doc="ARM/Abstract.txt" folder="Boards/Maxim/MAX32665_EVKIT/AES">
+         <description>AES Demo</description>
+         <board name="MAX32665-66 EvKit" vendor="Maxim"/>
+         <project>
+            <environment name="iar" load="IAR/AES.ewp" />
+            <environment name="uv" load="ARM/AES.uvprojx" />
+         </project>
+         <attributes>
+            <category>Example Project</category>
+            <category>MAX32665 Evaluation Kit</category>
+            <component Cclass="CMSIS" Cgroup="CORE"/>
+            <component Cbundle="Maxim API" Cclass="Device" Cgroup="Startup"/>
+            <component Cbundle="Maxim API" Cclass="Device" Cgroup="TPU"/>
+            <component Cbundle="MAX32665 BSP" Cclass="BSP" Cgroup="Board Support"/>
+            <keyword>Getting Started</keyword>
+         </attributes>
+      </example>  
+      <example name="CRC" doc="ARM/Abstract.txt" folder="Boards/Maxim/MAX32665_EVKIT/CRC">
+         <description>CRC Module Demo</description>
+         <board name="MAX32665-66 EvKit" vendor="Maxim"/>
+         <project>
+            <environment name="iar" load="IAR/CRC.ewp" />
+            <environment name="uv" load="ARM/CRC.uvprojx" />
+         </project>
+         <attributes>
+            <category>Example Project</category>
+            <category>MAX32665 Evaluation Kit</category>
+            <component Cclass="CMSIS" Cgroup="CORE"/>
+            <component Cbundle="Maxim API" Cclass="Device" Cgroup="Startup"/>
+            <component Cbundle="Maxim API" Cclass="Device" Cgroup="TPU"/>
+            <component Cbundle="MAX32665 BSP" Cclass="BSP" Cgroup="Board Support"/>
+            <keyword>Getting Started</keyword>
+         </attributes>
+      </example>        
+      <example name="MAA" doc="ARM/Abstract.txt" folder="Boards/Maxim/MAX32665_EVKIT/MAA">
+         <description>Modular Arithmetic Accelerator Demo</description>
+         <board name="MAX32665-66 EvKit" vendor="Maxim"/>
+         <project>
+            <environment name="iar" load="IAR/MAA.ewp" />
+            <environment name="uv" load="ARM/MAA.uvprojx" />
+         </project>
+         <attributes>
+            <category>Example Project</category>
+            <category>MAX32665 Evaluation Kit</category>
+            <component Cclass="CMSIS" Cgroup="CORE"/>
+            <component Cbundle="Maxim API" Cclass="Device" Cgroup="Startup"/>
+            <component Cbundle="Maxim API" Cclass="Device" Cgroup="TPU"/>
+            <component Cbundle="MAX32665 BSP" Cclass="BSP" Cgroup="Board Support"/>
+            <keyword>Getting Started</keyword>
+         </attributes>
+      </example>     
+      <example name="TRNG" doc="ARM/Abstract.txt" folder="Boards/Maxim/MAX32665_EVKIT/TRNG">
+         <description>Semaphore Module Demo</description>
+         <board name="MAX32665-66 EvKit" vendor="Maxim"/>
+         <project>
+            <environment name="iar" load="IAR/TRNG.ewp" />
+            <environment name="uv" load="ARM/TRNG.uvprojx" />
+         </project>
+         <attributes>
+            <category>Example Project</category>
+            <category>MAX32665 Evaluation Kit</category>
+            <component Cclass="CMSIS" Cgroup="CORE"/>
+            <component Cbundle="Maxim API" Cclass="Device" Cgroup="Startup"/>
+            <component Cbundle="Maxim API" Cclass="Device" Cgroup="TPU"/>
+            <component Cbundle="MAX32665 BSP" Cclass="BSP" Cgroup="Board Support"/>
+            <keyword>Getting Started</keyword>
+         </attributes>
+      </example>           
+      <example name="LP" doc="ARM/Abstract.txt" folder="Boards/Maxim/MAX32665_EVKIT/LP">
+         <description>Low Power Capabilities Demo</description>
+         <board name="MAX32665-66 EvKit" vendor="Maxim"/>
+         <project>
+            <environment name="iar" load="IAR/LP.ewp" />
+            <environment name="uv" load="ARM/LP.uvprojx" />
+         </project>
+         <attributes>
+            <category>Example Project</category>
+            <category>MAX32665 Evaluation Kit</category>
+            <component Cclass="CMSIS" Cgroup="CORE"/>
+            <component Cbundle="Maxim API" Cclass="Device" Cgroup="Startup"/>
+            <component Cbundle="Maxim API" Cclass="Device" Cgroup="Low Power"/>
+            <component Cbundle="MAX32665 BSP" Cclass="BSP" Cgroup="Board Support"/>
+            <keyword>Getting Started</keyword>
+         </attributes>
+      </example>       
+      <example name="USB_CDCACM" doc="ARM/Abstract.txt" folder="Boards/Maxim/MAX32665_EVKIT/USB_CDCACM">
+         <description>USB to Serial Demo</description>
+         <board name="MAX32665-66 EvKit" vendor="Maxim"/>
+         <project>
+            <environment name="iar" load="IAR/USB_CDCACM.ewp" />
+            <environment name="uv" load="ARM/USB_CDCACM.uvprojx" />
+         </project>
+         <attributes>
+            <category>Example Project</category>
+            <category>MAX32665 Evaluation Kit</category>
+            <component Cclass="CMSIS" Cgroup="CORE"/>
+            <component Cbundle="Maxim API" Cclass="Device" Cgroup="Startup"/>
+            <component Cbundle="Maxim API" Cclass="Device" Cgroup="MAXUSB"/>
+            <component Cbundle="Maxim API" Cclass="Device" Cgroup="UART"/>
+            <component Cbundle="MAX32665 BSP" Cclass="BSP" Cgroup="Board Support"/>
+            <keyword>Getting Started</keyword>
+         </attributes>
+      </example>         
+      <example name="USB_HIDKeyboard" doc="ARM/Abstract.txt" folder="Boards/Maxim/MAX32665_EVKIT/USB_HIDKeyboard">
+         <description>USB Keyboard Demo</description>
+         <board name="MAX32665-66 EvKit" vendor="Maxim"/>
+         <project>
+            <environment name="iar" load="IAR/USB_HIDKeyboard.ewp" />
+            <environment name="uv" load="ARM/USB_HIDKeyboard.uvprojx" />
+         </project>
+         <attributes>
+            <category>Example Project</category>
+            <category>MAX32665 Evaluation Kit</category>
+            <component Cclass="CMSIS" Cgroup="CORE"/>
+            <component Cbundle="Maxim API" Cclass="Device" Cgroup="Startup"/>
+            <component Cbundle="Maxim API" Cclass="Device" Cgroup="MAXUSB"/>
+            <component Cbundle="MAX32665 BSP" Cclass="BSP" Cgroup="Board Support"/>
+            <keyword>Getting Started</keyword>
+         </attributes>
+      </example>            
+      <example name="USB_MassStorage" doc="ARM/Abstract.txt" folder="Boards/Maxim/MAX32665_EVKIT/USB_MassStorage">
+         <description>USB Mass Storage Device Demo</description>
+         <board name="MAX32665-66 EvKit" vendor="Maxim"/>
+         <project>
+            <environment name="iar" load="IAR/USB_MassStorage.ewp" />
+            <environment name="uv" load="ARM/USB_MassStorage.uvprojx" />
+         </project>
+         <attributes>
+            <category>Example Project</category>
+            <category>MAX32665 Evaluation Kit</category>
+            <component Cclass="CMSIS" Cgroup="CORE"/>
+            <component Cbundle="Maxim API" Cclass="Device" Cgroup="Startup"/>
+            <component Cbundle="Maxim API" Cclass="Device" Cgroup="MAXUSB"/>
+            <component Cbundle="Maxim API" Cclass="Device" Cgroup="SDHC"/>
+            <component Cbundle="Maxim API" Cclass="Device" Cgroup="SPIX"/>
+            <component Cbundle="MAX32665 BSP" Cclass="BSP" Cgroup="Board Support"/>
+            <keyword>Getting Started</keyword>
+         </attributes>
+      </example>  
+      <example name="USB_CompositeDevice" doc="ARM/Abstract.txt" folder="Boards/Maxim/MAX32665_EVKIT/USB_CompositeDevice">
+         <description>USB Mass Storage Device Demo</description>
+         <board name="MAX32665-66 EvKit" vendor="Maxim"/>
+         <project>
+            <environment name="iar" load="IAR/USB_CompositeDevice.ewp" />
+            <environment name="uv" load="ARM/USB_CompositeDevice.uvprojx" />
+         </project>
+         <attributes>
+            <category>Example Project</category>
+            <category>MAX32665 Evaluation Kit</category>
+            <component Cclass="CMSIS" Cgroup="CORE"/>
+            <component Cbundle="Maxim API" Cclass="Device" Cgroup="Startup"/>
+            <component Cbundle="Maxim API" Cclass="Device" Cgroup="MAXUSB"/>
+            <component Cbundle="Maxim API" Cclass="Device" Cgroup="SDHC"/>
+            <component Cbundle="Maxim API" Cclass="Device" Cgroup="SPIX"/>
+            <component Cbundle="MAX32665 BSP" Cclass="BSP" Cgroup="Board Support"/>
+            <keyword>Getting Started</keyword>
+         </attributes>
+      </example>            
+      <example name="DualCore" doc="ARM/Abstract.txt" folder="Boards/Maxim/MAX32665_EVKIT/DualCore">
+         <description>Dual Core Demo</description>
+         <board name="MAX32665-66 EvKit" vendor="Maxim"/>
+         <project>
+            <environment name="iar" load="IAR/DualCore.ewp" />
+         </project>
+         <attributes>
+            <category>Example Project</category>
+            <category>MAX32665 Evaluation Kit</category>
+            <component Cclass="CMSIS" Cgroup="CORE"/>
+            <component Cbundle="Maxim API" Cclass="Device" Cgroup="Startup"/>
+            <component Cbundle="Maxim API" Cclass="Device" Cgroup="MAXUSB"/>
+            <component Cbundle="Maxim API" Cclass="Deivce" Cgroup="DualCore"/>
+            <component Cbundle="Maxim API" Cclass="Deivce" Cgroup="Semaphore"/>
+            <component Cbundle="MAX32665 BSP" Cclass="BSP" Cgroup="Board Support"/>
+            <keyword>Getting Started</keyword>
+         </attributes>
+      </example>           
+      <example name="BTLE Datc" doc="ARM/Abstract.txt" folder="Boards/Maxim/MAX32665_EVKIT/BLE_datc">
+         <description>BTLE Data Collector Demo</description>
+         <board name="MAX32665-66 EvKit" vendor="Maxim"/>
+         <project>
+            <environment name="iar" load="IAR/BLE_datc.ewp" />
+            <environment name="uv" load="ARM/BTLE_datc.uvprojx" />
+         </project>
+         <attributes>
+            <category>Example Project</category>
+            <category>MAX32665 Evaluation Kit</category>
+            <component Cclass="CMSIS" Cgroup="CORE"/>
+            <component Cbundle="Maxim API" Cclass="Device" Cgroup="Startup"/>
+            <component Cbundle="Maxim API" Cclass="Device" Cgroup="MAXUSB"/>
+            <component Cbundle="Maxim API" Cclass="Bluetooth" Cgroup="Bluetooth LE"/>
+            <component Cbundle="MAX32665 BSP" Cclass="BSP" Cgroup="Board Support"/>
+            <keyword>Getting Started</keyword>
+         </attributes>
+      </example>  
+      <example name="BTLE Dats" doc="ARM/Abstract.txt" folder="Boards/Maxim/MAX32665_EVKIT/BLE_dats">
+         <description>BTLE Data Server Demo</description>
+         <board name="MAX32665-66 EvKit" vendor="Maxim"/>
+         <project>
+            <environment name="iar" load="IAR/BLE_dats.ewp" />
+            <environment name="uv" load="ARM/BTLE_dats.uvprojx" />
+         </project>
+         <attributes>
+            <category>Example Project</category>
+            <category>MAX32665 Evaluation Kit</category>
+            <component Cclass="CMSIS" Cgroup="CORE"/>
+            <component Cbundle="Maxim API" Cclass="Device" Cgroup="Startup"/>
+            <component Cbundle="Maxim API" Cclass="Device" Cgroup="MAXUSB"/>
+            <component Cbundle="Maxim API" Cclass="Bluetooth" Cgroup="Bluetooth LE"/>
+            <component Cbundle="MAX32665 BSP" Cclass="BSP" Cgroup="Board Support"/>
+            <keyword>Bluetooth Low Energy</keyword>
+         </attributes>
+      </example> 
+      <example name="BTLE HCI UART" doc="ARM/Abstract.txt" folder="Boards/Maxim/MAX32665_EVKIT/BLE_hci_uart">
+         <description>BTLE HCI UART</description>
+         <board name="MAX32665-66 EvKit" vendor="Maxim"/>
+         <project>
+            <environment name="iar" load="IAR/BLE_hci_uart.ewp" />
+            <environment name="uv" load="ARM/BTLE_hci_uart.uvprojx" />
+         </project>
+         <attributes>
+            <category>Example Project</category>
+            <category>MAX32665 Evaluation Kit</category>
+            <component Cclass="CMSIS" Cgroup="CORE"/>
+            <component Cbundle="Maxim API" Cclass="Device" Cgroup="Startup"/>
+            <component Cbundle="Maxim API" Cclass="Device" Cgroup="MAXUSB"/>
+            <component Cbundle="Maxim API" Cclass="Bluetooth" Cgroup="Bluetooth LE"/>
+            <component Cbundle="MAX32665 BSP" Cclass="BSP" Cgroup="Board Support"/>
+            <keyword>Bluetooth Low Energy</keyword>
+         </attributes>
+      </example>       
+      <example name="BTLE Fit" doc="ARM/Abstract.txt" folder="Boards/Maxim/MAX32665_EVKIT/BLE_fit">
+         <description>BTLE Fitness Profile Demo</description>
+         <board name="MAX32665-66 EvKit" vendor="Maxim"/>
+         <project>
+            <environment name="iar" load="IAR/BLE_fit.ewp" />
+            <environment name="uv" load="ARM/BTLE_fit.uvprojx" />
+         </project>
+         <attributes>
+            <category>Example Project</category>
+            <category>MAX32665 Evaluation Kit</category>
+            <component Cclass="CMSIS" Cgroup="CORE"/>
+            <component Cbundle="Maxim API" Cclass="Device" Cgroup="Startup"/>
+            <component Cbundle="Maxim API" Cclass="Device" Cgroup="MAXUSB"/>
+            <component Cbundle="Maxim API" Cclass="Bluetooth" Cgroup="Bluetooth LE"/>
+            <component Cbundle="MAX32665 BSP" Cclass="BSP" Cgroup="Board Support"/>
+            <keyword>Bluetooth Low Energy Fitness Application</keyword>
+         </attributes>
+      </example>           
+      <example name="BTLE Scanner" doc="ARM/Abstract.txt" folder="Boards/Maxim/MAX32665_EVKIT/BLE_scanner">
+         <description>BTLE Scanner Demo</description>
+         <board name="MAX32665-66 EvKit" vendor="Maxim"/>
+         <project>
+            <environment name="iar" load="IAR/BLE_scanner.ewp" />
+            <environment name="uv" load="ARM/BTLE_scanner.uvprojx" />
+         </project>
+         <attributes>
+            <category>Example Project</category>
+            <category>MAX32665 Evaluation Kit</category>
+            <component Cclass="CMSIS" Cgroup="CORE"/>
+            <component Cbundle="Maxim API" Cclass="Device" Cgroup="Startup"/>
+            <component Cbundle="Maxim API" Cclass="Bluetooth" Cgroup="Bluetooth LE"/>
+            <component Cbundle="MAX32665 BSP" Cclass="BSP" Cgroup="Board Support"/>
+            <keyword>Bluetooth Low Energy Scanner</keyword>
+         </attributes>
+      </example> 
+      <example name="BTLE Beacon" doc="ARM/Abstract.txt" folder="Boards/Maxim/MAX32665_EVKIT/BLE_beacon">
+         <description>BTLE Beacon Demo</description>
+         <board name="MAX32665-66 EvKit" vendor="Maxim"/>
+         <project>
+            <environment name="iar" load="IAR/BLE_beacon.ewp" />
+            <environment name="uv" load="ARM/BTLE_beacon.uvprojx" />
+         </project>
+         <attributes>
+            <category>Example Project</category>
+            <category>MAX32665 Evaluation Kit</category>
+            <component Cclass="CMSIS" Cgroup="CORE"/>
+            <component Cbundle="Maxim API" Cclass="Device" Cgroup="Startup"/>
+            <component Cbundle="Maxim API" Cclass="Bluetooth" Cgroup="Bluetooth LE"/>
+            <component Cbundle="MAX32665 BSP" Cclass="BSP" Cgroup="Board Support"/>
+            <keyword>Bluetooth Low Energy Beacon</keyword>
+         </attributes>
+      </example>    
+      <example name="CordioLib" doc="ARM/Abstract.txt" folder="Boards/Maxim/MAX32665_EVKIT/CordioLib">
+         <description>Build CordioLibPub for local debugging support</description>
+         <board name="MAX32665-66 EvKit" vendor="Maxim"/>
+         <project>
+            <environment name="iar" load="IAR/CordioLib.ewp" />
+            <environment name="uv" load="ARM/CordioLib.uvprojx" />
+         </project>
+         <attributes>
+            <category>Library Project</category>
+            <category>MAX32665 Bluetooth LE Stack</category>
+            <component Cclass="CMSIS" Cgroup="CORE"/>
+            <keyword>CordioLib</keyword>
+         </attributes>
+      </example>         
+      <example name="ECC" doc="ARM/Abstract.txt" folder="Boards/Maxim/MAX32665_EVKIT/ECC">
+         <description>Error Checking Code Demo</description>
+         <board name="MAX32665-66 EvKit" vendor="Maxim"/>
+         <project>
+            <environment name="iar" load="IAR/ECC.ewp" />
+            <environment name="uv" load="ARM/ECC.uvprojx" />
+         </project>
+         <attributes>
+            <category>Example Project</category>
+            <category>MAX32665 Evaluation Kit</category>
+            <component Cclass="CMSIS" Cgroup="CORE"/>
+            <component Cbundle="Maxim API" Cclass="Device" Cgroup="Startup"/>
+            <component Cbundle="MAX32665 BSP" Cclass="BSP" Cgroup="Board Support"/>
+            <keyword>Error Checking Code</keyword>
+         </attributes>
+      </example>            
+   </examples>
+
+   <conditions>
+      <!-- MAX32665 Device Condition -->
+      <condition id="MAX32665 Family">
+         <description> Maxim Integrated MAX32665 device family</description>
+         <require Dvendor="Maxim:23"/>
+         <require Dfamily="MAX32665-66"/>
+      </condition>
+
+      <!-- MAX32665 Device Condition - TPU Enabled Part -->
+      <condition id="MAX32665 Device">
+         <description> Maxim Integrated MAX32665 device family</description>
+         <require Dvendor="Maxim:23"/>
+         <require Dname="MAX32665"/>
+      </condition>
+
+      <!-- MAX32666 Device Condition - TPU Enabled Part -->
+      <condition id="MAX32666 Device">
+         <description> Maxim Integrated MAX32665 device family</description>
+         <require Dvendor="Maxim:23"/>
+         <require Dname="MAX32666"/>
+      </condition>
+
+      <!-- MAX32665/51/52 CMSIS-CORE Condition -->
+      <condition id="MAX32665 CMSIS-CORE">
+         <description>Maxim MAX32665 Series devices and CMSIS-CORE</description>
+         <require Cclass="CMSIS" Cgroup="CORE"/>
+         <require condition="MAX32665 Family"/>
+         <accept condition="MAX32666 Device"/>
+         <accept condition="MAX32665 Device"/>
+         <require Cclass="Device" Cgroup="Startup"/>
+      </condition>
+
+      <!-- GNUC/Eclipse Compiler Condition -->
+      <condition id="Startup GCC">
+         <description>Startup files for the GNU C Toolchain</description>
+         <require Tcompiler="GCC"/>
+      </condition>
+
+      <!-- IAR Embedded Workbench Compiler Condition -->
+      <condition id="Startup ARM">
+         <description>Startup files for the KEIL Embedded Workbench Toolchain</description>
+         <require Tcompiler="ARMCC"/>
+      </condition> 
+      <condition id="Startup IAR">
+         <description>Startup files for the IAR Embedded Workbench Toolchain</description>
+         <require Tcompiler="IAR"/>
+      </condition>
+
+      <!-- ADC Peripheral Condition -->
+      <condition id="MAX32665 CMSIS ADC">
+         <description>ADC Interface</description>
+         <require condition="MAX32665 CMSIS-CORE"/>
+      </condition>
+
+      <!-- Standard DMA Peripheral -->
+      <condition id="MAX32665 CMSIS DMA">
+         <description>Standard DMA</description>
+         <require condition="MAX32665 CMSIS-CORE"/>
+      </condition>
+
+      <!-- FLash Controller Peripheral -->
+      <condition id="MAX32665 CMSIS FLC">
+         <description>Internal Flash Controller</description>
+         <require condition="MAX32665 CMSIS-CORE"/>
+         <require condition="MAX32665 CMSIS ICC"/>
+      </condition>
+
+      <!-- I2C -->
+      <condition id="MAX32665 CMSIS I2C">
+         <description>I2C Interface</description>
+         <require condition="MAX32665 CMSIS-CORE"/>
+      </condition>
+
+      <!-- OWM -->
+      <condition id="MAX32665 CMSIS OWM">
+         <description>1-Wire Master Interface</description>
+         <require condition="MAX32665 CMSIS-CORE"/>
+      </condition>
+
+      <!-- PT -->
+      <condition id="MAX32665 CMSIS PT">
+         <description>Pulse Train Engine</description>
+         <require condition="MAX32665 CMSIS-CORE"/>
+      </condition>
+
+      <!-- RTC -->
+      <condition id="MAX32665 CMSIS RTC">
+         <description>Real-Time Clock</description>
+         <require condition="MAX32665 CMSIS-CORE"/>
+      </condition>
+
+      <!-- RTC -->
+      <condition id="MAX32665 CMSIS SDHC">
+         <description>SD Host Controller</description>
+         <require condition="MAX32665 CMSIS-CORE"/>
+      </condition>
+
+      <!-- SPI Peripheral -->
+      <condition id="MAX32665 CMSIS SPI XIP RAM">
+         <description>SPI-XiP RAM (SPID) Interface</description>
+         <require condition="MAX32665 CMSIS-CORE"/>
+      </condition>
+
+      <!-- SPI Peripheral -->
+      <condition id="MAX32665 CMSIS SPI XIP FLASH">
+         <description>SPI-XiP Flash (SPIX) Interface</description>
+         <require condition="MAX32665 CMSIS-CORE"/>
+      </condition>
+
+      <!-- SPI Peripheral -->
+      <condition id="MAX32665 CMSIS SPI">
+         <description>SPI Interface</description>
+         <require condition="MAX32665 CMSIS-CORE"/>
+      </condition>
+
+      <!-- Timer -->
+      <condition id="MAX32665 CMSIS TIMER">
+         <description>Timers</description>
+         <require condition="MAX32665 CMSIS-CORE"/>
+      </condition>
+
+      <!-- UART -->
+      <condition id="MAX32665 CMSIS UART">
+         <description>UART</description>
+         <require condition="MAX32665 CMSIS-CORE"/>
+      </condition>
+
+      <!-- WDT -->
+      <condition id="MAX32665 CMSIS WDT">
+         <description>Watchdog Timers</description>
+         <require condition="MAX32665 CMSIS-CORE"/>
+      </condition>
+
+      <!-- Low Power -->
+      <condition id="MAX32665 CMSIS Low Power">
+         <description>Low Power API</description>
+         <require condition="MAX32665 CMSIS-CORE"/>
+      </condition>
+
+      <!-- SEMA -->
+      <condition id="MAX32665 CMSIS SEMA">
+         <description>Semaphore Module</description>
+         <require condition="MAX32665 CMSIS-CORE"/>
+      </condition>
+
+      <!-- GPIO -->
+      <condition id="MAX32665 CMSIS GPIO">
+         <description>GPIO</description>
+         <require condition="MAX32665 CMSIS-CORE"/>
+      </condition>
+
+      <!-- ICC -->
+      <condition id="MAX32665 CMSIS ICC">
+         <description>Instruction Cache Controller</description>
+         <require condition="MAX32665 CMSIS-CORE"/>
+      </condition>
+
+      <!-- HTMR -->
+      <condition id="MAX32665 CMSIS HTMR">
+         <description>HTimer</description>
+         <require condition="MAX32665 CMSIS-CORE"/>
+      </condition> 
+
+      <!-- SIMO -->
+      <condition id="MAX32665 CMSIS SIMO">
+         <description>Single Inductor Multiple Output DC/DC Converter</description>
+         <require condition="MAX32665 CMSIS-CORE"/>
+      </condition> 
+
+      <!-- DualCore -->
+      <condition id="MAX32665 CMSIS DualCore">
+         <description>DualCore</description>
+         <require condition="MAX32665 CMSIS-CORE"/>
+         <accept condition="MAX32665 Device"/>
+         <accept condition="MAX32666 Device"/>
+      </condition> 
+
+      <condition id="MAX32665 CMSIS TPU">
+         <description>MAXUSB Device Class</description>
+         <require condition="MAX32665 CMSIS-CORE"/>
+      </condition>      
+
+      <condition id="MAXUSB Core DEP">
+         <description>MAXUSB HS Core</description>
+         <require condition="MAX32665 CMSIS-CORE"/>
+      </condition>      
+
+      <condition id="MAXUSB DevClass DEP">
+         <description>MAXUSB Device Class</description>
+         <require condition="MAX32665 CMSIS-CORE"/>
+      </condition>      
+
+      <condition id="FatFs DEP">
+         <description>FatFs Dependencies</description>
+         <require condition="MAX32665 CMSIS-CORE"/>
+      </condition>             
+
+      <condition id="MAX32665 BSP DEP">
+         <description>Board Support Package</description>
+         <require condition="MAX32665 CMSIS-CORE"/>
+         <accept condition="MAX32665 Family"/>
+         <require Cclass="Device" Cgroup="UART"/>
+         <require Cclass="Device" Cgroup="XiP Flash"/>
+         <require Cclass="Device" Cgroup="GPIO"/>
+      </condition>
+   </conditions>
+
+   <components>
+
+      <bundle Cbundle="Maxim BTLE" Cclass="Bluetooth" Cversion="0.3.0">
+         <description>Maxim MAX32665 Bluetooth Low Energy Stack</description>
+         <doc>Libraries/BTLE/documentation/html/Cordio_Stack_Cordio_Profiles/index.html</doc>
+         <component Cgroup="Bluetooth LE" condition="MAX32665 Family">
+            <description>MAX32665 Bluetooth Libraries</description>
+            <files>
+               <file category="include" name="Libraries/BTLE/wsf/baremetal/sources/"/>
+               <file category="include" name="Libraries/BTLE/wsf/common/include/"/>
+               <file category="include" name="Libraries/BTLE/controller/sources/mac/include/"/>
+               <file category="include" name="Libraries/BTLE/controller/sources/mac/ble/lhci/include/"/>
+               <file category="include" name="Libraries/BTLE/wsf/common/include/util/"/>
+               <file category="include" name="Libraries/BTLE/ble-host/include/"/>
+               <file category="include" name="Libraries/BTLE/platform/common/include/"/>
+               <file category="include" name="Libraries/BTLE/controller/sources/mac/cfg/"/>
+               <file category="include" name="Libraries/BTLE/ble-profiles/sources/apps/"/>
+               <file category="include" name="Libraries/BTLE/ble-profiles/sources/apps/app/"/>
+               <file category="include" name="Libraries/BTLE/ble-host/sources/stack/cfg/"/>
+               <file category="include" name="Libraries/BTLE/ble-profiles/sources/profiles/"/>
+               <file category="include" name="Libraries/BTLE/ble-profiles/sources/profiles/include/"/>
+               <file category="include" name="Libraries/BTLE/ble-profiles/include/app/"/>
+               <file category="include" name="Libraries/BTLE/ble-profiles/sources/services/"/>
+               <file category="include" name="Libraries/BTLE/ble-host/sources/stack/hci/"/>
+               <file category="include" name="Libraries/BTLE/ble-host/sources/hci/exactle/"/>
+               <file category="sourceC" name="Libraries/BTLE/ble-host/sources/hci/exactle/hci_cmd.c"/>
+               <file category="sourceC" name="Libraries/BTLE/ble-host/sources/hci/exactle/hci_cmd_ae.c"/>
+               <file category="sourceC" name="Libraries/BTLE/ble-host/sources/hci/exactle/hci_cmd_enc.c"/>
+               <file category="sourceC" name="Libraries/BTLE/ble-host/sources/hci/exactle/hci_cmd_master.c"/>
+               <file category="sourceC" name="Libraries/BTLE/ble-host/sources/hci/exactle/hci_cmd_master_ae.c"/>
+               <file category="sourceC" name="Libraries/BTLE/ble-host/sources/hci/exactle/hci_cmd_phy.c"/>
+               <file category="sourceC" name="Libraries/BTLE/ble-host/sources/hci/exactle/hci_core_ps.c"/>
+               <file category="sourceC" name="Libraries/BTLE/ble-host/sources/hci/exactle/hci_evt.c"/>
+               <file category="sourceC" name="Libraries/BTLE/ble-host/sources/hci/exactle/hci_tr.c"/>
+               <file category="sourceC" name="Libraries/BTLE/ble-host/sources/hci/exactle/hci_vs.c"/>
+               <file category="sourceC" name="Libraries/BTLE/ble-host/sources/hci/exactle/hci_vs_ae.c"/>
+               <file category="sourceC" name="Libraries/BTLE/ble-host/sources/stack/hci/hci_main.c"/>
+               <file category="sourceC" name="Libraries/BTLE/platform/max32665/sources/ll_math.c"/>
+               <file category="sourceC" name="Libraries/BTLE/platform/max32665/sources/radio_drv.c"/>
+               <file category="include" name="Libraries/BTLE/controller/sources/config/max32665/"/>
+               <file category="include" name="Libraries/BTLE/controller/sources/config/"/>
+               <file category="include" name="Libraries/BTLE/platform/max32665/"/>
+               <file category="include" name="Libraries/BTLE/ble-host/sources/hci/max32665/"/>               
+               <file category="library" name="Libraries/BTLE/lib/IAR/cordiolib.a" condition="Startup IAR"/>
+               <file category="library" name="Libraries/BTLE/lib/IAR/cordiolibpub.a" condition="Startup IAR"/>
+               <file category="library" name="Libraries/BTLE/lib/IAR/maclib.a" condition="Startup IAR"/>
+               <file category="library" name="Libraries/BTLE/lib/ARM/cordiolib.lib" condition="Startup ARM"/>
+               <file category="library" name="Libraries/BTLE/lib/ARM/cordiolibpub.lib" condition="Startup ARM"/>
+               <file category="library" name="Libraries/BTLE/lib/ARM/maclib.lib" condition="Startup ARM"/>
+           </files>
+         </component>
+         <component Cgroup="Bluetooth LE - Coprocessor" condition="MAX32665 Family">
+            <description>MAX32665 Bluetooth Libraries - Using BLE Coprocessor</description>
+               <RTE_Components_h>
+                  <!-- the following content goes into file 'RTE_Components.h' -->
+                  #define BLE_SDMA 1
+            </RTE_Components_h>
+            <files>
+               <file category="include" name="Libraries/BTLE/wsf/baremetal/sources/"/>
+               <file category="include" name="Libraries/BTLE/wsf/common/include/"/>
+               <file category="include" name="Libraries/BTLE/controller/sources/mac/include/"/>
+               <file category="include" name="Libraries/BTLE/controller/sources/mac/ble/lhci/include/"/>               
+               <file category="include" name="Libraries/BTLE/wsf/common/include/util/"/>
+               <file category="include" name="Libraries/BTLE/ble-host/include/"/>
+               <file category="include" name="Libraries/BTLE/platform/common/include/"/>
+               <file category="include" name="Libraries/BTLE/controller/sources/mac/cfg/"/>
+               <file category="include" name="Libraries/BTLE/ble-profiles/sources/apps/"/>
+               <file category="include" name="Libraries/BTLE/ble-profiles/sources/apps/app/"/>
+               <file category="include" name="Libraries/BTLE/ble-host/sources/stack/cfg/"/>
+               <file category="include" name="Libraries/BTLE/ble-profiles/sources/profiles/"/>
+               <file category="include" name="Libraries/BTLE/ble-profiles/sources/profiles/include/"/>
+               <file category="include" name="Libraries/BTLE/ble-profiles/include/app/"/>
+               <file category="include" name="Libraries/BTLE/ble-profiles/sources/services/"/>
+               <file category="include" name="Libraries/BTLE/ble-host/sources/stack/hci/"/>
+               <file category="include" name="Libraries/BTLE/ble-host/sources/hci/dual_chip/"/>
+               <file category="sourceC" name="Libraries/BTLE/ble-host/sources/hci/dual_chip/hci_cmd_ae.c"/>
+               <file category="sourceC" name="Libraries/BTLE/ble-host/sources/hci/dual_chip/hci_cmd.c"/>
+               <file category="sourceC" name="Libraries/BTLE/ble-host/sources/hci/dual_chip/hci_cmd_phy.c"/>
+               <file category="sourceC" name="Libraries/BTLE/ble-host/sources/hci/dual_chip/hci_core_ps.c"/>
+               <file category="sourceC" name="Libraries/BTLE/ble-host/sources/hci/dual_chip/hci_evt.c"/>
+               <file category="sourceC" name="Libraries/BTLE/ble-host/sources/hci/dual_chip/hci_vs_ae.c"/>
+               <file category="sourceC" name="Libraries/BTLE/ble-host/sources/hci/dual_chip/hci_vs.c"/>
+               <file category="include" name="Libraries/BTLE/ble-host/sources/hci/max32665/"/>
+               <file category="sourceC" name="Libraries/BTLE/ble-host/sources/hci/max32665/hci_drv.c"/>
+               <file category="sourceC" name="Libraries/BTLE/ble-host/sources/hci/max32665/hci_tr.c"/>
+               <file category="sourceC" name="Libraries/BTLE/ble-host/sources/stack/hci/hci_main.c"/>
+               <file category="sourceC" name="Libraries/BTLE/platform/max32665/sources/ll_math.c"/>
+               <file category="sourceC" name="Libraries/BTLE/platform/max32665/sources/radio_drv.c"/>
+               <file category="source" name="Libraries/BTLE/platform/max32665/sources/sdma.inc"/>
+               <file category="include" name="Libraries/BTLE/controller/sources/config/max32665/"/>
+               <file category="include" name="Libraries/BTLE/controller/sources/config/"/>
+               <file category="include" name="Libraries/BTLE/platform/max32665/"/>             
+               <file category="library" name="Libraries/BTLE/lib/IAR/cordiolib.a" condition="Startup IAR"/>
+               <file category="library" name="Libraries/BTLE/lib/IAR/cordiolibpub.a" condition="Startup IAR"/>
+               <file category="library" name="Libraries/BTLE/lib/ARM/cordiolib.lib" condition="Startup ARM"/>
+               <file category="library" name="Libraries/BTLE/lib/ARM/cordiolibpub.lib" condition="Startup ARM"/>
+           </files>
+         </component>         
+         <component Cgroup="Bluetooth LE - Advertising" condition="MAX32665 Family">
+            <description>MAX32665 Bluetooth Libraries - Using BLE Coprocessor</description>
+               <RTE_Components_h>
+                  <!-- the following content goes into file 'RTE_Components.h' -->
+                  #define BLE_SDMA 1
+                  #define BLE_SDMA_ADV 1
+            </RTE_Components_h>
+            <files>
+               <file category="sourceC" name="Libraries/BTLE/ble-host/sources/hci/dual_chip/hci_cmd_ae.c"/>
+               <file category="sourceC" name="Libraries/BTLE/ble-host/sources/hci/dual_chip/hci_cmd.c"/>
+               <file category="sourceC" name="Libraries/BTLE/ble-host/sources/hci/dual_chip/hci_cmd_phy.c"/>
+               <file category="sourceC" name="Libraries/BTLE/ble-host/sources/hci/dual_chip/hci_core_ps.c"/>
+               <file category="sourceC" name="Libraries/BTLE/ble-host/sources/hci/dual_chip/hci_evt.c"/>
+               <file category="sourceC" name="Libraries/BTLE/ble-host/sources/hci/dual_chip/hci_vs_ae.c"/>
+               <file category="sourceC" name="Libraries/BTLE/ble-host/sources/hci/dual_chip/hci_vs.c"/>
+               <file category="sourceC" name="Libraries/BTLE/ble-host/sources/hci/max32665/hci_drv.c"/>
+               <file category="sourceC" name="Libraries/BTLE/ble-host/sources/hci/max32665/hci_tr.c"/>
+               <file category="sourceC" name="Libraries/BTLE/ble-host/sources/stack/hci/hci_main.c"/>
+               <file category="sourceC" name="Libraries/BTLE/platform/max32665/sources/ll_math.c"/>
+               <file category="sourceC" name="Libraries/BTLE/platform/max32665/sources/radio_drv.c"/>
+               <file category="include" name="Libraries/BTLE/wsf/baremetal/sources/"/>
+               <file category="include" name="Libraries/BTLE/wsf/common/include/"/>
+               <file category="include" name="Libraries/BTLE/controller/sources/mac/include/"/>
+               <file category="include" name="Libraries/BTLE/controller/sources/mac/ble/lhci/include/"/>               
+               <file category="include" name="Libraries/BTLE/wsf/common/include/util/"/>
+               <file category="include" name="Libraries/BTLE/ble-host/include/"/>
+               <file category="include" name="Libraries/BTLE/platform/common/include/"/>
+               <file category="include" name="Libraries/BTLE/controller/sources/mac/cfg/"/>
+               <file category="include" name="Libraries/BTLE/ble-profiles/sources/apps/"/>
+               <file category="include" name="Libraries/BTLE/ble-profiles/sources/apps/app/"/>
+               <file category="include" name="Libraries/BTLE/ble-host/sources/stack/cfg/"/>
+               <file category="include" name="Libraries/BTLE/ble-profiles/sources/profiles/"/>
+               <file category="include" name="Libraries/BTLE/ble-profiles/sources/profiles/include/"/>
+               <file category="include" name="Libraries/BTLE/ble-profiles/include/app/"/>
+               <file category="include" name="Libraries/BTLE/ble-profiles/sources/services/"/>
+               <file category="include" name="Libraries/BTLE/ble-host/sources/stack/hci/"/>
+               <file category="include" name="Libraries/BTLE/ble-host/sources/hci/dual_chip/"/>
+               <file category="include" name="Libraries/BTLE/ble-host/sources/hci/max32665/"/>
+               <file category="source" name="Libraries/BTLE/platform/max32665/sources/sdma_adv.inc"/>
+               <file category="include" name="Libraries/BTLE/controller/sources/config/max32665/"/>
+               <file category="include" name="Libraries/BTLE/controller/sources/config/"/>
+               <file category="include" name="Libraries/BTLE/platform/max32665/"/>
+               <file category="include" name="Libraries/BTLE/ble-host/sources/hci/max32665/"/>               
+               <file category="include" name="Libraries/BTLE/ble-host/sources/stack/hci/"/>                        
+               <file category="library" name="Libraries/BTLE/lib/IAR/cordiolib.a" condition="Startup IAR"/>
+               <file category="library" name="Libraries/BTLE/lib/IAR/cordiolibpub.a" condition="Startup IAR"/>
+               <file category="library" name="Libraries/BTLE/lib/ARM/cordiolib.lib" condition="Startup ARM"/>
+               <file category="library" name="Libraries/BTLE/lib/ARM/cordiolibpub.lib" condition="Startup ARM"/>
+           </files>
+         </component>     
+         <component Cgroup="Bluetooth LE - HCI UART" condition="MAX32665 Family">
+            <description>MAX32665 Bluetooth Libraries - Using BLE Coprocessor</description>
+               <RTE_Components_h>
+                  <!-- the following content goes into file 'RTE_Components.h' -->
+                  #define BLE_SDMA 1
+                  #define BLE_SDMA_ADV 1
+            </RTE_Components_h>
+            <files>
+               <file category="sourceC" name="Libraries/BTLE/ble-host/sources/hci/dual_chip/hci_cmd_ae.c"/>
+               <file category="sourceC" name="Libraries/BTLE/ble-host/sources/hci/dual_chip/hci_cmd.c"/>
+               <file category="sourceC" name="Libraries/BTLE/ble-host/sources/hci/dual_chip/hci_cmd_phy.c"/>
+               <file category="sourceC" name="Libraries/BTLE/ble-host/sources/hci/dual_chip/hci_core_ps.c"/>
+               <file category="sourceC" name="Libraries/BTLE/ble-host/sources/hci/dual_chip/hci_evt.c"/>
+               <file category="sourceC" name="Libraries/BTLE/ble-host/sources/hci/dual_chip/hci_vs_ae.c"/>
+               <file category="sourceC" name="Libraries/BTLE/ble-host/sources/hci/dual_chip/hci_vs.c"/>
+               <file category="sourceC" name="Libraries/BTLE/ble-host/sources/hci/max32665/hci_drv.c"/>
+               <file category="sourceC" name="Libraries/BTLE/ble-host/sources/stack/hci/hci_main.c"/>
+               <file category="sourceC" name="Libraries/BTLE/platform/max32665/sources/ll_math.c"/>
+               <file category="sourceC" name="Libraries/BTLE/platform/max32665/sources/radio_drv.c"/>
+               <file category="include" name="Libraries/BTLE/wsf/baremetal/sources/"/>
+               <file category="include" name="Libraries/BTLE/wsf/common/include/"/>
+               <file category="include" name="Libraries/BTLE/controller/sources/mac/include/"/>
+               <file category="include" name="Libraries/BTLE/controller/sources/mac/ble/lhci/include/"/>               
+               <file category="include" name="Libraries/BTLE/wsf/common/include/util/"/>
+               <file category="include" name="Libraries/BTLE/ble-host/include/"/>
+               <file category="include" name="Libraries/BTLE/platform/common/include/"/>
+               <file category="include" name="Libraries/BTLE/controller/sources/mac/cfg/"/>
+               <file category="include" name="Libraries/BTLE/ble-profiles/sources/apps/"/>
+               <file category="include" name="Libraries/BTLE/ble-profiles/sources/apps/app/"/>
+               <file category="include" name="Libraries/BTLE/ble-host/sources/stack/cfg/"/>
+               <file category="include" name="Libraries/BTLE/ble-profiles/sources/profiles/"/>
+               <file category="include" name="Libraries/BTLE/ble-profiles/sources/profiles/include/"/>
+               <file category="include" name="Libraries/BTLE/ble-profiles/include/app/"/>
+               <file category="include" name="Libraries/BTLE/ble-profiles/sources/services/"/>
+               <file category="include" name="Libraries/BTLE/ble-host/sources/stack/hci/"/>
+               <file category="include" name="Libraries/BTLE/ble-host/sources/hci/dual_chip/"/>
+               <file category="include" name="Libraries/BTLE/ble-host/sources/hci/max32665/"/>
+               <file category="source" name="Libraries/BTLE/platform/max32665/sources/sdma_adv.inc"/>
+               <file category="include" name="Libraries/BTLE/controller/sources/config/max32665/"/>
+               <file category="include" name="Libraries/BTLE/controller/sources/config/"/>
+               <file category="include" name="Libraries/BTLE/platform/max32665/"/>
+               <file category="include" name="Libraries/BTLE/ble-host/sources/hci/max32665/"/>               
+               <file category="include" name="Libraries/BTLE/ble-host/sources/stack/hci/"/>                        
+               <file category="library" name="Libraries/BTLE/lib/IAR/cordiolib.a" condition="Startup IAR"/>
+               <file category="library" name="Libraries/BTLE/lib/IAR/cordiolibpub.a" condition="Startup IAR"/>
+               <file category="library" name="Libraries/BTLE/lib/ARM/cordiolib.lib" condition="Startup ARM"/>
+               <file category="library" name="Libraries/BTLE/lib/ARM/cordiolibpub.lib" condition="Startup ARM"/>
+           </files>
+         </component>                         
+      </bundle>
+
+      <bundle Cbundle="Maxim API" Cclass="Device" Cversion="0.3.0">
+         <description>Maxim Developed Hardware Abstraction Layer</description>
+         <doc>Doc/SDK_Documentation/doxygen.txt</doc>
+
+         <!-- MAX32665 Device Selection -->
+         <component Cgroup="Startup" Cversion="0.3.0" condition="MAX32665 Family" >
+            <description>System Startup for Maxim MAX32665 Microcontroller</description>
+            <RTE_Components_h>
+                  <!-- the following content goes into file 'RTE_Components.h' -->
+                  #define TARGET 32665   /* Target Device Part Number */
+                  #define TARGET_REV 0x4131 /* Target Device Revision Number */
+            </RTE_Components_h>
+            <files>
+               <!-- Include paths for the tools -->
+               <file category="include" name="Libraries/Device/Maxim/MAX32665/Include/" version="0.3.0" />
+               <file category="include" name="Libraries/MAX32665PeriphDriver/Include/" version="0.3.0" />
+
+               <!-- Keil/ARM device startup file and sub_main to call SystemInit -->
+               <file category="sourceAsm" attr="config" version="0.3.0" name="Libraries/Device/Maxim/MAX32665/Source/ARM/startup_max32665.s" condition="Startup ARM" />
+               
+               <!-- GNUC/Eclipse device startup file -->
+               <file category="sourceAsm" attr="config"  version="0.3.0" name="Libraries/Device/Maxim/MAX32665/Source/GCC/startup_max32665.S" condition="Startup GCC" />
+
+               <!-- IAR device startup file, low level init and cmain.s -->
+               <file category="sourceAsm" attr="config" name="Libraries/Device/Maxim/MAX32665/Source/IAR/startup_max32665.s" condition="Startup IAR" version="0.3.0" />
+               <file category="sourceC" attr="config"  version="0.3.0" name="Libraries/Device/Maxim/MAX32665/Source/IAR/low_level_init.c" condition="Startup IAR" />
+               <file category="sourceAsm" attr="config"  version="0.3.0" name="Libraries/Device/Maxim/MAX32665/Source/IAR/cmain.s" condition="Startup IAR" />
+
+               <!-- System, NVIC and device header files common to all platforms -->
+               <file category="sourceC" attr="config"  version="0.3.0" name="Libraries/Device/Maxim/MAX32665/Source/system_max32665.c" />
+               <file category="sourceC" name="Libraries/MAX32665PeriphDriver/Source/nvic_table.c" version="0.3.0" />
+               <file category="header" attr="config" name="Libraries/Device/Maxim/MAX32665/Include/max32665.h" version="0.3.0" />
+               <file category="sourceC" name="Libraries/MAX32665PeriphDriver/Source/mxc_assert.c"  version="0.3.0" />
+               <file category="sourceC" name="Libraries/MAX32665PeriphDriver/Source/mxc_delay.c"  version="0.3.0" />
+               <file category="sourceC" name="Libraries/MAX32665PeriphDriver/Source/mxc_lock.c"  version="0.3.0" />
+               <file category="sourceC" name="Libraries/MAX32665PeriphDriver/Source/mxc_pins.c"  version="0.3.0" />
+               <file category="sourceC" name="Libraries/MAX32665PeriphDriver/Source/mxc_sys.c"  version="0.3.0" />
+               <file category="sourceC" name="Libraries/MAX32665PeriphDriver/Source/nvic_table.c"  version="0.3.0" />
+            </files>
+         </component>
+
+         <component Cgroup="ADC" Cversion="0.3.0" condition="MAX32665 CMSIS ADC"> 
+         	 <description>ADC Interface</description>
+            <files>
+               <file category="sourceC" name="Libraries/MAX32665PeriphDriver/Source/adc.c" version="0.3.0"/>
+            </files>
+         </component>
+
+         <component Cgroup="DMA" condition="MAX32665 CMSIS DMA" Cversion="0.3.0">
+            <description>Standard DMA</description>
+            <files>
+               <file category="sourceC" name="Libraries/MAX32665PeriphDriver/Source/dma.c" version="0.3.0"/>
+            </files>
+         </component>
+
+         <component Cgroup="FLC" condition="MAX32665 CMSIS FLC" Cversion="0.3.0">
+            <description>Flash Controller for Internal Flash Memory</description>
+            <files>
+               <file category="sourceC" name="Libraries/MAX32665PeriphDriver/Source/flc.c" version="0.3.0"/>
+            </files>
+         </component>
+
+         <component Cgroup="I2C" condition="MAX32665 CMSIS I2C" Cversion="0.3.0">
+            <description>I2C Interface</description>
+            <files>
+               <file category="sourceC" name="Libraries/MAX32665PeriphDriver/Source/i2c.c" version="0.3.0"/>
+            </files>
+         </component>
+
+         <component Cgroup="1-Wire" condition="MAX32665 CMSIS OWM" Cversion="0.3.0">
+            <description>1-Wire Interface</description>
+            <files>
+               <file category="sourceC" name="Libraries/MAX32665PeriphDriver/Source/owm.c" version="0.3.0"/>
+            </files>
+         </component>
+
+         <component Cgroup="Pulse Train" condition="MAX32665 CMSIS PT" Cversion="0.3.0">
+            <description>Pulse Train Engine</description>
+            <files>
+               <file category="sourceC" name="Libraries/MAX32665PeriphDriver/Source/pt.c" version="0.3.0"/>
+            </files>
+         </component>
+
+         <component Cgroup="RTC" condition="MAX32665 CMSIS RTC" Cversion="0.3.0">
+            <description>Real-Time Clock</description>
+            <files>
+               <file category="sourceC" name="Libraries/MAX32665PeriphDriver/Source/rtc.c" version="0.3.0"/>
+            </files>
+         </component>
+
+         <component Cgroup="SDHC" condition="MAX32665 CMSIS SDHC" Cversion="0.3.0">
+            <description>SD Host Controller</description>
+            <files>
+               <file category="sourceC" name="Libraries/MAX32665PeriphDriver/Source/sdhc.c" version="0.3.0"/>
+            </files>
+         </component>
+
+         <component Cgroup="SPI" condition="MAX32665 CMSIS SPI" Cversion="0.3.0">
+            <description>SPI Interface</description>
+            <files>
+               <file category="sourceC" name="Libraries/MAX32665PeriphDriver/Source/spi.c" version="0.3.0"/>
+               <file category="sourceC" name="Libraries/MAX32665PeriphDriver/Source/spi17y.c" version="0.3.0"/>
+            </files>
+         </component>
+
+         <component Cgroup="XiP RAM" condition="MAX32665 CMSIS SPI XIP RAM" Cversion="0.3.0">
+            <description>SPI eXecute In Place (XIP) Interface</description>
+            <files>
+               <file category="sourceC" name="Libraries/MAX32665PeriphDriver/Source/emcc.c" version="0.3.0"/>
+               <file category="sourceC" name="Libraries/MAX32665PeriphDriver/Source/spixr.c" version="0.3.0"/>
+            </files>
+         </component>
+
+         <component Cgroup="XiP Flash" condition="MAX32665 CMSIS SPI XIP FLASH" Cversion="0.3.0">
+            <description>SPI eXecute In Place (XIP) Interface For External Code Execution</description>
+            <files>
+               <file category="sourceC" name="Libraries/MAX32665PeriphDriver/Source/spixfc.c" version="0.3.0"/>
+               <file category="sourceC" name="Libraries/MAX32665PeriphDriver/Source/spixf.c" version="0.3.0"/>
+            </files>
+         </component>
+
+         <component Cgroup="Timers" condition="MAX32665 CMSIS TIMER" Cversion="0.3.0">
+            <description>32-Bit Timers</description>
+            <files>
+               <file category="sourceC" name="Libraries/MAX32665PeriphDriver/Source/tmr.c" version="0.3.0"/>
+               <file category="sourceC" name="Libraries/MAX32665PeriphDriver/Source/tmr_utils.c" version="0.3.0"/>
+            </files>
+         </component>
+
+         <component Cgroup="WDT" condition="MAX32665 CMSIS WDT" Cversion="0.3.0">
+            <description>Watchdog Timers</description>
+            <files>
+               <file category="sourceC" name="Libraries/MAX32665PeriphDriver/Source/wdt.c" version="0.3.0"/>
+            </files>
+         </component>
+
+         <component Cgroup="UART" condition="MAX32665 CMSIS UART" Cversion="0.3.0">
+            <description>UART Interface</description>
+            <files>
+               <file category="sourceC" name="Libraries/MAX32665PeriphDriver/Source/uart.c" version="0.3.0"/>
+            </files>
+         </component>
+
+         <component Cgroup="ICC" condition="MAX32665 CMSIS ICC" Cversion="0.3.0">
+            <description>Instruction Cache Controller</description>
+            <files>
+               <file category="sourceC" name="Libraries/MAX32665PeriphDriver/Source/icc.c" version="0.3.0"/>
+            </files>
+         </component>
+
+         <component Cgroup="Low Power" condition="MAX32665 CMSIS Low Power" Cversion="0.3.0">
+            <description>Low Power API</description>
+            <files>
+               <file category="sourceC" name="Libraries/MAX32665PeriphDriver/Source/lp.c" version="0.3.0"/>
+               <file category="sourceAsm"  name="Libraries/Device/Maxim/MAX32665/Source/IAR/backup_max32665.s" version="0.3.0" condition="Startup IAR"/> 
+            </files>
+         </component>
+
+         <component Cgroup="GPIO" condition="MAX32665 CMSIS GPIO" Cversion="0.3.0">
+            <description>Low Power API</description>
+            <files>
+               <file category="sourceC" name="Libraries/MAX32665PeriphDriver/Source/gpio.c" version="0.3.0"/>
+            </files>
+         </component>
+
+         <component Cgroup="SEMA" condition="MAX32665 CMSIS SEMA" Cversion="0.3.0">
+            <description>Semaphore API</description>
+            <files>
+               <file category="sourceC" name="Libraries/MAX32665PeriphDriver/Source/sema.c" version="0.3.0"/>
+            </files>
+         </component>
+
+         <component Cgroup="HTMR" condition="MAX32665 CMSIS HTMR" Cversion="0.3.0">
+            <description>HTimer API</description>
+            <files>
+               <file category="sourceC" name="Libraries/MAX32665PeriphDriver/Source/htmr.c" version="0.3.0"/>
+            </files>
+         </component> 
+
+         <component Cgroup="SIMO" condition="MAX32665 CMSIS SIMO" Cversion="0.3.0">
+            <description>SIMO API</description>
+            <files>
+               <file category="sourceC" name="Libraries/MAX32665PeriphDriver/Source/simo.c" version="0.3.0"/>
+            </files>
+         </component> 
+
+         <component Cgroup="DualCore" condition="MAX32665 CMSIS DualCore" Cversion="0.3.0">
+            <description>Dual Core Support API</description>
+            <files>
+               <file category="sourceC" name="Libraries/MAX32665PeriphDriver/Source/system_core1.c" version="0.3.0"/>
+               <file category="sourceAsm" name="Libraries/MAX32665PeriphDriver/Source/startup_core1.S" version="0.3.0" condition="Startup IAR"/>
+            </files>
+         </component> 
+
+         <component Cgroup="TPU" condition="MAX32665 CMSIS TPU" Cversion="0.3.0">
+            <description>Trust Protection Unit API</description>
+            <files>
+               <file category="sourceC" name="Libraries/MAX32665PeriphDriver/Source/cipher.c" version="0.3.0"/>
+               <file category="sourceC" name="Libraries/MAX32665PeriphDriver/Source/hash.c" version="0.3.0"/>
+               <file category="sourceC" name="Libraries/MAX32665PeriphDriver/Source/crc.c" version="0.3.0"/>
+               <file category="sourceC" name="Libraries/MAX32665PeriphDriver/Source/maa.c" version="0.3.0"/>
+               <file category="sourceC" name="Libraries/MAX32665PeriphDriver/Source/trng.c" version="0.3.0"/>
+               <file category="sourceC" name="Libraries/MAX32665PeriphDriver/Source/mem_utils.c" version="0.3.0"/>
+            </files>
+         </component>          
+      </bundle>
+
+      <bundle Cbundle="MAXUSB" Cclass="USB" Cversion="0.3.0">
+         <description>Maxim Developed USB Device Stack</description>
+         <doc>Libraries/MAXUSB/readme.txt</doc>
+         <component Cgroup="Core" condition="MAXUSB Core DEP">
+            <description>MAXUSB Core Files</description>
+            <files>
+               <file category="include" name="Libraries/MAXUSB/include/core/musbhsfc/" version="0.3.0"/>
+               <file category="include" name="Libraries/MAXUSB/include/core/" version="0.3.0"/>
+               <file category="include" name="Libraries/MAXUSB/include/enumerate/" version="0.3.0"/>
+               <file category="sourceC" name="Libraries/MAXUSB/src/core/musbhsfc/usb.c" version="0.3.0"/>
+               <file category="sourceC" name="Libraries/MAXUSB/src/core/usb_event.c" version="0.3.0"/>
+               <file category="sourceC" name="Libraries/MAXUSB/src/enumerate/enumerate.c" version="0.3.0"/>
+            </files>
+         </component>
+         <component Cgroup="Device Class" condition="MAXUSB DevClass DEP">
+            <description>MAXUSB Device Class Files</description>
+            <files>
+               <file category="include" name="Libraries/MAXUSB/include/devclass/" version="0.3.0"/>
+               <file category="include" name="Libraries/MAXUSB/include/util/" version="0.3.0"/>
+               <file category="sourceC" name="Libraries/MAXUSB/src/devclass/cdc_acm.c" version="0.3.0"/>
+               <file category="sourceC" name="Libraries/MAXUSB/src/util/fifo.c" version="0.3.0"/>
+               <file category="sourceC" name="Libraries/MAXUSB/src/devclass/hid_kbd.c" version="0.3.0"/>
+               <file category="sourceC" name="Libraries/MAXUSB/src/devclass/hid_raw.c" version="0.3.0"/>
+               <file category="sourceC" name="Libraries/MAXUSB/src/devclass/msc.c" version="0.3.0"/>
+            </files>
+         </component>
+      </bundle>
+
+      <bundle Cbundle="FatFs" Cclass="File System" Cversion="0.3.0">
+         <description>FatFs lightweight Fat filesystem module</description>
+         <doc>Libraries/SDHC/ff13/documents/00index_e.html</doc>
+         <component Cgroup="FatFs - SDHC" condition="FatFs DEP">
+            <description>FatFs File System with Maxim SDHC integration</description>
+            <files>
+               <file category="sourceC" name="Libraries/SDHC/ff13/Source/diskio.c" version="0.3.0"/>
+               <file category="sourceC" name="Libraries/SDHC/ff13/Source/ff.c" version="0.3.0"/>
+               <file category="sourceC" name="Libraries/SDHC/ff13/Source/ffsystem.c" version="0.3.0"/>
+               <file category="sourceC" name="Libraries/SDHC/ff13/Source/ffunicode.c" version="0.3.0"/>
+               <file category="sourceC" name="Libraries/SDHC/Source/sdhc_lib.c" version="0.3.0"/>
+               <file category="include" name="Libraries/SDHC/Include/" version="0.3.0"/>
+               <file category="include" name="Libraries/SDHC/ff13/Source/" version="0.3.0"/>
+            </files>
+         </component>
+      </bundle>
+
+      <bundle Cbundle="MAX32665 BSP" Cclass="BSP" Cversion="0.3.0">
+         <description>MAX32665 Evaluation Kit Board Support Package</description>
+         <doc>Doc/MAX32665_EvKit.txt</doc>
+         <component Cgroup="EvKit V1" condition="MAX32665 BSP DEP">
+            <description>MAX32665 Evaluation Kit Board Setup</description>
+            <RTE_Components_h>
+               #define BOARD EvKit_V1 /* Target Board */
+            </RTE_Components_h>
+            <files>
+               <file category="include" name="Boards/Maxim/MAX32665_EVKIT/Common/EvKit_V1/Include/"/>
+               <file category="include" name="Boards/Maxim/MAX32665_EVKIT/Common/Include/"/>
+               <file category="sourceC" name="Boards/Maxim/MAX32665_EVKIT/Common/EvKit_V1/Source/board.c" version="0.3.0"/>
+               <file category="sourceC" name="Boards/Maxim/MAX32665_EVKIT/Common/Source/stdio.c" version="0.3.0"/>
+               <file category="sourceC" name="Boards/Maxim/MAX32665_EVKIT/Common/Source/pb.c" version="0.3.0"/>
+               <file category="sourceC" name="Boards/Maxim/MAX32665_EVKIT/Common/Source/led.c" version="0.3.0"/>
+               <file category="sourceC" name="Boards/Maxim/MAX32665_EVKIT/Common/Source/mx25.c" version="0.3.0"/>
+           </files>
+         </component>
+      </bundle>
+   </components>
+</package>

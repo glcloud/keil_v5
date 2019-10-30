@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<package schemaVersion="1.2" xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="PACK.xsd">
+  <vendor>Toshiba</vendor>
+  <url>https://toshiba.semicon-storage.com/content/dam/toshiba-ss/shared/docs/product/bluetooth-publishing-program/</url>
+  <name>TC35680_ROM002</name>
+  <description>Toshiba TC35680/TC35681 ROM002 Device Support</description>
+
+  <releases>
+    <release version="0.0.1">
+      Initial Release of TOSHIBA TC35680/TC35681 ROM002 Device Family Pack.
+    </release>
+  </releases>
+  <license>License/SOFTWARE_LICENSE_AGREEMENT.rtf</license>
+
+  <keywords>
+    <!-- keywords for indexing -->
+    <keyword>TOSHIBA</keyword>
+    <keyword>Device Support</keyword>
+    <keyword>TC35680</keyword>
+    <keyword>TC35681</keyword>
+  </keywords>
+
+  <devices>
+    <family Dfamily="TC356801_ROM002" Dvendor="Toshiba:92">
+      <processor Dcore="Cortex-M0" DcoreVersion="r0p0" Dfpu="NO_FPU" Dmpu="NO_MPU" Dendian="Little-endian" Dclock="32000000"/>
+      <description>TOSHIBA TC35680/681 ROM002 supports BLE V5.0 with ultra low power consumption.</description>
+      <!-- *************************  Device 'TC35680FSG-002'  ***************************** -->
+      <device Dname="TC35680FSG-002">
+        <description>TC35680FSG-002 supports BLE V5.0 and has built-in NVM.</description>
+        <compile header="Device/Include/TC35680.h" define="TC35680"/>
+        <debug svd="SVD/TC35680.svd"/>
+        <memory id="IRAM1" start="0x810B00" size="0x1308C" default="1"/>
+        <algorithm name="Flash/MDK/TC35680-002_NVM.FLM"       start="0x0" size="0x20000" default="1" style="Keil"/>
+        <algorithm name="Flash/IAR/FlashTC35680_ROM002.flash" start="0x0" size="0x20000" default="1" style="IAR"/>
+        <feature type="UART"          n="2"/>
+        <feature type="I2C"           n="2"/>
+        <feature type="SPI"           n="2"/>
+        <feature type="ADC"           n="1"       m="5"/>
+      </device>
+      <!-- *************************  Device 'TC35681FSG-002'  ***************************** -->
+      <device Dname="TC35681FSG-002">
+        <description>TC35681FSG-002 supports BLE V5.0.</description>
+        <compile header="Device/Include/TC35680.h" define="TC35681"/>
+        <debug svd="SVD/TC35680.svd"/>
+        <memory id="IRAM1" start="0x810B00" size="0x1308C" default="1"/>
+        <algorithm name="Flash/MDK/TC35681-002_EEPROM.FLM"    start="0x0" size="0x40000" default="1" style="Keil"/>
+        <algorithm name="Flash/IAR/FlashTC35681_ROM002.flash" start="0x0" size="0x40000" default="1" style="IAR"/>
+        <feature type="UART"          n="2"/>
+        <feature type="I2C"           n="2"/>
+        <feature type="SPI"           n="2"/>
+        <feature type="ADC"           n="1"       m="5"/>
+      </device>
+
+      <!-- *************************  Device 'TC35681IFTG-002'  ***************************** -->
+      <device Dname="TC35681IFTG-002">
+        <description>TC35681IFTG-002 supports BLE V5.0 for Automobile applications.</description>
+        <compile header="Device/Include/TC35680.h" define="TC35681"/>
+        <debug svd="SVD/TC35680.svd"/>
+        <memory id="IRAM1" start="0x810B00" size="0x1308C" default="1"/>
+        <algorithm name="Flash/MDK/TC35681-002_EEPROM.FLM"    start="0x0" size="0x40000" default="1" style="Keil"/>
+        <algorithm name="Flash/IAR/FlashTC35681_ROM002.flash" start="0x0" size="0x40000" default="1" style="IAR"/>
+        <feature type="UART"          n="2"/>
+        <feature type="I2C"           n="2"/>
+        <feature type="SPI"           n="2"/>
+        <feature type="ADC"           n="1"       m="5"/>
+      </device>
+
+      <!-- *************************  Device 'TC35681WBG-002'  ***************************** -->
+      <device Dname="TC35681WBG-002">
+        <description>TC35681WBG-002 supports BLE V5.0  with small package.</description>
+        <compile header="Device/Include/TC35680.h" define="TC35681"/>
+        <debug svd="SVD/TC35680.svd"/>
+        <memory id="IRAM1" start="0x810B00" size="0x1308C" default="1"/>
+        <algorithm name="Flash/MDK/TC35681-002_EEPROM.FLM"    start="0x0" size="0x40000" default="1" style="Keil"/>
+        <algorithm name="Flash/IAR/FlashTC35681_ROM002.flash" start="0x0" size="0x40000" default="1" style="IAR"/>
+        <feature type="UART"          n="1"/>
+        <feature type="I2C"           n="2"/>
+        <feature type="SPI"           n="1"/>
+        <feature type="ADC"           n="1"       m="4"/>
+      </device>
+    </family>
+  </devices>
+
+  <conditions>
+    <condition id="TC356801_ROM002">
+      <!-- conditions selecting ARM Compiler -->
+      <require Dvendor="Toshiba:92"/>
+      <require Dfamily="TC356801_ROM002"/>
+    </condition>
+    <condition id="Compiler ARM">
+      <!-- conditions selecting ARM Compiler -->
+      <require Tcompiler="ARMCC"/>
+    </condition>
+  </conditions>
+
+  <components>
+    <component Cclass="Device" Cgroup="Startup" Cversion="0.0.0" condition="TC356801_ROM002">
+      <description>System Startup for TC35680/TC35681 ROM002</description>
+      <files>
+        <file category="header" name="Device/Include/TC35680.h"/>
+        <file category="source" name="Device/Source/startup_TC35680.s" attr="config" version="0.0.0" condition="Compiler ARM"/>
+        <file category="header" name="Device/Include/system_TC35680.h"/>
+        <file category="source" name="Device/Source/system_TC35680.c" attr="config" version="0.0.0"/>
+      </files>
+    </component>
+  </components>
+</package>

@@ -1,0 +1,1791 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"> 
+<html xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office">
+<head>
+<title>MDK-ARM - Release Notes</title>
+<meta http-equiv=content-language content=en-us>
+<meta name=GENERATOR content="Microsoft FrontPage 12.0">
+<meta name=ProgId content=FrontPage.Editor.Document>
+<meta http-equiv=content-type content="text/html; charset=windows-1252">
+<style>
+
+
+    p{font-family:verdana;font-size:10pt}
+    .LI2{margin-top:6px;margin-bottom:6px}
+    Release{background-color:#ccc;font-weight:bold;padding:6px}
+    .ToolT{font-size:8pt;color:#808080}
+    .TinyT{font-size:8pt;text-align:center}
+    h1{font-family:verdana;font-size:18pt;color:#000080;font-weight:bold;text-align:center;margin-right:3px}
+    h2{font-family:verdana;font-size:14pt;color:#000080;font-weight:bold;margin-top:24px;margin-bottom:3px;background-color:#ccc;padding:6px}
+    h3{font-family:verdana;font-size:11pt;font-weight:bold;margin-top:24px;margin-bottom:3px;background-color:#ccc;padding:6px}
+    h4{font-family:verdana;font-size:10pt;font-weight:bold;color:#FFFFFF;margin-top:24px;margin-bottom:3px;background-color:#0000FF;padding:6px}
+    h5{font-family:verdana;font-size:10pt;font-weight:bold;color:#800000;margin-top:3px;margin-bottom:1px;}
+    pre{font-family:courier new;font-size:10pt;background-color:#cfc;margin-left:24px;margin-right:24px}
+    ul{font-family:verdana;font-size:10pt;list-style-type:square}
+    ol{font-family:verdana;font-size:10pt}li{margin-left:12pt;padding-left:0;margin-top:12px;margin-bottom:6px}
+    ul 
+    li 
+    pre{margin-top:6pt;font-family:courier new;font-size:9pt;background-color:#cfc;margin-left:0px;margin-right:0px}
+    note{margin-top !important:20pt; margin-bottom !important:12pt; font-family:verdana;font-size:10pt;background-color:#cfc; margin-left !important:12px; margin-right !important:12px}
+    ul 
+    li 
+    ul{margin-top:6pt;margin-bottom:6pt;margin-left:0pt;padding-left:0}ul li ul li{margin-top:3pt;margin-bottom:3pt}
+    ul
+    li 
+    ol{margin-top:6pt;margin-bottom:6pt;margin-left:12pt;padding-left:0}ul li ol li{margin-top:3pt;margin-bottom:3pt}
+.style1 {font-weight: normal;}
+.style2 {color: #FF0000;}
+.prelim {color: Red; }
+</style>
+</head>
+<body><h1>Release Notes for<br>
+Microcontroller Development Kit</h1>
+<p align=center>This file contains release notes and last minute changes.</p>
+<p class=TinyT>Information in this file, the accompany manuals, and software is<br>
+Copyright © 2019 Arm Ltd and ARM Germany GmbH.<br>All rights reserved.</p>
+<hr><h2>Contents</h2>
+  <ol>
+    <li class=LI2><a href="#WhatsNew">What's New in the Microcontroller Development Kit</a></li>
+    <li class=LI2><a href="#TechnicalSupport">Technical Support</a></li>
+    <li class=LI2><a href="#ContactDetails">Contact Details</a></li>
+  </ol>
+<p>
+  The <a target="_blank" href="https://www2.keil.com/mdk5"><b>Microcontroller Development Kit (MDK)</b></a> 
+  supports software development for and debugging of <b>Arm7</b>, <b>Arm9</b>, <b>Arm Cortex-M</b> and
+  <b>Armv8-M</b> processor-based devices. A detailed description of <b>MDK</b> can be found in the section <b>Tools User's Guide</b>
+  of the µVision window <b>Books</b>.
+</p>
+
+<h2><a name="WhatsNew"></a>What's New in the Microcontroller Development Kit</h2>
+
+<p>The next sections list the changes for each release of the MDK toolset.</p>
+
+<p>MDK Version 5 is capable of <b><u>using MDK Version 4 projects</u></b> after installation of 
+the <a target="_blank" href="https://www.keil.com/mdk5/legacy/"><b>Legacy Support</b></a>. This adds support for 
+Arm7, Arm9, and Arm Cortex-R4 processor-based devices.</p>
+
+
+<h3> Microcontroller Development Kit - Version 5.28a release</h3>
+<ul>
+  Corrected <a target="_blank" href="https://www2.keil.com/nuvoton/M0-M23"><b>MDK Nuvoton Edition - Cortex-M0/M23</b></a> not recognized as valid product by Arm Compiler 5 and 6.
+</ul>
+
+<h3> Microcontroller Development Kit - Version 5.28 release </h3>
+<ul>
+
+  <li> <a target="_blank" href="https://www.keil.com/mdk5/uVision"><font color="#0065AF" size="2"><b>[uVision updated to V5.28.0.0]</b></font></a>
+    <ul>
+     <li>µVision now allows to <a target="_blank" href="https://www2.keil.com/support/man/docs/ulinkplus/ulinkplus_ctx_trace.htm"><b>set the trace clock</b></a>
+         in the debug configuration independently from the core clock. For those devices using a separate trace clock, trace is now captured and processed correctly. 
+         This is available for all <a target="_blank" href="https://www2.keil.com/mdk5/ulink"><b>ULINK debug adapters</b></a> and
+         <a target="_blank" href="https://www2.keil.com/support/man/docs/dapdebug/dapdebug_tr_general.htm"><b>CMSIS-DAP</b></a>.</li>
+     <li>The System Analyzer data can now be saved as a <a target="_blank" href="http://www.keil.com/support/man/docs/uv4/uv4_db_dbg_sa_save.htm"><b>
+           comma separated or tab separated value file</b></a> for post processing.</li>
+    </ul>
+  </li>
+
+  <li><font color="#0065AF" size="2"><b>[Arm Compiler included]</b></font>
+    <ul>
+       <li>Included <a target="_blank" href="./../ARMCC/sw/info/releasenotes.html"><b>Arm Compiler 5</b></a> version <b>5.06u6</b> - same as in MDK version 5.26: see Release Notes for further details.</li>
+      <li>Updated <a target="_blank" href="./../ARMCLANG/sw/info/releasenotes.html"><b>Arm Compiler 6</b></a> to version <b>6.12</b>: - same as in MDK version 5.27: see Release Notes for further details.</li>
+    </ul>
+  </li>
+
+  <li><a target="_blank" href="https://www.keil.com/dd2/Pack"><font color="#0065AF" size="2"><b>[Software Packs included]</b></font></a>
+    <ul>
+      <li><a target="_blank" href="https://www.keil.com/pack/doc/CMSIS/General/html/index.html"><b>ARM - CMSIS 5.5.1</b></a> - same as in MDK version 5.27.</li>
+      <li><a target="_blank" href="https://www.keil.com/pack/doc/mw/General/html/index.html"><b>Keil - MDK Middleware 7.8.0</b></a> - same as in MDK version 5.27.</li>
+      <li><a target="_blank" href="https://www.keil.com/pack/doc/compiler/index.html"><b>Keil - Arm Compiler Extensions 1.6.1</b></a> - same as in MDK version 5.27.</li>
+      <li><a target="_blank" href="https://arm-software.github.io/CMSIS-Driver/General/html/index.html"><b>ARM - CMSIS-Driver 2.4.0</b></a> - same as in MDK version 5.27.</li>
+    </ul>
+  </li>
+
+  <li><font color="#0065AF" size="2"><b>[Target debugging]</b></font>
+    <ul>
+     <li>Added: <b>P&E Micro Debugger</b> driver installation can be launched from within µVision Options for Target Debug Settings dialog.</li>
+     <li>Updated: <b>Segger J-Link</b> debug driver to version <b>6.46</b>.</li>
+     <li>Updated: <b>NULink</b> driver to version <b>3.00.6909</b>.</li>
+    </ul>
+  </li>
+
+  <li><font color="#0065AF" size="2"><b>[Licensing]</b></font>
+    <ul>
+      <li>This version of MDK introduces the new editions <a target="_blank" href="https://www2.keil.com/holtek/ht-edition"><b>Keil MDK Holtek Edition - Cortex-M0+</b> and <b>Keil MDK Holtek Edition - Cortex-M</b></a>.</li> 
+      <li>This version of MDK does not support the MDK Professional 7-day evaluation license.</li>
+    </ul>
+  </li>
+
+  <li><font color="#0065AF" size="2"><b>[Supported Operating Systems]</b></font>
+    <ul>
+      <li>Refer to <a target="_blank" href="https://www.keil.com/system-requirements/"><b>System Requirements Overview</b></a> for hardware and operating system requirements.</li>
+    </ul>
+  </li>
+
+</ul>
+
+
+<h3> Microcontroller Development Kit - Version 5.27 release</h3>
+<ul>
+
+  <li><font color="#0065AF" size="2"><b>[MDK installation]</b></font>
+    <ul>
+      <li> With this MDK release the default directory for pack installation has been changed from 
+          <b>C:\Keil_v5\ARM\PACK</b> to <b>%LOCALAPPDATA%\Arm\Packs</b>.</li>
+      <li> The <b>End User License Agreement</b> is now unified across all Arm software development tools and links to product specific license information.</li>
+    </ul>
+  </li>
+
+
+  <li> <a target="_blank" href="https://www.keil.com/mdk5/uVision"><font color="#0065AF" size="2"><b>[uVision updated to V5.27.1.0]</b></font></a>
+    <ul>
+        <li>Improved µVision <a target="_blank" href="https://www.keil.com/support/man/docs/uv4/uv4_db_dbg_startdebug.htm"><b>multi-core debugging</b></a> support
+          using <b>CMSIS-DAP</b> and <b>ULINK</b> debug adapters. The first connected instance of the debugger is the master; every other instance now displays <b>Client Mode</b>
+            in the <a target="_blank" href="https://www.keil.com/support/man/docs/uv4/uv4_ui_statusbar.htm"><b>status bar</a></b>.</li>
+        <li>The <a target="_blank" href="https://www.keil.com/support/man/docs/uv4/uv4_db_dbg_sa_statistics.htm"><b>System Analyzer</b></a> shows statistical information
+            for exceptions and Event Recorder events, for example Keil RTX5 thread switches.</li>
+        <li>The <a target="_blank" href="https://www.keil.com/support/man/docs/uv4/uv4_db_dbg_evr_stat.htm"><b>Event Statistics</b></a> window shows thread execution statistics based on events from the RTOS.</li>
+        <li>µVision <a target="_blank" href="https://www.keil.com/support/man/docs/uv4/uv4_ui_debug.htm"><b>breakpoint management</b></a> was extended
+            with the action to <b>Kill All Breakpoints in active Project</b> and <b>Kill All Breakpoints in Multi-Project Workspace</b>. </li>
+        <li>Corrected: µVision set incorrect <a target="_blank" href="https://www.keil.com/support/man/docs/uv4/uv4_commandline.htm"><b>ERRORLEVEL</b></a> when <b>Flex license</b> checkout fails.</li>
+    </ul>
+  </li> 
+
+
+  <li><font color="#0065AF" size="2"><b>[Arm Compiler included]</b></font>
+    <ul>
+      <li>Included <a target="_blank" href="./../ARMCC/sw/info/releasenotes.html"><b>Arm Compiler 5</b></a> version <b>5.06u6</b> - same as in MDK version 5.26: see Release Notes for further details.</li>
+      <li>Updated <a target="_blank" href="./../ARMCLANG/sw/info/releasenotes.html"><b>Arm Compiler 6</b></a> to version <b>6.12</b>: see Release Notes for further details.</li>
+    </ul>
+  </li>
+
+
+  <li><a target="_blank" href="https://www.keil.com/dd2/Pack"><font color="#0065AF" size="2"><b>[Software Packs included]</b></font></a>
+    <ul>
+      <li><a target="_blank" href="https://www.keil.com/pack/doc/CMSIS/General/html/index.html"><b>ARM - CMSIS 5.5.1</b></a>
+        <ul>
+          <li>
+            The following folders have been removed:
+            <ul>
+              <li>The folder <b>.\CMSIS\Lib\</b> has been superseded by <b>.\CMSIS\DSP\Lib\</b>.</li>
+              <li>The folder <b>.\CMSIS\DSP_Lib\</b> has been superseded by <b>.\CMSIS\DSP\</b>.</li>
+            </ul>
+          </li>
+          <li>
+            The following folder is deprecated:
+            <ul>
+              <li>The folder <b>.\CMSIS\Include\</b> has been superseded by <b>.\CMSIS\DSP\Include\</b> and <b>.\CMSIS\Core\Include\</b>.</li>
+            </ul>
+          </li>
+          <li>Updated: <a target="_blank" href="http://www.keil.com/pack/doc/CMSIS/Core/html/index.html"><b> CMSIS-Core (Cortex-M)</b></a> to version <b>5.2.0</b>.
+            <ul>
+              <li> Added generic <a target="_blank" href="https://pages.arm.com/introduction-armv8.1m.html"><b> Armv8.1-M Mainline </b></a> device support. </li>
+              <li> Reworked Stack/Heap configuration for ARM startup files. </li>
+              <li> Added <a target="_blank" href="https://developer.arm.com/products/processors/cortex-m/cortex-m35p"><b> Cortex-M35P </b></a> device support. </li>
+            </ul>
+          </li>
+          <li> Updated: <a target="_blank" href="http://www.keil.com/pack/doc/CMSIS/Driver/html/index.html"><b>CMSIS-Driver</b></a> to version <b>2.4.0</b>.
+            <ul>
+              <li> Added components for project specific driver implementations.</li>
+              <li> Added <b>WiFi Driver API</b> version <b>1.0.0-beta</b>.</li>
+            </ul>
+          </li>
+          <li> Updated: <a target="_blank" href="http://www.keil.com/pack/doc/CMSIS/RTOS2/html/index.html"><b>CMSIS-RTOS2</b></a> to version <b>2.1.3</b>.
+            <ul>
+              <li> Updated: <a target="_blank" href="http://www.keil.com/pack/doc/CMSIS/RTOS2/html/rtx5_impl.html"><b>CMSIS-RTOS RTX V5</b></a> to version <b>5.5.0</b>
+                <ul>
+                  <li> Updated and enhanced generated events (reorganized components).</li>
+                  <li> Updated configuration (Event Recorder).</li>
+                  <li> Updated Component Viewer (improved performance).</li>
+                </ul>
+              </li> 
+            </ul>
+          </li>
+          <li>Updated: <a target="_blank" href="https://www.keil.com/pack/doc/CMSIS/DSP/html/index.html"><b>CMSIS-DSP</b></a> to version <b>1.6.0</b>.
+            <ul>
+              <li> Reworked <b>DSP</b> library source files and documentation.</li>
+              <li> Updated <b>Arm DSP</b> libraries using <a target="_blank" href="https://developer.arm.com/docs/100067/0612"><b>Arm Compiler 6.12</b></a> for improved performance.</li>
+              <li> Added component variants 'Source' and 'Library'. 'Library' variant is selected by default.</li>
+              <li> Moved <b>DSP</b> libraries from <b>.\CMSIS\Lib\</b> to <b>.\CMSIS\DSP\Lib\</b>.</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+
+      <li><a target="_blank" href="https://www.keil.com/pack/doc/mw/General/html/index.html"><b>Keil - MDK Middleware 7.8.0</b></a>
+        <ul>
+          <li>Added support for <a target="_blank" href="https://developer.arm.com/products/processors/cortex-m/cortex-m1"><b>Arm Cortex-M1</b></a> based devices.</li>
+          <li>Added <a target="_blank" href="https://www.keil.com/pack/doc/compiler/EventRecorder/html/index.html"><b>Event Recorder</b></a> configuration in debug configuration.</li>
+          <li><a target="_blank" href="https://www.keil.com/pack/doc/MW/Network/html/netw_revhist.html"><b>Network Component v7.10.0</b></a>
+            <ul>
+              <li>Added <b>Virtual LAN (VLAN)</b> support in the <b>Ethernet interface</b>.</li>
+              <li>Added dynamic port range settings in <b>TCP</b> and <b>UDP</b> sockets.</li>
+              <li>Improved <b>Ethernet</b> debugging.</li>
+            </ul>
+          </li>
+          <li><a target="_blank" href="https://www.keil.com/pack/doc/mw/USB/html/index.html"><b>USB Component 6.13.0</b></a>
+            <ul>
+              <li><a target="_blank" href="https://www.keil.com/pack/doc/mw/USB/html/_u_s_b__host.html"><b>USB Host</b></a>
+                <ul>
+                  <li>Added unsupported state for a mounted device in the <a target="_blank" href="https://www.keil.com/support/man/docs/uv4/uv4_db_dbg_scvd_viewer.htm"><b>Component Viewer</b></a> if no driver is available for this device.</li>
+                  <li>Corrected <b>EHCI</b> driver for handling transfers larger than 16kB.</li>
+                  <li>Corrected <a target="_blank" href="https://www.keil.com/support/man/docs/uv4/uv4_db_dbg_scvd_viewer.htm"><b>Component Viewer</b></a> display when <b>ARM Compiler 6</b> is used.</li>
+                </ul>
+              </li>
+              <li><a target="_blank" href="https://www.keil.com/pack/doc/mw/USB/html/_u_s_b__device.html"><b>USB Device</b></a>
+                <ul>
+                  <li>Implement application specific behavior for a <a target="_blank" href="https://www.keil.com/pack/doc/mw/USB/html/group__usbd__cdc_functions__acm.html"><b>CDC ACM</b></a> class by using the <a target="_blank" href="https://www.keil.com/pack/Doc/MW/USB/html/dev_cdc_acm_rndis_bridge.html"><b>RNDIS</b></a> protocol.</li>
+                  <li>Increased the number of available <a target="_blank" href="https://www.keil.com/pack/doc/mw/USB/html/group__usbd__cdc_functions__acm.html"><b>CDC</b></a> instances to <b>8</b>.</li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+
+      <li><a target="_blank" href="https://www.keil.com/pack/doc/compiler/index.html"><b>Keil - Arm Compiler Extensions 1.6.1</b></a>
+        <ul>
+          <li>Improved <a target="_blank" href="https://www.keil.com/pack/doc/compiler/EventRecorder/html/index.html"><b>Event Recorder</b></a> documentation and examples.</li>
+        </ul>
+      </li>
+    </ul>
+
+  <li> <a target="_blank" href="https://developer.arm.com/products/architecture/cpu-architecture/m-profile"><font color="#0065AF" size="2"><b>[Cortex-M Architecture support]</b></font></a>
+    <ul>
+      <li>Updated <b><a target="_blank" href="https://developer.arm.com/products/system-design/fixed-virtual-platforms">Fixed Virtual Platform</a></b>
+        (FVP) support to version <b>11.6.36</b> adding new models for:
+        <ul>
+           <li>MPS2_Cortex-M35P</li>
+           <li>MPS2_SecureCore-SC000</li>
+           <li>MPS2_SecureCore-SC300</li>
+        </ul>
+        Note: some models added new parameters or updated parameter names. You may need to update project specific configuration files.
+        Updated default configuration files are located in <b>C:\Keil_v5\ARM\FVP\MPS2_Cortex-M</b> or <b>C:\Keil_v5\ARM\FVP\MPS2_AEMv8M</b>.
+      </li>
+    </ul>
+  </li>
+
+
+  <li><font color="#0065AF" size="2"><b>[Target debugging]</b></font>
+    <ul>
+      <li>Updated: <b>STMicroelectronics ST-LINK</b> debug driver to version <b>3.0.6.0</b>.
+        <ul>
+          <li>ST-Link now supports <b><a target="_blank" href="http://www.keil.com/support/man/docs/ulinkplus/ulinkplus_ctx_pack.htm">Pack settings</a></b> that access debug definitions provided in Software Packs.</li>
+         <li><b>NOTE:</b> It might be required to update the ST-Link firmware using ST-LinkUpgrade.exe provided in the folder \Keil_v5\Arm\STLink.</li> 
+        </ul>
+      </li>	  
+      <li>Updated: <b>Segger J-Link</b> debug driver to version <b>6.44a</b>.</li>
+      <li>Updated: <b>NULink</b> driver to version <b>2.06.6875</b>.</li>
+    </ul>
+  </li>
+
+  <li><font color="#0065AF" size="2"><b>[FlexNet Floating Licenses]</b></font>
+    <ul>
+      <li>Corrected a license activation failure for the <a target="_blank" href="https://www.keil.com/support/docs/3877.htm"><b>7 days evaluation of MDK Professional</b></a>.</li>
+    </ul>
+  </li>
+
+
+  <li><font color="#0065AF" size="2"><b>[Supported Operating Systems]</b></font>
+    <ul>
+      <li>Refer to <a target="_blank" href="https://www.keil.com/system-requirements/"><b>System Requirements Overview</b></a> for hardware and operating system requirements.</li>
+    </ul>
+  </li>
+</ul>
+
+
+
+<h3> Microcontroller Development Kit - Version 5.26</h3>
+<ul>
+
+  <li> <a target="_blank" href="http://www.keil.com/mdk5/uVision"><font color="#0065AF" size="2"><b>[uVision updated to V5.26.2.0]</b></font></a>
+    <ul>
+      <li>Improved <a target="_blank" href="http://www.keil.com/support/man/docs/uv4/uv4_db_dbg_evr.htm"><b>Event Recorder</b></a> data capturing based on the Software Pack <b>Keil - Arm Compiler Extensions 1.6.0</b> (included).</li>
+      <li>The <a target="_blank" href="http://www.keil.com/support/man/docs/uv4/uv4_db_dbg_systemanalyzer.htm"><b>System Analyzer</b></a> now displays RTX5 RTOS thread time information.</li>
+      <li><a target="_blank" href="http://www2.keil.com/mdk5/ulink/ulinkplus"><b>ULINKplus</b></a> power measurement is extended with <b><a target="_blank" href="http://www2.keil.com/mdk5/526/">long-term and cursor marker based energy measurement</a></b>.
+      <li>Flash programming is now supported via debug sequences (instead of programming algorithms that execute in RAM); this is required for devices with secured RAM (i.e. <a target="_blank" href="https://www.microchip.com/promo/sam-l10-and-l11-microcontroller-family"><b>Microchip SAML11</b></a>).</li>
+      <li>The <b>PackInstaller</b> supports <a target="_blank" href="http://www.keil.com/support/man/docs/uv4/uv4_ca_packinst_repo.htm"><b>local repositories</b></a> to simplify pack development (for example using GitHub).</li>
+      <li>The <a target="_blank" href="http://www.keil.com/support/man/docs/uv4/uv4_dg_toolmnu.htm"><b>Customize Tools Menu ...</b></a> option is extended with Export/Import for sharing the tools menu setup across PCs.</li>
+    </ul>
+  </li> 
+
+
+  <li><font color="#0065AF" size="2"><b>[ARM Compiler included]</b></font>
+    <ul>
+      <li>Included <a target="_blank" href="./../ARMCC/sw/info/releasenotes.html"><b>Arm Compiler 5</b></a> version <b>5.06u6</b> - same as in MDK - Version 5.25: see Release Notes for further details.</li>
+    </ul>
+    <ul>
+      <li>Updated <a target="_blank" href="./../ARMCLANG/sw/info/releasenotes.html"><b>Arm Compiler 6</b></a> to version <b>6.10.1</b>: see Release Notes for further details.<br>
+
+      <b>Note:</b> This release solves the <a target="_blank" href="http://www.keil.com/support/docs/4043.htm"><b>licensing issue</b></a>
+                   caused by the <a target="_blank" href="https://blogs.technet.microsoft.com/secguide/2018/04/30/security-baseline-for-windows-10-april-2018-update-v1803-final/"><b>Windows 10 update V1803</b></a>.
+                   Previous versions of Arm Compiler 6 fail to checkout a license.
+      </li>
+    </ul>
+  </li>
+
+  <li><a target="_blank" href="http://www.keil.com/dd2/Pack"><font color="#0065AF" size="2"><b>[Software Packs included]</b></font></a>
+    <ul>
+
+      <li><a target="_blank" href="http://www.keil.com/pack/doc/CMSIS/General/html/index.html"><b>ARM - CMSIS 5.4.0</b></a>
+        <ul> 
+        <li>Updated: <a target="_blank" href="http://www.keil.com/pack/doc/CMSIS/Core/html/core_revisionHistory.html"><b> CMSIS-Core (Cortex-M)</b></a> to version  <b>5.1.2</b> and
+                     <a target="_blank" href="http://www.keil.com/pack/doc/CMSIS/Core_A/html/rev_histCoreA.html"><b> CMSIS-Core (Cortex-A)</b></a> to version  <b>1.1.2</b></li>
+        </ul>
+      </li>
+
+      <li><a target="_blank" href="http://www.keil.com/pack/doc/mw/General/html/index.html"><b>Keil - MDK Middleware 7.7.0</b></a>
+        <ul>
+        <li>Updated: the  <a target="_blank" href="http://www.keil.com/pack/doc/MW/FileSystem/html/fs_revhist.html"><b>File System Component:</b></a> to version <b>6.10.1</b>.
+          <ul>
+            <li>Minor change in Flash driver timeout handling <b>(EFS)</b>.</li>
+          </ul>
+        </li>
+        <li>Updated: the <a target="_blank" href="http://www.keil.com/pack/doc/MW/Network/html/netw_revhist.html"><b>Network Component:</b></a> to version <b>7.9.0</b>.
+          <ul>
+            <li> Updated <a target="_blank" href="http://www.keil.com/pack/doc/MW/Network/html/group__using__network__sockets__bsd__func.html"> <b>BSD sockets</b></a>. 
+                 See <a target="_blank" href="http://www.keil.com/pack/doc/MW/Network/html/netw_revhist.html"><b> revision history</b></a> for details.</li>
+            <li> Updated DNS Client control adding the following blocking functions:
+                 <a target="_blank" href="http://www.keil.com/pack/doc/MW/Network/html/group__starting__sntp.html"><b>netSNTPc_GetTimeX</b></a>,
+                 <a target="_blank" href="http://www.keil.com/pack/doc/MW/Network/html/group__net_ping___func.html"><b>netPing_EchoX</b></a>, and
+                 <a target="_blank" href="http://www.keil.com/pack/doc/MW/Network/html/group__starting__dns.html"><b>netDNSc_GetHostByNameX</b></a>.
+            </li>
+            <li> Corrected <b>DHCP</b> client problem assigning an address, if the <b>IP</b> address has already been set by <b>AutoIP</b>. </li>
+          </ul>
+        </li>
+        <li>Updated: the <a target="_blank" href="http://www.keil.com/pack/doc/mw/USB/html/index.html"><b>USB Component</b></a> to version <b>6.12.8</b>.
+         <ul>
+           <li>Corrected timer, semaphore and mutex section location (for debugging).</li>
+           <li>Improved robustness by adding 2 retries for failed driver operations.</li>
+           <li><a target="_blank" href="http://www.keil.com/pack/doc/mw/USB/html/_u_s_b__host.html"><b>USB Host</b></a>: Corrected <b>USART_CDC_ACM.c CMSIS UART</b> driver receive function and improved <b>USB Flash-Disk</b> unmount procedure.</li>
+           <li><a target="_blank" href="http://www.keil.com/pack/doc/mw/USB/html/_u_s_b__device.html"><b>USB Device</b></a>: Corrected <a target="_blank" href="http://www.keil.com/pack/doc/MW/USB/html/group__usbd__msc_functions__api.html"><b>USBD_MSCn_GetMaxLUN</b></a> callback return type from <b>bool</b> to <b>uint8_t</b>.</li>			 
+
+         </ul>
+        </li>
+        <li>
+          The <a target="_blank" href="http://www.keil.com/pack/doc/MW/Graphic/html/Release.html"><b>Graphic Component</b></a> remains unchanged at version <b>5.46.5</b> (5.46e).
+        </li>
+        </ul>
+      </li>
+
+      <li><a target="_blank" href="http://www.keil.com/pack/doc/compiler/index.html"><b>Keil - Arm Compiler Extensions 1.6.0</b></a>
+        <ul>
+          <li>Improved <a target="_blank" href="http://www.keil.com/pack/doc/compiler/EventRecorder/html/index.html"><b>Event Recorder</b></a> software component. Added Cortex-M0/M0+/M23 support utilizing new time-stamp sources: SysTick and RTOS system timer.</li>
+        </ul>
+      </li>
+    </ul>
+   </li>
+
+
+  <li><font color="#0065AF" size="2"><b>[Target debugging]</b></font>
+    <ul>
+      <li>Updated: <b>STMicroelectronics ST-LINK</b> debug driver to version <b>3.0.5.0</b> adding option for integrated firmware updates.</li>
+      <li>Updated: <b>P&E Micro</b> debug driver to version <b>6.97</b>.</li>
+      <li>Updated: <b>NULink</b> driver to version <b>2.05.6815</b>.</li>
+      <li>Updated: <b>Segger J-Link</b> debug driver to version <b>6.32i</b>.</li>
+    </ul>
+  </li>
+
+
+  <li><font color="#0065AF" size="2"><b>[Supported Operating Systems]</b></font>
+    <ul>
+      <li>Refer to <a target="_blank" href="http://www.keil.com/system-requirements/"><b>System Requirements Overview</b></a> for hardware and operating system requirements.</li>
+    </ul>
+  </li>
+
+</ul>
+
+
+<h3> Microcontroller Development Kit - Version 5.25</h3>
+<ul>
+  <li> <a target="_blank" href="http://www.keil.com/mdk5/uVision"><font color="#0065AF" size="2"><b>[uVision updated to V5.25.2]</b></font></a>
+    <ul>
+      <li> New: <a target="_blank" href="http://www.keil.com/support/man/docs/uv4/uv4_db_dbg_systemanalyzer.htm"><b>System Analyzer</b></a> shows relevant
+           execution information over time in a single window. It displays program events, interrupt execution, data trace, and power consumption (when using
+           <a target="_blank" href="http://www2.keil.com/mdk5/ulink/ulinkplus">ULINKplus</a>).</li>
+      <li> New: <a target="_blank" href="http://www.keil.com/support/man/docs/uv4/uv4_db_dbg_evr_stat.htm"><b>Event Statistics Window</b></a> displays
+           execution time and current consumption (when using <a target="_blank" href="http://www2.keil.com/mdk5/ulink/ulinkplus">ULINKplus</a>) between corresponding start and stop events. It provides statistics for average
+           values across a number of executions and captures minimum and maximum time/current events. </li>
+      <li> Added: <a target="_blank" href="http://www.keil.com/support/man/docs/uv4/uv4_cm_er.htm"><b>Event Recorder debug commands:</b></a> event file logging, filter setup save/restore, and statistic reset/file logging.
+      <li> New: <a target="_blank" href="http://www.keil.com/support/man/docs/uv4/uv4_ui_dynSyntax.htm"><b>Editor Improvements:</b></a> grey text shows inactive source code between #if/#endif statements;
+           underlined text shows help links for symbols, types and functions. Press the F1 key to open the corresponding documentation.</li>
+           <li> New: <a target="_blank" href="http://www.keil.com/support/man/docs/uv4/uv4_db_energy_wo_debug.htm"><b>Energy Measurement without Debug</b></a> disables the CoreSight debug hardware for pure power measurement
+           of the target hardware using <a target="_blank" href="http://www2.keil.com/mdk5/ulink/ulinkplus">ULINKplus</a>.</li>
+    </ul>
+  </li> 
+
+  <li><font color="#0065AF" size="2"><b>[Target debugging]</b></font>
+    <ul>
+      <li>Added:  Arm <a target="_blank" href="http://www2.keil.com/mdk5/ulink/ulinkplus"><b>ULINKplus</b></a> debug adapter support. 
+      See the ULINKplus <a target="_blank" href="http://www.keil.com/support/man/docs/ulinkplus/default.htm"><b>User's Guide</b></a> for further information. The User's Guide also covers the uVision features introduced for 
+      <a target="_blank" href="http://www.keil.com/support/man/docs/ulinkplus/ulinkplus_measuring_power.htm"><b>Power Measurement</b></a> and 
+      <a target="_blank" href="http://www.keil.com/support/man/docs/ulinkplus/ulinkplus_using_ios.htm"><b>Test Automation</b></a> using ULINKplus.</li>
+      <li>Updated: <b>P&E Micro</b> debug driver to version <b>6.78</b>.</li>
+      <li>Updated: <b>Segger J-Link</b> debug driver to version <b>6.30h</b>.</li>
+      <li>Updated: <b>NULink</b> driver to version <b>2.03.6674</b>.</li>
+    </ul>
+  </li>
+
+  <li><font color="#0065AF" size="2"><b>[ARM Compiler included]</b></font>
+    <ul>
+      <li>Updated <a target="_blank" href="./../ARMCC/sw/info/releasenotes.html"><b>ARM Compiler 5</b></a> to version 5.06u6: see Release Notes for further details.</li>
+    </ul>
+    <ul>
+      <li>Updated <a target="_blank" href="./../ARMCLANG/sw/info/releasenotes.html"><b>ARM Compiler 6</b></a> to version 6.9: see Release Notes for further details.</li>
+    </ul>
+  </li>
+
+  <li><a target="_blank" href="http://www.keil.com/dd2/Pack"><font color="#0065AF" size="2"><b>[Software Packs included]</b></font></a>
+    <ul>
+      <li><a target="_blank" href="http://www.keil.com/pack/doc/CMSIS/General/html/index.html"><b>ARM - CMSIS 5.3.0</b></a>
+        <ul>
+        <li>Added: Initial version of Neural Network Library  <a target="_blank" href="http://www.keil.com/pack/doc/CMSIS/NN/html/ChangeLog_pg.html"><b> CMSIS-NN</b></a>  version  <b>1.0.0.</b></li>
+        <li>Updated: <a target="_blank" href="http://www.keil.com/pack/doc/CMSIS/Core/html/core_revisionHistory.html"><b> CMSIS-Core (Cortex-M)</b></a> to version  <b>5.1.1</b> and
+                     <a target="_blank" href="http://www.keil.com/pack/doc/CMSIS/Core_A/html/rev_histCoreA.html"><b> CMSIS-Core (Cortex-A)</b></a> to version  <b>1.1.1</b></li>
+        <li>Updated: the <a target="_blank" href="http://www.keil.com/pack/doc/CMSIS/DAP/html/dap_revisionHistory.html"><b> CMSIS-DAP</b></a>  to version <b>2.0.0</b> (Communication via WinUSB to achieve higher transfer rates).</li>
+        </ul>
+      </li>
+
+      <li><a target="_blank" href="http://www.keil.com/pack/doc/compiler/index.html"><b>Keil - ARM Compiler Extensions 1.4.0</b></a>
+        <ul>
+          <li>Added dedicated start/stop events to the <a target="_blank" href="http://www.keil.com/pack/doc/compiler/EventRecorder/html/es_use.html"><b>Event Recorder component</b></a>. 
+              These events enable the MDK debugger's <a target="_blank" href="https://www.keil.com/support/man/docs/uv4/uv4_db_dbg_evr_stat.htm"><b>Event Statistics</b></a> dialog to display minimum, maximum and 
+              average execution time, number of passes and current consumption in between these events.</li>
+        </ul>
+      </li>
+
+      <li><a target="_blank" href="http://www.keil.com/pack/doc/mw/General/html/index.html"><b>Keil - MDK Middleware 7.6.0</b></a>
+      <ul>
+        <li>The <a target="_blank" href="http://www.keil.com/pack/doc/MW/FileSystem/html/fs_revhist.html"><b>File System Component:</b></a> remains unchanged to version <b>6.10.0</b>.</li>
+
+        <li>Updated: the <a target="_blank" href="http://www.keil.com/pack/doc/MW/Network/html/netw_revhist.html"><b>Network Component:</b></a> to version <b>7.8.0</b>.
+          <ul>
+            <li>Added: <a target="_blank" href="http://www.keil.com/pack/doc/mw/Network/html/group__net_sys___func.html"><b>netUninitialize</b></a> function to uninitialize the Network component.</li>
+            <li>Corrected: a failure in <a target="_blank" href="http://www.keil.com/pack/doc/MW/Network/html/group__smtpc__user__api.html"><b>netSMTPc_SendMail</b></a> function, when sending an email with a large attachment.</li>
+            <li>Corrected: <a target="_blank" href="http://www.keil.com/pack/doc/MW/Network/html/group__smtpc__user__api.html"><b>netSMTPc_SendMail</b></a> functionality, 
+                if the requested attachment does not exist, the function fails with error code <a target="_blank" href="http://www.keil.com/pack/doc/MW/Network/html/rl__net__ds_8h.html"><b>netFileError</b></a>, rather than send a dummy attachment.</li>
+            <li>Changed: return code <a target="_blank" href="http://www.keil.com/pack/doc/MW/Network/html/rl__net__ds_8h.html"><b>netError</b></a> to <a target="_blank" href="http://www.keil.com/pack/doc/MW/Network/html/rl__net__ds_8h.html"><b>netFileError</b></a> where appropriate in TFTP client.</li>
+            <li>Corrected: quoted-printable encoding for the character '=' in <a target="_blank" href="http://www.keil.com/pack/doc/MW/Network/html/group__smtpc__user__api.html"><b>netSMTPc_SendMail</b></a> function.</li>
+            <li>Documented: possible return codes for Network API functions.</li>
+          </ul>
+        </li>
+
+        <li>Updated: the <a target="_blank" href="http://www.keil.com/pack/doc/mw/USB/html/index.html"><b>USB Component</b></a> to version <b>6.12.4</b>.
+         <ul>
+
+           <li><a target="_blank" href="http://www.keil.com/pack/doc/mw/USB/html/_u_s_b__host.html"><b>USB Host</b></a>
+             <ul>
+               <li>Corrected: timer, semaphore and mutex section location for debugging purposes.</li>
+               <li>Improved: robustness by adding 2 retries for failed driver operations.</li>
+               <li>Corrected: USART_CDC_ACM.c CMSIS UART driver receive function returning invalid data in receive buffer.</li>
+               <li>Improved: USB Flash disk unmount procedure.</li>
+             </ul>
+           </li>
+
+           <li><a target="_blank" href="http://www.keil.com/pack/doc/mw/USB/html/_u_s_b__device.html"><b>USB Device</b></a>
+             <ul>
+               <li>Corrected: timer, semaphore and mutex section location for debugging purposes.</li>
+               <li>Improved: robustness by adding 2 retries for failed driver operations.</li>
+             </ul>
+           </li>
+
+         </ul>
+        </li>
+
+        <li>Updated: the <a target="_blank" href="http://www.keil.com/pack/doc/MW/Graphic/html/Release.html"><b>Graphic Component</b></a> to version <b>5.46.5</b> (5.46e).
+          <ul>
+            <li>Added new set of functions for runtime rotation.</li>
+            <li>Added new function GUI_SetClearTextRectMode() to manage the background drawing behavior of GUI_DispStringInRect()</li>
+          </ul>        
+        </li>
+
+      </ul>
+    </ul>
+  </li>
+ 
+  <li><font color="#0065AF" size="2"><b>[Supported Operating Systems]</b></font>
+    <ul>
+      <li>Refer to <a target="_blank" href="http://www.keil.com/system-requirements/"><b>System Requirements Overview</b></a> for hardware and operating system requirements.</li>
+    </ul>
+  </li>
+
+</ul>
+
+
+<h3> Microcontroller Development Kit - Version 5.24a </h3>
+<ul>
+  <li> <a target="_blank" href="http://www.keil.com/mdk5/uVision"><font color="#0065AF" size="2"><b>[uVision updated to V5.24.2.0]</b></font></a>
+    <ul>
+      <li>Fixed: 3rd party peripheral simulation and dialog DLLs fail to load implicitly linked DLLs.</li>
+    </ul>
+  </li>
+</ul>
+
+<h3> Microcontroller Development Kit - Version 5.24 </h3>
+<ul>
+  <li><font color="#0065AF" size="2"><b>[ARM Compiler included]</b></font>
+    <ul>
+      <li><a target="_blank" href="./../ARMCC/sw/info/releasenotes.html"><b>ARM Compiler 5.06u5</b></a>: see Release Notes for update information.</li>
+      <li><a target="_blank" href="./../ARMCLANG/sw/info/releasenotes.html"><b>ARM Compiler 6.8</b></a>: see Release Notes for update information.</li>
+    </ul>
+  </li>
+
+  <li><a target="_blank" href="http://www.keil.com/dd2/Pack"><font color="#0065AF" size="2"><b>[Software Packs included]</b></font></a> 
+    <ul>
+      <li><a target="_blank" href="http://www.keil.com/pack/doc/CMSIS/General/html/index.html"><b>ARM - CMSIS 5.0.1</b></a> same as in MDK - Version 5.23.</li>
+      <li><a target="_blank" href="http://www.keil.com/pack/doc/mw/General/html/index.html"><b>Keil - MDK Middleware 7.4.1</b></a>
+        <ul>
+          <li>Updated the <a target="_blank" href="http://www.keil.com/pack/doc/mw/FileSystem/html/index.html"><b>FileSystem Component</b></a>
+           to version <b>6.9.8</b>.
+           <ul>
+             <li>Added: for memory cards connected via <b>SPI</b> a bus frequency adaptation algorithm is implemented.</li>
+             <li>Enhanced: debug messaging for <a target="_blank" href="http://www.keil.com/support/man/docs/uv4/uv4_db_dbg_evr.htm"><b>Event Recorder</b></a>.</li>
+           </ul>
+         </li>
+
+          <li>Updated the <a target="_blank" href="http://www.keil.com/pack/doc/mw/USB/html/index.html"><b>USB Component</b></a> to version <b>6.11.0</b>.
+           <ul>
+             <li>Added: support for <b>ARMCLANG</b> compiler version 6.</li>
+             <li><a target="_blank" href="http://www.keil.com/pack/doc/mw/USB/html/_u_s_b__host.html"><b>USB Host</b></a>
+               <ul>
+                 <li>Corrected: enumeration of <b>USB HID</b> devices which stall SetIdle request.</li>
+               </ul>
+             </li>
+             <li><a target="_blank" href="http://www.keil.com/pack/doc/mw/USB/html/_u_s_b__device.html"><b>USB Device</b></a>
+               <ul>
+                 <li>Added: <b>Mass Storage Class</b> support for multiple Logical Units (up to 4).</li>
+               </ul>
+             </li>
+           </ul>
+         </li>
+
+          <li>Updated the <a target="_blank" href="http://www.keil.com/pack/doc/mw/Network/html/index.html"><b>Network Component</b></a> to version <b>7.5.0</b>. 
+           <ul>
+             <li>Added: support for <b>IPv4</b> fragmentation and reassembly.</li>
+             <li>Added: configurable <b>MTU</b> parameter at runtime.</li>
+           </ul>
+         </li>
+        </ul>
+      </li>
+      <li><a target="_blank" href="http://www.keil.com/pack/doc/compiler/index.html"><b>Keil - ARM Compiler Extensions 1.3.1</b></a>
+        <ul>
+          <li>Updated <b>SCVD</b> examples to build without warnings for use with ARMCLANG compiler.</li>
+          <li>Updated <b>SCVD</b> Event Recorder documentation.</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+
+  <li><font color="#0065AF" size="2"><b>[Target debugging]</b></font>
+    <ul>
+      <li>Updated: <b>Nuvoton NULink</b> debug driver to version <b>2.01.6592</b>.</li>      
+      <li>Updated: <b>P&E Micro</b> debug driver to version <b>6.42</b>.</li>
+      <li>Updated: <b>Segger J-Link</b> debug driver to version <b>6.16c</b> adding support for ARMv8-M based devices.</li>  
+      <li>Updated: <b>STMicroelectronics ST-LINK</b> debug driver to version <b>3.0.1.0</b> adding support for ST-Link V3.</li>
+    </ul>
+  </li>
+
+  <li> <a target="_blank" href="http://www.keil.com/mdk5/uVision"><font color="#0065AF" size="2"><b>[uVision updated to V5.24.1.0]</b></font></a>
+    <ul>
+      <li>Updated: Feature map of the <a target="_blank" href="http://www.keil.com/mdk5/selector"><b>MDK Editions</b></a> are reflected by the product i.e.:
+        <ul>
+          <li>Introduction of <b>MDK Essential</b> superseding <b>MDK Cortex-M</b>.</li>
+          <li><b>MDK Plus</b> supporting secure mode application development and debug of Cortex-M23 and Cortex-M33 based devices.</li>
+        </ul>
+      </li>
+      <li>Added: Source Browse information is now available in project targets using ARM Compiler 6:
+        <ul>
+          <li>Information is generated dynamically, does not require a successful project build and is updated as the source code is edited.</li>
+          <li>While the source code is processed, the status bar displays: <font color="#0065AF" size="2">Creating Browse Information ….</font></li>
+        </ul>
+      </li>
+      <li>Improved: <a target="_blank" href="http://www.keil.com/support/man/docs/uv4/uv4_ut_sourcebrowser.htm"><b>Source Browser</b></a>
+          window redesign for better usability for project targets using the ARM Compiler 6.</li>
+      <li>Improved: <a target="_blank" href="http://www.keil.com/support/man/docs/uv4/uv4_ui_dynsyntax.htm"><b>Dynamic Syntax Checker</b></a>
+          for project targets using the ARM Compiler 6:
+        <ul>
+          <li>Warning level configured for the build is also considered by dynamic syntax checking.</li>
+          <li>Warning and Errors are now consistent with the build output window.</li>
+        </ul>
+      </li>
+      <li>Added: ARM Compiler 6 warning level <a target="_blank" href="http://www.keil.com/support/man/docs/uv4/uv4_dg_armclang_cmp.htm"><b>MISRA Compatible</b></a> suppressing compiler warnings contradicting MISRA rules.
+          Warning level <b>Moderate Warnings</b> got renamed to <b>AC5-like Warnings.</b>
+      </li>
+      <li>Improved: <a target="_blank" href="http://www.keil.com/support/man/docs/uv4/uv4_dg_lintsetup.htm"><b>PC-Lint</b></a> setup:
+        <ul>
+          <li>separate configuration settings for <b>C</b> and <b>C++</b> modules. </li>
+          <li>the generated lint command files are stored in the output folder configured for object files.</li>
+        </ul>
+      </li>
+      <li>Extended: the <b>ARM-Compiler</b> version selection in Options for Target dialog adds the option to select the latest installed version of <b>ARM Compiler 5</b> and <b>ARM Compiler 6</b>.</li>
+      <li>Improved: the MDK-ARM installer creates a backup of the TOOLS.ini file in case an existing installation folder is used.</li>
+    </ul>
+  </li>
+
+  <li><font color="#0065AF" size="2"><b>[Supported Operating Systems]</b></font>
+    <ul>
+      <li>Refer to <a target="_blank" href="http://www.keil.com/system-requirements/"><b>System Requirements Overview</b></a> for hardware and operating system requirements.</li>
+    </ul>
+  </li>
+</ul>
+
+
+<h3> Microcontroller Development Kit - Version 5.23</h3>
+<ul>
+  <li><font color="#0065AF" size="2"><b>[ARM Compiler]</b></font>
+    <ul>
+      <li>The <b>ARM Compiler 6.6</b> can be used now with all code size restricted <a target="_blank" href="http://www.keil.com/mdk5/selector"><b>MDK-ARM</b></a> product variants.</li>
+    </ul>
+  </li>
+
+  <li><a target="_blank" href="http://www.keil.com/dd2/Pack"><font color="#0065AF" size="2"><b>[Software Packs included]</b></font></a> 
+    <ul>
+      <li><a target="_blank" href="http://www.keil.com/pack/doc/CMSIS/General/html/index.html"><b>ARM - CMSIS 5.0.1</b></a>
+        <ul>
+          <li> Updated: <a target="_blank" href="http://www.keil.com/pack/doc/CMSIS/DSP/html/index.html"><b>CMSIS DSP</b></a> library to version <b>1.5.1</b>.</li>
+          <li> Updated: <a target="_blank" href="http://www.keil.com/pack/doc/CMSIS/RTOS2/html/index.html"><b>CMSIS-RTOS2</b></a> <b>API</b> to version <b>2.1</b> and the <b>RTX</b> kernel to version <b>5.1.0</b>.</li>
+        </ul>
+      </li>
+      <li><a target="_blank" href="http://www.keil.com/pack/doc/mw/General/html/index.html"><b>Keil - MDK Middleware 7.4.0</b></a>
+        <ul>
+          <li>The <b>FileSystem</b>, <b>USB</b>, and <b>Network</b> libraries have been made <b>RTOS</b> agnostic which allows the usage of 
+           <a target="_blank" href="http://www.keil.com/pack/doc/CMSIS/RTOS/html/index.html"><b>CMSIS-RTOS v1</b></a> or 
+           <a target="_blank" href="http://www.keil.com/pack/doc/CMSIS/RTOS2/html/index.html"><b>CMSIS-RTOS v2</b></a>.
+            All <b>OS</b> calls are external and at compile time available.
+          </li>
+          <li>Updated the <a target="_blank" href="http://www.keil.com/pack/doc/mw/FileSystem/html/index.html"><b>FileSystem Component</b></a>
+           to version <b>6.9.4</b>.
+           <ul>
+             <li>Added: parameter checking for finfo and corrected the behavior when a specified drive is unmounted.</li>
+             <li>Updated: <b>ARM Compiler 6</b> compatible configuration files.</li>
+           </ul>
+         </li>
+          <li>Updated the <a target="_blank" href="http://www.keil.com/pack/doc/mw/USB/html/index.html"><b>USB Component</b></a> to version <b>6.10.0</b>.
+            <ul>
+               <li><a target="_blank" href="http://www.keil.com/pack/doc/mw/USB/html/_u_s_b__host.html"><b>USB Host</b></a>
+                   Corrected: a deadlock which occurs when a USB  Flash Disk is disconnected while there was active read or write to it.
+               </li>
+            </ul>
+         </li>
+          <li>Updated the <a target="_blank" href="http://www.keil.com/pack/doc/mw/Network/html/index.html"><b>Network Component</b></a> to version <b>7.4.0</b>.</li>
+        </ul>
+      </li>
+      <li><a target="_blank" href="http://www.keil.com/pack/doc/compiler/index.html"><b>Keil - ARM Compiler Extensions 1.3.0</b></a></li>
+    </ul>
+  </li>
+
+  <li><font color="#0065AF" size="2"><b>[FlexNet Floating Licenses]</b></font>
+    <ul>
+      <li>Customers using FlexNet floating licenses should update the FlexNet License Server to version <b>11.14.1.0</b>.
+          This FlexNet server version is mandatory for upcoming tool releases.</li>
+      <li>FlexNet Version 11.14.1.0 License Server tools for Windows are located in the directory <b>..\Keil\UV4\FlexNet</b>. 
+          Refer the <a target="_blank" href="http://www.keil.com/support/docs/3867.htm"><b>FlexLM licensing</b></a>
+          knowledgebase article for more information.</li>
+      <li>
+          FlexNet Version 11.14.1.0 License Server tools are also available on 
+          <a target="_blank" href="https://developer.arm.com/products/software-development-tools/license-management/downloads"><b>developer.arm.com</b></a> 
+          for other hosts platforms.
+	  </li>
+    </ul>
+  </li>  
+
+  <li><font color="#0065AF" size="2"><b>[Target debugging]</b></font>
+    <ul>
+      <li>Updated: <b>ULINKpro</b> firmware to version 1.58, which corrects connectivity issues for low supply voltage targets.</li>
+      <li>Improved: Multi-Core debug stability for <b>CMSIS-DAP</b> debuggers.</li>
+      <li>Improved: download of large applications into RAM at low debug clock frequencies of the <b>ULINKpro</b> debugger.</li>
+      <li>Enhanced: Reset Type selection in the Debug Setup Dialog. The setup is now based on the <b>CMSIS Pack</b> information.</li>
+      <li>Updated: <b>P&E Micro</b> driver to version <b>6.27</b>.</li>
+    </ul>
+  </li>
+
+  <li><a target="_blank" href="http://www.keil.com/support/man/docs/uv4/uv4_ca_packinstaller.htm"><font color="#0065AF" size="2"><b>[PackInstaller]</b></font></a>
+    <ul>
+      <li>Improved: <b>PackInstaller</b> can import <b>Software Components</b> from other sources located on your computer or on a 
+          mapped network drive and manage them as separate software packs. </li>
+      <li>Added: option <b>Check for Updates on Launch</b> to download any updated <b>PDSC</b> file form <a target="_blank" href="http://www.keil.com/"><b>www.keil.com</b></a> 
+          when the <b>PackInstaller</b> is started.</li>
+    </ul>
+  </li>
+
+  <li> <a target="_blank" href="http://www.keil.com/mdk5/uvision/"><font color="#0065AF" size="2"><b>[uVision updated to V5.23.0.0]</b></font></a>
+    <ul>
+      <li>Improved: <a target="_blank" href="http://www.keil.com/support/man/docs/uv4/uv4_ut_pclint_validation.htm"><b>PC-lint and MISRA Validation</b></a>
+         configurations are available for <b>ARM Compiler 5 and 6</b>. <b>Misra C 1998, 2004, 2012</b> and <b>Misra C++ 2008</b> coding guidline setups are included.
+      </li>
+
+      <li>Added: ability to export <a target="_blank" href="http://www.keil.com/support/man/docs/uv4/uv4_cm_coverage.htm"><b>Code Coverage</b></a> data into <b>*.gcov</b> format.</li>
+
+      <li>Enhanced: <b>printf</b> support for <b>Cortex-M0/M0+</b> based devices by redirecting the
+         <a target="_blank" href="http://www.keil.com/support/man/docs/uv4/uv4_db_dbg_evr.htm"><b>Event Recorder</b></a> printf-Events to the
+         <a target="_blank" href="http://www.keil.com/support/man/docs/ulinkpro/ulinkpro_trace_itm_viewer.htm"> <b>Debug-Printf-Viewer</b> window.</a>
+      </li>
+
+      <li>Added: support for <b>Target Access Functions QueryValue(), Message(), and LoadDebugInfo()</b> in the <b>CMSIS-Pack</b>
+         <a target="_blank" href="http://arm-software.github.io/CMSIS_5/Pack/html/pdsc_SequenceNameEnum_pg.html"><b>Debug Access Sequences</b></a> section.
+      </li>
+
+    </ul>
+  </li>  
+
+  <li><font color="#0065AF" size="2"><b>[Supported Operating Systems]</b></font>
+    <ul>
+      <li>Refer to <a target="_blank" href="http://www.keil.com/system-requirements/"><b>System Requirements Overview</b></a> for hardware and operating system requirements.</li>
+    </ul>
+  </li> 
+</ul>
+
+
+<h3> Microcontroller Development Kit - Version 5.22</h3>
+<ul>
+ This release includes support for <a target="_blank" href="https://www.arm.com/products/processors/cortex-m/cortex-m33-processor.php"><b>Cortex-M33</b></a> and 
+ <a target="_blank" href="https://www.arm.com/products/processors/cortex-m/cortex-m23-processor.php"><b>Cortex-M23</b></a> devices based on the
+ <a target="_blank" href="http://www.arm.com/products/processors/instruction-set-architectures/armv8-m-architecture.php"><b>ARMv8-M architecture</b></a>.
+ For using <b>Cortex-M33</b> and <b>Cortex-M23</b> a <a target="_blank" href="http://www.keil.com/mdk5/selector"><b>MDK-Professional Edition</b></a> is required.
+
+  <li><font color="#0065AF" size="2"><b>[ARM Compiler]</b></font>
+    <ul>
+      <li><b>ARM Compiler 5.06u4</b>.
+           Refer to <a target="_blank" href="./../ARMCC/sw/info/releasenotes.html"><b>ARMCC 5.06u4 Specific Release Notes</b></a> for details.</li>
+      <li><b>ARM Compiler 6.6</b> which supports 
+             <a target="_blank" href="https://www.arm.com/products/processors/cortex-m/cortex-m33-processor.php"><b>Cortex-M33</b></a> and 
+             <a target="_blank" href="https://www.arm.com/products/processors/cortex-m/cortex-m23-processor.php"><b>Cortex-M23</b></a> based devices.
+           Refer to <a target="_blank" href="./../ARMCLANG/sw/info/releasenotes.html"><b>ARMCLANG 6.6 Specific Release Notes</b></a> for details.</li>
+    </ul>
+  </li>
+
+
+  <li><a target="_blank" href="http://www.keil.com/dd2/Pack"><font color="#0065AF" size="2"><b>[Software Packs included]</b></font></a> 
+    <ul>
+      <li><a target="_blank" href="http://www.keil.com/pack/doc/CMSIS/General/html/index.html"><b>ARM - CMSIS 5.0.0</b></a>
+        supports now the <a target="_blank" href="http://www.arm.com/products/processors/instruction-set-architectures/armv8-m-architecture.php"><b>ARMv8-M architecture</b></a>
+        including <a target="_blank" href="http://www.arm.com/products/processors/technologies/trustzone/index.php"><b>TrustZone® for ARMv8-M</b></a> hardware security 
+        extensions and the <a target="_blank" href="http://www.arm.com/products/processors/cortex-m/cortex-m23-processor.php"><b>Cortex-M23</b></a>
+        and <a target="_blank" href="http://www.arm.com/products/processors/cortex-m/cortex-m33-processor.php"><b>Cortex-M33</b></a> processors.
+
+        <ul>
+        <li>Added <b>CMSIS-RTOS V2 API</b> which extends the <b>CMSIS-RTOS v1 API</b> by supporting the <b>ARMv8-M</b> architecture, dynamic object creation, provisions for multi-core systems, 
+            and binary compatible interface across <a target="_blank" href="http://www.keil.com/support/man/docs/armclang_intro/armclang_intro_chr1374137684557.htm"><b>ABI</b></a> compliant compilers.</li>
+        </ul>
+      </li>
+
+     <li><a target="_blank" href="http://www.keil.com/pack/doc/mw/General/html/index.html"><font color="#0065AF" size="2"><b>Keil - MDK Middleware 7.3.0</b></font></a>
+       <ul>
+         <li>Added debug library variants for Networking, USB, and FileSystem with Event Recorder support.</li>
+         <li><a target="_blank" href="http://www.keil.com/pack/doc/mw/FileSystem/html/index.html"><font color="#0065AF" size="2"><b>FileSystem Component 6.9.0</b></font></a> 
+         Enhanced <b>eMMC</b> (embedded Multimedia Card) initialization robustness.
+         </li>
+         <li><a target="_blank" href="http://www.keil.com/pack/doc/mw/USB/html/index.html"><font color="#0065AF" size="2"><b>USB Component 6.9.0</b></font></a>
+           <ul>
+             <li>
+               <a target="_blank" href="http://www.keil.com/pack/doc/mw/USB/html/_u_s_b__host.html"><font color="#0065AF" size="2"><b>USB Host</b></font></a> 
+               Improved USB memory stick enumeration to cope with long timeouts after initial reset.
+             </li>
+           </ul>
+         </li>
+         <li><a target="_blank" href="http://www.keil.com/pack/doc/mw/USB/html/_u_s_b__device.html"><font color="#0065AF" size="2"><b>USB Device</b></font></a> 
+             Added capability to disable string for Custom Class interfaces.
+         </li>
+       </ul>
+     </li>
+
+     <li><a target="_blank" href="http://www.keil.com/pack/doc/compiler/index.html"><b>Keil - ARM Compiler Extensions 1.2.0</b></a>
+       <ul>
+        <li>Added support for <b>Cortex-M23</b> and <b>Cortex-M33</b> processors.</li>
+        <li>Added new component <b>Event Recorder</b>.</li>
+       </ul>
+     </li>
+    </ul>
+  </li>
+
+  <li><font color="#0065AF" size="2"><b>[FlexNet Floating Licenses]</b></font>
+    <ul>
+      <li>Customers using FlexNet floating licenses should update the FlexNet License Server to version <b>11.14.0.0</b>.
+          This FlexNet server version is mandatory for upcoming tool releases.</li>
+      <li>FlexNet Version 11.14.0.0 License Server tools for Windows are located in the directory <b>..\Keil\UV4\FlexNet</b>.
+          Refer the <a target="_blank" href="http://www.keil.com/support/docs/3867.htm"><b>FlexLM licensing</b></a>
+          knowledgebase article for more information.</li>
+    </ul>
+  </li>
+
+  <li><font color="#0065AF" size="2"><b>[Target debugging]</b></font>
+      <ul>
+        <li>Updated: <b>Segger J-Link</b> driver for ARM devices to version <b>6.10i</b>.</li>
+        <li>Updated: <b>P&E Micro</b> driver to version <b>6.03</b>.   </li>
+        <li>Updated: <b>NULink</b> driver to version <b>2.00.6561</b>. </li>
+        <li>Added: <b>Event Recorder Support</b>.</li>
+        <li>Improved: support for <b>V8M</b> based CPUs.</li>
+        <li>Improved: <b>Core peripheral</b> dialogs.</li>
+       </ul>
+  </li>
+
+  <li> <a target="_blank" href="http://www.keil.com/mdk5/uvision/"><font color="#0065AF" size="2"><b>[uVision updated to V5.22.0.0]</b></font></a>
+    <ul>
+     <li>Added: <a target="_blank" href="http://www.keil.com/support/man/docs/uv4/uv4_db_dbg_evr.htm"><b>Event Recorder</b></a> that shows dynamic 
+     execution status and event information which helps to analyze the operation of software components. The required annotations are implemented in debug variants of 
+     the MDK middleware.</li>
+     <li>Added: Cortex-M23 and Cortex-M33 processor support.</li>
+     <li>Enhanced: Core peripheral dialogs (Secure/Non-Secure MPU, SysTick, SAU, NVIC) for ARMv8-M based devices</li>
+     <li>Enhanced: Debug status bar displays Debug and Core security status for TrustZone for ARMv8-M enabled devices</li>
+     <li>Enhanced: New PC-Lint configuration option to add project target and compiler specific preprocessor symbols</li>
+    </ul>
+  </li>
+
+  <li><font color="#0065AF" size="2"><b>[Supported Operating Systems]</b></font>
+      <ul>
+        <li>Refer to <a target="_blank" href="http://www.keil.com/system-requirements/"><b>System Requirements Overview</b></a> for hardware and operating system requirements.</li>
+     </ul>
+  </li>
+
+</ul>
+
+<h3> Microcontroller Development Kit - Version 5.21a</h3>
+<ul>
+  <li> <a target="_blank" href="http://www.keil.com/mdk5/uvision/"><font color="#0065AF" size="2"><b>[uVision updated to V5.21.1.0]</b></font></a>
+    <ul>
+     <li>Corrected: regression on debug exit.</li>
+     </ul>
+  </li>
+
+
+  <li><font color="#0065AF" size="2"><b>[Supported Operating Systems]</b></font>
+      <ul>
+        <li>Refer to <a target="_blank"target="_blank" href="http://www2.keil.com/system-requirements/"><b>System Requirements Overview</b></a> for hardware and operating system requirements.</li>
+     </ul>
+  </li>
+</ul>
+
+<h3> Microcontroller Development Kit - Version 5.21 </h3>
+<ul>
+  <li><font color="#0065AF" size="2"><b>[ARM Compiler]</b></font>
+    <ul>
+      <li><b>ARM Compiler 5.06u3</b>.
+           Refer to <a target="_blank" href="./../ARMCC/sw/info/releasenotes.html"><b>ARMCC 5.06u3 Specific Release Notes</b></a> for details.
+      </li>
+      <li><b>ARM Compiler 6.5</b>
+           Refer to <a target="_blank" href="./../ARMCLANG/sw/info/releasenotes.html"><b>ARMCLANG 6.5 Specific Release Notes</b></a> for details.
+      </li>
+    </ul>
+  </li>
+
+  <li><a target="_blank" href="http://www.keil.com/dd2/Pack"><font color="#0065AF" size="2"><b>[Software Packs included]</b></font></a> 
+    <ul>
+
+     <li><a target="_blank" href="http://www.keil.com/pack/doc/CMSIS/General/html/index.html"><b>ARM - CMSIS 4.5.0</b></a> same as in MDK - Version 5.20.</li>
+     <li><a target="_blank" href="http://www2.keil.com/docs/default-source/default-document-library/mdk5-getting-started.pdf#nameddest=Software Component Compiler"><b>Keil - ARM Compiler Extensions 1.1.1</b></a> adds support for ARM Compiler 6 and ARMv8-M architecture.</li>	
+
+
+     <li><a target="_blank" href="http://www.keil.com/pack/doc/mw/General/html/index.html"><font color="#0065AF" size="2"><b>Keil - MDK Middleware 7.2.0</b></font></a>
+        <ul>
+        <li><a target="_blank" href="http://www.keil.com/pack/doc/mw/Network/html/index.html"><font color="#0065AF" size="2"><b>Network Component 7.2.0</b></font></a> provides now three variants, selectable in the Manage Run-Time Environment dialog:
+           <ul>
+           <li><b>MDK-Pro</b> supports IPv4, IPv6, SSL/TLS. Migration of projects that use API of Network v6 is supported using the <a target="_blank" href="http://www.keil.com/pack/doc/mw/Network/html/network_diffs.html">Legacy API</a>.</li>
+           <li><b>MDK-Plus</b> supports IPv4. Migration of projects that use API of Network v6 is supported using the <a target="_blank" href="http://www.keil.com/pack/doc/mw/Network/html/network_diffs.html">Legacy API</a>.</li>
+           <li><b>MDK-Pro Net_v6</b> supports IPv4 and uses the API of Network v6. Select this variant to maintain older projects without migration.</li>
+           </ul>
+        </li>
+
+        <li><a target="_blank" href="http://www.keil.com/pack/doc/mw/FileSystem/html/index.html"><font color="#0065AF" size="2"><b>FileSystem Component 6.8.0</b></font></a> enhances for FAT-32 speed of 'mount' operation for removable media; adds for EFS uniform flash sector.</li>
+
+        <li><a target="_blank" href="http://www.keil.com/pack/doc/mw/USB/html/index.html"><font color="#0065AF" size="2"><b>USB Component 6.8.0</b></font></a>
+           <ul>
+             <li><a target="_blank" href="http://www.keil.com/pack/doc/mw/USB/html/_u_s_b__host.html"><font color="#0065AF" size="2"><b>USB Host</b></font></a> adds notification functions for each supported class and extends the API with functions to get additional device information.</li>
+             <li><a target="_blank" href="http://www.keil.com/pack/doc/mw/USB/html/_u_s_b__device.html"><font color="#0065AF" size="2"><b>USB Device</b></font></a> adds user notifications for device events and Interface Association settings for Custom Class.</li>
+           </ul>
+        </li>
+        </ul>
+     </li>
+
+    </ul>
+  </li>
+
+
+  <li><font color="#0065AF" size="2"><b>[Target debugging]</b></font>
+      <ul>
+        <li>Updated: <b>Segger J-Link</b> driver for ARM devices to version <b>6.00</b>.</li>
+        <li>Updated: debug support for the <b>Texas Instruments XDS110</b> debug probe that is used on the <b>TI MPS432 Launchpad</b> to version <b>1.0.2</b>.</li>		
+        <li>Added: <a target="_blank"target="_blank" href="http://www2.keil.com/mdk5/ulink/ulink2"><b>ULink2</b></a><b>/</b><a target="_blank"target="_blank" href="http://www2.keil.com/mdk5/ulink/ulinkme"><b>ULink-ME</b></a> 
+            and <a  target="_blank" href="http://www.keil.com/support/man/docs/dapdebug/dapdebug_introduction.htm"><b>CMSIS-DAP</b></a> debug support for <a target="_blank" href="http://www.arm.com/products/processors/instruction-set-architectures/armv8-m-architecture.php"><b>ARMv8-M</b></a> based devices.</li>
+       </ul>
+  </li>
+
+
+  <li> <a target="_blank" href="http://www2.keil.com/mdk5/uvision/"><font color="#0065AF" size="2"><b>[uVision updated to V5.21.0.0]</b></font></a>
+    <ul>
+     <li> Extended: <a target="_blank"target="_blank" href="http://www.keil.com/support/man/docs/uv4/uv4_dg_other.htm"><b>UVSOCK</b></a> functionality to <a target="_blank"target="_blank" href="http://www.keil.com/appnotes/docs/apnt_198.asp">output data on selectable <b>ITM</b> channels</a>.</li>
+     </ul>
+  </li>
+
+
+  <li><font color="#0065AF" size="2"><b>[Supported Operating Systems]</b></font>
+      <ul>
+        <li>Refer to <a target="_blank"target="_blank" href="http://www2.keil.com/system-requirements/"><b>System Requirements Overview</b></a> for hardware and operating system requirements.</li>
+     </ul>
+  </li>
+
+</ul>
+
+<h3> Microcontroller Development Kit - Version 5.20</h3>
+<ul>
+
+  <li><font color="#0065AF" size="2"><b>[ARM Compiler]</b></font><br>
+    This release includes two ARM Compiler Versions.
+    <ul>
+
+      <li><b>ARM Compiler 5.06u2</b>: should be used for Cortex-M devices.
+           Refer to <a target="_blank" href="http://infocenter.arm.com/help/topic/com.arm.doc.arn0005y/index.html"><b>Compiler Specific Release Notes</b></a> for details.
+      </li>
+
+      <li><b>ARM Compiler 6.4</b> (LLVM technology): should be used for ARMv8-M processors (currently not supported in MDK-Lite).
+          The usage for Cortex-M devices is possible, however requires CMSIS Version 5 that is currently available as beta version.
+          Refer to <a target="_blank" href="http://infocenter.arm.com/help/topic/com.arm.doc.100585_0604_00_en/index.html"><b>ARMCLANG Specific Release Notes</b></a> for details.<br>
+      </li>
+    </ul>
+  </li>
+
+
+  <li><a target="_blank" href="http://www.keil.com/dd2/Pack"><font color="#0065AF" size="2"><b>[Software Packs included]</b></font></a> 
+    <ul>
+      <li><a target="_blank" href="http://www.keil.com/pack/doc/CMSIS/General/html/index.html"><b>ARM - CMSIS 4.5.0</b></a> adds CMSIS-Driver CAN and corrects issues in CMSIS-RTOS RTX.</li>
+      <li><a target="_blank" href="http://www2.keil.com/docs/default-source/default-document-library/mdk5-getting-started.pdf#nameddest=Software Component Compiler"><b>Keil - ARM Compiler Extensions 1.1.0</b></a> adds support for ARM Compiler 6 and ARMv8-M architecture.</li>
+      <li><a target="_blank" href="http://www.keil.com/pack/doc/mw/General/html/index.html"><b>Keil - MDK-ARM Professional Middleware 7.1.0</b></a> adds support for mbed TLS, HTTPS server, and several other improvements.<br><br>
+      <b>Note:</b> The API of the Network 7 component is not backwards compatible to Network version 6. When loading projects that use Network 6,
+         uVision will report:
+      <pre>
+
+    Error #540: 'Keil.MDK-Pro::Network:CORE:Release:6.5.0' component is not available for target ...
+      </pre>
+      There are two ways to resolve this issue:
+      <ol>
+        <li>Install <a target="_blank" href="http://www.keil.com/pack/doc/mw/General/html/index.html"><b>Keil - MDK-ARM Professional Middleware 6.6.0</b></a> and open the dialog <a target="_blank" href=" http://www.keil.com/support/man/docs/uv4/uv4_ca_packselect.htm"><b>Select Software Packs</b></a> to select the version of the pack.
+        </li>
+        <li>Migrate the application to Network 7 as described in the user's guide of the
+        <a target="_blank" href="http://www.keil.com/pack/doc/mw/Network/html/network_diffs.html"><b>Network Dual-Stack Component - Migration</b></a>.
+           <a target="_blank" href="http://www.keil.com/pack/doc/mw/Network/html/network_diffs.html#nw_diffs_compatibility_mode"><b>Using the Compatibility Mode</b></a> simplifies the migration of existing projects.
+        </li>
+      </ol>
+      Several Device Family Packs (DFP) contain example projects for the Network 6 and Network 7 component. Examples specific to Network 7 are marked with <b>IPv4/IPv6</b>.
+      </li>
+    </ul>
+  </li>
+
+  <li><font color="#0065AF" size="2"><b>[Target debugging]</b></font>
+      <ul>
+        <li>Updated: <b>Segger J-Link</b> driver for ARM devices to version <b>5.12e</b>.</li>
+        <li>Added: debug support for the <b>Texas Instruments XDS110</b> debug probe that is used on the <b>TI MPS432 Launchpad</b>.</li>
+        <li>Updated: <b>P&E Micro</b> driver for <b>Freescale Kinetis</b> devices to version <b>2.4.6.0</b>. </li>		
+       </ul>
+  </li>
+
+  <li> <a target="_blank" href="http://www2.keil.com/mdk5/uvision/"><font color="#0065AF" size="2"><b>[uVision updated to V5.20.0.0]</b></font></a>
+    <ul>
+
+    <li> 
+     Added: <a href="http://www.keil.com/support/man/docs/uv4/uv4_db_dbg_scvd_viewer.htm" target="_blank"><b>Component Viewer</b></a> which shows the status of 
+     the 
+     <a href="http://www.keil.com/pack/doc/mw/Network/html/index.html" target="_blank"><b>Network</b></a>, 
+     <a href="http://www.keil.com/pack/doc/mw/USB/html/index.html" target="_blank"><b>USB</b></a>, and the 
+     <a href="http://www.keil.com/pack/doc/mw/FileSystem/html/index.html" target="_blank"><b>File System</b></a>
+     middleware components during operation by using the <b>µVision</b> debugger.
+    </li> 
+
+    <li>
+     Added: annotation items <b>&lt;c&gt;</b> and <b>&lt;!c&gt;</b> in the <a href=" http://www.keil.com/support/man/docs/uv4/uv4_ut_configwizard.htm" target="_blank"><b>Configuration Wizard</b></a>
+     to control code sections using comments.
+    </li>
+
+    </ul>
+  </li>
+
+  <li> <a target="_blank" href="http://www.arm.com/products/processors/instruction-set-architectures/armv8-m-architecture.php"><font color="#0065AF" size="2"><b>[ARMv8-M Architecture support]</b></a></font> (MDK-Professional Edition only)<br>
+    Software Development for the ARMv8-M Architecture is fully supported with:
+    <ul>
+
+    <li><b>ARM Compiler 6.4 (LLVM technology)</b>: that includes <a target="_blank" href="http://infocenter.arm.com/help/index.jsp?topic=/com.arm.doc.ihi0053c/index.html">ARMv8-M Security Extensions</a> for <a target="_blank" href="http://www.arm.com/products/processors/technologies/trustzone/index.php">TrustZone</a>.</li>
+    <li><b><a target="_blank" href="https://developer.arm.com/products/system-design/fixed-virtual-platforms">Fixed Virtual Platform</a></b>: with complete simulation model for <b>ARMv8-M Baseline</b> and <b>ARMv8-M Mainline</b>.</li>
+    <li><b>ARM - CMSIS 5.0.0</b>: with support for ARMv8-M processor architecture. Currently available as beta version via PackInstaller or <a target="_blank" href="https://www.keil.com/pack">www.keil.com/pack</a>.</li>
+    <li><b>Keil - V2M-MPS2_CMx_BSP 1.3.0</b>: is the <b>ARM V2M-MPS2 Board Support PACK for Cortex-M System Design Kit Devices</b> and contains ARMv8-M with example projects. Available via PackInstaller or <a target="_blank" href="https://www.keil.com/pack">www.keil.com/pack</a>.</li>
+    </ul>
+  </li>
+
+
+  <li><font color="#0065AF" size="2"><b>[Supported Operating Systems]</b></font>
+      <ul>
+        <li>Refer to <a target="_blank"target="_blank" href="http://www2.keil.com/system-requirements/"><b>System Requirements Overview</b></a> for hardware and operating system requirements.</li>
+     </ul>
+  </li>
+
+</ul>
+
+<h3> Microcontroller Development Kit - Version 5.18a</h3>
+<ul>
+
+  <li> <a target="_blank" href="http://www2.keil.com/mdk5/debug/"><font color="#0065AF" size="2"><b>[uVision Debugger]</b></font></a>
+    <ul>
+     <li>Corrected: potential stability issues introduced in version 5.18 when using trace features of the debugger.</li>
+     <li>Corrected: <a target="_blank" href="http://www2.keil.com/mdk5/ulink/ulinkpro"><b>ULINKpro</b></a>,
+      <a target="_blank" href="http://www2.keil.com/mdk5/ulink/ulink2"><b>ULINK2</b></a>, and 
+      <a target="_blank" href="http://www.keil.com/support/man/docs/dapdebug/dapdebug_introduction.htm"><b>CMSIS-DAP</b></a>
+         interface drivers to correct the stability issues.</li>
+   </ul>
+  </li>
+
+</ul>
+
+
+<h3> Microcontroller Development Kit - Version 5.18</h3>
+<ul>
+
+  <li><font color="#0065AF" size="2"><b>[ARM Compiler]</b></font>
+    <ul>
+      <li><b>ARM Compiler 5.06u1</b>.
+           Refer to <a target="_blank" href="http://infocenter.arm.com/help/topic/com.arm.doc.arn0005x/index.html"><b>Compiler Specific Release Notes</b></a> for details.
+      </li>
+    </ul>
+  </li>
+
+
+
+  <li><a target="_blank" href="http://www.keil.com/dd2/Pack"><font color="#0065AF" size="2"><b>[Software Packs included]</b></font></a> 
+
+    <ul>
+      <li><a target="_blank" href="http://www.keil.com/pack/doc/CMSIS/General/html/index.html"><b>ARM - CMSIS 4.5.0</b></a> adds CMSIS-Driver CAN and corrects issues in CMSIS-RTOS RTX.</li>
+      <li><a target="_blank" href="http://www2.keil.com/docs/default-source/default-document-library/mdk5-getting-started.pdf#nameddest=Software Component Compiler"><b>Keil - ARM Compiler Extensions 1.0.0</b></a> enables I/O re-targeting via File System, UART, ITM debug channel, or user-defined functions.</li>
+      <li>Updated: <a target="_blank" href="http://www.keil.com/pack/doc/mw/General/html/index.html"><b>Keil - MDK-ARM Professional Middleware 7.0.0</b></a> introducing Network Dual Stack (IPv4/IPv6) Version 7.0 and updated Graphic Library, File System, and USB Host.<br><br>
+      <b>Note:</b> The API of the Network 7 component is not backwards compatible to version 6. When loading projects that use Network 6,
+         uVision will report:
+      <pre>
+
+    Error #540: 'Keil.MDK-Pro::Network:CORE:Release:6.5.0' component is not available for target ...
+      </pre>
+      There are two ways to resolve this issue:
+      <ol>
+        <li>Install <a target="_blank" href="http://www.keil.com/pack/doc/mw/General/html/index.html"><b>Keil - MDK-ARM Professional Middleware 6.6.0</b></a> and open the dialog <a target="_blank" href=" http://www.keil.com/support/man/docs/uv4/uv4_ca_packselect.htm"><b>Select Software Packs</b></a> to select the version of the pack.
+        </li>
+        <li>Migrate the application to Network 7 as described in the user's guide of the
+            <a target="_blank" href="http://www.keil.com/pack/doc/mw/Network/html/network_diffs.html"><b>Network Dual-Stack Component - Migration</b></a>.
+            <a target="_blank" href="http://www.keil.com/pack/doc/mw/Network/html/network_diffs.html#nw_diffs_compatibility_mode"><b>Using the Compatibility Mode</b></a> simplifies the migration of existing projects.
+        </li>
+      </ol>
+      Example projects of existing Device Family Packs (DFP) are based on the Network 6 component and currently the following software packs are affected:<br>
+      <pre>
+
+    Keil.EFM32GGxxx_DFP.2.2.0.pack
+    Keil.SAM-ESV7_SFP.2.2.0.pack
+    Keil.Kinetis_SDK_DFP.2.2.0.pack
+    Keil.LPC1700_DFP.2.2.0.pack
+    Keil.LPC1800_DFP.2.6.0.pack
+    Keil.LPC4000_DFP.2.0.0.pack
+    Keil.LPC4300_DFP.2.6.0.pack
+    Keil.STM32F1xx_DFP.2.0.0.pack
+    Keil.STM32F2xx_DFP.2.5.0.pack
+    Keil.STM32F4xx_DFP.2.7.0.pack
+    Keil.STM32F7xx_DFP.2.4.0.pack 
+      </pre>
+      These example projects are based on the Network 6 component:
+      BSD Client, BSD Server, FTP Server, HTTP Server, HTTP Upload, SMTP Client, SNMP Agent, Telnet Server.
+      Future releases of DFPs will be based on the Network 7 component.
+      </li>
+    </ul>
+  </li>
+
+  <li><font color="#0065AF" size="2"><b>[Target debugging]</b></font>
+      <ul>
+        <li>Updated: <b>Segger J-Link</b> driver for ARM devices to version <b>5.10i</b>.</li>
+        <li>Implemented multicore support for <b>CMSIS-DAP</b> debugger. It is possible to debug two different cores on the same device by using two instances of µVision.</li>
+       </ul>
+  </li>
+
+  <li> <a target="_blank" href="http://www2.keil.com/mdk5/uvision/"><font color="#0065AF" size="2"><b>[uVision updated to V5.18.0]</b></font></a>
+    <ul>
+     <li>µVision now offers Japanese localization on Windows PCs with the 'primary language' Japanese.<br>
+       To select the language use the uVision menu item <a href="http://www.keil.com/support/man/docs/uv4/uv4_dg_other.htm" target="_blank"><b>Edit - Configuration - Other - Startup - Language</b></a>.</li>
+     <li>A <b><a target="_blank" href="https://armkeil.blob.core.windows.net/product/gs_MDK5_3_jp.pdf">Japanese Getting Started user's guide</a></b> is available in the uVision Books Window.</li>
+     </ul>
+  </li>
+
+
+
+  <li><font color="#0065AF" size="2"><b>[Supported Operating Systems]</b></font>
+      <ul>
+        <li>Refer to <a target="_blank"target="_blank" href="http://www2.keil.com/system-requirements/"><b>System Requirements Overview</b></a> for hardware and operating system requirements.</li>
+     </ul>
+  </li>
+
+
+</ul>
+
+<h3> Microcontroller Development Kit - Version 5.17</h3>
+<ul>
+
+  <li><font color="#0065AF" size="2"><b>[ARM Compiler]</b></font>
+    <ul>
+      <li><b>ARM Compiler 5.06u1</b> solves a  <a target="_blank" href="http://www.keil.com/support/docs/3769.htm"> <b>ARM7, ARM9, 
+          and Cortex-R related defect</b></a> introduced with <b>ARM Compiler 5.06</b> in <b>MDK 5.16</b>.
+          Refer to <a target="_blank" href="http://infocenter.arm.com/help/topic/com.arm.doc.arn0005x/index.html"><b>Compiler Specific Release Notes</b></a> for details.
+      </li>
+    </ul>
+  </li>
+
+
+  <li><a target="_blank" href="http://www.keil.com/dd2/Pack"><font color="#0065AF" size="2"><b>[Software Packs included]</b></font></a> 
+
+    <ul>
+      <li>Updated: <a target="_blank" href="http://www.keil.com/pack/doc/mw/General/html/index.html"><b>Keil - MDK-ARM Professional Middleware 6.5.0</b></a> improved are the Graphic Library, File System, and USB Host.</li>
+      <li>Updated: <a target="_blank" href="http://www.keil.com/pack/doc/CMSIS/General/html/index.html"><b>ARM - CMSIS 4.5.0</b></a> adds CMSIS-Driver CAN and corrects issues in CMSIS-RTOS RTX.</li>
+      <li><a target="_blank" href="http://www2.keil.com/docs/default-source/default-document-library/mdk5-getting-started.pdf#nameddest=Software Component Compiler"><b>Keil - ARM Compiler Extensions 1.0.0</b></a> enables I/O re-targeting via File System, UART, ITM debug channel, or user-defined functions.</li>
+    </ul>
+  </li>
+
+
+  <li><font color="#0065AF" size="2"><b>[Target debugging]</b></font>
+      <ul>
+        <li>Updated: <b>Segger J-Link</b> driver for ARM devices to version <b>5.02f</b>.</li>
+        <li>Updated: the <b>STMicroelectronics ST-LINKIII-KEIL_SWO.dll</b> to version <b>2.0.18</b>.</li>
+        <li>Updated: the <b>NuLink Keil driver</b> to version <b>1.30.6491</b>.</li>
+        <li>Added: the <b>NuLink USB driver</b> version <b>1.1</b>.</li>
+       </ul>
+  </li>  
+
+
+
+  <li> <a target="_blank" href="http://www2.keil.com/mdk5/uvision/"><font color="#0065AF" size="2"><b>[uVision updated to V5.17.0]</b></font></a>
+    <ul>
+      <li>Added: new option to limit the <a target="_blank" href="http://www.keil.com/support/man/docs/uv4/uv4_ut_findinfiles.htm"><b>Find in Files</b></a> utility to the "Current Document".</li>
+      <li>Added: new option <b>Stop after Reset</b> in <a target="_blank" href="http://www.keil.com/support/man/docs/ulink2/ulink2_ctx_debug.htm"><b>Debug</a></b> driver configuration to stop program execution on reset (Reset Vector Catch).</li>	  
+      <li>Enhanced: editor now supports Arabic, Baltic, Eastern European, Greek, Hebrew, Russian, Thai, Turkish, and Vietnamese character sets.</li>
+      <li>Corrected: <a target="_blank" href="http://www.keil.com/support/man/docs/uv4/uv4_ui_bookmarks.htm"><b>Bookmark</b></a> navigation is now working only on the "Current Document".</li>	  
+      <li>Corrected: <a target="_blank" href="http://www.keil.com/support/man/docs/uv4/uv4_db_dbg_systhread_viewer.htm"><b>System and Thread Viewer</b></a> shows now also the stack usage of <a target="_blank" href="http://www.keil.com/pack/doc/CMSIS/RTX/html/group___r_t_x___global___functions.html"><b>os_idle_demon</b></a>.</li>
+      <li>Corrected: while creating a project and selecting different devices, device startup files of previous selected devices are renamed to <i>filename</i>.NNNN to provide a backup.</li>
+      <li>Corrected: STM32CubeMX for configuration of the <a target="_blank" href="http://www.keil.com/pack/doc/STM32Cube/General/html/index.html"><b>STM32Cube</b></a> framework sometimes failed to start.</li>
+      <li>Corrected: opening struct elements in the <a target="_blank" href="http://www.keil.com/support/man/docs/uv4/uv4_db_dbg_watchwin.htm"><b>Watch Window</b></a> did not always show up-to-date values.</li>
+    </ul>
+  </li>
+ 
+  <li><font color="#0065AF" size="2"><b>[Supported Operating Systems]</b></font>
+      <ul>
+        <li>Refer to <a target="_blank"target="_blank" href="http://www2.keil.com/system-requirements/"><b>System Requirements Overview</b></a> for hardware and operating system requirements.</li>
+     </ul>
+  </li> 
+</ul>
+
+
+<h3> Microcontroller Development Kit - Version 5.16a </h3>
+<ul>
+  <li><font color="#0065AF" size="2"><b>[ARM Compiler]</b></font>
+    <ul>
+      <li>The <b>ARM Compiler 5.05u2</b> must be used for ARM7, ARM9 and Cortex-R4 processor based targets due to a
+          <a target="_blank" href="http://www.keil.com/support/docs/3769.htm">regression</a> in ARM Compiler 5.06. 
+          This defect will be fixed in MDK Version 5.17. This MDK release installs:
+         <ul>
+          <li><b>ARM Compiler 5.06</b> (default for Cortex-M targets) which includes support for <b>STM32L4 Series</b>. 
+                 All compiler related files located in <b>..\ARM\ARMCC\</b> directory.
+              Details can be found in the  <a target="_blank" href="http://infocenter.arm.com/help/index.jsp?topic=/com.arm.doc.arn0005v/index.html">
+              <b>Compiler specific Release Notes</b></a>.
+          </li>
+          <li><b>ARM Compiler 5.05u2</b> (default for ARM7, ARM9, Cortex-R4). All compiler related files located in <b>..\ARM\ARMCC_505u2\</b> directory.
+               Details can be found in the  <a target="_blank" href="http://infocenter.arm.com/help/index.jsp?topic=/com.arm.doc.arn0005t/index.html">
+               <b>Compiler specific Release Notes</b></a>.
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+
+  <li> <a target="_blank" href="http://www2.keil.com/mdk5/uvision/"><font color="#0065AF" size="2"><b>[uVision]</b></font></a>
+    <ul>
+      <li>This MDK release contains <b>µVision V5.16.1</b>.</li>
+      <li>Corrected: export of mbed projects had potential build errors.</li>
+    </ul>
+  </li>
+ 
+  <li><font color="#0065AF" size="2"><b>[Supported Operating Systems]</b></font>
+      <ul>
+        <li>Refer to <a target="_blank" href="http://www2.keil.com/system-requirements/"><b>System Requirements Overview</b></a> for hardware and operating system requirements.</li>
+     </ul>
+  </li> 
+</ul>
+
+<h3> Microcontroller Development Kit - Version 5.16 </h3>
+<ul>
+
+  <li><font color="#0065AF" size="2"><b>[ARM Compiler]</b></font>
+    <ul>
+      <li>This MDK release contains <b>ARM Compiler 5.06</b> (build 20) which includes support for <b>STM32L4xx</b> based devices. All compiler related files located in <b>..\ARM\ARMCC\</b> directory.
+        Details can be found in the  <a target="_blank" href="http://infocenter.arm.com/help/topic/com.arm.doc.dui0529l/index.html">
+          <b>Compiler specific Release Notes</b></a>.
+      </li>
+     </ul>
+  </li>
+
+
+  <li> <a target="_blank" href="http://www.keil.com/support/man/docs/uv4/uv4_overview.htm"><font color="#0065AF" size="2"><b>[uVision]</b></font></a>
+    <ul>
+    <li>This MDK release contains <b>µVision V5.16.0</b>.</li>
+    <li>Improved: Project build now takes advantage of systems that have multiple processors or multiple-core processors. 
+        Additional build processes are created to utilize the available processors and therefore drastically reduce the overall built time. 
+        µVision can process these builds simultaneously, and therefore overall build time is reduced.</li>
+    <li>Added: With the menu: Edit – Configuration - Right Margin - a line border can be configured which is shown as vertical line or coloured background.</li>
+    <li>Added: Compiler toolchain documentation is now also accessible in PDF format from the Books Window.</li>
+    </ul>
+ </li>
+
+
+ 
+  <li><a target="_blank" href="http://www.keil.com/dd2/Pack"><font color="#0065AF" size="2"><b>[Software Packs included]</b></font></a> 
+  
+    <ul>
+      <li><b>Keil - MDK-ARM Professional Middleware 6.5.0</b><br>
+      The <b>Keil::MDK-Middleware 6.5.0</b> Software Pack contains several enhancements and corrections. Improved are the Graphic Library, File System, and USB Host.</li>
+      <li><b>ARM - CMSIS 4.3.0</b><br>
+      The <b>ARM::CMSIS 4.3.0</b> Software Pack adds a CMSIS-Driver for Serial Audio Interface (SAI) and improves CMSIS-RTOS RTX with Stack Watermark and IRQ timing statistics. Included are also several other enhancements such as cache control functions for Cortex-M7.</li>
+      <li><b>Keil - ARM Compiler Extensions 1.0.0</b><br>
+      The <b>Keil::ARM_Compiler 1.0.0</b> Software Pack contains the new <b><a target="_blank" href="http://www2.keil.com/docs/default-source/default-document-library/mdk5-getting-started.pdf?sfvrsn=2#nameddest=Software Component Compiler">Software Component Compiler</a></b> that expands MicroLib with assert and enables I/O re-targeting via File System, UART, ITM debug channel, or user-defined functions.</li>
+    </ul>
+  </li>
+ 
+ 
+  <li><font color="#0065AF" size="2"><b>[Target debugging]</b></font>
+      <ul>
+        <li>Updated: <b>Segger J-Link</b> driver for ARM devices to version <b>4.98e</b>.</li>
+        <li>Updated: the <b>STMicroelectronics ST-LINKIII-KEIL_SWO.dll</b> to version <b>2.0.17</b>.</li>
+       </ul>
+  </li>
+ 
+ 
+
+  <li><font color="#0065AF" size="2"><b>[Supported Operating Systems]</b></font>
+      <ul>
+        <li>Refer to <a target="_blank" href="http://www2.keil.com/system-requirements/"><b>System Requirements Overview</b></a> for hardware and operating system requirements.</li>
+     </ul></li>
+ 
+</ul>
+
+
+
+<h3> Microcontroller Development Kit - Version 5.15 </h3>
+<ul>
+
+  <li><font color="#0065AF" size="2"><b>[ARM Compiler]</b></font>
+    <ul>
+      <li>This MDK release contains <b>ARM Compiler 5.05u2</b> (build 169). All compiler related files located in <b>..\ARM\ARMCC\</b> directory.
+        Details can be found in the  <a target="_blank" href="http://infocenter.arm.com/help/index.jsp?topic=/com.arm.doc.arn0005t/index.html">
+          <b>Compiler specific Release Notes</b></a>.
+      </li>
+     </ul>
+  </li>
+ 
+  <li> <a target="_blank" href="http://www.keil.com/support/man/docs/uv4/uv4_overview.htm"><font color="#0065AF" size="2"><b>[uVision]</b></font></a>
+    <ul>
+    <li>This MDK release contains <b>µVision V5.15.0</b>.</li>
+    <li>Improved: Support for multiple <a target="_blank" href="http://www.keil.com/support/man/docs/uv4/uv4_armcompilers.htm"><b>ARM Compiler Versions</b></a>
+        that allows now to <a target="_blank" href="http://www.keil.com/support/man/docs/uv4/uv4_armcompilers.htm"><b>Setup Default ARM Compiler Versions</b></a> for each processor core.</li>
+    <li>Added: Support for <b>Stack usage watermark</b> in the <a target="_blank" href="http://www.keil.com/support/man/docs/uv4/uv4_db_dbg_systhread_viewer.htm"><b>System and Thread Viewer</b></a>
+        that is available with CMSIS-RTOS RTX V4.78 or higher. This also shows the maximum stack load during execution of a thread.</li>
+    <li>Improved: Icons in the Project Window for <a target="_blank" href="http://www.keil.com/support/man/docs/uv4/uv4_ca_updswcmpfiles.htm"><b>RTE Configuration Files</b></a> indicate 
+        compatibility of current files with software components from new Software Packs. The new command <b>Update Config File and Lauch Merge</b> available from context menu in the Project Window simplifies the migration of existing configuration settings.</li>
+    <li>Improved: MDK now uses <a target="_blank" href="http://semver.org/"><b>Semantic Versioning</b></a> for Software Packs, software components, and configuration files.</li>
+    <li>Added: <a target="_blank" href="http://www.keil.com/support/man/docs/uv4/uv4_dg_lintsetup.htm"><b>Set-up PC-Lint</b></a> has a new option to include all <b>project-target related folders</b> for searching header files.</a></li>
+    <li>Added: <a target="_blank" href="http://www.keil.com/support/man/docs/uv4/uv4_ui_svcs.htm"><b>Source Version Control System (SVCS)</b></a> templates files for <a target="_blank" href="http://www.keil.com/appnotes/docs/apnt_279.asp"><b>GIT</b></a> and <b>Tortoise SVN</b></a>.</li>
+    </ul>
+  </li>
+
+
+  <li><a target="_blank" href="http://www.keil.com/dd2/Pack"><font color="#0065AF" size="2"><b>[Software Packs included]</b></font></a> 
+  
+    <ul>
+      <li><b>Keil - MDK-ARM Professional Middleware 6.4.0</b><br>
+      The <b>Keil::MDK-Middleware 6.4.0</b> Software Pack supports now ARM Cortex-M7 devices and solves a problem with File System (fpwd function) and Networking (HTTP server). Keil::MDK-Middleware 6.4.0 requires ARM::CMSIS 4.3.0 and Keil::ARM_Compiler 1.0.0 Software Pack.</li>
+      <li><b>ARM - CMSIS 4.3.0</b><br>
+      The <b>ARM::CMSIS 4.3.0</b> Software Pack adds a CMSIS-Driver for Serial Audio Interface (SAI) and improves CMSIS-RTOS RTX with Stack Watermark and IRQ timing statistics. Included are also several other enhancements such as cache control functions for Cortex-M7.</li>
+      <li><b>Keil - ARM Compiler Extensions 1.0.0</b><br>
+      The <b>Keil::ARM_Compiler 1.0.0</b> Software Pack contains the new <b><a target="_blank" href="http://www2.keil.com/docs/default-source/default-document-library/mdk5-getting-started.pdf?sfvrsn=2#nameddest=Software Component Compiler">Software Component Compiler</a></b> that expands MicroLib with assert and enables I/O re-targeting via File System, UART, ITM debug channel, or user-defined functions.</li>
+    </ul>
+  </li>
+
+
+  <li><font color="#0065AF" size="2"><b>[Target debugging]</b></font>
+      <ul>
+        <li>Updated: Driver for <b>Segger J-Link</b> with bug fixes and support for <b>JTAG</b> clock speed:<b> 20, 25, 33, and 50 MHz</b>.</li>
+        <li>Updated: Driver and firmware for <b>STMicroelectronics ST-Link</b> to support the latest STM32 devices.</li>
+        <li>Updated: Driver for <b>Nuvoton Nulink</b> with bug fixes and support for <b>M0519</b>, <b>NM1320</b> and <b>Mini58</b> <b>Cortex-M0</b> based devices.</li>
+       </ul>
+  </li>
+
+  
+  <li><a target="_blank" href="http://www.keil.com/support/man/docs/uv4/uv4_ca_packinstaller.htm"><font color="#0065AF" size="2"><b>[Pack Installer]</b></font></a>
+  <ul>
+    <li>Improved: Selection of <b>Devices</b> and <b>Boards</b> lists Device Specific and Generic Software <b>Packs</b> and relevant Project <b>Examples</b>. When the Pack Installer is launched from uVision the device of the project target is selected.</li>	
+    <li>Added: <b>Output</b> window that summarizes warning and error messages.</li>
+  </ul></li>
+
+  <li><font color="#0065AF" size="2"><b>[Supported Operating Systems]</b></font>
+      <ul>
+        <li>Refer to <a target="_blank" href="http://www2.keil.com/system-requirements/"><b>System Requirements Overview</b></a> for hardware and operating system requirements.</li>
+      </ul></li>
+
+</ul>
+
+
+
+<h3> Microcontroller Development Kit - Version 5.14 </h3>
+<ul>
+
+  <li><font color="#0065AF" size="2"><b>[uVision]</b></font>
+    <ul>
+      <li>This MDK release contains <b>µVision V5.14.0.0</b>.</li>
+      <li>Improved download support for missing Software Packs where a fixed version is selected in the project. Before the latest version was downloaded.</li>
+      <li>At load time of a project the device name can be manually changed when the project was using an obsolete device that no longer available with the current Software Pack.</li>
+      <li>The new debug command <a target="_blank" href="http://www.keil.com/support/man/docs/uv4/uv4_cm_sbc.htm">SBC</a> allows to control software breakpoints which is for example important for algorithm verification that calculate CRC over a code area.</li>
+      <li>The <a target="_blank" href="http://www.keil.com/support/man/docs/uv4/uv4_db_dbg_event_viewer.htm">Event Viewer</a> displays now also timing information for interrupt execution.</li>
+    </ul>
+  </li>
+  
+  <li><font color="#0065AF" size="2"><b>[ARM Compiler]</b></font>
+    <ul>
+      <li>This MDK release contains <b>ARM Compiler 5.05u1</b> (build 106). All compiler related files located in <b>..\ARM\ARMCC\</b> directory.
+        Details can be found in the  <a target="_blank" href="http://infocenter.arm.com/help/topic/com.arm.doc.arn0005r/index.html">
+          <b>Compiler specific Release Notes</b></a>.
+      </li>
+      <li>
+       The <b>ARM Compiler 5.04u2</b> for safety critical applications is available from  <a target="_blank" href="https://silver.arm.com/browse/ACOMP"><b>ARM Compiler download area</b></a> 
+       (a registration or login is required).
+      </li>
+    </ul>
+  </li>
+
+  <li><font color="#0065AF" size="2"><b>[Software Packs included]</b></font>
+    <ul>
+      <li><b>Keil.MDK-Middleware Version 6.2.0</b> and <b>CMSIS Version 4.2.0</b>.</li>
+    </ul>
+  </li>
+
+
+  <li><font color="#0065AF" size="2"><b>[Target debugging]</b></font>
+      <ul>
+        <li>Updated: <b>ULink2</b> Firmware version update to <b>2.03</b> that fixes a potential problem with USB 3.0 ports.</li>
+        <li>Updated: <b>Segger J-Link</b> driver for <b>ARM</b> devices to version <b>4.96d</b> that now supports Cortex-M7.</li>
+        <li>Updated: <b>NuLink</b> version <b>1.28.6386</b> with correct access to Flash algorithms from Software Packs.</li>
+       </ul>
+  </li>
+
+
+  <li><font color="#0065AF" size="2"><b>[Supported Operating Systems]</b></font>
+      <ul>
+        <li>Refer to <a target="_blank" href="http://www2.keil.com/system-requirements/"><b>System Requirements Overview</b></a> for hardware and operating system requirements.</li>
+      </ul></li>
+
+
+</ul>
+
+
+
+<h3> Microcontroller Development Kit - Version 5.13 </h3>
+<ul>
+
+  <li><font color="#0065AF" size="2"><b>[uVision]</b></font>
+    <ul>
+      <li>This MDK release contains <b>µVision V5.13.0.0</b>.</li>
+      <li>With the new menu <a target="_blank" href="http://www.keil.com/support/man/docs/uv4/uv4_ca_migrate2v5.htm"><b>Project - Manage - Migrate to Version 5 Format ... </b></a>
+          an existing <b>MDK version 4</b> project is converted to the new <b>MDK version 5</b> format.
+      </li>
+      <li>The toolbar <a target="_blank" href="http://www.keil.com/support/man/docs/uv4/uv4_ca_batchbuildmultiprojectfile.htm"><b>Batch Build</b></a> is now available also for single projects
+      providing a convenient way to build a selection of project targets in one working step.</li>
+      <li>Missing Software Packs are detected by uVision and the PackInstaller is launched to download and install them while loading the project.</li>
+     </ul>
+  </li>
+
+  <li><font color="#0065AF" size="2"><b>[Software Packs included]</b></font>
+    <ul>
+      <li><b>Keil.MDK-Middleware Version 6.2.0</b> and <b>CMSIS Version 4.2.0</b>.
+    </ul>
+  </li>
+
+  <li><font color="#0065AF" size="2"><b>[ARM Compiler]</b></font>
+    <ul>
+      <li>This MDK release contains <b>ARM Compiler 5.05u1</b> (build 106). All compiler related files located in <b>..\ARM\ARMCC\</b> directory.
+        Details can be found in the  <a target="_blank" href="http://infocenter.arm.com/help/topic/com.arm.doc.arn0005r/index.html">
+          <b>Compiler specific Release Notes</b></a>.
+      </li>
+      <li>
+       The <b>ARM Compiler 5.04u2</b> for safety critical applications is available from  <a target="_blank" href="https://silver.arm.com/browse/ACOMP"><b>ARM Compiler download area</b></a> 
+       (a registration or login is required).
+      </li>
+
+
+    </ul>
+  </li>
+
+  <li><font color="#0065AF" size="2"><b>[Target debugging]</b></font>
+      <ul>
+        <li>Updated: <b>Segger J-Link</b> driver for <b>ARM</b> devices to version <b>4.91j</b>.</li>
+        <li>Updated: <b>STMicroelectronics ST-Link</b> driver for <b>STMicroelectronics</b> devices to version <b>2.0.14</b>.</li>
+       </ul></li>
+
+
+  <li><font color="#0065AF" size="2"><b>[Supported Operating Systems]</b></font>
+      <ul>
+      <li>Refer to <a target="_blank" href="http://www2.keil.com/system-requirements/"><b>System Requirements Overview</b></a> for hardware and operating system requirements.</li>
+      </ul></li>
+
+</ul>
+
+
+<h3> Microcontroller Development Kit - Version 5.12 </h3>
+
+<p>
+ This MDK version introduces support for <b>ARM Cortex-M7</b> processor based devices.
+</p> 
+
+
+<p><b>Note:</b> The <b>STM32 Device Family Packs Version 1.x.x</b> are <u>incompatible</u> with <b>CMSIS Version 4.2.0</b> and 
+<b>MDK-Middleware Version 6.1.1</b>. The compatible <b>STM32 Device Family Packs Version 2.x.x</b> will be released shortly.
+The application note 266 <a target="_blank" href="http://www.keil.com/appnotes/docs/apnt_266.asp">
+<b>Using Keil MDK v5.11 with STM32 devices</b></a> describes how to use the older STM32 Device Family Packs.</p>
+
+
+<ul>
+  <li><font color="#0065AF" size="2"><b>[uVision]</b></font>
+    <ul>
+      <li>Enhanced performance in the Project View and new <a target="_blank" href="http://www.keil.com/support/man/docs/uv4/uv4_ca_filegrp_att.htm">file, group, and component attributes</a>.</li>
+     </ul>
+  </li>
+
+  <li><font color="#0065AF" size="2"><b>[Software Packs included]</b></font>
+    <ul>
+      <li><b>CMSIS Version 4.2.0</b>: <b>Cortex-M7</b> related updates to <b>CMSIS-CORE</b>, <b>CMSIS-DSP</b>, <b>CMSIS-PACK</b> and <b>CMSIS-SVD</b>. </li>
+      <li><b>MDK-Middleware Version 6.1.1</b>: Driver <b>Network/Driver/ETH_KSZ8851SNL.c</b> corrected an invalid power status in function <b>MAC_PowerControl</b>.
+    </ul>
+  </li>
+ 
+  <li><font color="#0065AF" size="2"><b>[ARM Compiler]</b></font>
+    This MDK release contains two ARM Compiler versions that can be selected in the dialog <b>Project - Options for Target - Target</b> (under Code Generation):
+    <ul>
+      <li><b>ARM Compiler 5.05</b> (build 41) (in directory <b>..\ARM\ARMCC\</b>) with support for Cortex-M7 and other enhancements (see release notes).</li>
+      <li><b>ARM Compiler 5.04u2</b> (build 82) (in directory <b>..\ARM\ARMCC_504u2\</b>) for safety critical applications in combination with the ARM Compiler Qualification Kit (only available with a license for MDK-Professional).</li>
+    </ul>
+  </li>
+  
+  <li><font color="#0065AF" size="2"><b>[FlexNet Floating Licenses]</b></font>
+    <ul>
+      <li>Customers using FlexNet floating licenses are required to update their license server software to <b>Version 11.12.1</b> or higher.<br>
+          Using older versions of the FlexNet license server will result in error messages by the ARM Compiler tools.<br>
+          <b>FlexNet Licensing error:-96,7.  System Error: 11001 "Comm. error"</b></li>
+       <li>FlexNet Version 11.12.1 License Server tools for Windows are located in the directory <b>..\Keil\UV4\FlexNet</b>. For 
+           other operating systems please contact support.</li>
+    </ul>
+  </li>  
+
+  <li><font color="#0065AF" size="2"><b>[Target debugging]</b></font>
+      <ul>
+        <li>Updated: <b>Segger J-Link</b> driver for <b>ARM</b> devices to version <b>4.91b</b>.</li>
+        <li>Updated: <b>NuLink</b> software to version <b>6.3.14</b></li>
+        <li>Updated: <b>STMicroelectronics ST-Link</b> driver for <b>STMicroelectronics</b> devices to version <b>2.0.10.0</b>.</li>
+        <li>Updated: <b>ULINKPro\ULINK2\CMSIS-DAP</b> driver to support <b>Cortex-M7</b> based devices.</b></li>
+       </ul></li>  
+
+  <li><font color="#0065AF" size="2"><b>[Supported Operating Systems]</b></font>
+      <ul>
+      <li>Refer to <a target="_blank" href="http://www2.keil.com/system-requirements/"><b>System Requirements Overview</b></a> for hardware and operating system requirements.</li>
+      </ul></li>
+
+</ul>
+
+
+<h3> Microcontroller Development Kit - Version 5.11a</h3>
+<p>
+ This MDK release includes the Software Packs CMSIS Version 4.1 and MDK-Middleware Version 6.0 that are <b><u>incompatible with the current
+ STM32 Device Family Packs</u></b>. The application note 266 <a target="_blank" href="http://www.keil.com/appnotes/docs/apnt_266.asp">
+      <b>Using Keil MDK v5.11 with STM32 devices</b></a> describes the reasons and the resolution.
+</p>
+<ul>
+
+  <font color="#0065AF" size="2"><b>This MDK release includes the following fixes over MDK Version 5.11:</b></font>
+    <ul>
+      <li>Updated µVision (V5.11.1.0): 
+        <ul>
+          <li>gpdsc file reload problem fixed (Infineon DAVE3)</li>
+          <li>Select Software Packs dialog control via keyboard fixed</li>
+        </ul>
+      <li>Updated SystemViewer.dll (V2.28.0):
+        <ul>
+          <li>Periodic window update for child elements fixed</li>
+          <li>Abort on Display of LPC4300 GPIO registers fixed</li>
+        </ul>
+      </li>
+    </ul>
+ </ul>
+
+<h3> Microcontroller Development Kit - Version 5.11</h3>
+<ul>
+    <li><font color="#0065AF" size="2"><b>This MDK release includes the following Software Packs:</b></font>
+      <ul>
+        <li><a target="_blank" href="http://www.keil.com/cmsis/"><b>CMSIS V4.1.0</b></a> with new CMSIS-Driver API.</li>
+        <li><a target="_blank" href="http://www.keil.com/mdk5/middleware/"><b>MDK-Middleware V6.0.0</b></a> that uses the new CMSIS-Driver API.</li>
+      </ul>
+      These Software Packs are compatible with the new DFP Version 2.0.x or higher for Infineon and NXP. 
+      All future DFP's will rely on the above Software Packs.<br><br>
+  
+      <b>NOTE:</b> For using middleware with EnergyMicro and ST devices that are based on DFP Version 1.x select CMSIS V3.2.x and MDK-Middleware V5.1.x as described under <a target="_blank" href="http://www.keil.com/support/man/docs/uv4/uv4_ca_packselect.htm">Select Software Packs</a>.
+    </li>
+
+    <li><font color="#0065AF" size="2"><b>This MDK release contains the following new components:</b></font>
+      <ul>
+        <li><a target="_blank" href="http://www.keil.com/uvision/"><b>µVision V5.11.0.0</b></a> with new features for <a target="_blank" href="http://www.keil.com/support/man/docs/uv4/uv4_ca_packselect.htm">Select Software Packs</a>.</li>
+        <li><a target="_blank" href="http://www.keil.com/support/man/docs/uv4/uv4_ca_packinstaller.htm"><b>Pack Installer V1.2</b></a> with minor bug fixes.</li>
+      </ul>
+    </li>
+
+    <li><font color="#0065AF" size="2"><b>ARM Compiler</b></font>
+      <ul>
+        <li>The <b>absacc.h</b> header file has been removed from the <b>ARMCC/include</b> folder. Use the <b>_attribute_ </b> syntax instead of the macro <b>__at</b>.</li>
+      </ul>
+    </li>
+
+    <li><font color="#0065AF" size="2"><b>Target debugging</b></font>
+      <ul>
+        <li>Updated: <b>STMicroelectronics ST-Link</b> driver for <b>STMicroelectronics</b> devices to version <b>2.0.6.0</b> to support <b>STM32L0</b> devices.</li>
+        <li>Updated: <b>NuLink</b> software to version <b>6.2.11</b></li>
+       </ul>
+    </li>
+</ul>
+
+
+<h3> Microcontroller Development Kit - Version 5.10</h3>
+
+<p>The new <a target="_blank" href="http://www2.keil.com/docs/default-source/default-document-library/mdk5-getting-started.pdf?sfvrsn=0"><b>Getting Started Guide for MDK-ARM v5</b></a> is available for download now.</p>
+  <ul>
+    <li><a target="_blank" href="http://www.keil.com/uvision/"><font color="#0065AF" size="2"><b>[µVision]</b></font></a>
+      <ul>
+        <li>This MDK contains <b>µVision V5.10.0.2</b>.</li>
+      </ul>
+    </li>
+
+    <li><a target="_blank" href="http://www.keil.com/support/man/docs/uv4/uv4_ca_packinstaller.htm"><b>[Pack Installer]</b></a>
+      <ul>
+        <li>This MDK contains <b>PackInstaller V1.1</b>. It features a new searchable right hand column, listing all supported Boards and Devices. Based on the selection
+            available Software Packs and Examples are listed in the left hand column. Click above link for further documentation.
+        </li>
+      </ul></li>
+
+
+    <li><font color="#0065AF" size="2"><b>[ARM Compiler]</b></font>
+      <ul>
+        <li>This MDK release contains <b>ARM Compiler 5.04u1</b>.</li>	 
+        <li>All compiler related files are located in <b>..\ARM\ARMCC\</b> directory.</li>
+        <li>Details can be found in the 
+            <a target="_blank" href="http://infocenter.arm.com/help/topic/com.arm.doc.arn0005n/index.html">
+               <b>Compiler specific Release Notes</b></a>.
+        </li>
+      </ul>
+    </li>
+
+    <li><font color="#0065AF" size="2"><b>[Target debugging]</b></font>
+      <ul>
+        <li>Updated: <b>Segger J-Link</b> driver for <b>ARM</b> devices to version <b>4.80g</b>.</li>
+        <li>Updated: <b>STMicroelectronics ST-Link</b> driver for <b>STMicroelectronics</b> devices to version <b>2.0.4.0</b>. USB Drivers in ARM\STLink\USBDriver</li>
+        <li>Updated: <b>P&E Micro</b> driver for <b>Freescale Kinetis</b> devices to version <b>2.0.4.0</b>. </li>
+       </ul></li>
+
+</ul>
+
+
+
+<h3> Microcontroller Development Kit - Version 5.01</h3>
+
+<ul>
+    <li><a target="_blank" href="http://www.keil.com/uvision/"><font color="#0065AF" size="2"><b>[µVision]</b></font></a>
+     <ul>
+     <li>This release includes an updated Software Pack schema definition. Software Packs that require this new schema version will not be compatible with older releases of MDK.</li>
+     <li>This MDK release is delivered with <b>µVision V5.01.0.0</b>.</li>
+     </ul></li>
+</ul>
+
+
+<h3> Microcontroller Development Kit - Version 5.00</h3>
+
+<ul>
+
+    <li><a target="_blank" href="http://www.keil.com/support/man/docs/uv4/uv4_ca_swcomponents.htm"><font color="#0065AF" size="2"><b>[Software Packs]</b></font></a>
+     <ul>
+     <li><b>MDK-ARM V5.0</b> (MDK V5) introduces <a target="_blank" href="http://www.keil.com/support/man/docs/uv4/uv4_ca_swcomponents.htm"><b>Software Packs</b></a> which 
+     make device support and middleware updates independent from the toolchain installation. The MDK V5 installer contains the µVision IDE and Debugger,
+     the ARM Compiler and the new <a target="_blank" href="http://www.keil.com/support/man/docs/uv4/uv4_ca_packinstaller.htm"><b>Pack Installer</b></a> which is used to manage Software Packs.
+     Device support, CMSIS and MDK-Professional Middleware are delivered as Software Packs.</li>
+     <li><b>Software Packs</b> can contain device database descriptions, <b>CMSIS Core Device</b> and <b>CMSIS SVD</b> files, as well as <b>Flash Programming Algorithms</b> and other
+     <b>Software Components</b>. For more details refer to <a target="_blank" href="http://www.keil.com/pack/doc/cmsis/Pack/html/index.html"><b>http://www.keil.com/pack/doc/cmsis/Pack/html/index.html</b></a>.
+     </li>
+     </ul></li>
+
+
+    <li><font color="#0065AF" size="2"><b>[Software Installation and Updates]</b></font>
+            <ul>
+                <li>
+                    The new <a target="_blank" href="http://www.keil.com/support/man/docs/uv4/uv4_ca_packinstaller.htm"><b>Pack Installer</b></a> is a utility for installing, updating, and removing <a target="_blank" href="http://www.keil.com/support/man/docs/uv4/uv4_ca_swcomponents.htm"><b>Software Packs</b></a>. 
+                    In addition, it enables the user to copy example projects which are part of a <b>Software Pack</b> to a local folder.<br>
+                </li>
+                <li>
+                    A current set of <b>Software Packs</b> can be found on the <b>MDK V5 Software Packs</b> website at <a target="_blank" href="http://www.keil.com/dd2/Pack/"><b>www.keil.com/dd2/Pack</b></a>.
+                </li>
+                <li>
+                    The <b>MDK V5 Device List page</b> at <a target="_blank" href="http://www.keil.com/dd2/"><b>www.keil.com/dd2</b></a> shows all microcontrollers that are currently supported by <b>Software Packs</b>.	   
+                </li>
+                <li>
+                For devices that currently aren't supported by <b>Software Packs</b>, <a target="_blank" href="http://www.keil.com/mdk5/legacy"><b>Legacy Support</b></a> packages are available.
+                </li>
+            </ul>
+        </li>
+
+    <li><a target="_blank" href="http://www.keil.com/uvision/"><font color="#0065AF" size="2"><b>[µVision]</b></font></a>
+     <ul>
+
+     <li><a target="_blank" href="http://www.keil.com/support/man/docs/uv4/uv4_ca_swcomponents.htm"><font color="#0065AF" size="2"><b>[Run-Time Environment]</b></font></a>
+         The <b>Run-Time Environment (RTE)</b> defines the software components that are used in a project.
+     The new <a target="_blank" href="http://www.keil.com/support/man/docs/uv4/uv4_ca_rtemanager.htm"><b>Run-Time Environment Dialog</b></a> shows all installed <b>Software Components</b> that are available for the selected microcontroller. 
+     </li>
+        <li><a target="_blank" href="http://www.keil.com/support/man/docs/uv4/uv4_ca_sourcefiles.htm"><font color="#0065AF" size="2"><b>[User Code Templates]</b></font></a>
+          User Code templates contain <b>example code</b> for frequently used functionality in software components that are delivered as a part of Software Packs.
+        </li>
+
+     <li><font color="#0065AF" size="2"><b>[Project Files]</b></font>
+     <b>µVision 5</b> introduces new project file extensions <b>*.uvprojx, *.uvoptx, and *.uvguix</b> 
+     to indicate projects that use <b>RTE</b>. The option <b>Project - Manage - Use Run-Time Environment</b>
+     enables or disables <b>RTE</b>.  When <b>RTE</b> is disabled, <b>µVision 4</b> compatible project files are created.
+     </li>
+     <li>This MDK V5 release is delivered with <b>µVision V5.0.5.15</b>.</li>
+
+     </ul></li>
+
+     <li><font color="#0065AF" size="2"><b>[ARM Compiler]</b></font>
+     <ul>
+     <li>This MDK V5 release is delivered with <b>ARM Compiler 5.03u2</b>.</li>	 
+     <li>All compiler related files are located in <b>..\ARM\ARMCC\</b> directory.</li>
+     <li>Details can be found in the 
+       <a target="_blank" href="http://infocenter.arm.com/help/topic/com.arm.doc.arn0005l/index.html"><b>Compiler specific Release Notes</b></a>.
+     </li>
+     </ul></li>
+
+   
+
+    <li><font color="#0065AF" size="2"><b>[CMSIS]</b></font>
+    <ul>
+     <li>This version of MDK V5 ships with the CMSIS 3.20 Software Pack.</li>
+     <li>The CMSIS Pack includes <a target="_blank" href="http://www.keil.com/pack/doc/cmsis_rtx/index.html"><b>CMSIS-RTOS RTX</b></a>,
+         a <a target="_blank" href="http://www.keil.com/pack/doc/cmsis/RTOS/html/index.html"><b>CMSIS-RTOS</b></a> compatible real-time OS.</li>
+     <li>CMSIS-RTOS RTX <b>replaces</b> MDK V4.x RTX. For project maintenance, <b>MDK V4.x RTX</b> is still available as part of the <a target="_blank" href="http://www.keil.com/mdk5/legacy"><b>Legacy Support</b></a>.</li>
+    </ul></li>
+
+
+     <li><font color="#0065AF" size="2"><b>[Middleware]</b></font>
+     <ul>
+        <li>The <b>MDK V5</b> middleware requires a <a target="_blank" href="http://www.keil.com/pack/doc/cmsis/RTOS/html/index.html"><b>CMSIS-RTOS</b></a> compatible <b>RTOS</b> like CMSIS-RTOS RTX.</li>
+        <li>The <b>MDK V5</b> middleware uses the new <a target="_blank" href="http://www.keil.com/pack/doc/cmsis/Driver/html/index.html"><b>CMSIS-DRIVER API</b></a> for hardware access.</li>
+        <li><a target="_blank" href="http://www.keil.com/pack/doc/mw/FileSystem/html/index.html"><font color="#0065AF" size="2"><b>[File System Component]</b></font></a>
+          <ul>
+            <li>The <b>MDK V5 File System Component</b> is incompatible with the <b>MDK V4.x RL-FlashFS</b> middleware.</li>
+            <li>The differences to the <b>RL-FlashFS</b> can be found on the <a target="_blank" href="http://www.keil.com/pack/doc/mw/FileSystem/html/fs_diffs.html"><b>Differences to RL-FlashFS</b></a> website.</li>
+            <li>A detailed description can be found on the <a target="_blank" href="http://www.keil.com/pack/doc/mw/FileSystem/html/index.html"><b>File System Component Documentation</b></a> website.</li>			
+          </ul>
+        </li>
+
+        <li><a target="_blank" href="http://www.keil.com/pack/doc/mw/Network/html/index.html"><font color="#0065AF" size="2"><b>[Network Component]</b></font></a>
+          <ul>
+            <li>The <b>MDK V5 Network Component</b> is incompatible with the <b>MDK V4.x RL-TCPnet</b> middleware.</li>
+            <li>The differences to the <b> RL-TCPnet</b> can be found on the <a target="_blank" href="http://www.keil.com/pack/doc/mw/Network/html/network_diffs.html"><b>Differences to RL-TCPnet</b></a> website.</li>
+            <li>A detailed description can be found on the <a target="_blank" href="http://www.keil.com/pack/doc/mw/Network/html/index.html"><b>Network Component Documentation</b></a> website.</li>       
+          </ul>
+        </li>        
+
+        <li><a target="_blank" href="http://www.keil.com/pack/doc/mw/USB/html/index.html"><font color="#0065AF" size="2"><b>[USB Component]</b></font></a>
+          <ul>
+            <li>The <b>MDK V5 USB Component</b> is incompatible with <b>MDK V4.x RL-USB</b> middleware.</li>
+            <li>The differences to the <b> RL-USB</b> can be found on the <a target="_blank" href="http://www.keil.com/pack/doc/mw/USB/html/usb_diffs.html"><b>Differences to RL-USB</b></a> website.</li>
+            <li>A detailed description can be found on the <a target="_blank" href="http://www.keil.com/pack/doc/mw/USB/html/index.html"><b>USB Component Documentation</b></a> website.</li>
+          </ul>
+        </li>
+
+        <li><a target="_blank" href="http://www.keil.com/pack/doc/mw/Graphic/html/index.html"><font color="#0065AF" size="2"><b>[Graphics Component]</b></font></a>
+          <ul>
+           <li>The <b>MDK V5 Graphic Component</b> is based on <b>Segger emWin 5.22</b>.</li>
+           <li>A detailed description can be found on the <a target="_blank" href="http://www.keil.com/pack/doc/mw/Graphic/html/index.html"><b>Graphic Component Documentation</b></a> website.</li>
+          </ul>
+        </li>
+
+      </ul></li>
+
+      <li><font color="#0065AF" size="2"><b>[Target debugging]</b></font>
+       <ul>
+        <li>Updated: The <a target="_blank" href="http://www.keil.com/support/man/docs/dapdebug/dapdebug_introduction.htm"><b>CMSIS-DAP</b></a> driver now supports the <b>Micro Trace Buffer (MTB)</b> of <b>Cortex-M0+</b> devices.</li>
+        <li>Updated: <b>ULINK2</b> device firmware to version <b>2.02</b>. This version removes the Windows warning "This device can perform faster if connected to USB 2.0".</li>
+        <li>Updated: <b>Segger J-Link</b> driver for <b>ARM</b> devices to version <b>4.76d</b>.</li>
+       </ul></li>
+
+</ul>
+
+
+
+
+<h2><a name=TechnicalSupport></a>Technical Support</h2>
+   <p>
+    At Keil Software, we are dedicated to providing you with the best development tools and technical support. 
+    That's why we offer numerous ways you can get the technical support you need to complete your embedded projects.
+   </p>
+<ul>
+  <li class=LI2><a href="http://www.keil.com/support/knowledgebase.asp" target="_blank"><b>Technical Support Knowledgebase</b></a><br>
+   More than 2500 technical support questions and answers are available in the Support Solutions Knowledgebase. 
+   When a new question arises, it is added to the knowledgebase which is continuously published to the Web. 
+   This enables you to get technical support at times when our support staff is unavailable.</li>
+  <li class=LI2><a href="http://www.keil.com/appnotes" target="_blank"><b>Application Notes</b></a><br>
+   Numerous Application Notes help you decipher complex features and implement robust applications.</li>
+  <li class=LI2><a href="http://www.keil.com/download/file/" target="_blank"><b>Example Programs and Files</b></a><br>
+   Utility programs, example code, and sample projects are regularly added to the Download File section of the web site.</li>
+  <li class=LI2><a href="http://www.keil.com/forum" target="_blank"><b>Discussion Forum</b></a><br>
+   Post questions, comments, and suggestions to the Keil Software Discussion Forum and interact with other Keil users around the world.</li>
+  <li class=LI2><a href="http://www2.keil.com/support/silver" target="_blank"><b>Contact Technical Support</b></a><br>
+   Describes how to contact the Technical Support.</li>
+</ul>
+
+<p>Many of the features of our Technical Support Knowledgebase and Web Site are the results of your suggestions. 
+   If you have any ideas that will improve them, please <a href="http://www.keil.com/support/feedback.asp" target="_blank">give us your feedback</a>!</p>
+
+<h2><a name=ContactDetails></a>Contact Details</h2>
+<p>
+  If you experience any problems or have any questions about this product, 
+  contact one of our <a href="http://www.keil.com/distis" target="_blank">distributors</a> or offices for assistance.
+</p>
+
+<div align=center><center><table border=0 cellpadding=5 cellspacing=0>
+<tr>
+<td valign=top nowrap bgcolor="#ffffcc" style="border:1 solid #800000">
+  <p>
+   <b>In the USA...</b></br><br>
+   <b>ARM, Inc.</b><br>
+      4965 Preston Park Blvd, Suite 650<br>
+      Plano, TX&nbsp; 75093<br>
+      USA<br><br>
+      800-348-8051 - Sales<br>
+      972-312-1107 - Support<br>
+      972-312-1159 - Fax<br><br>
+      <a href="mailto:sales.us@keil.com" target="_blank">sales.us@keil.com</a> - Sales E-Mail <br> 
+  </p>
+</td>
+<td valign=top width=30 nowrap></td>
+<td valign=top nowrap style="border:1 solid #800000" bgcolor="#ffffcc">
+  <p>
+   <b>In Europe...</b><br><br>
+   <b>ARM Germany GmbH</b><br>
+      Bretonischer Ring 16<br>
+      D-85630 Grasbrunn<br>
+      Germany<br><br>
+      +49 89 456040-0 - Sales<br>
+      +49 89 456040-24 - Support<br>
+      +49 89 468162 - Fax<br><br>
+      <a href="mailto:sales.intl@keil.com" target="_blank"> sales.intl@keil.com</a> - Sales E-Mail <br>
+   </p>
+</td>
+</tr></table></center></div>
+   <hr><p class=TinyT>Copyright © 2019 ARM Ltd and ARM Germany GmbH.<br>
+       All rights reserved.<br>
+       Visit our web site at <a href="http://www.keil.com" target="_blank">www.keil.com</a>.
+      </p>
+
+</body>
+</html>
